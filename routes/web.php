@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/',function () {
     return view('index');
 });
+
+Route::get('/login',function () {
+    return view('login');
+})->name('login');
+
+
+Route::get('/home/{role?}','IndexController@index')->name('home');
+Route::get('pertanyaan/{mode}/{role?}','IndexController@pertanyaan')->name('pertanyaan');
+Route::get('/statistik/{role?}','IndexController@statistik')->name('statistik');
+Route::get('publish/{mode}/{role?}','IndexController@publish')->name('publish');
+

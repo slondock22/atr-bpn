@@ -60,7 +60,7 @@
                         <div class="attr-nav button-light">
                             <ul>
                                 <li>
-                                    <a href="http://localhost:5000" target="_blank">login</a>
+                                    <a href="{{route('login')}}" target="_blank">login</a>
                                 </li>
                             </ul>
                         </div>
@@ -122,7 +122,7 @@
 
                             </h1>
                             <p>
-                               TANYA ATR/BPN - Tempat Aspirasi dan Layanan Aduan Badan Pertanahan Nasional adalah sebuah portal untuk mengakomodir segala pertanyan, keluhan dan media penyalur aspirasi masyarakat untuk semua pelayanan di Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional. Gunakan tagar #TanyaATRBPN untuk mengenal kami lebih dekat!.
+                               TANYA ATR/BPN - Tempat Aspirasi dan Layanan Aduan Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional adalah sebuah portal untuk mengakomodir segala pertanyan, keluhan dan media penyalur aspirasi masyarakat untuk semua pelayanan di Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional. Gunakan tagar #TanyaATRBPN untuk mengenal kami lebih dekat!.
                             </p>
                             <a class="btn btn-theme border btn-md" href="#about">Selengkapnya</a>
                            <!--  <a class="btn-animation popup-youtube" href="https://www.youtube.com/watch?v=owhuBrGIOsE">
@@ -155,17 +155,19 @@
                     <div class="col-md-6 info">
                         <h2>Tentang #TanyaATRBPN</h2>
                         <p>
-                            TANYA ATR/BPN - Tempat Aspirasi dan Layanan Aduan Badan Pertanahan Nasional adalah sebuah portal untuk mengakomodir segala pertanyan, keluhan dan media penyalur aspirasi masyarakat untuk semua pelayanan di Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional. Gunakan tagar #TanyaATRBPN untuk mengenal kami lebih dekat!.
+                            TANYA ATR/BPN - Tempat Aspirasi dan Layanan Aduan Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional adalah sebuah portal untuk mengakomodir segala pertanyan, keluhan dan media penyalur aspirasi masyarakat untuk semua pelayanan di Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional. Gunakan tagar #TanyaATRBPN untuk mengenal kami lebih dekat!.
                         </p>
                         <h4>Kami Siap Untuk</h4>
                         <ul>
                             <li>Respon cepat tanggap pertanyaan keluhan dan aspirasi dari berbagai sosial media</li>
-                            <li>Layanan pengaduan 24/7 setiap hari</li>
                             <li>Disposisi pengaduan langsung ke cabang Kementerian ATR/BPN di kota anda</li>
+                            <li>Memberikan informasi terkini untuk semua layanan di Kementerian ATR/BPN</li>
+
+
                         </ul>
                     </div>
                     <div class="col-md-6 video">
-                        <img src="assets/img/app/app-2.png" alt="Thumb">
+                        <img src="assets/img/app/app-3.png" alt="Thumb">
                     </div>
                 </div>
             </div>
@@ -232,7 +234,7 @@
                                     <div class="info">
                                         <h4>Connected</h4>
                                         <p>
-                                            Kami membantu untuk terhubung langsung dengan kanwil ATR/BPN di kota anda.
+                                            Kami membantu untuk terhubung langsung dengan kanwil ATR/BPN di Kota/Kab anda.
                                         </p>
                                     </div>
                                 </div>
@@ -308,7 +310,7 @@
                                 <div class="content">
                                     <h4>Disposisi</h4>
                                     <p>
-                                        Pertanyaan yang anda kirimkan akan disposisikan ke kanwil ATR/BPN yang sesuai dengan kota anda. Tambahkan tagar #TanyaATRBPN(nama_kotamu).
+                                        Pertanyaan yang anda kirimkan akan disposisikan ke kanwil bpn provinsi dan kantor pertanahan kab/kota. Tambahkan tagar #(nama_kota/kab).
                                     </p>
                                 </div>
                             </li>
@@ -480,7 +482,7 @@
                         <div class="f-item">
                             <img src="{{asset('/')}}assets/img/logo-atr2.png" alt="Logo">
                             <p>
-                                TANYA ATR/BPN - Tempat Aspirasi dan Layanan Aduan Badan Pertanahan Nasional adalah sebuah portal untuk mengakomodir segala pertanyan, keluhan dan media penyalur aspirasi masyarakat untuk semua pelayanan di Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional.
+                                TANYA ATR/BPN - Tempat Aspirasi dan Layanan Aduan Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional adalah sebuah portal untuk mengakomodir segala pertanyan, keluhan dan media penyalur aspirasi masyarakat untuk semua pelayanan di Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional.
                             </p>
                             <p>
                                 <i>Silahkan masukan alamat email anda untuk berlangganan informasi terbaru</i>
