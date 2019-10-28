@@ -6,21 +6,14 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
-           <div class="alert alert-primary alert-dismissible fade show" role="alert">
-            Selamat datang, 
-             @if($role=='admin'|| $role=='')
-             <strong>Administrator Pusat</strong> !
-             @elseif($role=='adminkanwil')
-             <strong>Administrator Kanwil</strong> !
-             @elseif($role=='super')
-             <strong>Superadmin Pusat</strong> !
-             @elseif($role=='superkanwil')
-             <strong>Superadmin Kanwil</strong> !
-             @endif  
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+           @if (session('status'))
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+               {{ session('status') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            @endif
         </div>
       </div>
       

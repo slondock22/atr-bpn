@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -48,7 +49,7 @@ class LoginController extends Controller
         $role = array('adminpusat','adminkanwil','adminkantah','oppusat','opkanwil','opkantah');
         if(in_array($request->username, $role)){    
             $request->session()->put('ROLE', $request->username);
-            return redirect('home')->with('status', 'Selamat Datang'.$request->username);
+            return redirect('home')->with('status', 'Selamat Datang '.Str::title($request->username));
         }
         else{
              return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
