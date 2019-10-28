@@ -2,6 +2,9 @@
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1 tb-profile-content">
+  <div class="tb-padd-lr-30 tb-uikits-heading">
+      <h2 class="tb-uikits-title">Twitter</h2>
+    </div>
     <div class="tb-content tb-style3">
       <div class="container-fluid">
         <div class="tb-height-b30 tb-height-lg-b30"></div>

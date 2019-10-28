@@ -195,7 +195,7 @@
             <li>
               <a href="#"><i class="material-icons-outlined">help</i>Help</a>
             </li>
-            <li class="tb-dropdown-cta"><a href="#">Sign Out</a></li>
+            <li class="tb-dropdown-cta"><a href="{{route('login')}}">Sign Out</a></li>
           </ul>
         </div>
       </li>

@@ -13,21 +13,12 @@
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-           @if(isset($role) && $role != '')
-            <a href="{{route('home',$role)}}">
+            <a href="{{route('home')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">home</i></span>
                 <span class="tb-sidebar-link-text">Beranda</span>
               </span>
             </a>
-            @else
-            <a href="{{route('home','admin')}}">
-              <span class="tb-sidebar-link-title">
-                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">home</i></span>
-                <span class="tb-sidebar-link-text">Beranda</span>
-              </span>
-            </a>
-            @endif
           </li>
           <li>
             <a href="{{route('statistik')}}">
@@ -38,7 +29,9 @@
             </a>
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
-        @if($role == 'admin' || $role == 'adminkanwil' || $role == '')
+
+
+        @if(session()->get('ROLE') == 'oppusat' || session()->get('ROLE') == 'opkanwil' || session()->get('ROLE') == 'opkantah')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Pertanyaan & Aduan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
@@ -69,8 +62,6 @@
             </a>
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
-        @endif
-        @if($role == 'admin' || $role == '')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Berita</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
@@ -108,14 +99,15 @@
             </ul>
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
+        @endif
 
-          <div class="tb-sidebar-nav-title">
+        <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Laporan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
            <li>
-            <a href="project-management.html">
+            <a href="{{route('laporan','rekap_aduan')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">assessment</i></span>
                 <span class="tb-sidebar-link-text">Rekap Aduan</span>
@@ -131,9 +123,10 @@
             </a>
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
-        @endif
-        @if($role == 'super' || $role == 'superkanwil')
-         <div class="tb-sidebar-nav-title">
+      
+
+        @if(session()->get('ROLE') == 'adminpusat' || session()->get('ROLE') == 'adminkanwil' || session()->get('ROLE') == 'adminkantah')
+        <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Master</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
         </div>
@@ -142,12 +135,56 @@
             <a href="documentation.html">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-users"></i></span>
-                <span class="tb-sidebar-link-text">Manajemen User</span>
+                <span class="tb-sidebar-link-text">Master User</span>
+              </span>
+            </a>
+          </li>
+          @if(session()->get('ROLE') == 'adminpusat')
+           <li>
+            <a href="documentation.html">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
+                <span class="tb-sidebar-link-text">Master Kanwil</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="documentation.html">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
+                <span class="tb-sidebar-link-text">Master Kantah</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="documentation.html">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
+                <span class="tb-sidebar-link-text">Master Jenis Aduan</span>
+              </span>
+            </a>
+          </li>
+          @endif
+        </ul>
+        @endif
+
+        @if(session()->get('ROLE') == 'adminpusat')
+        <div class="tb-sidebar-nav-title">
+          <span class="tb-sidebar-nav-title-text">Pengaturan</span>
+          <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
+        </div>
+        <ul class="tb-sidebar-nav-list tb-mp0">
+          <li>
+            <a href="documentation.html">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">settings</i></span>
+                <span class="tb-sidebar-link-text">Konfigurasi API</span>
               </span>
             </a>
           </li>
         </ul>
         @endif
+
          <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Bantuan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
