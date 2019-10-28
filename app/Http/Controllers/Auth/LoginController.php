@@ -47,6 +47,11 @@ class LoginController extends Controller
         $request->session()->flush();
 
         $role = array('adminpusat','adminkanwil','adminkantah','oppusat','opkanwil','opkantah');
+
+        if($request->password != '123'){
+             return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
+        }
+
         if(in_array($request->username, $role)){    
             $request->session()->put('ROLE', $request->username);
             return redirect('home')->with('status', 'Selamat Datang '.Str::title($request->username));
