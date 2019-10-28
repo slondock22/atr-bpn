@@ -9,7 +9,7 @@
     <meta name="description" content="Kementerian ATR/BPN">
 
     <!-- ========== Page Title ========== -->
-    <title>TANYA ATR/BPN</title>
+    <title>#TanyaATRBPN</title>
 
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{asset('/')}}assets/img/logobpn.ico" type="image/x-icon">

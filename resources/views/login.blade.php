@@ -41,18 +41,27 @@
         <div class="col-lg-4">
           <div class="tb-vertical-middle">
             <div class="tb-vertical-middle-in">
-              <form action="#" class="tb-form tb-style1">
+              @if (session('error'))
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                 {{ session('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              @endif
+              <form action="{{route('postLogin')}}" class="tb-form tb-style1" method="post">
+                @csrf
                 <h2 class="tb-form-title" style="text-align: center;">Login</h2>
                 <div class="tb-height-b15 tb-height-lg-b15"></div>
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="tb-form-field">
-                      <input type="text" placeholder="Username">
+                      <input type="text" placeholder="Username" name="username">
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="tb-form-field">
-                      <input type="text" placeholder="Password">
+                      <input type="password" placeholder="Password" name="password">
                     </div>
                   </div>
                   <div class="col-lg-12">
@@ -70,7 +79,7 @@
                       </div>
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
-                    <a href="{{route('home','admin')}}" class="tb-form-btn tb-style1 tb-color1"><span>Sign In</span></a>
+                    <button type="submit" class="tb-form-btn tb-style1 tb-color1"><span>Sign In</span></button>
                   </div>
                 </div>
               </form>

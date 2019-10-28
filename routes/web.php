@@ -19,9 +19,13 @@ Route::get('/login',function () {
     return view('login');
 })->name('login');
 
+Route::post('postLogin','Auth\LoginController@postLogin')->name('postLogin');
 
-Route::get('/home/{role?}','IndexController@index')->name('home');
-Route::get('pertanyaan/{mode}/{role?}','IndexController@pertanyaan')->name('pertanyaan');
-Route::get('/statistik/{role?}','IndexController@statistik')->name('statistik');
-Route::get('publish/{mode}/{role?}','IndexController@publish')->name('publish');
+
+Route::get('home','IndexController@index')->name('home');
+Route::get('pertanyaan/{mode}','IndexController@pertanyaan')->name('pertanyaan');
+Route::get('statistik','IndexController@statistik')->name('statistik');
+Route::get('publish/{mode}','IndexController@publish')->name('publish');
+Route::get('laporan/{mode}','IndexController@laporan')->name('laporan');
+
 

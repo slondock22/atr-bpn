@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 
 class IndexController extends Controller
 {
@@ -39,6 +41,16 @@ class IndexController extends Controller
     	}
     	elseif ($media == 'instagram') {
     		return view('admin.publish_facebook')->with(compact('role'));;
+    	}
+    }
+
+     public function laporan($media,$role='')
+    {
+    	if($media == 'rekap_aduan'){
+    		return view('admin.rekap_aduan')->with(compact('role'));;
+    	}
+    	elseif ($media == 'performansi') {
+    		return view('admin.rekap_aduan')->with(compact('role'));;
     	}
     }
 }
