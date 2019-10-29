@@ -42,22 +42,31 @@ class LoginController extends Controller
     }
 
     public function postLogin(Request $request)
-    {  
-        $request->session()->forget('ROLE');
-        $request->session()->flush();
+    {
+        $client = new \GuzzleHttp\Client();
+        $url = "http://localhost:3000/auth";
+        $myBody['users'] = $request->username;
+        $myBody['pass']  = $request->password;
+        $request = $client->post($url,  ['form_params'=>$myBody]);
+        $response = $request->send();
+       
+        dd($response);
 
-        $role = array('adminpusat','adminkanwil','adminkantah','oppusat','opkanwil','opkantah');
+        // $request->session()->forget('ROLE');
+        // $request->session()->flush();
 
-        if($request->password != '123'){
-             return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
-        }
+        // $role = array('adminpusat','adminkanwil','adminkantah','oppusat','opkanwil','opkantah');
 
-        if(in_array($request->username, $role)){    
-            $request->session()->put('ROLE', $request->username);
-            return redirect('home')->with('status', 'Selamat Datang '.Str::title($request->username));
-        }
-        else{
-             return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
-        }
+        // if($request->password != '123'){
+        //      return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
+        // }
+
+        // if(in_array($request->username, $role)){    
+        //     $request->session()->put('ROLE', $request->username);
+        //     return redirect('home')->with('status', 'Selamat Datang '.Str::title($request->username));
+        // }
+        // else{
+        //      return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
+        // }
     }
 }
