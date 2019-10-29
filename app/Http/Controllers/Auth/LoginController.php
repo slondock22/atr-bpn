@@ -43,7 +43,7 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-        $client = new \GuzzleHttp\Client();
+        $client = new Client();
         $url = "http://localhost:3000/auth";
         $myBody['users'] = $request->username;
         $myBody['pass']  = $request->password;
