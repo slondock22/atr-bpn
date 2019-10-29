@@ -47,8 +47,8 @@ class LoginController extends Controller
         $url = "http://localhost:3000/auth";
         $myBody['users'] = $request->username;
         $myBody['pass']  = $request->password;
-        $request = $client->post($url,  ['form_params'=>$myBody]);
-        $response = $request->send();
+        $request = $client->request('POST', $url,  ['form_params'=>$myBody]);
+        $response = $request->getBody()->getContents();
        
         dd($response);
 
