@@ -25,41 +25,27 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>Basic Info</th>
-                    <th>Company</th>
-                    <th>Invoice #</th>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Total Ammount</th>
-                    <th>Sent</th>
+                    <th>#</th>
+                    <th>ID Aduan</th>
+                    <th>Username</th>
+                    <th>Tgl Post</th>
+                    <th>Jenis Aduan</th>
+                    <th>Sumber</th>
                     <th>Status</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
-                      <div class="tb-table-icon-box">
-                        <span class="tb-checkbox tb-style2 tb-color1">
-                          <input type="checkbox" />
-                          <span class="tb-checkbox-icon"><i class="material-icons">done</i></span>
-                        </span>
-                        <img src="../../assets/img/icon/icon1.png" alt="icon" class="tb-table-icon"/>
-                        <div class="tb-table-icon-box-info">
-                          <h3 class="tb-table-icon-title">Bob Dylan</h3>
-                          <span class="tb-table-icon-text">Dylan@gmail.com</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Firebox</td>
-                    <td>121356</td>
-                    <td>27 Dec, 2020</td>
-                    <td>Service</td>
-                    <td>$65.23</td>
                     <td>1</td>
+                    <td>#TW00001</td>
+                    <td>adrialnajlan</td>
+                    <td>27 Nov 2019</td>
+                    <td>Sertifikat Tanah</td>
+                    <td>Twitter</td>
                     <td>
                       <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">OVERDIEW</a>
+                        <a href="#" class="tb-tag tb-icon-color1">Terbuka</a>
                       </div>
                     </td>
                     <td>
@@ -67,127 +53,28 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>
-                      <div class="tb-table-icon-box">
-                        <span class="tb-checkbox tb-style2 tb-color1">
-                          <input type="checkbox" />
-                          <span class="tb-checkbox-icon"><i class="material-icons">done</i></span>
-                        </span>
-                        <img src="../../assets/img/icon/icon2.png" alt="icon" class="tb-table-icon"/>
-                        <div class="tb-table-icon-box-info">
-                          <h3 class="tb-table-icon-title">Bob Dylan</h3>
-                          <span class="tb-table-icon-text">Dylan@gmail.com</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Firebox</td>
-                    <td>121356</td>
-                    <td>27 Dec, 2020</td>
-                    <td>Service</td>
-                    <td>$65.23</td>
-                    <td>1</td>
+                    <td>2</td>
+                    <td>#TW00002</td>
+                    <td>meilani</td>
+                    <td>28 Nov 2019</td>
+                    <td>Sengketa Lahan</td>
+                    <td>Twitter</td>
                     <td>
                       <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color2">paid</a>
+                        <a href="#" class="tb-tag tb-icon-color1">Selesai</a>
                       </div>
                     </td>
                     <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <div class="tb-table-icon-box">
-                        <span class="tb-checkbox tb-style2 tb-color1">
-                          <input type="checkbox" />
-                          <span class="tb-checkbox-icon"><i class="material-icons">done</i></span>
-                        </span>
-                        <img src="../../assets/img/icon/icon3.png" alt="icon" class="tb-table-icon"/>
-                        <div class="tb-table-icon-box-info">
-                          <h3 class="tb-table-icon-title">Bob Dylan</h3>
-                          <span class="tb-table-icon-text">Dylan@gmail.com</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Firebox</td>
-                    <td>121356</td>
-                    <td>27 Dec, 2020</td>
-                    <td>Service</td>
-                    <td>$65.23</td>
-                    <td>1</td>
-                    <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">OVERDIEW</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="tb-table-icon-box">
-                        <span class="tb-checkbox tb-style2 tb-color1">
-                          <input type="checkbox" />
-                          <span class="tb-checkbox-icon"><i class="material-icons">done</i></span>
-                        </span>
-                        <img src="../../assets/img/icon/icon4.png" alt="icon" class="tb-table-icon"/>
-                        <div class="tb-table-icon-box-info">
-                          <h3 class="tb-table-icon-title">Bob Dylan</h3>
-                          <span class="tb-table-icon-text">Dylan@gmail.com</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Firebox</td>
-                    <td>121356</td>
-                    <td>27 Dec, 2020</td>
-                    <td>Service</td>
-                    <td>$65.23</td>
-                    <td>1</td>
-                    <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color2">Paid</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="tb-table-icon-box">
-                        <span class="tb-checkbox tb-style2 tb-color1">
-                          <input type="checkbox" />
-                          <span class="tb-checkbox-icon"><i class="material-icons">done</i></span>
-                        </span>
-                        <img src="../../assets/img/icon/icon5.png" alt="icon" class="tb-table-icon"/>
-                        <div class="tb-table-icon-box-info">
-                          <h3 class="tb-table-icon-title">Bob Dylan</h3>
-                          <span class="tb-table-icon-text">Dylan@gmail.com</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Firebox</td>
-                    <td>121356</td>
-                    <td>27 Dec, 2020</td>
-                    <td>Service</td>
-                    <td>$65.23</td>
-                    <td>1</td>
-                    <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">OVERDIEW</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
-                    </td>
-                  </tr>
+             
                 </tbody>
               </table>
             </div><!-- .tb-table -->
             <div class="tb-table-footer">
               <div class="tb-table-footer-left">
-                <div class="tb-table-footer-left-text">This report was generated on 23 Jan,2020 at 9:34:19 PM - <a href="#">Refresh Report</a></div>
+                <div class="tb-table-footer-left-text">This report was generated on 29 Des,2019 at 9:34:19 PM - <a href="#">Refresh Report</a></div>
               </div>
               <div class="tb-table-footer-right">
                 <ul class="tb-mp0 tb-table-footer-list">
