@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
+use Cookie;
 
 class LoginController extends Controller
 {
@@ -44,29 +45,26 @@ class LoginController extends Controller
     public function postLogin(Request $request)
     {
         $client = new Client();
-        $url = "http://localhost:3000/auth";
+        $url = "http://124.81.66.59:3000/auth";
         $myBody['users'] = $request->username;
         $myBody['pass']  = $request->password;
         $request = $client->request('POST', $url,  ['form_params'=>$myBody]);
-        $response = $request->getBody()->getContents();
-       
-        dd($response);
+        $response = json_decode($request->getBody()->getContents(),true);
+        
+        // dd($response['error']);
+        if($response['error'] == false){
+            Cookie::queue(Cookie::forever('TOKEN_AUTH_APP', $response['data']['token']));
+            Cookie::queue(Cookie::forever('USER_ROLE', $response['data']['detail']['tm_role']['role']));
+            Cookie::queue(Cookie::forever('USER_FULL_NAME', $response['data']['detail']['user_full_name']));
+            Cookie::queue(Cookie::forever('USER_STATUS', $response['data']['detail']['user_status']));
+            Cookie::queue(Cookie::forever('USER_ID', $response['data']['detail']['id']));
 
-        // $request->session()->forget('ROLE');
-        // $request->session()->flush();
-
-        // $role = array('adminpusat','adminkanwil','adminkantah','oppusat','opkanwil','opkantah');
-
-        // if($request->password != '123'){
-        //      return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
-        // }
-
-        // if(in_array($request->username, $role)){    
-        //     $request->session()->put('ROLE', $request->username);
-        //     return redirect('home')->with('status', 'Selamat Datang '.Str::title($request->username));
-        // }
-        // else{
-        //      return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
-        // }
+            return redirect('home')->with('status', 'Selamat Datang '.Str::title($response['data']['detail']['user_full_name']));
+        
+        }else{
+            if($response['message'] == 'NoUserFound'){
+             return redirect('login')->with('error', 'Username/Password Tidak Sesuai');
+            }
+        }
     }
 }

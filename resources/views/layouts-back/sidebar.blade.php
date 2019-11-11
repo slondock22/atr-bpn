@@ -31,7 +31,7 @@
         </ul><!-- .tb-sidebar-nav-list -->
 
 
-        @if(session()->get('ROLE') == 'oppusat' || session()->get('ROLE') == 'opkanwil' || session()->get('ROLE') == 'opkantah')
+        @if(request()->cookie('USER_ROLE')  == '6' || request()->cookie('USER_ROLE')  == '4' || request()->cookie('USER_ROLE')  == '5')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Pertanyaan & Aduan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
@@ -125,7 +125,7 @@
         </ul><!-- .tb-sidebar-nav-list -->
       
 
-        @if(session()->get('ROLE') == 'adminpusat' || session()->get('ROLE') == 'adminkanwil' || session()->get('ROLE') == 'adminkantah')
+        @if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Master</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
@@ -139,7 +139,7 @@
               </span>
             </a>
           </li>
-          @if(session()->get('ROLE') == 'adminpusat')
+          @if(request()->cookie('USER_ROLE')  == '1')
            <li>
             <a href="documentation.html">
               <span class="tb-sidebar-link-title">
@@ -168,7 +168,7 @@
         </ul>
         @endif
 
-        @if(session()->get('ROLE') == 'adminpusat')
+        @if(request()->cookie('USER_ROLE')  == '1')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Pengaturan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
