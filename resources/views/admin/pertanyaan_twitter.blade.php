@@ -215,8 +215,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary">Kirim</button>
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-post">Kirim</button>
       </div>
     </div>
   </div>
@@ -247,9 +247,9 @@
       </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
         <button type="button" class="btn btn-warning">Draft</button>
-        <button type="button" class="btn btn-primary">Kirim</button>
+        <button type="button" class="btn btn-post">Kirim</button>
       </div>
     </div>
   </div>
