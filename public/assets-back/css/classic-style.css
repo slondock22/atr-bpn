@@ -3660,6 +3660,44 @@ scrollbar .scrollbar-thumb,
   margin-right: 5px;
 }
 
+.btn-post,
+.btn-post:hover,
+.badge-post,
+a.badge-post:hover {
+  background-color: #2568EF;
+  border-color: #2568EF;
+}
+
+.btn-post .badge,
+.btn-post:hover .badge,
+.badge-post .badge,
+a.badge-post:hover .badge {
+  color: #5ac8fa;
+}
+
+
+.btn-cancel,
+.btn-cancel:hover,
+.badge-cancel,
+a.badge-cancel:hover {
+  background-color: #D23111;
+  border-color: #D23111;
+}
+
+.btn-cancel .badge,
+.btn-cancel:hover .badge,
+.badge-cancel .badge,
+a.badge-cancel:hover .badge {
+  color: #5ac8fa;
+}
+
+.btn-post,
+.btn-post:hover,
+.btn-cancel,
+.btn-cancel:hover {
+  color: #fff;
+}
+
 .btn-primary,
 .btn-primary:hover,
 .badge-primary,
