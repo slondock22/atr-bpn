@@ -1,10 +1,11 @@
 @section('title','Pertanyaan Twitter')
 @extends('layouts-back.layout')
 @section('content')
-<div class="tb-content tb-style1 tb-profile-content">
+<div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Twitter</h2>
     </div>
+    
     <div class="tb-content tb-style3">
       <div class="container-fluid">
         <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -15,7 +16,9 @@
                 <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/profile_banners/2884911432/1540262770/1500x500">
                 </div>
                 <div class="tb-profile-info tb-small">
-                  <div class="tb-profile-pic"><img src="{{asset('/assets-back')}}/img/logo-mini-atr.jpg" alt=""></div>
+                  <div class="tb-profile-pic">
+                    <img src="{{asset('/assets-back')}}/img/logo-mini-atr.jpg" alt="">
+                  </div>
                   <div class="tb-profile-text">
                     <h2 class="tb-profile-name">Agraria & Tata Ruang</h2>
                     <div class="tb-profile-email">@atr_bpn</div>
@@ -83,7 +86,7 @@
               </div>
             </div>
           </div><!-- .col -->
-          <div class="tb-newsfeed-col-2">
+          <div class="tb-newsfeed-col-4">
          
            @foreach($response['data'] as $key => $value)
             <div class="tb-card tb-style1 tb-height-auto">
@@ -143,16 +146,50 @@
 
                 <div class="tb-height-b10 tb-height-lg-b10"></div>
                 <hr>
-                <div class="tb-padd-lr-30" id="button_feed">
-                  <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                    <li><a href="#" data-toggle="modal" data-target="#modal-balas-feed"><i class="material-icons-outlined">mode_comment</i> Balas</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#modal-add-disposisi"><i class="material-icons-outlined">forward</i> Disposisi</a></li>
-                    <li><a href="#"><i class="material-icons-outlined">block</i> Spam</a></li>
-                  </ul>
-                  <div class="tb-height-b10 tb-height-lg-b10"></div>
-                </div>
-
+                
+                @if($value['feed_id']!='')
+                  <div class="tb-padd-lr-30 y" id="button_feed{{$value['feed_id']}}">
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      <li>
+                        <a onclick="collapseBtn('button_feed{{$value['feed_id']}}','button_feed_send{{$value['feed_id']}}')">
+                          <i class="material-icons-outlined">mode_comment</i> Ambil
+                        </a>
+                      </li>
+                      <li><a href="#"><i class="material-icons-outlined">block</i> Spam</a></li>
+                    </ul>
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                  </div>
+                  
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['feed_id']}}" style="display: none">
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      <li>
+                        <a onclick="modal_feeds('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                          <i class="material-icons-outlined">mode_comment</i> Balas
+                        </a>
+                      </li>
+                      <li><a href="#" data-toggle="modal" data-target="#modal-add-disposisi"><i class="material-icons-outlined">forward</i> Disposisi</a></li>
+                      
+                    </ul>
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                  </div>
+                @else
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['feed_id']}}">
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      <li>
+                        <a onclick="modal_feeds('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                          <i class="material-icons-outlined">mode_comment</i> Balas
+                        </a>
+                      </li>
+                      <li><a href="#" data-toggle="modal" data-target="#modal-add-disposisi"><i class="material-icons-outlined">forward</i> Disposisi</a></li>
+                      
+                    </ul>
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                  </div>
+                @endif
+              
               </div>
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -190,15 +227,16 @@
 
  <!-- Modal -->
 <div class="modal fade" id="modal-add-disposisi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-twitter">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Buat Disposisi</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
+        <h5 class="modal-title" id="myLargeModalLabel">Buat Disposisi</h5>
+        <br>
         <form>
           <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
@@ -210,13 +248,13 @@
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Keterangan</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
+              <textarea class="form-control text-area-modal-twitter-nopad" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
             </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-post">Kirim</button>
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-modal-twitter">Kirim</button>
       </div>
     </div>
   </div>
@@ -225,10 +263,12 @@
 
  <!-- Modal -->
 <div class="modal fade" id="modal-balas-feed" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Balas Aduan</h4>
+        <div>
+
+        </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -236,23 +276,61 @@
       <div class="modal-body">
         <form>
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">Balasan</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
+              <div class="">
+              <div class="tb-height-lg-b20"></div>
+              <div class="tb-user tb-style3">
+                <div class="tb-user-img" id="imgUser"></div>
+                <div class="tb-user-info">
+                  <h3 class="tb-user-name headerUser" id="headerUser"></h3>
+                  <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                    <li id="dateModal"><a href="#"></a></li>
+                  </ul>
+                </div>
+              </div>
+
+
+              <div ></div>
+              
+              <div id="contentTwitUser" class="divContentTwitter"></div>
+              
+              <div class="divUserSend">
+                <label for="exampleFormControlTextarea1">
+                  Membalas <span id="twitUser" class="twitUser"></span> 
+                </label>
+              </div>
+
+              <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
+                rows="3" placeholder="Tweet balasan Anda" autofocus></textarea>
             </div>
-            <div class="form-group tb-cs-input-btn">
-              <label for="exampleFormControlFile1">Lampiran</label>
-              <span>Pilih File</span>
+            <div class="form-group tb-cs-input-btn divLampiran">
+              <span>Lampiran</span>
               <input type="file" class="form-control-file" id="exampleFormControlFile1">
             </div>
       </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-warning">Draft</button>
-        <button type="button" class="btn btn-post">Kirim</button>
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-modal-twitter">Draft</button>
+        <button type="button" class="btn btn-modal-twitter">Kirim</button>
       </div>
     </div>
   </div>
 </div>
 <!-- End Large Mosal -->
 @endsection
+
+<script>
+    function collapseBtn(div1,div2){
+        $("#"+div1).slideUp(300);
+        $("#"+div2).slideDown(300);
+    }
+
+    function modal_feeds(content='',user='',date=''){
+        $('#modal-balas-feed').modal('show');
+        $('#contentTwitUser').html(content);
+        $('#twitUser').html('@'+user);
+        $('#headerUser').html('@'+user);
+        $('#dateModal').html(date);
+        $("#imgUser").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">')
+    }
+</script>

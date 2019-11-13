@@ -1,0 +1,79 @@
+a{
+    cursor: pointer;
+}
+
+.modal-twitter{
+    max-width: 560px;
+    border-radius: 10px !important;
+}
+
+.modal-content{
+    border-radius: 15px !important;
+}
+
+.modal-body{
+    min-height: 400px !important;
+    max-height: 400px !important;
+    overflow-y: scroll;
+}
+
+.btn-modal-twitter{
+    font-weight: 600;
+    border-radius: 18px;
+    background-color: #1da1f2;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-twitter:hover{
+    color: #fff !important;
+    background-color: #1085ce;
+}
+
+.btn-modal-twitter-danger{
+    font-weight: 600;
+    border-radius: 18px;
+    background-color: #fc5f57;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-twitter-danger:hover{
+    color: #fff !important;
+    background-color: #e2362d;
+}
+
+.text-area-modal-twitter{
+    font-size: 17px !important;
+    border: none !important;
+    margin-left: 32px !important;
+    width: 95% !important;
+}
+
+.text-area-modal-twitter-nopad{
+    font-size: 17px !important;
+    border: none !important;
+    width: 95% !important;
+}
+
+.divContentTwitter{
+    padding: 10px 45px;
+    line-height: 1.7;
+    white-space: 1.5;
+    font-size: 14px !important;
+}
+
+.divUserSend{
+    padding: 5px 45px;
+}
+
+.headerUser{
+    font-size: 17px !important;
+    font-weight: 600;
+}
+
+.divLampiran{}
+
+.twitUser{
+    color: #1da1f2;
+}
