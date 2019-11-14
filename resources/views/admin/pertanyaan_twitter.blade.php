@@ -103,7 +103,13 @@
                       @endif  
                     </div>
                     <div class="tb-user-info">
-                      <h3 class="tb-user-name">{{$value['username']}} | @ {{$value['username']}}</h3>
+                      <h3 class="tb-user-name">
+                        {{$value['username']}} | @ {{$value['username']}}
+                        <span class="doneSpan">
+                           <i class="fas fa-check-circle doneIcon"></i>
+                           Case Selesai
+                        </span>
+                      </h3>
                       <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                         <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
                         <li><a href="#">{{$value['feed_id']}}</a></li>
@@ -130,13 +136,19 @@
 
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
-                  <div class="tb-user tb-style3">
+                  <div class="tb-user tb-style3 contentDisposisi">
                     <div class="tb-user-img">
                       <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
                     </div>
                     <div class="tb-user-info">
-                      <h3 class="tb-user-name">Admin Pusat</h3>
-                      <div><i>Mendisposisikan pertanyaan ini kepada Kantor Pertanahan Surabaya</i></div>
+                      <h3 class="tb-user-name">
+                          Admin Pusat
+                          <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
+                          </ul>
+                      </h3>
+
+                      <div class="divComment"><i>Mendisposisikan pertanyaan ini kepada Kantor Pertanahan Surabaya</i></div>
                     </div>
                   </div>
                 </div>
@@ -148,8 +160,14 @@
                       <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
                     </div>
                     <div class="tb-user-info">
-                      <h3 class="tb-user-name">Admin Pertanahan Surabaya</h3>
-                      <div>Pertanyaan diatas sudah diselesaikan melalui putusan dengan Nomor 192/10/2019 Tentang Putusan Sengketa Tanah Kecamatan Benowo. Terlampir softcopy surat putusan <a href="#" style="color:#D23111">[Lampiran]</a> &nbsp; <a href="#"><span> <i class="far fa-copy"></i> Salin</span></a></div>
+                      <h3 class="tb-user-name">
+                          Admin Pertanahan Surabaya
+                          <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
+                          </ul>
+                      </h3>
+
+                      <div class="divComment">Pertanyaan diatas sudah diselesaikan melalui putusan dengan Nomor 192/10/2019 Tentang Putusan Sengketa Tanah Kecamatan Benowo. Terlampir softcopy surat putusan <a href="#" style="color:#D23111">[Lampiran]</a> &nbsp; <a href="#"><span> <i class="far fa-copy"></i> Salin</span></a></div>
                     </div>
                   </div>
                 </div>
@@ -300,7 +318,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> #Hastag Tanya ATR/BPN
+          <i class="lni lni-twitter-original icon-tweet"></i> Jenis Aduan ATR/BPN
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>

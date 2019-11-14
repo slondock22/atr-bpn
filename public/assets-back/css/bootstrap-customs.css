@@ -78,11 +78,11 @@ a{
 }
 
 .contentDisposisi{
-    padding: 10px 10px 10px 15px;
-    margin-left:45px;
-    margin-bottom: 9px;
-    border-radius: 10px;
-    border:1px solid #d8dbdd;
+    padding: 15px 10px 15px 15px;
+    /* margin-left:45px; */
+    margin-bottom: 5px;
+    border-radius: 14px;
+    background-color:#f7f7f7;
 }
 
 .divHastag{
@@ -106,4 +106,27 @@ a{
 
 .modal-header-sos{
     padding-left:25px;
+}
+
+.spanDate{
+    color: rgba(192, 192, 192, 0.7);
+    font-size: 12px;
+    display: block;
+}
+
+.divComment{
+    font-size: 15px;
+    margin-top: 7px;
+}
+
+.doneIcon{
+    font-size: 18px;
+    color:#1598e9;
+    margin-left:4px ;
+}
+
+.doneSpan{
+    font-size: 13px;
+    color: rgba(54, 54, 54, 0.7);
+    font-weight: 400;
 }
