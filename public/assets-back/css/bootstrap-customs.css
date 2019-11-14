@@ -12,7 +12,7 @@ a{
 }
 
 .modal-body{
-    min-height: 400px !important;
+    min-height: 200px !important;
     max-height: 400px !important;
     overflow-y: scroll;
 }
@@ -72,8 +72,38 @@ a{
     font-weight: 600;
 }
 
-.divLampiran{}
 
 .twitUser{
     color: #1da1f2;
+}
+
+.contentDisposisi{
+    padding: 10px 10px 10px 15px;
+    margin-left:45px;
+    margin-bottom: 9px;
+    border-radius: 10px;
+    border:1px solid #d8dbdd;
+}
+
+.divHastag{
+    font-size: 16px;
+    margin-top: 10px;
+    color: #1da1f2;
+}
+
+.hrModal{
+    margin:20px 0px;
+}
+
+.modalBodyPadding{
+    padding:5px 25px ;
+}
+
+.icon-tweet{
+    font-size: 24px;
+    color:#1da1f2;
+}
+
+.modal-header-sos{
+    padding-left:25px;
 }
