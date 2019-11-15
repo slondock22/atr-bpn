@@ -60,6 +60,14 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin_pusat' => \App\Http\Middleware\AdminPusatMiddleware::class,
+        'admin_kantah' => \App\Http\Middleware\AdminKantahMiddleware::class,
+        'admin_kanwil' => \App\Http\Middleware\AdminKanwilMiddleware::class,
+        'op_pusat' => \App\Http\Middleware\OpPusatMiddleware::class,
+        'op_kanwil' => \App\Http\Middleware\OpKanwilMiddleware::class,
+        'op_kantah' => \App\Http\Middleware\OpKantahMiddleware::class,
+        'login' => \App\Http\Middleware\LoginMiddleware::class,
+
     ];
 
     /**
