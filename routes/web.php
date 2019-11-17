@@ -26,10 +26,12 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('home','IndexController@index')->name('home');
 	Route::get('statistik','IndexController@statistik')->name('statistik');
 	Route::get('publish/{mode}','IndexController@publish')->name('publish');
+	Route::get('pertanyaan/{mode}','PertanyaanController@index')->name('pertanyaan');
+
 
 	Route::group(['middleware' => ['op_pusat','op_kanwil','op_kantah']], function () {
 
-		Route::get('pertanyaan/{mode}','PertanyaanController@index')->name('pertanyaan');
+		// Route::get('pertanyaan/{mode}','PertanyaanController@index')->name('pertanyaan');
 
 	});
 
