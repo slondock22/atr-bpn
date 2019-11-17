@@ -1,7 +1,9 @@
-@section('title','Publish Twitter')
+@section('title','Pertanyaan Twitter')
 @extends('layouts-back.layout')
 @section('content')
-<div class="tb-content tb-style1 tab-profile-content">
+
+
+<!-- <div class="tb-content tb-style1 tb-profile-content" style="width: 100% !important">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Twitter</h2>
     </div>
@@ -84,101 +86,82 @@
             </div>
           </div><!-- .col -->
           <div class="tb-newsfeed-col-2">
-
-            <div class="tb-card tb-style1 tb-height-auto">
-              <div class="tb-card-heading">
-                <div class="tb-card-heading-left">
-                  <h2 class="tb-card-title">Publish Twitter</h2>
-                </div>
-              </div>
-              <div class="tb-card-body">
-                <div class="tb-padd-lr-30">
-                  <div class="tb-height-b20 tb-height-lg-b20"></div>
-                  <div class="tb-user tb-style3">
-                    <div class="tb-custom-input-area">
-                      <div class="tb-custom-input-field" contentEditable=true data-placeholder="Apa yang sedang terjadi?"></div>
-                    </div>
-                  </div>
-                  <div class="tb-height-b20 tb-height-lg-b20"></div>
-                </div>
-                <hr>
-                <div class="tb-padd-lr-30">
-                  <div class="tb-height-b15 tb-height-lg-b15"></div>
-                  <div class="tb-post-option">
-                    <ul class="tb-icon-group tb-style1 tb-mp0">
-                      <li>
-                        <a href="#" class="tb-icon-group-icon"><i class="material-icons-outlined">photo_size_select_actual</i></a>
-                      </li>
-                      <li>
-                        <a href="#" class="tb-icon-group-icon"><i class="material-icons-outlined">videocam</i></a>
-                      </li>
-                      <li>
-                        <a href="#" class="tb-icon-group-icon"><i class="material-icons-outlined">gif</i></a>
-                      </li>
-                    </ul>
-                    <div class="tb-share-btn">
-                      <a href="#" class="tb-btn tb-style1 tb-medium">Share</a>
-                    </div>
-                  </div>
-                  <div class="tb-height-b15 tb-height-lg-b15"></div>
-                </div>
-              </div>
-            </div>
-            <div class="tb-height-b30 tb-height-lg-b30"></div>
-
+         
+           @foreach($response['data'] as $key => $value)
             <div class="tb-card tb-style1 tb-height-auto">
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="tb-user tb-style3">
-                    <div class="tb-user-img"><img src="{{asset('/assets-back')}}/img/logo-mini-atr.jpg" alt=""></div>
+                    <div class="tb-user-img">
+                     {!! $img = str_replace('[]', '', $value['image']) !!}
+                      @if($img != '')
+                      <img src="{{$value['image']}}" alt="">
+                      @else
+                      <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
+                      @endif  
+                    </div>
                     <div class="tb-user-info">
-                      <h3 class="tb-user-name">Agraria & Tata Ruang | @atr_bpn</h3>
+                      <h3 class="tb-user-name">{{$value['username']}} | @ {{$value['username']}}</h3>
                       <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                        <li><a href="#">Okt 24, 2019</a></li>
-                        <li><a href="#">9h</a></li>
+                        <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
+                        <li><a href="#">{{$value['feed_id']}}</a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <div class="tb-post tb-style1">
-                    <div class="tb-post-text">
-                      <a href="/hashtag/SobATRBPN?src=hash"><b>#SobATRBPN</b></a>, Menteri <a href="/atr_bpn"><b>@atr_bpn</b></a>
-menghadiri Rapat Paripurna pertama bersama Presiden <a href="/jokowi"><b>@jokowi</b></a> dan Wakil Presiden, Ma'ruf Amin. Selain itu, Rapat ini juga dihadiri oleh seluruh anggota kabinet Indonesia Maju. Simak
-<a href="https://t.co/tDA2UpJ7TX">https://www.instagram.com/p/B3_-d6eBsKc/</a>
-Foto: Lukas - Biro Pers Sekretariat Presiden
-                    </div>
-                    <div class="tb-height-b15 tb-height-lg-b15"></div>
-                    <ul class="tb-image-gallery tb-style2 tb-mp0">
-                      <li>
-                        <a href="#" class="tb-zoom-effect">
-                          <div class="tb-gallery-img tb-gallery-img-height1 tb-zoom-effect-in tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/media/EHpLjokUEAAi-Fi.jpg"></div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="tb-zoom-effect">
-                          <div class="tb-gallery-img tb-gallery-img-height2 tb-zoom-effect-in tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/media/EHpLkFsU4AAtziF.jpg"></div>
-                        </a>
-                        <div class="tb-height-b10 tb-height-lg-b10"></div>
-                        <a href="#" class="tb-zoom-effect">
-                          <div class="tb-gallery-img tb-gallery-img-height2 tb-zoom-effect-in tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/media/EHpLk0CU4AAWz_R.jpg"></div>
-                        </a>
-                      </li>
-                    </ul>
+                    <div class="tb-post-text">{{$value['feed_comment']}}</div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                   </div>
                 </div>
                 <hr>
+
                 <div class="tb-padd-lr-30">
+                  <div class="tb-height-b20 tb-height-lg-b20"></div>
+                  <div class="tb-user tb-style3">
+                    <div class="tb-user-img">
+                      <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                    </div>
+                    <div class="tb-user-info">
+                      <h3 class="tb-user-name">Admin Pusat</h3>
+                      <div><i>Mendisposisikan pertanyaan ini kepada Kantor Pertanahan Surabaya</i></div>
+                    </div>
+                  </div>
+                </div>
+
+                 <div class="tb-padd-lr-30">
+                  <div class="tb-height-b10 tb-height-lg-b10"></div>
+                  <div class="tb-user tb-style3">
+                    <div class="tb-user-img">
+                      <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                    </div>
+                    <div class="tb-user-info">
+                      <h3 class="tb-user-name">Admin Pertanahan Surabaya</h3>
+                      <div>Pertanyaan diatas sudah diselesaikan melalui putusan dengan Nomor 192/10/2019 Tentang Putusan Sengketa Tanah Kecamatan Benowo. Terlampir softcopy surat putusan <a href="#" style="color:#D23111">[Lampiran]</a> &nbsp; <a href="#"><span> <i class="far fa-copy"></i> Salin</span></a></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tb-height-b10 tb-height-lg-b10"></div>
+                <hr>
+                <div class="tb-padd-lr-30" id="button_feed">
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                    <li><a href="#"><i class="material-icons-outlined">delete</i> Hapus</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#modal-balas-feed"><i class="material-icons-outlined">mode_comment</i> Balas</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#modal-add-disposisi"><i class="material-icons-outlined">forward</i> Disposisi</a></li>
+                    <li><a href="#"><i class="material-icons-outlined">block</i> Spam</a></li>
                   </ul>
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                 </div>
+
               </div>
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
+            @endforeach
+
+
+           {{-- 
             <nav>
                 <ul class="pagination">
                   <li class="page-item disabled">
@@ -197,7 +180,7 @@ Foto: Lukas - Biro Pers Sekretariat Presiden
                     <a class="page-link" href="#">Next</a>
                   </li>
                 </ul>
-              </nav>
+              </nav> --}}
 
           </div><!-- .col -->
         </div>
@@ -205,4 +188,73 @@ Foto: Lukas - Biro Pers Sekretariat Presiden
       <div class="tb-height-b60 tb-height-lg-b60"></div>
     </div>
 </div>
+
+
+ <!-- Modal -->
+<div class="modal fade" id="modal-add-disposisi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myLargeModalLabel">Buat Disposisi</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+              <label for="exampleFormControlSelect1">Kepada</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Pilih Kanwil/Kantah</option>
+                <option>Kantah Surabaya</option>
+                <option>Kantah Jakarta</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Keterangan</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-post">Kirim</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Large Mosal -->
+
+ <!-- Modal -->
+<div class="modal fade" id="modal-balas-feed" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myLargeModalLabel">Balas Aduan</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Balasan</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
+            </div>
+            <div class="form-group tb-cs-input-btn">
+              <label for="exampleFormControlFile1">Lampiran</label>
+              <span>Pilih File</span>
+              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-warning">Draft</button>
+        <button type="button" class="btn btn-post">Kirim</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- End Large Mosal -->
 @endsection

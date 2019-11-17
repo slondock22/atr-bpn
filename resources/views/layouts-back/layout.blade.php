@@ -21,6 +21,7 @@
   <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/classic-style.css" />
   <!-- <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/style.css" /> -->
   <link href="{{asset('/')}}assets/css/customs.css" rel="stylesheet">
+  <link href="{{asset('/')}}assets-back/css/bootstrap-customs.css" rel="stylesheet">
 
 </head>
 
@@ -54,6 +55,8 @@
   <script src="{{asset('/assets-back')}}/js/swiper.min.js"></script>
   <script src="{{asset('/assets-back')}}/js/smooth-scrollbar.js"></script>
   <script src="{{asset('/assets-back')}}/js/main.js"></script>
+  <script src="{{asset('/assets-back')}}/js/services.js"></script>
+  <script src="{{asset('/assets-back')}}/js/alert.js"></script>
   <script type="text/javascript">
       $(window).on('load', function() {
             // Animate loader off screen

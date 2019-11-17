@@ -1,10 +1,11 @@
 @section('title','Pertanyaan Twitter')
 @extends('layouts-back.layout')
 @section('content')
-<div class="tb-content tb-style1 tb-profile-content">
+<div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Twitter</h2>
     </div>
+    
     <div class="tb-content tb-style3">
       <div class="container-fluid">
         <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -15,7 +16,9 @@
                 <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/profile_banners/2884911432/1540262770/1500x500">
                 </div>
                 <div class="tb-profile-info tb-small">
-                  <div class="tb-profile-pic"><img src="{{asset('/assets-back')}}/img/logo-mini-atr.jpg" alt=""></div>
+                  <div class="tb-profile-pic">
+                    <img src="{{asset('/assets-back')}}/img/logo-mini-atr.jpg" alt="">
+                  </div>
                   <div class="tb-profile-text">
                     <h2 class="tb-profile-name">Agraria & Tata Ruang</h2>
                     <div class="tb-profile-email">@atr_bpn</div>
@@ -83,7 +86,7 @@
               </div>
             </div>
           </div><!-- .col -->
-          <div class="tb-newsfeed-col-2">
+          <div class="tb-newsfeed-col-4">
          
            @foreach($response['data'] as $key => $value)
             <div class="tb-card tb-style1 tb-height-auto">
@@ -100,16 +103,32 @@
                       @endif  
                     </div>
                     <div class="tb-user-info">
-                      <h3 class="tb-user-name">{{$value['username']}} | @ {{$value['username']}}</h3>
+                      <h3 class="tb-user-name">
+                        {{$value['username']}} | @ {{$value['username']}}
+                        <span class="doneSpan">
+                           <i class="fas fa-check-circle doneIcon"></i>
+                           Aduan Terjawab
+                        </span>
+                      </h3>
                       <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                         <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
                         <li><a href="#">{{$value['feed_id']}}</a></li>
                       </ul>
+
                     </div>
+
                   </div>
+                  
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <div class="tb-post tb-style1">
                     <div class="tb-post-text">{{$value['feed_comment']}}</div>
+
+                    <div class="divHastag">
+                      <a onclick="modal_hastag('spanHastag{{$value['feed_id']}}')" 
+                      id="spanHastag{{$value['feed_id']}}">
+                        #SengketaTanah
+                      </a>
+                    </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                   </div>
                 </div>
@@ -117,42 +136,94 @@
 
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
-                  <div class="tb-user tb-style3">
+                  <div class="tb-user tb-style3 contentDisposisi">
                     <div class="tb-user-img">
                       <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
                     </div>
                     <div class="tb-user-info">
-                      <h3 class="tb-user-name">Admin Pusat</h3>
-                      <div><i>Mendisposisikan pertanyaan ini kepada Kantor Pertanahan Surabaya</i></div>
+                      <h3 class="tb-user-name">
+                          Admin Pusat
+                          <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
+                          </ul>
+                      </h3>
+
+                      <div class="divComment"><i>Mendisposisikan pertanyaan ini kepada Kantor Pertanahan Surabaya</i></div>
                     </div>
                   </div>
                 </div>
 
                  <div class="tb-padd-lr-30">
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  <div class="tb-user tb-style3">
+                  <div class="tb-user tb-style3 contentDisposisi">
                     <div class="tb-user-img">
                       <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
                     </div>
                     <div class="tb-user-info">
-                      <h3 class="tb-user-name">Admin Pertanahan Surabaya</h3>
-                      <div>Pertanyaan diatas sudah diselesaikan melalui putusan dengan Nomor 192/10/2019 Tentang Putusan Sengketa Tanah Kecamatan Benowo. Terlampir softcopy surat putusan <a href="#" style="color:#D23111">[Lampiran]</a> &nbsp; <a href="#"><span> <i class="far fa-copy"></i> Salin</span></a></div>
+                      <h3 class="tb-user-name">
+                          Admin Pertanahan Surabaya
+                          <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
+                          </ul>
+                      </h3>
+
+                      <div class="divComment">Pertanyaan diatas sudah diselesaikan melalui putusan dengan Nomor 192/10/2019 Tentang Putusan Sengketa Tanah Kecamatan Benowo. Terlampir softcopy surat putusan <a href="#" style="color:#D23111">[Lampiran]</a> &nbsp; <a href="#"><span> <i class="far fa-copy"></i> Salin</span></a></div>
                     </div>
                   </div>
                 </div>
 
+
                 <div class="tb-height-b10 tb-height-lg-b10"></div>
                 <hr>
-                <div class="tb-padd-lr-30" id="button_feed">
-                  <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                    <li><a href="#" data-toggle="modal" data-target="#modal-balas-feed"><i class="material-icons-outlined">mode_comment</i> Balas</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#modal-add-disposisi"><i class="material-icons-outlined">forward</i> Disposisi</a></li>
-                    <li><a href="#"><i class="material-icons-outlined">block</i> Spam</a></li>
-                  </ul>
-                  <div class="tb-height-b10 tb-height-lg-b10"></div>
-                </div>
+                
+                @if($value['feed_id']!='')
+                  <div class="tb-padd-lr-30 y" id="button_feed{{$value['feed_id']}}">
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      <li>
+                        <a onclick="collapseBtn('button_feed{{$value['feed_id']}}','button_feed_send{{$value['feed_id']}}')">
+                          <i class="material-icons-outlined">mode_comment</i> Ambil
+                        </a>
+                      </li>
+                      <li><a href="#"><i class="material-icons-outlined">block</i> Spam</a></li>
+                    </ul>
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                  </div>
+                  
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['feed_id']}}" style="display: none">
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      <li>
+                        <a onclick="modal_feeds('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                          <i class="material-icons-outlined">mode_comment</i> Balas
+                        </a>
+                      </li>
+                      
+                      <li><a onclick="modal_disposisi('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      </li>
+                      
+                    </ul>
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                  </div>
 
+                @else
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['feed_id']}}">
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      <li>
+                        <a onclick="modal_feeds('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                          <i class="material-icons-outlined">mode_comment</i> Balas
+                        </a>
+                      </li>
+
+                      <li><a onclick="modal_disposisi('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      </li>
+                      
+                    </ul>
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                  </div>
+                @endif
+              
               </div>
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -190,17 +261,34 @@
 
  <!-- Modal -->
 <div class="modal fade" id="modal-add-disposisi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-twitter">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Buat Disposisi</h4>
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> #Disposisi
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body modalBodyPadding">
+        
         <form>
-          <div class="form-group">
+           <div class="tb-height-lg-b20"></div>
+            <div class="tb-user tb-style3">
+              <div class="tb-user-img" id="imgUserDisposisi"></div>
+              <div class="tb-user-info">
+                <h3 class="tb-user-name headerUser" id="headerUserDisposisi"></h3>
+                <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                  <li id="dateModalDisposisi"><a href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div id="contentTwitUserDisposisi" class="divContentTwitter"></div>
+
+            <hr class="hrModal">
+            <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
               <select class="form-control" id="exampleFormControlSelect1">
                 <option>Pilih Kanwil/Kantah</option>
@@ -210,49 +298,233 @@
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Keterangan</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
+              <textarea class="form-control text-area-modal-twitter-nopad" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
             </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-post">Kirim</button>
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-modal-twitter">Kirim</button>
       </div>
     </div>
   </div>
 </div>
 <!-- End Large Mosal -->
 
+
+<!-- Modal -->
+<div class="modal fade" id="modal-po" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header modal-header-sos">
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> Jenis Aduan ATR/BPN
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="tb-card tb-style1">
+            <div class="tb-card-heading">
+              <div class="tb-card-heading-right">
+                <form action="#" class="tb-search tb-style2">
+                  <input type="text" placeholder="Search..." class="tb-search-input">
+                  <button type="submit"><i class="material-icons-outlined">search</i></button>
+                </form>
+                <a href="#" class="tb-btn tb-style1 tb-small" style="height: 2.3em">View All</a>
+              </div>
+            </div>
+           <div>
+              <div class="tb-table tb-style1">
+                <input type="hidden" id="valHastag">
+                <table class="table" style="min-width: 100% !important">
+                  <thead>
+                    <tr>
+                      <th>Hastag</th>
+                      <th width="50%">Keterangan</th>
+                      <th>Pilih</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <tr>
+                      <td>#SengketaTanah</td>
+                      <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
+                      <td>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#SengketaTanah')">Pilih</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#PenataanTataRuang</td>
+                      <td>perumusan dan pelaksanaan kebijakan di bidang survei, pengukuran, dan pemetaan;</td>
+                      <td>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PenataanTataRuang')">Pilih</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          #infrastrukturAgraria
+                      </td>
+                      <td>perumusan dan pelaksanaan kebijakan di bidang pengadaan tanah</td>
+                      <td>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#infrastrukturAgraria')">Pilih</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          #HubunganHukumAgraria
+                      </td>
+                      <td>pengawasan atas pelaksanaan tugas di lingkungan BPN</td>
+                      <td>
+                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#HubunganHukumAgraria')">Pilih</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          #PengadaanTanah
+                      </td>
+                      <td>pelaksanaan penelitian dan pengembangan di bidang pertanahan</td>
+                      <td>
+                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PengadaanTanah')">Pilih</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        #PengendalianPenguasaanTanah
+                      </td>
+                      <td>pelaksanaan pengembangan sumber daya manusia di bidang pertanahan</td>
+                      <td>
+                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PengendalianPenguasaanTanah')">Pilih</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        #HakTanahMasyarakat
+                      </td>
+                      <td>pengawasan atas pelaksanaan tugas di lingkungan BPN</td>
+                      <td>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#HakTanahMasyarakat')">Pilih</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          #EkonomiPertanahan
+                      </td>
+                      <td>pelaksanaan pengembangan sumber daya manusia di bidang pertanahan</td>
+                      <td>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#EkonomiPertanahan')">Pilih</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- .tb-table -->
+              <div class="tb-height-b30 tb-height-lg-b30"></div>
+            </div>
+          </div>
+          <br>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+      
+  </div>
+</div>
+<!-- End Large Mosal -->
+
+
  <!-- Modal -->
 <div class="modal fade" id="modal-balas-feed" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Balas Aduan</h4>
+      <div class="modal-header modal-header-sos">
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> Balas Feeds
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
+         <form>
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">Balasan</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
+              <div>
+              <div class="tb-height-lg-b20"></div>
+              <div class="tb-user tb-style3">
+                <div class="tb-user-img" id="imgUser"></div>
+                <div class="tb-user-info">
+                  <h3 class="tb-user-name headerUser" id="headerUser"></h3>
+                  <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                    <li id="dateModal"><a href="#"></a></li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div id="contentTwitUser" class="divContentTwitter"></div>
+              
+              <div class="divUserSend">
+                <label for="exampleFormControlTextarea1">
+                  Membalas <span id="twitUser" class="twitUser"></span> 
+                </label>
+              </div>
+
+              <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
+                rows="3" placeholder="Tweet balasan Anda" autofocus></textarea>
             </div>
-            <div class="form-group tb-cs-input-btn">
-              <label for="exampleFormControlFile1">Lampiran</label>
-              <span>Pilih File</span>
+            <div class="form-group tb-cs-input-btn divLampiran">
+              <span>Lampiran</span>
               <input type="file" class="form-control-file" id="exampleFormControlFile1">
             </div>
       </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-warning">Draft</button>
-        <button type="button" class="btn btn-post">Kirim</button>
-      </div>
+      
     </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-modal-twitter">Draft</button>
+        <button type="button" class="btn btn-modal-twitter">Kirim</button>
+      </div>
   </div>
 </div>
 <!-- End Large Mosal -->
+
+
 @endsection
+
+<script>
+    function collapseBtn(div1,div2){
+        $("#"+div1).slideUp(300);
+        $("#"+div2).slideDown(300);
+    }
+
+    function modal_feeds(content='',user='',date=''){
+        $('#modal-balas-feed').modal('show');
+        $('#contentTwitUser').html(content);
+        $('#twitUser').html('@'+user);
+        $('#headerUser').html('@'+user);
+        $('#dateModal').html(date);
+        $("#imgUser").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">')
+    }
+
+    function modal_disposisi(content='',user='',date=''){
+        $('#modal-add-disposisi').modal('show');
+        $('#contentTwitUserDisposisi').html(content);
+        $('#twitUserDisposisi').html('@'+user);
+        $('#headerUserDisposisi').html('@'+user);
+        $('#dateModalDisposisi').html(date);
+        $("#imgUserDisposisi").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">')
+    }
+
+    function modal_hastag(id){
+        $("#valHastag").val(id);
+        $('#modal-po').modal('show');
+    }
+
+    function change_hastag(hastag){
+
+        $('#modal-po').modal('hide');
+        input = $("#valHastag").val();
+        $('#' + input).html(hastag);
+    }
+</script>

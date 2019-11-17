@@ -1,0 +1,132 @@
+a{
+    cursor: pointer;
+}
+
+.modal-twitter{
+    max-width: 560px;
+    border-radius: 10px !important;
+}
+
+.modal-content{
+    border-radius: 15px !important;
+}
+
+.modal-body{
+    min-height: 200px !important;
+    max-height: 400px !important;
+    overflow-y: scroll;
+}
+
+.btn-modal-twitter{
+    font-weight: 600;
+    border-radius: 18px;
+    background-color: #1da1f2;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-twitter:hover{
+    color: #fff !important;
+    background-color: #1085ce;
+}
+
+.btn-modal-twitter-danger{
+    font-weight: 600;
+    border-radius: 18px;
+    background-color: #fc5f57;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-twitter-danger:hover{
+    color: #fff !important;
+    background-color: #e2362d;
+}
+
+.text-area-modal-twitter{
+    font-size: 17px !important;
+    border: none !important;
+    margin-left: 32px !important;
+    width: 95% !important;
+}
+
+.text-area-modal-twitter-nopad{
+    font-size: 17px !important;
+    border: none !important;
+    width: 95% !important;
+}
+
+.divContentTwitter{
+    padding: 10px 45px;
+    line-height: 1.7;
+    white-space: 1.5;
+    font-size: 14px !important;
+}
+
+.divUserSend{
+    padding: 5px 45px;
+}
+
+.headerUser{
+    font-size: 17px !important;
+    font-weight: 600;
+}
+
+
+.twitUser{
+    color: #1da1f2;
+}
+
+.contentDisposisi{
+    padding: 15px 10px 15px 15px;
+    /* margin-left:45px; */
+    margin-bottom: 5px;
+    border-radius: 14px;
+    background-color:#f5f8fa;
+}
+
+.divHastag{
+    font-size: 16px;
+    margin-top: 10px;
+    color: #1da1f2;
+}
+
+.hrModal{
+    margin:20px 0px;
+}
+
+.modalBodyPadding{
+    padding:5px 25px ;
+}
+
+.icon-tweet{
+    font-size: 24px;
+    color:#1da1f2;
+}
+
+.modal-header-sos{
+    padding-left:25px;
+}
+
+.spanDate{
+    color: rgba(192, 192, 192, 0.7);
+    font-size: 12px;
+    display: block;
+}
+
+.divComment{
+    font-size: 15px;
+    margin-top: 7px;
+}
+
+.doneIcon{
+    font-size: 18px;
+    color:#1598e9;
+    margin-left:4px ;
+}
+
+.doneSpan{
+    font-size: 13px;
+    color: rgba(54, 54, 54, 0.7);
+    font-weight: 400;
+}
