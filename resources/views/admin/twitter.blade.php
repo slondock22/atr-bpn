@@ -134,6 +134,7 @@
                 </div>
                 <hr>
 
+                @foreach($value['disposisi'] as $key => $val)
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="tb-user tb-style3 contentDisposisi">
@@ -142,18 +143,18 @@
                     </div>
                     <div class="tb-user-info">
                       <h3 class="tb-user-name">
-                          Admin Pusat
+                          {{$val['ministry']['ministry_name']}}
                           <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
+                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                           </ul>
                       </h3>
 
-                      <div class="divComment"><i>Mendisposisikan pertanyaan ini kepada Kantor Pertanahan Surabaya</i></div>
+                      <div class="divComment">{{$val['comment']}}</div>
                     </div>
                   </div>
                 </div>
-
-                 <div class="tb-padd-lr-30">
+                @endforeach
+               {{--   <div class="tb-padd-lr-30">
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <div class="tb-user tb-style3 contentDisposisi">
                     <div class="tb-user-img">
@@ -171,7 +172,7 @@
                     </div>
                   </div>
                 </div>
-
+ --}}
 
                 <div class="tb-height-b10 tb-height-lg-b10"></div>
                 <hr>

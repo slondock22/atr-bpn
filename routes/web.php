@@ -35,9 +35,7 @@ Route::group(['middleware' => ['login']], function () {
 	});
 
 	Route::middleware(['checkRole:admin_pusat'])->group(function(){
-	  
 		Route::get('laporan/{mode}','IndexController@laporan')->name('laporan');
-	    
 	});
 });
 

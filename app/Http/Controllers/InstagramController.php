@@ -11,7 +11,7 @@ class InstagramController extends Controller
     public function index()
     {
     	$client = new Client();
-        $url = "http://124.81.66.59:3000/dispo/all/instagram";
+        $url = "http://devbpn.edii.co.id:3000/dispo/all/instagram";
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
         				[ 

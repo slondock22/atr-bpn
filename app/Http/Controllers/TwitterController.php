@@ -11,7 +11,7 @@ class TwitterController extends Controller
     public function index()
     {
     	$client = new Client();
-        $url = "http://124.81.66.59:3000/dispo/all/twitter";
+        $url = "http://devbpn.edii.co.id:3000/dispo/all/twitter";
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
         				[ 
@@ -32,7 +32,7 @@ class TwitterController extends Controller
         $request['comment'] = Input::get('COMMENT');
 
         $client = new Client();
-        $url = "http://124.81.66.59:3000/disposisi/";
+        $url = "http://devbpn.edii.co.id:3000/disposisi/";
         $token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
                         [ 
