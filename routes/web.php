@@ -26,7 +26,7 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('home','IndexController@index')->name('home');
 	Route::get('statistik','IndexController@statistik')->name('statistik');
 	Route::get('publish/{mode}','IndexController@publish')->name('publish');
-	Route::get('pertanyaan/{mode}','PertanyaanController@index')->name('pertanyaan');
+	Route::get('twitter','TwitterController@index')->name('twitter');
 
 Route::get('instagram','InstagramController@index')->name('instagram');
 Route::get('facebook','FacebookController@index')->name('facebook');
