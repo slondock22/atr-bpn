@@ -22,11 +22,11 @@ Route::get('/login',function () {
 Route::post('postLogin','Auth\LoginController@postLogin')->name('postLogin');
 
 
-Route::get('home','IndexController@index')->name('home');
-Route::get('pertanyaan/{mode}','PertanyaanController@index')->name('pertanyaan');
-Route::get('statistik','IndexController@statistik')->name('statistik');
-Route::get('publish/{mode}','IndexController@publish')->name('publish');
-Route::get('laporan/{mode}','IndexController@laporan')->name('laporan');
+Route::group(['middleware' => ['login']], function () {
+	Route::get('home','IndexController@index')->name('home');
+	Route::get('statistik','IndexController@statistik')->name('statistik');
+	Route::get('publish/{mode}','IndexController@publish')->name('publish');
+	Route::get('pertanyaan/{mode}','PertanyaanController@index')->name('pertanyaan');
 
 Route::get('instagram','InstagramController@index')->name('instagram');
 Route::get('facebook','FacebookController@index')->name('facebook');
@@ -34,3 +34,15 @@ Route::get('facebook','FacebookController@index')->name('facebook');
 
 
 
+	Route::group(['middleware' => ['op_pusat','op_kanwil','op_kantah']], function () {
+
+		// Route::get('pertanyaan/{mode}','PertanyaanController@index')->name('pertanyaan');
+
+	});
+
+	Route::group(['middleware' => ['admin_pusat']], function () {
+	  
+		Route::get('laporan/{mode}','IndexController@laporan')->name('laporan');
+	    
+	});
+});

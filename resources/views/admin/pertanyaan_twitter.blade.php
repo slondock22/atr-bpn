@@ -107,7 +107,7 @@
                         {{$value['username']}} | @ {{$value['username']}}
                         <span class="doneSpan">
                            <i class="fas fa-check-circle doneIcon"></i>
-                           Case Selesai
+                           Aduan Terjawab
                         </span>
                       </h3>
                       <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
