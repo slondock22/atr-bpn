@@ -3,7 +3,7 @@
 @section('content')
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-      <h2 class="tb-uikits-title">Twitter</h2>
+      <h2 class="tb-uikits-title">Instagram</h2>
     </div>
     
     <div class="tb-content tb-style3">
