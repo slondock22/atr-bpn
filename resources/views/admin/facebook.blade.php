@@ -126,7 +126,7 @@
                   <div class="tb-post tb-style1">
                     <div class="tb-post-text">{{$value['feed_comment']}}</div>
 
-                    <div class="divHastag">
+                    <div class="divHastagFacebook">
                       <a onclick="modal_hastag('spanHastag{{$value['feed_id']}}')" 
                       id="spanHastag{{$value['feed_id']}}">
                         #SengketaTanah

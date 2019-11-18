@@ -106,7 +106,7 @@
                       <h3 class="tb-user-name">
                         {{$value['username']}} | @ {{$value['username']}}
                         <span class="doneSpan">
-                           <i class="fas fa-check-circle doneIcon"></i>
+                           <i class="fas fa-check-circle doneIconInstagram"></i>
                            Aduan Selesai
                         </span>
                       </h3>
@@ -123,7 +123,7 @@
                   <div class="tb-post tb-style1">
                     <div class="tb-post-text">{{$value['feed_comment']}}</div>
 
-                    <div class="divHastag">
+                    <div class="divHastagInstagram">
                       <a onclick="modal_hastag('spanHastag{{$value['feed_id']}}')" 
                       id="spanHastag{{$value['feed_id']}}">
                         #SengketaTanah

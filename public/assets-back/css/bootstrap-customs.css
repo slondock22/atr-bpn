@@ -133,10 +133,16 @@ a{
     color: #1da1f2;
 }
 
-.divHastag{
+.divHastagFacebook{
     font-size: 16px;
     margin-top: 10px;
     color: #4267b2;
+}
+
+.divHastagInstagram{
+    font-size: 16px;
+    margin-top: 10px;
+    color: #6a7180;
 }
 
 .hrModal{
@@ -186,6 +192,12 @@ a{
 .doneIconFacebook{
     font-size: 18px;
     color:#4267b2;
+    margin-left:4px ;
+}
+
+.doneIconInstagram{
+    font-size: 18px;
+    color:#ee0c20;
     margin-left:4px ;
 }
 
