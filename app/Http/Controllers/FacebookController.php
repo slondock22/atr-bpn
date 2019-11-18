@@ -11,10 +11,11 @@ class FacebookController extends Controller
     public function index()
     {
     	$client = new Client();
-    	$type = "twitter";
-        $url = "http://devbpn.edii.co.id:3000/feed/".$type."/0/10";
+
+        $url = "http://devbpn.edii.co.id:3000/dispo/all/facebook";
+
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
-        $request = $client->request('POST', $url, 
+        $request = $client->request('GET', $url, 
         				[ 
         					'headers' 	 => [
         										'Content-Type'  => 'application/json',

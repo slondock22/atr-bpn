@@ -112,7 +112,7 @@
                       </h3>
                       <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                         <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
-                        <li><a href="#">{{$value['feed_id']}}</a></li>
+                        <li><a href="#">{{$value['id']}}</a></li>
                       </ul>
 
                     </div>
@@ -121,11 +121,11 @@
                   
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <div class="tb-post tb-style1">
-                    <div class="tb-post-text">{{$value['feed_comment']}}</div>
+                    <div class="tb-post-text">{{$value['comment']}}</div>
 
                     <div class="divHastag">
-                      <a onclick="modal_hastag('spanHastag{{$value['feed_id']}}')" 
-                      id="spanHastag{{$value['feed_id']}}">
+                      <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
+                      id="spanHastag{{$value['id']}}">
                         #SengketaTanah
                       </a>
                     </div>
@@ -134,6 +134,7 @@
                 </div>
                 <hr>
 
+                @foreach($value['disposisi'] as $key => $val)
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="tb-user tb-style3 contentDisposisi">
@@ -142,18 +143,18 @@
                     </div>
                     <div class="tb-user-info">
                       <h3 class="tb-user-name">
-                          Admin Pusat
+                          {{$val['ministry']['ministry_name']}}
                           <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
+                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                           </ul>
                       </h3>
 
-                      <div class="divComment"><i>Mendisposisikan pertanyaan ini kepada Kantor Pertanahan Surabaya</i></div>
+                      <div class="divComment">{{$val['comment']}}</div>
                     </div>
                   </div>
                 </div>
-
-                 <div class="tb-padd-lr-30">
+                @endforeach
+               {{--   <div class="tb-padd-lr-30">
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <div class="tb-user tb-style3 contentDisposisi">
                     <div class="tb-user-img">
@@ -171,17 +172,17 @@
                     </div>
                   </div>
                 </div>
-
+ --}}
 
                 <div class="tb-height-b10 tb-height-lg-b10"></div>
                 <hr>
                 
-                @if($value['feed_id']!='')
-                  <div class="tb-padd-lr-30 y" id="button_feed{{$value['feed_id']}}">
+                @if($value['id']!='')
+                  <div class="tb-padd-lr-30 y" id="button_feed{{$value['id']}}">
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="collapseBtn('button_feed{{$value['feed_id']}}','button_feed_send{{$value['feed_id']}}')">
+                        <a onclick="collapseBtn('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Ambil
                         </a>
                       </li>
@@ -190,16 +191,16 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                   </div>
                   
-                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['feed_id']}}" style="display: none">
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" style="display: none">
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
                       
-                      <li><a onclick="modal_disposisi('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      <li><a onclick="modal_disposisi('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
                       
                     </ul>
@@ -207,16 +208,16 @@
                   </div>
 
                 @else
-                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['feed_id']}}">
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}">
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
 
-                      <li><a onclick="modal_disposisi('{{$value['feed_comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      <li><a onclick="modal_disposisi('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
                       
                     </ul>

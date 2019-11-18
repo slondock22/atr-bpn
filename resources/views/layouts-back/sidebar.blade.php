@@ -38,7 +38,7 @@
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-            <a href="{{route('pertanyaan','twitter')}}">
+            <a href="{{route('twitter')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-twitter"></i></span>
                 <span class="tb-sidebar-link-text">Twitter</span>
