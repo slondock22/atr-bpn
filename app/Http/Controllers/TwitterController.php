@@ -13,7 +13,7 @@ class TwitterController extends Controller
     	$client = new Client();
         $url = "http://124.81.66.59:3000/dispo/all/twitter";
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
-        $request = $client->request('POST', $url, 
+        $request = $client->request('GET', $url, 
         				[ 
         					'headers' 	 => [
         										'Content-Type'  => 'application/json',
