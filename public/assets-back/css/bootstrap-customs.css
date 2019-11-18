@@ -30,6 +30,35 @@ a{
     background-color: #1085ce;
 }
 
+.btn-modal-facebook{
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #4267b2;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-facebook:hover{
+    color: #fff !important;
+    background-color: #2d4d8d;
+}
+
+
+.btn-modal-instagram{
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color:rgb(105, 105, 105);
+    border:1px solid rgb(139, 139, 139);
+    font-size: 14px;
+}
+
+/* .btn-modal-facebook:hover{
+    color: #fff !important;
+    background-color: #2d4d8d;
+} */
+
+
 .btn-modal-twitter-danger{
     font-weight: 600;
     border-radius: 18px;
@@ -39,6 +68,19 @@ a{
 }
 
 .btn-modal-twitter-danger:hover{
+    color: #fff !important;
+    background-color: #e2362d;
+}
+
+.btn-modal-facebook-danger{
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #fc5f57;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-facebook-danger:hover{
     color: #fff !important;
     background-color: #e2362d;
 }
@@ -91,6 +133,12 @@ a{
     color: #1da1f2;
 }
 
+.divHastag{
+    font-size: 16px;
+    margin-top: 10px;
+    color: #4267b2;
+}
+
 .hrModal{
     margin:20px 0px;
 }
@@ -102,6 +150,16 @@ a{
 .icon-tweet{
     font-size: 24px;
     color:#1da1f2;
+}
+
+.icon-facebook{
+    font-size: 24px;
+    color:#4267b2;
+}
+
+.icon-instagram{
+    font-size: 24px;
+    color:#c0c0c0;
 }
 
 .modal-header-sos{
@@ -125,8 +183,20 @@ a{
     margin-left:4px ;
 }
 
+.doneIconFacebook{
+    font-size: 18px;
+    color:#4267b2;
+    margin-left:4px ;
+}
+
 .doneSpan{
     font-size: 13px;
     color: rgba(54, 54, 54, 0.7);
     font-weight: 400;
+}
+
+.spanNameFacebook{
+    color:#345597;
+    font-size: 15px;
+    font-weight: 550;
 }

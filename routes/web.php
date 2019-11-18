@@ -28,4 +28,9 @@ Route::get('statistik','IndexController@statistik')->name('statistik');
 Route::get('publish/{mode}','IndexController@publish')->name('publish');
 Route::get('laporan/{mode}','IndexController@laporan')->name('laporan');
 
+Route::get('instagram','InstagramController@index')->name('instagram');
+Route::get('facebook','FacebookController@index')->name('facebook');
+
+
+
 

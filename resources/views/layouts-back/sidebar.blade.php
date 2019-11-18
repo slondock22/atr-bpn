@@ -46,7 +46,7 @@
             </a>
           </li>
           <li>
-            <a href="{{route('pertanyaan','facebook')}}">
+            <a href="{{route('facebook')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-facebook"></i></span>
                 <span class="tb-sidebar-link-text">Facebook</span>
@@ -54,7 +54,7 @@
             </a>
           </li>
           <li>
-            <a href="{{route('pertanyaan','instagram')}}">
+            <a href="{{route('instagram')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-instagram-original"></i></span>
                 <span class="tb-sidebar-link-text">Instagram</span>
