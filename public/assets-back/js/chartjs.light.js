@@ -601,6 +601,82 @@ if ($.exists("#tb-chart2-type3")) {
   });
 }
 
+if ($.exists("#tb-chart2-type17")) {
+  var ctx = document.querySelector("#tb-chart2-type17").getContext("2d");
+  var myChart = new Chart(ctx, {
+   type: 'bar',
+    data: {
+      labels: ["#SengketaLahan", "#PengadaanLahan", "#SertifikatLahan", "#InfoATRBPN", "#PerijinanLahan"],
+      datasets: [{
+        label: 'Aduan',
+        data: [5, 7, 3, 8, 10],
+        backgroundColor: ['#5856d6', '#5856d6', '#5856d6', '#5856d6', '#5856d6'],
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: false,
+      tooltips: {
+        displayColors: false,
+        mode: "nearest",
+        intersect: false,
+        position: "nearest",
+        xPadding: 8,
+        yPadding: 8,
+        caretPadding: 8,
+        backgroundColor: "#fff",
+        cornerRadius: 4,
+        titleFontSize: 13,
+        titleFontStyle: "normal",
+        bodyFontSize: 13,
+        titleFontColor: "#222",
+        bodyFontColor: "rgba(0, 0, 0, 0.7)",
+        borderWidth: 1,
+        borderColor: "rgba(0, 0, 0, 0.1)",
+        callbacks: {
+          // use label callback to return the desired label
+          label: function(tooltipItem, data) {
+            return tooltipItem.xLabel + " " + tooltipItem.yLabel + " Aduan";
+          },
+          // remove title
+          title: function(tooltipItem, data) {
+            return;
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          position: "left",
+          ticks: {
+            fontSize: 14,
+            fontColor: "rgba(0, 0, 0, 0.4)",
+            padding: 15,
+            autoSkip: false,
+            maxTicksLimit: 6,
+            beginAtZero: true,
+            steps: 5,
+            stepValue: 5,
+            max: 20
+          },
+          gridLines: {
+            color: "rgba(0, 0, 0, 0.1)",
+            zeroLineWidth: 0,
+            zeroLineColor: "transparent",
+            drawBorder: false
+          }
+        }],
+        xAxes: scalesXaxes
+      },
+      elements: {
+        point: {
+          radius: 0
+        }
+      }
+    }
+  });
+}
+
 // Type 4
 if ($.exists("#tb-chart2-type4")) {
   var ctx = document.querySelector("#tb-chart2-type4").getContext("2d");
@@ -860,12 +936,12 @@ if ($.exists("#tb-chart2-type11")) {
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ["Extremely", "Very", "Somewhat", "Not So", "Not at All"],
+      labels: ["Kanwil Surabaya", "Kantah Pringsewu", "Kanwil Banten", "Kantah Luwuk", "Kantah Purwakarta", "Kanwil Ambon", "Kanwil Medan", "Kanwil Lampung", "Kantah Tanggamus", "Kantah Solo"],
       datasets: [{
-        label: 'Hours',
-        data: [80, 40, 20, 10, 5],
-        backgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
-        hoverBackgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
+        label: 'Hari',
+        data: [5, 7, 3, 8, 10, 2, 2, 3, 4, 6],
+        backgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
+        hoverBackgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
       }]
     },
     options: {
@@ -892,7 +968,7 @@ if ($.exists("#tb-chart2-type11")) {
         callbacks: {
           // use label callback to return the desired label
           label: function(tooltipItem, data) {
-            return tooltipItem.xLabel + " " + tooltipItem.yLabel + "%";
+            return tooltipItem.xLabel + " " + tooltipItem.yLabel + " Hari";
           },
           // remove title
           title: function(tooltipItem, data) {
@@ -910,9 +986,9 @@ if ($.exists("#tb-chart2-type11")) {
             autoSkip: false,
             maxTicksLimit: 6,
             beginAtZero: true,
-            steps: 20,
+            steps: 5,
             stepValue: 5,
-            max: 100
+            max: 20
           },
           gridLines: {
             color: "rgba(0, 0, 0, 0.1)",
@@ -937,22 +1013,17 @@ if ($.exists("#tb-chart2-type11")) {
 if ($.exists("#tb-chart3")) {
   var ctx3 = document.querySelector("#tb-chart3").getContext("2d");
   var myChart3 = new Chart(ctx3, {
-    type: "pie",
+   type: 'pie',
     data: {
-      labels: ["Desktop", "Mobile", "Tablet", "Miscellaneous"],
+      labels: ["Kanwil Semarang", "Kanwil Lampung", "Kantah Kab Bogor", "Kantah Batam", "Kantah Metro"],
       datasets: [{
-        backgroundColor: ["#ffcc00", "#ff9500", "#ff3b30", "#5856d6"],
-        hoverBackgroundColor: ["#ffcc00", "#ff9500", "#ff3b30", "#5856d6"],
-        data: [60, 15, 10, 15],
-        borderWidth: 0,
-        hoverBorderColor: ["#ffcc00", "#ff9500", "#ff3b30", "#5856d6"],
-        hoverBorderWidth: 8
+        label: "Population (millions)",
+        backgroundColor: ["#ffcc00", "#ff9500", "#ff3b30", "#5856d6", "#5ac8fa"],
+        data: [150,20,375,300,20]
       }]
     },
     options: {
-      cutoutPercentage: 80,
-      legend: false,
-      tooltips: lineChartToolTips
+       tooltips: lineChartToolTips
     }
   });
 }
