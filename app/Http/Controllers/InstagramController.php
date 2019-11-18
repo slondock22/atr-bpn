@@ -12,7 +12,7 @@ class InstagramController extends Controller
     {
     	$client = new Client();
     	$type = "twitter";
-        $url = "http://124.81.66.59:3000/feed/".$type."/0/10";
+        $url = "http://devbpn.edii.co.id:3000/feed/".$type."/0/10";
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
         				[ 

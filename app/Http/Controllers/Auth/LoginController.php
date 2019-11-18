@@ -45,7 +45,7 @@ class LoginController extends Controller
     public function postLogin(Request $request)
     {
         $client = new Client();
-        $url = "http://124.81.66.59:3000/auth";
+        $url = "http://devbpn.edii.co.id:3000/auth";
         $myBody['users'] = $request->username;
         $myBody['pass']  = $request->password;
         $request = $client->request('POST', $url,  ['form_params'=>$myBody]);

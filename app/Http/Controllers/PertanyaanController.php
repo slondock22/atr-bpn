@@ -11,7 +11,7 @@ class PertanyaanController extends Controller
     public function index($type)
     {
     	$client = new Client();
-        $url = "http://124.81.66.59:3000/feed/".$type."/0/10";
+        $url = "http://localhost:3000/feed/".$type."/0/10";
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
         				[ 
@@ -32,7 +32,7 @@ class PertanyaanController extends Controller
         $request['comment'] = Input::get('COMMENT');
 
         $client = new Client();
-        $url = "http://124.81.66.59:3000/disposisi/";
+        $url = "http://localhost:3000/disposisi/";
         $token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
                         [ 
