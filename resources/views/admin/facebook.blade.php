@@ -110,7 +110,7 @@
                         </span>
                         <span class="doneSpan">
                            <i class="fas fa-check-circle doneIconFacebook"></i>
-                           Case Selesai
+                           Aduan Selesai
                         </span>
                       </h3>
                       <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
