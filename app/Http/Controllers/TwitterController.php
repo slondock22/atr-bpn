@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Input;
 
 class TwitterController extends Controller
 {
@@ -14,12 +15,13 @@ class TwitterController extends Controller
         $url = "http://devbpn.edii.co.id:3000/dispo/all/twitter";
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
-        				[ 
-        					'headers' 	 => [
-        										'Content-Type'  => 'application/json',
-        										'X-API-Key'		=> 'ATRBPn'.$token_akses
-        									]
-        				]);
+        				 [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ]
+                        ]);
+
         $response = json_decode($request->getBody()->getContents(),true);
 
     	return view('admin.twitter')->with(compact('response'));
@@ -28,24 +30,28 @@ class TwitterController extends Controller
 
     public function sendComment()
     {   
-
-        $request['comment'] = Input::get('COMMENT');
+        $idFeeds = Input::get('idFeeds');
+        $value['comment'] = Input::get('comment');
+        $value['to'] = Input::get('ministry_id');
 
         $client = new Client();
-        $url = "http://devbpn.edii.co.id:3000/disposisi/";
+        $url = "http://devbpn.edii.co.id:3000/disposisi/".$idFeeds;
         $token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
-                        [ 
-                            'headers'    => [
-                                                'Content-Type'  => 'application/json',
-                                                'X-API-Key'     => 'ATRBPn'.$token_akses
-                                            ]
-                        ],['form_params'=>$request]);
+                       [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ],
+
+                            'json' => $value
+                        ]);
 
         $response = json_decode($request->getBody()->getContents(),true);
+        // dd($response);
 
         $data['status']  = "success";
-        $data['result']  = Input::get('COMMENT');
+        $data['result']  = Input::get('comment');
         $data['message'] = "Tweet has been succesfully replied";
 
 

@@ -852,12 +852,12 @@ if ($.exists("#tb-chart2-type11")) {
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ["Extremely", "Very", "Somewhat", "Not So", "Not at All"],
+      labels: ["Kanwil Surabaya", "Kantah Pringsewu", "Kanwil Banten", "Kantah Luwuk", "Kantah Purwakarta", "Kanwil Ambon", "Kanwil Medan", "Kanwil Lampung", "Kantah Tanggamus", "Kantah Solo"],
       datasets: [{
-        label: 'Hours',
-        data: [80, 40, 20, 10, 5],
-        backgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
-        hoverBackgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
+        label: 'Hari',
+        data: [5, 7, 3, 8, 10, 2, 2, 3, 4, 6],
+        backgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
+        hoverBackgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
       }]
     },
     options: {

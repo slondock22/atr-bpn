@@ -200,7 +200,7 @@
                         </a>
                       </li>
                       
-                      <li><a onclick="modal_disposisi('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      <li><a onclick="modal_disposisi('{{$value['id']}}','{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
                       
                     </ul>
@@ -217,7 +217,7 @@
                         </a>
                       </li>
 
-                      <li><a onclick="modal_disposisi('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      <li><a onclick="modal_disposisi('{{$value['id']}}','{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
                       
                     </ul>
@@ -274,7 +274,8 @@
       </div>
       <div class="modal-body modalBodyPadding">
         
-        <form>
+        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postTwitter')}}" method="POST">
+          @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="tb-user tb-style3">
               <div class="tb-user-img" id="imgUserDisposisi"></div>
@@ -289,23 +290,26 @@
             <div id="contentTwitUserDisposisi" class="divContentTwitter"></div>
 
             <hr class="hrModal">
+            <input type="hidden" id="idFeeds" value="" name="idFeeds">
             <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
-              <select class="form-control" id="exampleFormControlSelect1">
+              <select class="form-control" id="exampleFormControlSelect1" name="ministry_id">
                 <option>Pilih Kanwil/Kantah</option>
-                <option>Kantah Surabaya</option>
-                <option>Kantah Jakarta</option>
+                <option value="1">ATR/BPN Pusat</option>
+                <option value="2">ATR/BPN Surabaya</option>
+                <option value="3">ATR/BPN Malang</option>
+
               </select>
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Keterangan</label>
-              <textarea class="form-control text-area-modal-twitter-nopad" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi"></textarea>
+              <textarea class="form-control text-area-modal-twitter-nopad" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi" name="comment"></textarea>
             </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-modal-twitter">Kirim</button>
+        <button type="button" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
     </div>
   </div>
@@ -508,8 +512,9 @@
         $("#imgUser").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">')
     }
 
-    function modal_disposisi(content='',user='',date=''){
+    function modal_disposisi(id='',content='',user='',date=''){
         $('#modal-add-disposisi').modal('show');
+        $('#idFeeds').val(id);
         $('#contentTwitUserDisposisi').html(content);
         $('#twitUserDisposisi').html('@'+user);
         $('#headerUserDisposisi').html('@'+user);

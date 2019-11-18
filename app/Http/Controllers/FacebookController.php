@@ -14,12 +14,12 @@ class FacebookController extends Controller
         $url = "http://devbpn.edii.co.id:3000/dispo/all/facebook";
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
-        				[ 
-        					'headers' 	 => [
-        										'Content-Type'  => 'application/json',
-        										'X-API-Key'		=> 'ATRBPn'.$token_akses
-        									]
-        				]);
+        				 [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ]
+                        ]);
 
         $data['response'] = json_decode($request->getBody()->getContents(),true);
     	return view('admin.facebook',$data);

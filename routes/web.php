@@ -29,7 +29,11 @@ Route::group(['middleware' => ['login']], function () {
 
 
 	Route::middleware(['checkRole:op_pusat,op_kanwil,op_kantah'])->group(function(){
+		//Twitter
 	  	Route::get('twitter','TwitterController@index')->name('twitter');
+	  	Route::post('postTwitter','TwitterController@sendComment')->name('postTwitter');
+
+
 		Route::get('instagram','InstagramController@index')->name('instagram');
 		Route::get('facebook','FacebookController@index')->name('facebook');
 	});
