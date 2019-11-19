@@ -10,7 +10,7 @@ function showFlashAlert(type='info', message='')
     $('#flash_msg').slideDown();
     setTimeout(function() {
         $("#flash_msg").slideUp()
-    }, 10000);
+    }, 3000);
 }
 function closeFlashAlert()
 {

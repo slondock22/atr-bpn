@@ -53,6 +53,7 @@ class TwitterController extends Controller
         $data['status']  = "success";
         $data['result']  = Input::get('comment');
         $data['message'] = "Tweet has been succesfully replied";
+        $data['form']    = Input::get('form');
 
 
         return \Response::json($data);

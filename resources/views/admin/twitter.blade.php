@@ -134,45 +134,28 @@
                 </div>
                 <hr>
 
-                @foreach($value['disposisi'] as $key => $val)
-                <div class="tb-padd-lr-30">
-                  <div class="tb-height-b20 tb-height-lg-b20"></div>
-                  <div class="tb-user tb-style3 contentDisposisi">
-                    <div class="tb-user-img">
-                      <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
-                    </div>
-                    <div class="tb-user-info">
-                      <h3 class="tb-user-name">
-                          {{$val['ministry']['ministry_name']}}
-                          <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
-                          </ul>
-                      </h3>
+                <div class="divCommentCon{{$value['id']}}">
+                  @foreach($value['disposisi'] as $key => $val)
+                  <div class="tb-padd-lr-30">
+                    <div class="tb-height-b20 tb-height-lg-b20"></div>
+                    <div class="tb-user tb-style3 contentDisposisi">
+                      <div class="tb-user-img">
+                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                      </div>
+                      <div class="tb-user-info">
+                        <h3 class="tb-user-name">
+                            {{$val['ministry']['ministry_name']}}
+                            <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                              <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
+                            </ul>
+                        </h3>
 
-                      <div class="divComment">{{$val['comment']}}</div>
+                        <div class="divComment">{{$val['comment']}}</div>
+                      </div>
                     </div>
                   </div>
+                  @endforeach
                 </div>
-                @endforeach
-               {{--   <div class="tb-padd-lr-30">
-                  <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  <div class="tb-user tb-style3 contentDisposisi">
-                    <div class="tb-user-img">
-                      <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
-                    </div>
-                    <div class="tb-user-info">
-                      <h3 class="tb-user-name">
-                          Admin Pertanahan Surabaya
-                          <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
-                          </ul>
-                      </h3>
-
-                      <div class="divComment">Pertanyaan diatas sudah diselesaikan melalui putusan dengan Nomor 192/10/2019 Tentang Putusan Sengketa Tanah Kecamatan Benowo. Terlampir softcopy surat putusan <a href="#" style="color:#D23111">[Lampiran]</a> &nbsp; <a href="#"><span> <i class="far fa-copy"></i> Salin</span></a></div>
-                    </div>
-                  </div>
-                </div>
- --}}
 
                 <div class="tb-height-b10 tb-height-lg-b10"></div>
                 <hr>
@@ -257,6 +240,7 @@
       </div>
       <div class="tb-height-b60 tb-height-lg-b60"></div>
     </div>
+
 </div>
 
 
@@ -293,18 +277,22 @@
             <input type="hidden" id="idFeeds" value="" name="idFeeds">
             <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="ministry_id">
-                <option>Pilih Kanwil/Kantah</option>
+              <select class="form-control" id="ministryId" name="ministry_id" onchange="setUser()">
+                <option value="">Pilih Kanwil/Kantah</option>
                 <option value="1">ATR/BPN Pusat</option>
                 <option value="2">ATR/BPN Surabaya</option>
                 <option value="3">ATR/BPN Malang</option>
-
               </select>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">Keterangan</label>
-              <textarea class="form-control text-area-modal-twitter-nopad" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi" name="comment"></textarea>
+              <label for="exampleFormControlTextarea1">Ke
+              terangan</label>
+              <textarea class="form-control text-area-modal-twitter-nopad" id="commentDisposisi" rows="3" placeholder="Isikan keterangan disposisi" name="comment"></textarea>
             </div>
+
+            <input type="hidden" name="form[id]" id="frmid">
+            <input type="hidden" name="form[name]" id="frmname">
+            <input type="hidden" name="form[date]" id="frmdate">
         </form>
       </div>
       <div class="modal-footer">
@@ -514,12 +502,23 @@
 
     function modal_disposisi(id='',content='',user='',date=''){
         $('#modal-add-disposisi').modal('show');
+        $('#ministryId').val('');
+        $('#commentDisposisi').val('');
         $('#idFeeds').val(id);
         $('#contentTwitUserDisposisi').html(content);
         $('#twitUserDisposisi').html('@'+user);
         $('#headerUserDisposisi').html('@'+user);
         $('#dateModalDisposisi').html(date);
-        $("#imgUserDisposisi").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">')
+        $("#imgUserDisposisi").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">');
+
+        //Form Disposisi untuk LoadData
+        $("#frmdate").val(date);
+        $("#frmid").val(id);
+    }
+
+    function setUser(){
+      userDisposisi = $("#ministryId option:selected" ).text();
+      $("#frmname").val(userDisposisi);  
     }
 
     function modal_hastag(id){
