@@ -72,3 +72,16 @@ function serviceFeeds(formId){
         }
     });
 }
+
+
+function deleteDisposisi(){
+    id  = $("#frmIdDelete").val();
+    div = $("#frmDivDelete").val();
+    $("#"+div).hide();
+    $(".modal").modal('hide');
+    // $.get(url,function(data){
+    //     if(data['status']=='success'){
+    //         $("#"+div).hide();
+    //     }
+    // });
+}

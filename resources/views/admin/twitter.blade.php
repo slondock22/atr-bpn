@@ -136,8 +136,25 @@
 
                 <div class="divCommentCon{{$value['id']}}">
                   @foreach($value['disposisi'] as $key => $val)
-                  <div class="tb-padd-lr-30">
+                  <div class="tb-padd-lr-30" id="divDisposisi{{$value['id']}}{{$val['id']}}">
+
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
+                    
+                    <span class="spanAction">
+                        @if(request()->cookie('USER_ID')  == 4)
+                          <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
+                            <span class="tb-toggle-btn tb-style1 tb-large-size">
+                              <i class="material-icons-outlined iconAction">more_horiz</i>
+                            </span>
+                            <div class="tb-dropdown">
+                              <ul class="tb-drop-dropdown-list tb-mp0">
+                                <li><a onclick="confirm_delete('{{$value['id']}}','divDisposisi{{$value['id']}}{{$val['id']}}')">Hapus</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        @endif
+                    </span>
+                            
                     <div class="tb-user tb-style3 contentDisposisi">
                       <div class="tb-user-img">
                         <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
@@ -427,6 +444,34 @@
 <!-- End Large Mosal -->
 
 
+<div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
+    <div class="modal-content">
+      <div class="modal-header modal-header-sos">
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Disposisi
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body" style="font-size: 16px;min-height: 50px !important">
+          Apakah anda yakin akan menghapus Disposisi ini ?
+      </div>
+      <input type="hidden" id="frmIdDelete">
+      <input type="hidden" id="frmDivDelete">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+          Batal
+        </button>
+        <button type="button" class="btn btn-modal-twitter" onclick="deleteDisposisi()">
+          Hapus
+        </button>
+      </div>
+    </div>
+</div>
+
+
  <!-- Modal -->
 <div class="modal fade" id="modal-balas-feed" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
@@ -483,6 +528,9 @@
 <!-- End Large Mosal -->
 
 
+
+
+
 @endsection
 
 <script>
@@ -531,5 +579,11 @@
         $('#modal-po').modal('hide');
         input = $("#valHastag").val();
         $('#' + input).html(hastag);
+    }
+
+    function confirm_delete(id,div){
+        $("#frmIdDelete").val(id);
+        $("#frmDivDelete").val(div);
+        $("#modal-confirm-delete").modal('show');
     }
 </script>

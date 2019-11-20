@@ -58,4 +58,30 @@ class TwitterController extends Controller
 
         return \Response::json($data);
     }
+
+
+    public function deleteComment($id)
+    {   
+        $client = new Client();
+        $url = "http://devbpn.edii.co.id:3000/action/".$id;
+        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $request = $client->request('DELETE', $url, 
+                       [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ]
+                        ]);
+
+        $response = json_decode($request->getBody()->getContents(),true);
+        // dd($response);
+
+
+        $data['status']  = $response;
+        $data['message'] = "Tweet has been succesfully replied";
+        $data['form']    = Input::get('form');
+
+
+        return \Response::json($data);
+    }
 }

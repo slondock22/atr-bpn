@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 class IndexController extends Controller
 {
     public function index($role=''){
-
+        
     	return view('admin.home')->with(compact('role'));
     }
 
