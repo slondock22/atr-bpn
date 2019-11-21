@@ -50,10 +50,11 @@ class TwitterController extends Controller
         $response = json_decode($request->getBody()->getContents(),true);
         // dd($response);
 
-        $data['status']  = "success";
-        $data['result']  = Input::get('comment');
-        $data['message'] = "Tweet has been succesfully replied";
-        $data['form']    = Input::get('form');
+        $data['status']   = "success";
+        $data['result']   = Input::get('comment');
+        $data['message']  = "Tweet has been succesfully replied";
+        $data['form']     = Input::get('form');
+        $data['response'] = $response;
 
 
         return \Response::json($data);

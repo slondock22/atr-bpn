@@ -38,6 +38,15 @@ a{
     font-size: 14px;
 }
 
+.spanLoadmore{
+    display: block;
+    margin: 20px 0px 5px 0px;
+    cursor: pointer;
+    color: #23a1f0;
+    font-size: 14px;
+    display: none;
+}
+
 .btn-modal-facebook:hover{
     color: #fff !important;
     background-color: #2d4d8d;
