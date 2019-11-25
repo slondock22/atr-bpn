@@ -134,8 +134,7 @@
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                   </div>
                 </div>
-                <hr>
-
+                
                 <div class="row{{$number}}" id="divCommentCon{{$value['id']}}">
                   @php $numberDetail=0 @endphp
                   @foreach($value['disposisi'] as $key => $val)
@@ -166,7 +165,7 @@
                       </div>
                       <div class="tb-user-info">
                         <h3 class="tb-user-name">
-                            {{$val['ministry']['ministry_name']}}
+                            {{$val['to']['ministry_name']}}
                             <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                               <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                             </ul>
