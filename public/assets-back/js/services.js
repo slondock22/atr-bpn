@@ -3,7 +3,6 @@ $(document).ready(function(){
 });
 
 $('#btnDisposisi').on('click', function() {
-    alert('tes')
     $.ajax({
         type: 'POST',
         url: $("#frmDisposisi").attr('action'),
@@ -31,7 +30,7 @@ function serviceSend(formId){
         url: $(formId).attr('action'),
         data: $(formId).serialize(),
         success: function(data){
-            if(data['response']['error']=='true'){
+            if(data['response']['error']=='false'){
                  $('#divCommentCon'+data['form']['id']).append('<div class="tb-padd-lr-30">\
                                                                     <div class="tb-height-b20 tb-height-lg-b20"></div>\
                                                                     <span class="spanAction">\
@@ -57,7 +56,6 @@ function serviceSend(formId){
                                                                     </div>\
                                                                 </div>');
                                 
-                 //window.location.reload();
                  $('.modal').modal('hide');
 				 //showFlashAlert('success', data['message']);
             }else{

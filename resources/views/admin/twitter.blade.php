@@ -324,7 +324,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
+        <button type="button" id="btnSendDisposisi" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
     </div>
   </div>
