@@ -31,7 +31,8 @@ function serviceSend(formId){
         url: $(formId).attr('action'),
         data: $(formId).serialize(),
         success: function(data){
-            if(data['response']['error']=='true'){
+            // console.log(data['response']['error']);
+            if(data['response']['error'] == false ){
                  $('#divCommentCon'+data['form']['id']).append('<div class="tb-padd-lr-30">\
                                                                     <div class="tb-height-b20 tb-height-lg-b20"></div>\
                                                                     <span class="spanAction">\

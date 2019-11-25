@@ -88,6 +88,7 @@
             </div>
           </div><!-- .col -->
           <div class="tb-newsfeed-col-4 conComment">
+          @if(isset($response['data']))
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
             @php $number++ @endphp
@@ -165,7 +166,7 @@
                       </div>
                       <div class="tb-user-info">
                         <h3 class="tb-user-name">
-                            {{$val['to']['ministry_name']}}
+                            {{$val['from']['ministry_name']}}
                             <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                               <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                             </ul>
@@ -238,7 +239,7 @@
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
             @endforeach
-
+            @endif
 
            {{-- 
             <nav>
