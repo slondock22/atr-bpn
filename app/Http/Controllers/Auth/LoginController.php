@@ -57,7 +57,9 @@ class LoginController extends Controller
             Cookie::queue(Cookie::forever('USER_ROLE', $response['data']['detail']['tm_role']['role']));
             Cookie::queue(Cookie::forever('USER_FULL_NAME', $response['data']['detail']['user_full_name']));
             Cookie::queue(Cookie::forever('USER_STATUS', $response['data']['detail']['user_status']));
-            Cookie::queue(Cookie::forever('USER_ID', $response['data']['detail']['id']));
+            Cookie::queue(Cookie::forever('USER_ID', $response['data']['detail']['signin_id']));
+            Cookie::queue(Cookie::forever('MINISTRY_ID', $response['data']['detail']['ministry_id']));
+
 
             return redirect('home')->with('status', 'Selamat Datang '.Str::title($response['data']['detail']['user_full_name']));
         

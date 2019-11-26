@@ -1,6 +1,7 @@
 @section('title','Pertanyaan Twitter')
 @extends('layouts-back.layout')
 @section('content')
+
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Twitter</h2>
@@ -86,10 +87,12 @@
               </div>
             </div>
           </div><!-- .col -->
-          <div class="tb-newsfeed-col-4">
-         
+          <div class="tb-newsfeed-col-4 conComment">
+          @if(isset($response['data']))
+           @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
-            <div class="tb-card tb-style1 tb-height-auto">
+            @php $number++ @endphp
+            <div class="tb-card tb-style1 tb-height-auto rowcomment">
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
@@ -97,9 +100,9 @@
                     <div class="tb-user-img">
                      {!! $img = str_replace('[]', '', $value['image']) !!}
                       @if($img != '')
-                      <img src="{{$value['image']}}" alt="">
+                        <img src="{{$value['image']}}" alt="">
                       @else
-                      <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
+                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
                       @endif  
                     </div>
                     <div class="tb-user-info">
@@ -132,48 +135,55 @@
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                   </div>
                 </div>
-                <hr>
+                
+                <div class="row{{$number}}" id="divCommentCon{{$value['id']}}">
+                  @php $numberDetail=0 @endphp
+                  @foreach($value['disposisi'] as $key => $val)
+                    @php $numberDetail++ @endphp
+                    <div class="tb-padd-lr-30 rowDetail rowDetail{{$number}}{{$numberDetail}} divDisposisi{{$val['id']}}">
 
-                @foreach($value['disposisi'] as $key => $val)
-                <div class="tb-padd-lr-30">
-                  <div class="tb-height-b20 tb-height-lg-b20"></div>
-                  <div class="tb-user tb-style3 contentDisposisi">
-                    <div class="tb-user-img">
-                      <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
-                    </div>
-                    <div class="tb-user-info">
-                      <h3 class="tb-user-name">
-                          {{$val['ministry']['ministry_name']}}
-                          <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
-                          </ul>
-                      </h3>
+                    <div class="tb-height-b20 tb-height-lg-b20"></div>
+                    
+                    <span class="spanAction">
+                        <!-- @if(request()->cookie('USER_ID')  == 4) -->
+                          <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
+                            <span class="tb-toggle-btn tb-style1 tb-large-size">
+                              <i class="material-icons-outlined iconAction" 
+                                onclick="confirm_delete('{{$val['id']}}')">more_horiz</i>
+                            </span>
+                            <!-- <div class="tb-dropdown">
+                              <ul class="tb-drop-dropdown-list tb-mp0">
+                                <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
+                              </ul>
+                            </div> -->
+                          </div>
+                        <!-- @endif -->
+                    </span>
+                            
+                    <div class="tb-user tb-style3 contentDisposisi">
+                      <div class="tb-user-img">
+                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                      </div>
+                      <div class="tb-user-info">
+                        <h3 class="tb-user-name">
+                            {{$val['from']['ministry_name']}}
+                            <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                              <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
+                            </ul>
+                        </h3>
 
-                      <div class="divComment">{{$val['comment']}}</div>
+                        <div class="divComment">{{$val['comment']}}</div>
+                      </div>
                     </div>
                   </div>
+                  @endforeach
                 </div>
-                @endforeach
-               {{--   <div class="tb-padd-lr-30">
-                  <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  <div class="tb-user tb-style3 contentDisposisi">
-                    <div class="tb-user-img">
-                      <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
-                    </div>
-                    <div class="tb-user-info">
-                      <h3 class="tb-user-name">
-                          Admin Pertanahan Surabaya
-                          <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                            <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
-                          </ul>
-                      </h3>
 
-                      <div class="divComment">Pertanyaan diatas sudah diselesaikan melalui putusan dengan Nomor 192/10/2019 Tentang Putusan Sengketa Tanah Kecamatan Benowo. Terlampir softcopy surat putusan <a href="#" style="color:#D23111">[Lampiran]</a> &nbsp; <a href="#"><span> <i class="far fa-copy"></i> Salin</span></a></div>
-                    </div>
-                  </div>
+                <div class="tb-padd-lr-30 y" style="padding-top: 10px;padding-bottom: 10px">
+                    <span class="spanLoadmore" id="spanloadmore{{$number}}" onclick="loadmore('row{{$number}}')">
+                        Tampilkan Lebih Banyak
+                    </span>
                 </div>
- --}}
-
                 <div class="tb-height-b10 tb-height-lg-b10"></div>
                 <hr>
                 
@@ -229,7 +239,7 @@
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
             @endforeach
-
+            @endif
 
            {{-- 
             <nav>
@@ -257,6 +267,7 @@
       </div>
       <div class="tb-height-b60 tb-height-lg-b60"></div>
     </div>
+
 </div>
 
 
@@ -293,23 +304,27 @@
             <input type="hidden" id="idFeeds" value="" name="idFeeds">
             <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="ministry_id">
-                <option>Pilih Kanwil/Kantah</option>
+              <select class="form-control" id="ministryId" name="ministry_id" onchange="setUser()">
+                <option value="">Pilih Kanwil/Kantah</option>
                 <option value="1">ATR/BPN Pusat</option>
                 <option value="2">ATR/BPN Surabaya</option>
                 <option value="3">ATR/BPN Malang</option>
-
               </select>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">Keterangan</label>
-              <textarea class="form-control text-area-modal-twitter-nopad" id="exampleFormControlTextarea1" rows="3" placeholder="Isikan keterangan disposisi" name="comment"></textarea>
+              <label for="exampleFormControlTextarea1">Ke
+              terangan</label>
+              <textarea class="form-control text-area-modal-twitter-nopad" id="commentDisposisi" rows="3" placeholder="Isikan keterangan disposisi" name="comment"></textarea>
             </div>
+
+            <input type="hidden" name="form[id]" id="frmid">
+            <input type="hidden" name="form[name]" id="frmname">
+            <input type="hidden" name="form[date]" id="frmdate">
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
+        <button type="button" id="btnSendDisposisi" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
     </div>
   </div>
@@ -438,8 +453,7 @@
 </div>
 <!-- End Large Mosal -->
 
-
- <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="modal-balas-feed" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
     <div class="modal-content">
@@ -492,12 +506,75 @@
       </div>
   </div>
 </div>
+</div>
 <!-- End Large Mosal -->
+
+
+
+
+<div class="modal fade" id="modal-loadmore" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
+    <div class="modal-content">
+      <div class="modal-header modal-header-sos">
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> All Comment
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body" id="divLoadMore">
+          
+      </div>
+      <input type="hidden" id="frmIdDelete">
+      <input type="hidden" id="frmDivDelete">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+          Tutup
+        </button>
+      </div>
+      </div>
+    </div>
+</div>
+
+
+ <div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="z-index: 1052">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
+    <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
+      <div class="modal-header modal-header-sos">
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Disposisi
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body" style="font-size: 16px;min-height: 50px !important">
+          Apakah anda yakin akan menghapus Disposisi ini ?
+      </div>
+      <input type="hidden" id="frmIdDelete">
+      <input type="hidden" id="frmDivDelete">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+          Batal
+        </button>
+        <button type="button" class="btn btn-modal-twitter" onclick="deleteDisposisi()">
+          Hapus
+        </button>
+      </div>
+      </div>
+    </div>
+</div>
+
+
+
 
 
 @endsection
 
 <script>
+    
+
     function collapseBtn(div1,div2){
         $("#"+div1).slideUp(300);
         $("#"+div2).slideDown(300);
@@ -514,12 +591,23 @@
 
     function modal_disposisi(id='',content='',user='',date=''){
         $('#modal-add-disposisi').modal('show');
+        $('#ministryId').val('');
+        $('#commentDisposisi').val('');
         $('#idFeeds').val(id);
         $('#contentTwitUserDisposisi').html(content);
         $('#twitUserDisposisi').html('@'+user);
         $('#headerUserDisposisi').html('@'+user);
         $('#dateModalDisposisi').html(date);
-        $("#imgUserDisposisi").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">')
+        $("#imgUserDisposisi").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">');
+
+        //Form Disposisi untuk LoadData
+        $("#frmdate").val(date);
+        $("#frmid").val(id);
+    }
+
+    function setUser(){
+      userDisposisi = $("#ministryId option:selected" ).text();
+      $("#frmname").val(userDisposisi);  
     }
 
     function modal_hastag(id){
@@ -533,4 +621,18 @@
         input = $("#valHastag").val();
         $('#' + input).html(hastag);
     }
+
+    function confirm_delete(id,div){
+        $("#frmIdDelete").val(id);
+        $("#frmDivDelete").val(div);
+        $("#modal-confirm-delete").modal('show');
+    }
+
+    function loadmore(rowid){
+        comment = $("."+rowid).html();
+        $("#divLoadMore").html(comment);
+        $("#divLoadMore .rowDetail").show();
+        $("#modal-loadmore").modal('show');
+    }
+
 </script>

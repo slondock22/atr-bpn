@@ -19,12 +19,17 @@
   <link rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/jqvmap.min.css" />
   <link rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/swiper.min.css" />
   <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/classic-style.css" />
+  
   <!-- <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/style.css" /> -->
   <link href="{{asset('/')}}assets/css/customs.css" rel="stylesheet">
   <link href="{{asset('/')}}assets-back/css/bootstrap-customs.css" rel="stylesheet">
+  <link href="{{asset('/')}}assets-back/css/alert.css" rel="stylesheet" type="text/css" />
 
 </head>
 
+<script type="text/javascript">
+	var base_url = '{{ url("/") }}';
+</script>
 <body>
 
     <!-- Preloader Start -->
@@ -39,12 +44,25 @@
        @include('layouts-back.notification')
       </div>
     </div>
+
+
   </header><!-- .tb-header -->
        @include('layouts-back.sidebar')
-
+       <div id="flash_msg" style="display: none;">
+        <div class="alert alert-dismissible alert-success" role="alert">
+            <button type="button" class="close" aria-label="Close" onclick="closeFlashAlert()">
+                <span aria-hidden="true">×</span>
+            </button>
+            <span class="alert-inner--text">
+                <strong id="alert-title">Success</strong><br>
+                <span id="alert-message">Data Berhasil Disimpan</span>
+            </span>
+        </div>
+    </div>
        <!-- Content -->
        @yield('content')
 
+       
    <!-- Scripts -->
   <script src="{{asset('/assets-back')}}/js/vendor/modernizr-3.5.0.min.js"></script>
   <script src="{{asset('/assets-back')}}/js/vendor/jquery-1.12.4.min.js"></script>
@@ -60,8 +78,10 @@
   <script type="text/javascript">
       $(window).on('load', function() {
             // Animate loader off screen
-            $(".se-pre-con").fadeOut("slow");;
+            $(".se-pre-con").fadeOut("slow");
         });
   </script>
+
+
 </body>
 </html>
