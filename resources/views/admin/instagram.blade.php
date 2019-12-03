@@ -1,4 +1,4 @@
-@section('title','Pertanyaan Twitter')
+@section('title','Pertanyaan Instagram')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1 tab-profil-content">

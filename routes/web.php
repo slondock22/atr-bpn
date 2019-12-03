@@ -27,6 +27,7 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('statistik','IndexController@statistik')->name('statistik');
 	Route::get('publish/{mode}','IndexController@publish')->name('publish');
 	Route::get('profile','IndexController@profile')->name('profile');
+	Route::get('dokumentasi','IndexController@dokumentasi')->name('dokumentasi');
 
 
 	Route::middleware(['checkRole:op_pusat,op_kanwil,op_kantah'])->group(function(){
@@ -37,6 +38,8 @@ Route::group(['middleware' => ['login']], function () {
 
 		Route::get('instagram','InstagramController@index')->name('instagram');
 		Route::get('facebook','FacebookController@index')->name('facebook');
+		Route::get('youtube','YoutubeController@index')->name('youtube');
+
 	});
 
 	Route::middleware(['checkRole:admin_pusat,admin_kanwil,admin_kantah'])->group(function(){

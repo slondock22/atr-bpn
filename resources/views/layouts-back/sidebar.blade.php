@@ -61,6 +61,14 @@
               </span>
             </a>
           </li>
+           <li>
+            <a href="{{route('youtube')}}">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="lni lni-youtube"></i></span>
+                <span class="tb-sidebar-link-text">Youtube</span>
+              </span>
+            </a>
+          </li>
         </ul><!-- .tb-sidebar-nav-list -->
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Berita</span>
@@ -199,7 +207,7 @@
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-            <a href="documentation.html">
+            <a href="{{route('dokumentasi')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">library_books</i></span>
                 <span class="tb-sidebar-link-text">Dokumentasi</span>

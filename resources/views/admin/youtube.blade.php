@@ -1,9 +1,9 @@
-@section('title','Pertanyaan Facebook')
+@section('title','Pertanyaan Youtube')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-      <h2 class="tb-uikits-title">Facebook</h2>
+      <h2 class="tb-uikits-title">Youtube</h2>
     </div>
     
     <div class="tb-content tb-style3">

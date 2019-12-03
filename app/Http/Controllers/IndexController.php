@@ -103,4 +103,11 @@ class IndexController extends Controller
         return view('admin.master.spam')->with(compact('role'));
         
     }
+
+     public function dokumentasi($role='')
+    {
+        
+        return view('admin.dokumentasi')->with(compact('role'));
+        
+    }
 }
