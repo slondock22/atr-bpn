@@ -38,6 +38,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
 
+
+    
 </head>
 
 <body>
@@ -609,6 +611,8 @@
     <script src="{{asset('/')}}assets/js/bootsnav.js"></script>
     <script src="{{asset('/')}}assets/js/main.js"></script>
 
+
+   
 </body>
 
 </html>

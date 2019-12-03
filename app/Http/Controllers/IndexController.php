@@ -53,4 +53,11 @@ class IndexController extends Controller
     		return view('admin.rekap_aduan')->with(compact('role'));;
     	}
     }
+
+    public function masterUser($media,$role='')
+    {
+        
+        return view('admin.master.master_user')->with(compact('role'));;
+        
+    }
 }
