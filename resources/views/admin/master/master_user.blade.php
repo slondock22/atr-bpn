@@ -17,7 +17,7 @@
                 <input type="text" placeholder="Search..." class="tb-search-input">
                 <button type="submit"><i class="material-icons-outlined">search</i></button>
               </form>
-              <a onclick="getUser()" class="tb-btn tb-style1 tb-small">View All</a>
+              <a class="tb-btn tb-style1 tb-small">View All</a>
             </div>
           </div>
           <div class="tb-card-body">
