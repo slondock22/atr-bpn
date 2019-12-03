@@ -46,11 +46,12 @@ class IndexController extends Controller
 
      public function laporan($media,$role='')
     {
+     
     	if($media == 'rekap_aduan'){
     		return view('admin.rekap_aduan')->with(compact('role'));;
     	}
     	elseif ($media == 'performansi') {
-    		return view('admin.rekap_aduan')->with(compact('role'));;
+    		return view('admin.rekap_performansi')->with(compact('role'));;
     	}
     }
 }

@@ -38,7 +38,7 @@ Route::group(['middleware' => ['login']], function () {
 		Route::get('facebook','FacebookController@index')->name('facebook');
 	});
 
-	Route::middleware(['checkRole:admin_pusat'])->group(function(){
+	Route::middleware(['checkRole:admin_pusat,admin_kanwil,admin_kantah'])->group(function(){
 		Route::get('laporan/{mode}','IndexController@laporan')->name('laporan');
 	});
 });

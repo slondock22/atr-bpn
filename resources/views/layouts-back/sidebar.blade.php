@@ -41,7 +41,7 @@
             <a href="{{route('twitter')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-twitter"></i></span>
-                <span class="tb-sidebar-link-text">Twitter</span>
+                <span class="tb-sidebar-link-text">Twitter &nbsp;<span class="tb-badge tb-box-transparent-colo6">4</span></span>
               </span>
             </a>
           </li>
@@ -100,8 +100,10 @@
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
         @endif
+      
 
-        <div class="tb-sidebar-nav-title">
+        @if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
+         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Laporan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
         </div>
@@ -115,7 +117,7 @@
             </a>
           </li>
            <li>
-            <a href="project-management.html">
+            <a href="{{route('laporan','performansi')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">assessment</i></span>
                 <span class="tb-sidebar-link-text">Performansi</span>
@@ -123,9 +125,7 @@
             </a>
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
-      
 
-        @if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Master</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>

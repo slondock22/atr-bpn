@@ -147,6 +147,31 @@
       </div><!-- .row -->
 
       <div class="tb-height-b30 tb-height-lg-b30"></div>
+
+       <div class="row">
+        <div class="col-lg-12">
+          <div class="tb-card tb-style1">
+            <div class="tb-card-heading">
+              <div class="tb-card-heading-left">
+                <h2 class="tb-card-title">SLA Performansi - 10 Kantor Wilayah/Kantor Pertanahan Terlama Merespon</h2>
+              </div>
+            </div>
+            <div class="tb-card-body">
+              <div class="tb-height-b25 tb-height-lg-b25"></div>
+              <div class="tb-padd-lr-30">
+                <div class="tb-chart-wrap tb-style14">
+                  <div class="tb-chart-in">
+                   <canvas id="tb-chart2-type11"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="tb-height-b30 tb-height-lg-b30"></div>
+            </div>
+          </div>
+        </div><!-- .col -->
+      </div><!-- .row -->
+      
+      <div class="tb-height-b30 tb-height-lg-b30"></div>
       <div class="row">
         <div class="col-lg-6">
           <div class="tb-card tb-style1">
