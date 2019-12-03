@@ -1,9 +1,9 @@
-@section('title','Rekap Performansi')
+@section('title','Folder Spam')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Laporan Rekap Performansi</h2>
+    <h2 class="tb-uikits-title">Folder Spam</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -26,25 +26,28 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Dijawab Oleh</th>
-                    <th>Instansi</th>
-                    <th>Total Aduan Terjawab</th>
-                    <th>Avg Waktu Respon</th>
-                    <th>Skor</th>{{-- 
+                    <th>Username</th>
+                    <th>Tgl Post</th>
+                    <th>Konten</th>
+                    <th>Sumber</th>
+                    <th>Aksi</th>{{-- 
                     <th></th> --}}
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>userpusat</td>
-                    <td>ATR/BPN Pusat</td>
-                    <td>3/4</td>
-                    <td>01Jam:30Menit:03Detik</td>
-                    <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">9.8</a>
-                      </div>
+                    <td>juragankodok</td>
+                    <td>27 Nov 2019</td>
+                    <td>ichi shuan meh lon geh kam bun yah maka nsai sua naplaio</td>
+                    <td>Twitter</td>
+                     <td>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-reload"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
@@ -52,28 +55,17 @@
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>usermalang</td>
-                    <td>ATR/BPN Malang</td>
-                    <td>2/2</td>
-                    <td>03Jam:14Menit:30Detik</td>
-                    <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">10</a>
-                      </div>
-                    </td>
-                    {{-- <td>
-                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
-                    </td> --}}
-                     <tr>
-                    <td>3</td>
-                    <td>usersurabaya</td>
-                    <td>ATR/BPN Surabaya</td>
-                    <td>1/4</td>
-                    <td>07Jam:09Menit:00Detik</td>
-                    <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">2.5</a>
-                      </div>
+                    <td>tukangbubur</td>
+                    <td>28 Nov 2019</td>
+                    <td>2219092092920190 09290219029021 09219012902190</td>
+                    <td>Twitter</td>
+                     <td>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-reload"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>

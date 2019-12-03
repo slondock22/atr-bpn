@@ -26,6 +26,7 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('home','IndexController@index')->name('home');
 	Route::get('statistik','IndexController@statistik')->name('statistik');
 	Route::get('publish/{mode}','IndexController@publish')->name('publish');
+	Route::get('profile','IndexController@profile')->name('profile');
 
 
 	Route::middleware(['checkRole:op_pusat,op_kanwil,op_kantah'])->group(function(){
@@ -42,6 +43,12 @@ Route::group(['middleware' => ['login']], function () {
 		Route::get('laporan/{mode}','IndexController@laporan')->name('laporan');
 		Route::get('master_user','IndexController@masterUser')->name('master_user');
 		Route::get('masterUserApi','MasterController@masterUserApi')->name('masterUserApi');
+		Route::get('master_kantah','IndexController@masterKantah')->name('master_kantah');
+		Route::get('master_kanwil','IndexController@masterKanwil')->name('master_kanwil');
+		Route::get('master_jenis_aduan','IndexController@masterJenisAduan')->name('master_jenis_aduan');
+		Route::get('master_konfig','IndexController@masterKonfig')->name('master_konfig');
+		Route::get('spam_list','IndexController@spamList')->name('spam_list');
+
 	});
 });
 

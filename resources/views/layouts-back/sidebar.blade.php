@@ -141,7 +141,7 @@
           </li>
           @if(request()->cookie('USER_ROLE')  == '1')
            <li>
-            <a href="documentation.html">
+            <a href="{{route('master_kanwil')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
                 <span class="tb-sidebar-link-text">Master Kanwil</span>
@@ -149,7 +149,7 @@
             </a>
           </li>
           <li>
-            <a href="documentation.html">
+            <a href="{{route('master_kantah')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
                 <span class="tb-sidebar-link-text">Master Kantah</span>
@@ -157,7 +157,7 @@
             </a>
           </li>
           <li>
-            <a href="documentation.html">
+            <a href="{{route('master_jenis_aduan')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
                 <span class="tb-sidebar-link-text">Master Jenis Aduan</span>
@@ -175,10 +175,18 @@
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-            <a href="documentation.html">
+            <a href="{{route('master_konfig')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">settings</i></span>
                 <span class="tb-sidebar-link-text">Konfigurasi API</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('spam_list')}}">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">block</i></span>
+                <span class="tb-sidebar-link-text">Folder Spam</span>
               </span>
             </a>
           </li>

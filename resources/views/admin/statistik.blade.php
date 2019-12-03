@@ -128,7 +128,7 @@
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
-                <h2 class="tb-card-title">SLA Performansi - 10 Kantor Wilayah/Kantor Pertanahan Terlama Merespon</h2>
+                <h2 class="tb-card-title">SLA Performansi - 10 Kantor Wilayah Terlama Merespon Aduan</h2>
               </div>
             </div>
             <div class="tb-card-body">
@@ -153,7 +153,7 @@
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
-                <h2 class="tb-card-title">SLA Performansi - 10 Kantor Wilayah/Kantor Pertanahan Terlama Merespon</h2>
+                <h2 class="tb-card-title">SLA Performansi - 10 Kantor Pertanahan Terlama Merespon Aduan</h2>
               </div>
             </div>
             <div class="tb-card-body">
@@ -161,7 +161,7 @@
               <div class="tb-padd-lr-30">
                 <div class="tb-chart-wrap tb-style14">
                   <div class="tb-chart-in">
-                   <canvas id="tb-chart2-type11"></canvas>
+                   <canvas id="tb-chart2-type12"></canvas>
                   </div>
                 </div>
               </div>
@@ -170,7 +170,7 @@
           </div>
         </div><!-- .col -->
       </div><!-- .row -->
-      
+
       <div class="tb-height-b30 tb-height-lg-b30"></div>
       <div class="row">
         <div class="col-lg-6">

@@ -186,11 +186,8 @@
           </div>
           <ul class="tb-dropdown tb-style1">
             <li>
-              <a href="#"><i class="material-icons-outlined">account_circle</i>My
+              <a href="{{route('profile')}}"><i class="material-icons-outlined">account_circle</i>My
                 Profile</a>
-            </li>
-            <li>
-              <a href="#"><i class="material-icons-outlined">settings</i>Settings</a>
             </li>
             <li>
               <a href="#"><i class="material-icons-outlined">help</i>Help</a>

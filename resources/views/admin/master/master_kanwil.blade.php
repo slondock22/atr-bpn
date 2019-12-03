@@ -1,9 +1,9 @@
-@section('title','Rekap Performansi')
+@section('title','Master Kantor Wilayah')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Laporan Rekap Performansi</h2>
+    <h2 class="tb-uikits-title">Master Kantor Wilayah</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -19,6 +19,9 @@
               </form>
               <a href="#" class="tb-btn tb-style1 tb-small">View All</a>
             </div>
+            <span style="float: right;">
+                <a class="tb-btn tb-style1 tb-small">Add Item</a>
+              </span>
           </div>
           <div class="tb-card-body">
             <div class="tb-table tb-style1 tb-type1 table-responsive">
@@ -26,25 +29,26 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Dijawab Oleh</th>
-                    <th>Instansi</th>
-                    <th>Total Aduan Terjawab</th>
-                    <th>Avg Waktu Respon</th>
-                    <th>Skor</th>{{-- 
+                    <th>Nama Kanwil</th>
+                    <th>Alamat</th>
+                    <th>No Telpon</th>
+                    <th>Aksi</th>{{-- 
                     <th></th> --}}
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>userpusat</td>
-                    <td>ATR/BPN Pusat</td>
-                    <td>3/4</td>
-                    <td>01Jam:30Menit:03Detik</td>
+                    <td>ATR/BPN DKI Jakarta</td>
+                    <td>Jakarta Pusat</td>
+                    <td>021-7228901</td>
                     <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">9.8</a>
-                      </div>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
@@ -52,28 +56,32 @@
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>usermalang</td>
-                    <td>ATR/BPN Malang</td>
-                    <td>2/2</td>
-                    <td>03Jam:14Menit:30Detik</td>
+                    <td>ATR/BPN Jawa Timur</td>
+                    <td>Surabaya</td>
+                    <td>(0231) 8290985</td>
                     <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">10</a>
-                      </div>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
                     </td> --}}
                      <tr>
                     <td>3</td>
-                    <td>usersurabaya</td>
-                    <td>ATR/BPN Surabaya</td>
-                    <td>1/4</td>
-                    <td>07Jam:09Menit:00Detik</td>
+                    <td>ATR/BPN Jawa Tengah</td>
+                    <td>Semarang</td>
+                    <td>(024) 8310388</td>
                     <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">2.5</a>
-                      </div>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>

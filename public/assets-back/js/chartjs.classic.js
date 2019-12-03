@@ -852,7 +852,7 @@ if ($.exists("#tb-chart2-type11")) {
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ["Kanwil Jawa Timur", "Kanwil Maluku", "Kanwil DIY Yogyayakarta", "Kanwil Kaltim", "Kanwil Jawa Barat", "Kanwil Jawa Tengah", "Kanwil Gorontalo", "Kanwil Lampung", "Kantah Tanggamus", "Kantah Solo"],
+      labels: ["Kanwil Jawa Timur", "Kanwil Maluku", "Kanwil DIY Yogyayakarta", "Kanwil Kaltim", "Kanwil Jawa Barat", "Kanwil Jawa Tengah", "Kanwil Gorontalo", "Kanwil Lampung", "Kanwil Sumut", "Kanwil Sumbar"],
       datasets: [{
         label: 'Hari',
         data: [10, 3, 1, 8, 15, 2, 2, 3, 4, 1010],

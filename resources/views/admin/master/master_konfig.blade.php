@@ -1,9 +1,9 @@
-@section('title','Rekap Performansi')
+@section('title','Konfigurasi API')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Laporan Rekap Performansi</h2>
+    <h2 class="tb-uikits-title">Konfigurasi API</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -19,6 +19,9 @@
               </form>
               <a href="#" class="tb-btn tb-style1 tb-small">View All</a>
             </div>
+            <span style="float: right;">
+                <a class="tb-btn tb-style1 tb-small">Add Item</a>
+              </span>
           </div>
           <div class="tb-card-body">
             <div class="tb-table tb-style1 tb-type1 table-responsive">
@@ -26,25 +29,25 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Dijawab Oleh</th>
-                    <th>Instansi</th>
-                    <th>Total Aduan Terjawab</th>
-                    <th>Avg Waktu Respon</th>
-                    <th>Skor</th>{{-- 
-                    <th></th> --}}
+                    <th>API Provider</th>
+                    <th>Username</th>
+                    <th>Token</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>userpusat</td>
-                    <td>ATR/BPN Pusat</td>
-                    <td>3/4</td>
-                    <td>01Jam:30Menit:03Detik</td>
+                    <td>Facebook</td>
+                    <td>uid2930191717</td>
+                    <td>sdhioweksdnadjnjdfnfoas38044839894398802380193808</td>
                     <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">9.8</a>
-                      </div>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
@@ -52,33 +55,55 @@
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>usermalang</td>
-                    <td>ATR/BPN Malang</td>
-                    <td>2/2</td>
-                    <td>03Jam:14Menit:30Detik</td>
+                    <td>Twitter</td>
+                    <td>a8372901083</td>
+                    <td>k09390jno930923uhoi3h09u3294u94jier93u4904uj390ruw9r</td>
                     <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">10</a>
-                      </div>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
                     </td> --}}
-                     <tr>
+                    </tr>
+                    <tr>
                     <td>3</td>
-                    <td>usersurabaya</td>
-                    <td>ATR/BPN Surabaya</td>
-                    <td>1/4</td>
-                    <td>07Jam:09Menit:00Detik</td>
+                    <td>Instagram</td>
+                    <td>ioe38489348943</td>
+                    <td>oiw3rjnfeiorjeurfeijoa2skfieo94949494ntit44jr4ij4ij0309309</td>
                     <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">2.5</a>
-                      </div>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
                     </td> --}}
-                  </tr>
+                    </tr>
+                    <tr>
+                    <td>4</td>
+                    <td>Youtube</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
+                    </td>
+                    {{-- <td>
+                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
+                    </td> --}}
+                    </tr>
              
                 </tbody>
               </table>

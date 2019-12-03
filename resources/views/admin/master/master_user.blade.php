@@ -21,7 +21,7 @@
               
             </div>
             <span style="float: right;">
-                <a class="tb-btn tb-style1 tb-small">Add User</a>
+                <a class="tb-btn tb-style1 tb-small">Add Item</a>
               </span>
           </div>
 
