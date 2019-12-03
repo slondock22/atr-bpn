@@ -18,8 +18,13 @@
                 <button type="submit"><i class="material-icons-outlined">search</i></button>
               </form>
               <a class="tb-btn tb-style1 tb-small">View All</a>
+              
             </div>
+            <span style="float: right;">
+                <a class="tb-btn tb-style1 tb-small">Add User</a>
+              </span>
           </div>
+
           <div class="tb-card-body">
             <div class="tb-table tb-style1 tb-type1 table-responsive">
               <table class="table" id="datatable">
