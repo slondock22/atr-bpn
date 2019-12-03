@@ -1,4 +1,4 @@
-@section('title','Rekap Aduan')
+@section('title','Master User')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
@@ -8,7 +8,7 @@
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row"> 
       <div class="col-lg-12">
         <div class="tb-card tb-style1">
           <div class="tb-card-heading">
