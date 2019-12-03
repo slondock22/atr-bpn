@@ -3,7 +3,7 @@
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Laporan Rekap Aduan</h2>
+    <h2 class="tb-uikits-title">Master User</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
