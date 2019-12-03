@@ -132,7 +132,7 @@
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-            <a href="documentation.html">
+            <a href="{{route('master_user')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-users"></i></span>
                 <span class="tb-sidebar-link-text">Master User</span>

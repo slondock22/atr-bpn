@@ -40,6 +40,8 @@ Route::group(['middleware' => ['login']], function () {
 
 	Route::middleware(['checkRole:admin_pusat,admin_kanwil,admin_kantah'])->group(function(){
 		Route::get('laporan/{mode}','IndexController@laporan')->name('laporan');
+		Route::get('master_user','IndexController@masterUser')->name('master_user');
+		Route::get('masterUserApi','MasterController@masterUserApi')->name('masterUserApi');
 	});
 });
 
