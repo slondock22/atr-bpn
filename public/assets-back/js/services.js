@@ -164,6 +164,14 @@ function getUser(){
                                     <td>'+ row.tm_ministry.ministry_name +'</td>\
                                     <td>'+ row.tm_ministry.city +'</td>\
                                     <td>'+ status +'</td>\
+                                    <td>\
+                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-trash"></i>\
+                                        </a>\
+                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-pencil"></i>\
+                                        </a>\
+                                    </td>\
                                   </tr>\
                               ')
         });  

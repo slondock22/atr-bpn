@@ -30,6 +30,7 @@
                     <th>Ministry</th>
                     <th>City</th>
                     <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody id="tblContainer">
