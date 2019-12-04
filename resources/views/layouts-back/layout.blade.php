@@ -25,6 +25,14 @@
   <link href="{{asset('/')}}assets-back/css/bootstrap-customs.css" rel="stylesheet">
   <link href="{{asset('/')}}assets-back/css/alert.css" rel="stylesheet" type="text/css" />
 
+
+  <!-- DataTables -->
+<!--     <link href="{{ asset('/assets-back')}}/css/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+ -->    <!-- <link href="{{ asset('/assets-back')}}/css/datatables/buttons.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets-back')}}/css/datatables/fixedHeader.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets-back')}}/css/datatables/responsive.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets-back')}}/css/datatables/scroller.bootstrap.min.css') }}" rel="stylesheet" type="text/css" /> -->
+
 </head>
 
 <script type="text/javascript">
@@ -75,11 +83,32 @@
   <script src="{{asset('/assets-back')}}/js/main.js"></script>
   <script src="{{asset('/assets-back')}}/js/services.js"></script>
   <script src="{{asset('/assets-back')}}/js/alert.js"></script>
+
+
+   <!-- Datatables-->
+<!--   <script src="{{ asset('/assets-back')}}/css/datatables/jquery.dataTables.min.js"></script>
+ -->  <!-- <script src="{{ asset('/assets-back')}}/css/datatables/dataTables.bootstrap.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/dataTables.buttons.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/buttons.bootstrap.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/jszip.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/pdfmake.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/vfs_fonts.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/buttons.html5.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/buttons.print.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/dataTables.fixedHeader.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/dataTables.keyTable.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/dataTables.responsive.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/responsive.bootstrap.min.js"></script>
+  <script src="{{ asset('/assets-back')}}/css/datatables/dataTables.scroller.min.js"></script>
+
+  <script src="{{ asset('/assets-back')}}/css/datatables/datatables.init.js"></script> -->
+  
   <script type="text/javascript">
       $(window).on('load', function() {
             // Animate loader off screen
             $(".se-pre-con").fadeOut("slow");
         });
+
   </script>
 
 

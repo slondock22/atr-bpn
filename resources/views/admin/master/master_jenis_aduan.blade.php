@@ -1,14 +1,14 @@
-@section('title','Rekap Aduan')
+@section('title','Master Jenis Aduan')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Laporan Rekap Aduan</h2>
+    <h2 class="tb-uikits-title">Master Jenis Aduan</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row"> 
       <div class="col-lg-12">
         <div class="tb-card tb-style1">
           <div class="tb-card-heading">
@@ -17,56 +17,79 @@
                 <input type="text" placeholder="Search..." class="tb-search-input">
                 <button type="submit"><i class="material-icons-outlined">search</i></button>
               </form>
-              <a href="#" class="tb-btn tb-style1 tb-small">View All</a>
+              <a class="tb-btn tb-style1 tb-small">View All</a>
+              
             </div>
+            <span style="float: right;">
+                <a class="tb-btn tb-style1 tb-small">Add Item</a>
+              </span>
           </div>
+
           <div class="tb-card-body">
             <div class="tb-table tb-style1 tb-type1 table-responsive">
-              <table class="table">
+              <table class="table" id="datatable">
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>ID Aduan</th>
-                    <th>Username</th>
-                    <th>Tgl Post</th>
                     <th>Jenis Aduan</th>
-                    <th>Sumber</th>
-                    <th>Status</th>{{-- 
-                    <th></th> --}}
+                    <th>Deskripsi</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>#TW00001</td>
-                    <td>adrialnajlan</td>
-                    <td>27 Nov 2019</td>
-                    <td>Sertifikat Tanah</td>
-                    <td>Twitter</td>
+                    <td>#SengketaLahan</td>
+                    <td>Sengketa lahan adalah</td>
                     <td>
                       <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">Terbuka</a>
+                        <a href="#" class="tb-tag tb-icon-color1">Disable</a>
                       </div>
                     </td>
-                    {{-- <td>
-                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
-                    </td> --}}
+                    <td>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
+                    </td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>#TW00002</td>
-                    <td>meilani</td>
-                    <td>28 Nov 2019</td>
-                    <td>Sengketa Lahan</td>
-                    <td>Twitter</td>
+                    <td>#SengketaTanah</td>
+                    <td>Sengketa tanah adalah</td>
                     <td>
                       <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">Terjawab</a>
+                        <a href="#" class="tb-tag tb-icon-color3">Enable</a>
                       </div>
                     </td>
-                    {{-- <td>
-                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
-                    </td> --}}
+                    <td>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
+                    </td>
+                  </tr>
+                   <tr>
+                    <td>3</td>
+                    <td>#HukumAgraria</td>
+                    <td>-</td>
+                    <td>
+                      <div class="tb-tag-wrap tb-style1">
+                        <a href="#" class="tb-tag tb-icon-color3">Enable</a>
+                      </div>
+                    </td>
+                    <td>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
+                    </td>
                   </tr>
              
                 </tbody>

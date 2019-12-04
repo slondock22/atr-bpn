@@ -108,12 +108,12 @@
         <div class="tb-toggle-body tb-notice-area tb-style1">
           <span class="tb-toggle-btn tb-ex-nav-btn tb-notice-btn">
             <i class="material-icons-outlined">notifications</i>
-            <span class="tb-ex-nav-label">3</span>
+           {{--  <span class="tb-ex-nav-label">3</span> --}}
           </span>
           <div class="tb-dropdown tb-notify-dropdown">
             <h2 class="tb-nofify-title">Notifications</h2>
             <ul class="tb-nofify-list tb-style1 tb-mp0">
-              <li>
+             {{--  <li>
                 <div class="tb-nofify-list-in">
                   <div class="tb-nofify-icon tb-icon-color2">
                     <i class="material-icons-outlined">supervisor_account</i>
@@ -167,9 +167,9 @@
                     <span class="tb-notify-time">2 days ago</span>
                   </div>
                 </div>
-              </li>
+              </li> --}}
             </ul>
-            <a href="#" class="tb-btn tb-style2">SEE ALL <i class="material-icons-outlined">navigate_next</i></a>
+          {{--   <a href="#" class="tb-btn tb-style2">SEE ALL <i class="material-icons-outlined">navigate_next</i></a> --}}
           </div>
         </div>
       </li>
@@ -186,11 +186,8 @@
           </div>
           <ul class="tb-dropdown tb-style1">
             <li>
-              <a href="#"><i class="material-icons-outlined">account_circle</i>My
+              <a href="{{route('profile')}}"><i class="material-icons-outlined">account_circle</i>My
                 Profile</a>
-            </li>
-            <li>
-              <a href="#"><i class="material-icons-outlined">settings</i>Settings</a>
             </li>
             <li>
               <a href="#"><i class="material-icons-outlined">help</i>Help</a>

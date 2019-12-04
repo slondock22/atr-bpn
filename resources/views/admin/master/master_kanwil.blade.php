@@ -1,9 +1,9 @@
-@section('title','Rekap Aduan')
+@section('title','Master Kantor Wilayah')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Laporan Rekap Aduan</h2>
+    <h2 class="tb-uikits-title">Master Kantor Wilayah</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -19,6 +19,9 @@
               </form>
               <a href="#" class="tb-btn tb-style1 tb-small">View All</a>
             </div>
+            <span style="float: right;">
+                <a class="tb-btn tb-style1 tb-small">Add Item</a>
+              </span>
           </div>
           <div class="tb-card-body">
             <div class="tb-table tb-style1 tb-type1 table-responsive">
@@ -26,27 +29,26 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>ID Aduan</th>
-                    <th>Username</th>
-                    <th>Tgl Post</th>
-                    <th>Jenis Aduan</th>
-                    <th>Sumber</th>
-                    <th>Status</th>{{-- 
+                    <th>Nama Kanwil</th>
+                    <th>Alamat</th>
+                    <th>No Telpon</th>
+                    <th>Aksi</th>{{-- 
                     <th></th> --}}
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>#TW00001</td>
-                    <td>adrialnajlan</td>
-                    <td>27 Nov 2019</td>
-                    <td>Sertifikat Tanah</td>
-                    <td>Twitter</td>
+                    <td>ATR/BPN DKI Jakarta</td>
+                    <td>Jakarta Pusat</td>
+                    <td>021-7228901</td>
                     <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">Terbuka</a>
-                      </div>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
@@ -54,15 +56,32 @@
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>#TW00002</td>
-                    <td>meilani</td>
-                    <td>28 Nov 2019</td>
-                    <td>Sengketa Lahan</td>
-                    <td>Twitter</td>
+                    <td>ATR/BPN Jawa Timur</td>
+                    <td>Surabaya</td>
+                    <td>(0231) 8290985</td>
                     <td>
-                      <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">Terjawab</a>
-                      </div>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
+                    </td>
+                    {{-- <td>
+                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
+                    </td> --}}
+                     <tr>
+                    <td>3</td>
+                    <td>ATR/BPN Jawa Tengah</td>
+                    <td>Semarang</td>
+                    <td>(024) 8310388</td>
+                    <td>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-trash"></i>
+                        </a>
+                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                            <i class="lni lni-pencil"></i>
+                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>

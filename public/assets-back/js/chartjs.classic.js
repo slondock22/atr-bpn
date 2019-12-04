@@ -852,7 +852,85 @@ if ($.exists("#tb-chart2-type11")) {
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ["Kanwil Surabaya", "Kantah Pringsewu", "Kanwil Banten", "Kantah Luwuk", "Kantah Purwakarta", "Kanwil Ambon", "Kanwil Medan", "Kanwil Lampung", "Kantah Tanggamus", "Kantah Solo"],
+      labels: ["Kanwil Jawa Timur", "Kanwil Maluku", "Kanwil DIY Yogyayakarta", "Kanwil Kaltim", "Kanwil Jawa Barat", "Kanwil Jawa Tengah", "Kanwil Gorontalo", "Kanwil Lampung", "Kanwil Sumut", "Kanwil Sumbar"],
+      datasets: [{
+        label: 'Hari',
+        data: [10, 3, 1, 8, 15, 2, 2, 3, 4, 1010],
+        backgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
+        hoverBackgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: false,
+      tooltips: {
+        displayColors: false,
+        mode: "nearest",
+        intersect: false,
+        position: "nearest",
+        xPadding: 8,
+        yPadding: 8,
+        caretPadding: 8,
+        backgroundColor: "#fff",
+        cornerRadius: 4,
+        titleFontSize: 13,
+        titleFontStyle: "normal",
+        bodyFontSize: 13,
+        titleFontColor: "#222",
+        bodyFontColor: "rgba(0, 37, 78, 0.7)",
+        borderWidth: 1,
+        borderColor: "rgba(0, 37, 78, 0.1)",
+        callbacks: {
+          // use label callback to return the desired label
+          label: function(tooltipItem, data) {
+            return tooltipItem.xLabel + " " + tooltipItem.yLabel + "%";
+          },
+          // remove title
+          title: function(tooltipItem, data) {
+            return;
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          position: "left",
+          ticks: {
+            fontSize: 14,
+            fontColor: "rgba(0, 37, 78, 0.4)",
+            padding: 15,
+            autoSkip: false,
+            maxTicksLimit: 6,
+            beginAtZero: true,
+            steps: 20,
+            stepValue: 5,
+            max: 100
+          },
+          gridLines: {
+            color: "rgba(0, 37, 78, 0.1)",
+            zeroLineWidth: 0,
+            zeroLineColor: "transparent",
+            drawBorder: false
+          }
+        }],
+        xAxes: scalesXaxes
+      },
+      elements: {
+        point: {
+          radius: 0
+        }
+      }
+    }
+  });
+}
+
+// Type 12
+if ($.exists("#tb-chart2-type12")) {
+  var ctx = document.querySelector("#tb-chart2-type12");
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ["Kantah Surabaya", "Kantah Pringsewu", "Kantah Banten", "Kantah Luwuk", "Kantah Purwakarta", "Kantah Ambon", "Kantah Medan", "Kantah B.Lampung", "Kantah Tanggamus", "Kantah Solo"],
       datasets: [{
         label: 'Hari',
         data: [5, 7, 3, 8, 10, 2, 2, 3, 4, 6],
@@ -923,6 +1001,7 @@ if ($.exists("#tb-chart2-type11")) {
     }
   });
 }
+
 /* End Line Chart2 Initialize */
 
 /* Start Line Chart3 Initialize */

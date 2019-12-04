@@ -41,7 +41,7 @@
             <a href="{{route('twitter')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-twitter"></i></span>
-                <span class="tb-sidebar-link-text">Twitter</span>
+                <span class="tb-sidebar-link-text">Twitter &nbsp;<span class="tb-badge tb-box-transparent-colo6">4</span></span>
               </span>
             </a>
           </li>
@@ -58,6 +58,14 @@
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-instagram-original"></i></span>
                 <span class="tb-sidebar-link-text">Instagram</span>
+              </span>
+            </a>
+          </li>
+           <li>
+            <a href="{{route('youtube')}}">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="lni lni-youtube"></i></span>
+                <span class="tb-sidebar-link-text">Youtube</span>
               </span>
             </a>
           </li>
@@ -100,8 +108,10 @@
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
         @endif
+      
 
-        <div class="tb-sidebar-nav-title">
+        @if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
+         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Laporan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
         </div>
@@ -115,7 +125,7 @@
             </a>
           </li>
            <li>
-            <a href="project-management.html">
+            <a href="{{route('laporan','performansi')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">assessment</i></span>
                 <span class="tb-sidebar-link-text">Performansi</span>
@@ -123,16 +133,14 @@
             </a>
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
-      
 
-        @if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Master</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-            <a href="documentation.html">
+            <a href="{{route('master_user')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-users"></i></span>
                 <span class="tb-sidebar-link-text">Master User</span>
@@ -141,7 +149,7 @@
           </li>
           @if(request()->cookie('USER_ROLE')  == '1')
            <li>
-            <a href="documentation.html">
+            <a href="{{route('master_kanwil')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
                 <span class="tb-sidebar-link-text">Master Kanwil</span>
@@ -149,7 +157,7 @@
             </a>
           </li>
           <li>
-            <a href="documentation.html">
+            <a href="{{route('master_kantah')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
                 <span class="tb-sidebar-link-text">Master Kantah</span>
@@ -157,7 +165,7 @@
             </a>
           </li>
           <li>
-            <a href="documentation.html">
+            <a href="{{route('master_jenis_aduan')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
                 <span class="tb-sidebar-link-text">Master Jenis Aduan</span>
@@ -175,10 +183,18 @@
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-            <a href="documentation.html">
+            <a href="{{route('master_konfig')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">settings</i></span>
                 <span class="tb-sidebar-link-text">Konfigurasi API</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('spam_list')}}">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">block</i></span>
+                <span class="tb-sidebar-link-text">Folder Spam</span>
               </span>
             </a>
           </li>
@@ -191,7 +207,7 @@
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-            <a href="documentation.html">
+            <a href="{{route('dokumentasi')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">library_books</i></span>
                 <span class="tb-sidebar-link-text">Dokumentasi</span>

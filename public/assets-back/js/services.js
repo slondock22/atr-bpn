@@ -1,5 +1,6 @@
 $(document).ready(function(){
     hideComment();
+    getUser();
 });
 
 $('#btnDisposisi').on('click', function() {
@@ -141,6 +142,40 @@ function showComment(){
             }   
         }       
     };
+}
+
+
+function getUser(){
+    var url = base_url + '/masterUserApi/';
+    $.get(url, function (data){
+      data = JSON.parse(data);
+        console.log(data.data);
+        $.each(data.data, function(index, row){
+            if(row.user_status==1){
+              status = 'Active';
+            }else{
+              status = 'Not Active';
+            }
+
+            $('#tblContainer').append('\
+                                  <tr>\
+                                    <td>'+ row.username +'</td>\
+                                    <td>'+ row.user_full_name +'</td>\
+                                    <td>'+ row.tm_ministry.ministry_name +'</td>\
+                                    <td>'+ row.tm_ministry.city +'</td>\
+                                    <td>'+ status +'</td>\
+                                    <td>\
+                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-trash"></i>\
+                                        </a>\
+                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-pencil"></i>\
+                                        </a>\
+                                    </td>\
+                                  </tr>\
+                              ')
+        });  
+    });
 }
 
 

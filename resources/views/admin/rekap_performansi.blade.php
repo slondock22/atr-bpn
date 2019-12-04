@@ -1,9 +1,9 @@
-@section('title','Rekap Aduan')
+@section('title','Rekap Performansi')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Laporan Rekap Aduan</h2>
+    <h2 class="tb-uikits-title">Laporan Rekap Performansi</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -26,26 +26,24 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>ID Aduan</th>
-                    <th>Username</th>
-                    <th>Tgl Post</th>
-                    <th>Jenis Aduan</th>
-                    <th>Sumber</th>
-                    <th>Status</th>{{-- 
+                    <th>Dijawab Oleh</th>
+                    <th>Instansi</th>
+                    <th>Total Aduan Terjawab</th>
+                    <th>Avg Waktu Respon</th>
+                    <th>Skor</th>{{-- 
                     <th></th> --}}
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>#TW00001</td>
-                    <td>adrialnajlan</td>
-                    <td>27 Nov 2019</td>
-                    <td>Sertifikat Tanah</td>
-                    <td>Twitter</td>
+                    <td>userpusat</td>
+                    <td>ATR/BPN Pusat</td>
+                    <td>3/4</td>
+                    <td>01Jam:30Menit:03Detik</td>
                     <td>
                       <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color1">Terbuka</a>
+                        <a href="#" class="tb-tag tb-icon-color3">9.8</a>
                       </div>
                     </td>
                     {{-- <td>
@@ -54,14 +52,27 @@
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>#TW00002</td>
-                    <td>meilani</td>
-                    <td>28 Nov 2019</td>
-                    <td>Sengketa Lahan</td>
-                    <td>Twitter</td>
+                    <td>usermalang</td>
+                    <td>ATR/BPN Malang</td>
+                    <td>2/2</td>
+                    <td>03Jam:14Menit:30Detik</td>
                     <td>
                       <div class="tb-tag-wrap tb-style1">
-                        <a href="#" class="tb-tag tb-icon-color3">Terjawab</a>
+                        <a href="#" class="tb-tag tb-icon-color3">10</a>
+                      </div>
+                    </td>
+                    {{-- <td>
+                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
+                    </td> --}}
+                     <tr>
+                    <td>3</td>
+                    <td>usersurabaya</td>
+                    <td>ATR/BPN Surabaya</td>
+                    <td>1/4</td>
+                    <td>07Jam:09Menit:00Detik</td>
+                    <td>
+                      <div class="tb-tag-wrap tb-style1">
+                        <a href="#" class="tb-tag tb-icon-color1">2.5</a>
                       </div>
                     </td>
                     {{-- <td>
