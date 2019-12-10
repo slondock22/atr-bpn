@@ -145,19 +145,19 @@
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                     
                     <span class="spanAction">
-                        <!-- @if(request()->cookie('USER_ID')  == 4) -->
+                         @if(request()->cookie('USER_ID')  == 4)
                           <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
                             <span class="tb-toggle-btn tb-style1 tb-large-size">
-                              <i class="material-icons-outlined iconAction" 
-                                onclick="confirm_delete('{{$val['id']}}')">more_horiz</i>
+                              <i class="material-icons-outlined iconAction">more_horiz</i>
                             </span>
-                            <!-- <div class="tb-dropdown">
+                              <div class="tb-dropdown">
                               <ul class="tb-drop-dropdown-list tb-mp0">
+                                 <li><a onclick="copyClipboard('divComments{{$val['id']}}')">Copy</a></li>
                                 <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
                               </ul>
-                            </div> -->
+                            </div>
                           </div>
-                        <!-- @endif -->
+                         @endif
                     </span>
                             
                     <div class="tb-user tb-style3 contentDisposisi">
@@ -172,7 +172,7 @@
                             </ul>
                         </h3>
 
-                        <div class="divComment">{{$val['comment']}}</div>
+                        <div class="divComment{{$val['id']}}" id="divComments{{$val['id']}}">{{$val['comment']}}</div>
                       </div>
                     </div>
                   </div>
@@ -191,12 +191,13 @@
                   <div class="tb-padd-lr-30 y" id="button_feed{{$value['id']}}">
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                       <li>
                         <a onclick="collapseBtn('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Ambil
                         </a>
                       </li>
-                      <li><a href="#"><i class="material-icons-outlined">block</i> Spam</a></li>
+                      <li><a onclick="spamFeed({{$value['id']}})"><i class="material-icons-outlined">block</i> Spam</a></li>
                     </ul>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                   </div>
@@ -205,7 +206,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
@@ -222,7 +223,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
@@ -491,18 +492,19 @@
               <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
                 rows="3" placeholder="Tweet balasan Anda" autofocus></textarea>
             </div>
-            <div class="form-group tb-cs-input-btn divLampiran">
+           {{--  <div class="form-group tb-cs-input-btn divLampiran">
               <span>Lampiran</span>
               <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
+            </div> --}}
+            <input type="hidden" name="iframePostId" id="iframePostId">
       </form>
       </div>
       
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-modal-twitter">Draft</button>
-        <button type="button" class="btn btn-modal-twitter">Kirim</button>
+        {{-- <button type="button" class="btn btn-modal-twitter">Draft</button> --}}
+        <button type="button" onclick="iframePost('#iframePostId','#inputSendModalFeeds')" class="btn btn-modal-twitter">Kirim</button>
       </div>
   </div>
 </div>
@@ -537,6 +539,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-iframepost" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header modal-header-sos">
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> Posting Jawaban
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body" id="">
+         <div id="postUrl"></div>
+      </div>
+      </div>
+    </div>
+</div>
 
  <div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="z-index: 1052">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
@@ -568,10 +587,6 @@
 
 
 
-
-
-@endsection
-
 <script>
     
 
@@ -580,12 +595,13 @@
         $("#"+div2).slideDown(300);
     }
 
-    function modal_feeds(content='',user='',date=''){
+    function modal_feeds(content='',user='',date='',post_url=''){
         $('#modal-balas-feed').modal('show');
         $('#contentTwitUser').html(content);
         $('#twitUser').html('@'+user);
         $('#headerUser').html('@'+user);
         $('#dateModal').html(date);
+        $('#iframePostId').val(post_url);
         $("#imgUser").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">')
     }
 
@@ -635,4 +651,47 @@
         $("#modal-loadmore").modal('show');
     }
 
+    function iframePost(id_post_url,textarea) {
+      var post_url = $(id_post_url).val();
+
+      this.copyClipboard(textarea);
+
+      $('#modal-balas-feed').modal('hide');
+      $('#modal-iframepost').modal('show');
+      // $("#txtPostUrl").val(post_url);
+      var link = post_url;
+      // alert(link);
+      var iframe = document.createElement('iframe');
+      iframe.frameBorder=0;
+      iframe.width="820px";
+      iframe.height="350px";
+      iframe.id="iframePostReply";
+      iframe.setAttribute("src", link);
+      document.getElementById("postUrl").appendChild(iframe);
+    }
+
+   function copyClipboard(element) {
+      var elm = document.getElementById(element);
+
+      if(document.body.createTextRange) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(elm);
+        range.select();
+        document.execCommand("Copy");
+        alert("Copied div content to clipboard");
+      }
+      else if(window.getSelection) {
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(elm);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("Copy");
+        alert("Copied div content to clipboard");
+      }
+    }
+
 </script>
+
+@endsection
+

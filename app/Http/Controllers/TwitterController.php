@@ -23,6 +23,7 @@ class TwitterController extends Controller
                         ]);
 
         $response = json_decode($request->getBody()->getContents(),true);
+        // dd($response);
 
     	return view('admin.twitter')->with(compact('response'));
     }

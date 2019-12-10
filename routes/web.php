@@ -35,10 +35,11 @@ Route::group(['middleware' => ['login']], function () {
 	  	Route::get('twitter','TwitterController@index')->name('twitter');
 	  	Route::post('postTwitter','TwitterController@sendComment')->name('postTwitter');
 
-
 		Route::get('instagram','InstagramController@index')->name('instagram');
 		Route::get('facebook','FacebookController@index')->name('facebook');
 		Route::get('youtube','YoutubeController@index')->name('youtube');
+
+		Route::post('spamFeed','IndexController@spamFeed')->name('spamFeed');
 
 	});
 
