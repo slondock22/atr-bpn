@@ -86,4 +86,26 @@ class TwitterController extends Controller
 
         return \Response::json($data);
     }
+
+    public function send_reply(){
+        $idFeeds = Input::get('id');
+        $comment = Input::get('comment');
+
+        $client = new Client();
+        $url = "http://devbpn.edii.co.id:3000/replay/".$idFeeds;
+        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $request = $client->request('POST', $url, 
+                       [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ],
+
+                            'json' => ['comment' => $comment]
+                        ]);
+
+        $response = json_decode($request->getBody()->getContents(),true);
+
+        return \Response::json($response);
+    }
 }
