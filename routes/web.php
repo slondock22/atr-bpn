@@ -34,6 +34,7 @@ Route::group(['middleware' => ['login']], function () {
 		//Twitter
 	  	Route::get('twitter','TwitterController@index')->name('twitter');
 	  	Route::post('postTwitter','TwitterController@sendComment')->name('postTwitter');
+	  	Route::post('postReply','TwitterController@send_reply')->name('postReply');
 
 		Route::get('instagram','InstagramController@index')->name('instagram');
 		Route::get('facebook','FacebookController@index')->name('facebook');

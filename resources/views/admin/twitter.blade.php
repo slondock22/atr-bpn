@@ -108,10 +108,12 @@
                     <div class="tb-user-info">
                       <h3 class="tb-user-name">
                         {{$value['username']}} | @ {{$value['username']}}
+                        @if($value['escalation_status'] == '99')
                         <span class="doneSpan">
                            <i class="fas fa-check-circle doneIcon"></i>
-                           Aduan Selesai
+                           Aduan Terjawab
                         </span>
+                        @endif
                       </h3>
                       <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                         <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
@@ -166,7 +168,7 @@
                       </div>
                       <div class="tb-user-info">
                         <h3 class="tb-user-name">
-                            {{$val['from']['ministry_name']}}
+                            {{$val['from']['ministry_name']}} <span>membalas kepada</span> {{$val['to']['ministry_name']}}
                             <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                               <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                             </ul>
@@ -206,7 +208,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}')">
+                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
@@ -223,7 +225,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}')">
+                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
@@ -490,7 +492,9 @@
               </div>
 
               <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
-                rows="3" placeholder="Tweet balasan Anda" autofocus></textarea>
+                rows="3" placeholder="Tweet balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
+                <div id="divSendModalFeeds" style="color: white;"></div>
+                <input type="hidden" id="id_feeds">
             </div>
            {{--  <div class="form-group tb-cs-input-btn divLampiran">
               <span>Lampiran</span>
@@ -595,7 +599,8 @@
         $("#"+div2).slideDown(300);
     }
 
-    function modal_feeds(content='',user='',date='',post_url=''){
+    function modal_feeds(content='',user='',date='',post_url='', id_feeds =''){
+        $('#id_feeds').val(id_feeds);
         $('#modal-balas-feed').modal('show');
         $('#contentTwitUser').html(content);
         $('#twitUser').html('@'+user);
@@ -654,11 +659,21 @@
     function iframePost(id_post_url,textarea) {
       var post_url = $(id_post_url).val();
 
-      this.copyClipboard(textarea);
+      if($('#inputSendModalFeeds').val() == ''){
+        alert('tweet balasan tidak boleh kosong');
+        return false;
+      }
 
+      copyClipboard('divSendModalFeeds');
+      
       $('#modal-balas-feed').modal('hide');
       $('#modal-iframepost').modal('show');
       // $("#txtPostUrl").val(post_url);
+      $('#divSendModalFeeds').html('');
+
+      $('#inputSendModalFeeds').val('');
+      $('#postUrl').html('');
+
       var link = post_url;
       // alert(link);
       var iframe = document.createElement('iframe');
@@ -668,6 +683,10 @@
       iframe.id="iframePostReply";
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
+
+      post_feeds($('#id_feeds').val(), $('#inputSendModalFeeds').val());
+
+      
     }
 
    function copyClipboard(element) {
@@ -689,6 +708,24 @@
         document.execCommand("Copy");
         alert("Copied div content to clipboard");
       }
+    }
+
+    function send_to_div(id, hidden_div){
+      var textarea = $('#' + id).val();
+      $('#' + hidden_div).html(textarea);
+    }
+
+    function post_feeds(id, comment){
+      var data = {"_token" :  $('#token').val(), "id": id, "comment": comment};
+      // console.log(data); return false;
+      $.ajax({
+        url: '{{ url('postReply') }}',
+        data: data,
+        type: 'POST',
+        success: function(res){
+           console.log(res.error);
+        }
+      })
     }
 
 </script>
