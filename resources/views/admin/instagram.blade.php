@@ -2,16 +2,18 @@
 @extends('layouts-back.layout')
 @section('content')
 
+
+
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Instagram</h2>
     </div>
     
-    <div class="tb-content tb-style3">
+    <div class="tb-content">
       <div class="container-fluid">
         <div class="tb-height-b30 tb-height-lg-b30"></div>
-        <div class="tb-newsfeed-row">
-          <div class="tb-newsfeed-col-1">
+        <div class="row gutter-2">
+          <div class="col-4">
             <div class="tb-card tb-style1 tb-height-auto">
               <div class="tb-card-body">
                 <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/profile_banners/2884911432/1540262770/1500x500">
@@ -30,16 +32,16 @@
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                   <ul class="tb-horizontal-list tb-style1 tb-mp0">
                     <li>
-                      <div class="tb-list-title">Tweets</div>
-                      <div class="tb-list-number">14.6K</div>
+                      <div class="tb-list-title">Posting</div>
+                      <div class="tb-list-number">102</div>
                     </li>
                     <li>
                       <div class="tb-list-title">Following</div>
-                      <div class="tb-list-number">518</div>
+                      <div class="tb-list-number">1.2K</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Followes</div>
-                      <div class="tb-list-number">91K</div>
+                      <div class="tb-list-title">Followers</div>
+                      <div class="tb-list-number">8.7K</div>
                     </li>
                   </ul>
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
@@ -87,12 +89,13 @@
               </div>
             </div>
           </div><!-- .col -->
-          <div class="tb-newsfeed-col-4 conComment">
+          <div class="col-8 conComment">
           @if(isset($response['data']))
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
             @php $number++ @endphp
-            <div class="tb-card tb-style1 tb-height-auto rowcomment">
+            
+            <div class="tb-card tb-style1 tb-height-auto rowcomment" >
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
