@@ -1,18 +1,12 @@
 @section('title','Statistik')
 @extends('layouts-back.layout')
 @section('content')
-<style>
-#chartdiv {
-  width: 100%;
-  height: 500px;
-}
-</style>
 
   <div class="tb-content tb-style1">
     <div class="tb-height-b30 tb-height-lg-b30"></div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="tb-iconbox tb-style4 tb-color2">
             <div class="tb-icon tb-flex">
               <i class="lni lni-facebook"></i>
@@ -23,7 +17,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="tb-iconbox tb-style4 tb-color3">
             <div class="tb-icon tb-flex">
               <i class="lni lni-twitter"></i>
@@ -34,13 +28,24 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="tb-iconbox tb-style4 tb-color1" style="background-color: #A92BAB !important">
             <div class="tb-icon tb-flex">
               <i class="lni lni-instagram-original"></i>
             </div>
             <div class="tb-iconbox-text">
               <h3 class="tb-iconbox-heading">78</h3>
+              <div class="tb-iconbox-sub-heading">Total Aduan</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="tb-iconbox tb-style4 tb-color1" style="background-color: #d2152b !important">
+            <div class="tb-icon tb-flex">
+              <i class="lni lni-youtube"></i>
+            </div>
+            <div class="tb-iconbox-text">
+              <h3 class="tb-iconbox-heading">8</h3>
               <div class="tb-iconbox-sub-heading">Total Aduan</div>
             </div>
           </div>
@@ -75,6 +80,10 @@
                    <li>
                     <span class="tb-circle-color" data-bulet-color="#a92bab"></span>
                     <span class="tb-circle-label">Instagram</span>
+                  </li>
+                   <li>
+                    <span class="tb-circle-color" data-bulet-color="#d2152b"></span>
+                    <span class="tb-circle-label">Youtube</span>
                   </li>
                 </ul>
               </div>

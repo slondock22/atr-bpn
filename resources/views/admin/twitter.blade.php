@@ -492,7 +492,7 @@
               </div>
 
               <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
-                rows="3" placeholder="Tweet balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
+                rows="3" placeholder="Masukan balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
                 <div id="divSendModalFeeds" style="color: white;"></div>
                 <input type="hidden" id="id_feeds">
             </div>
@@ -697,7 +697,7 @@
         range.moveToElementText(elm);
         range.select();
         document.execCommand("Copy");
-        alert("Copied div content to clipboard");
+        alert("Text Copied");
       }
       else if(window.getSelection) {
         var selection = window.getSelection();
@@ -706,7 +706,7 @@
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
-        alert("Copied div content to clipboard");
+        alert("Text Copied");
       }
     }
 
