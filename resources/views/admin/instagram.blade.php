@@ -1,4 +1,4 @@
-@section('title','Pertanyaan Twitter')
+@section('title','Pertanyaan Instagram')
 @extends('layouts-back.layout')
 @section('content')
 
@@ -7,14 +7,14 @@
       <h2 class="tb-uikits-title">Instagram</h2>
     </div>
     
-    <div class="tb-content tb-style3">
+    <div class="tb-content">
       <div class="container-fluid">
         <div class="tb-height-b30 tb-height-lg-b30"></div>
-        <div class="tb-newsfeed-row">
-          <div class="tb-newsfeed-col-1">
+        <div class="row gutter-2">
+          <div class="col-4">
             <div class="tb-card tb-style1 tb-height-auto">
               <div class="tb-card-body">
-                <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/profile_banners/2884911432/1540262770/1500x500">
+                <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="">
                 </div>
                 <div class="tb-profile-info tb-small">
                   <div class="tb-profile-pic">
@@ -30,16 +30,16 @@
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                   <ul class="tb-horizontal-list tb-style1 tb-mp0">
                     <li>
-                      <div class="tb-list-title">Tweets</div>
-                      <div class="tb-list-number">14.6K</div>
+                      <div class="tb-list-title">Posting</div>
+                      <div class="tb-list-number">102</div>
                     </li>
                     <li>
                       <div class="tb-list-title">Following</div>
-                      <div class="tb-list-number">518</div>
+                      <div class="tb-list-number">1.2K</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Followes</div>
-                      <div class="tb-list-number">91K</div>
+                      <div class="tb-list-title">Followers</div>
+                      <div class="tb-list-number">8.7K</div>
                     </li>
                   </ul>
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
@@ -87,7 +87,7 @@
               </div>
             </div>
           </div><!-- .col -->
-          <div class="tb-newsfeed-col-4 conComment">
+          <div class="col-8 conComment">
           @if(isset($response['data']))
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
@@ -98,12 +98,13 @@
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="tb-user tb-style3">
                     <div class="tb-user-img">
-                     {!! $img = str_replace('[]', '', $value['image']) !!}
-                      @if($img != '')
+                     {{-- {!! $img = str_replace('[]', '', $value['image']) !!}
+                      @if($img == '')
                         <img src="{{$value['image']}}" alt="">
                       @else
                         <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
-                      @endif  
+                      @endif  --}} 
+                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
                     </div>
                     <div class="tb-user-info">
                       <h3 class="tb-user-name">
@@ -280,7 +281,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> #Disposisi
+          <i class="lni lni-instagram-original icon-tweet"></i> #Disposisi
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -326,8 +327,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        <button type="button" id="btnSendDisposisi" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
+        <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">Batal</button>
+        <button type="button" id="btnSendDisposisi" class="btn btn-modal-instagram" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
     </div>
   </div>
@@ -341,7 +342,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> Jenis Aduan ATR/BPN
+          <i class="lni lni-instagram-original icon-tweet"></i> Jenis Aduan ATR/BPN
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -375,14 +376,14 @@
                       <td>#SengketaTanah</td>
                       <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#SengketaTanah')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#SengketaTanah')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
                       <td>#PenataanTataRuang</td>
                       <td>perumusan dan pelaksanaan kebijakan di bidang survei, pengukuran, dan pemetaan;</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PenataanTataRuang')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#PenataanTataRuang')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -391,7 +392,7 @@
                       </td>
                       <td>perumusan dan pelaksanaan kebijakan di bidang pengadaan tanah</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#infrastrukturAgraria')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#infrastrukturAgraria')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -400,7 +401,7 @@
                       </td>
                       <td>pengawasan atas pelaksanaan tugas di lingkungan BPN</td>
                       <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#HubunganHukumAgraria')">Pilih</button>
+                          <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#HubunganHukumAgraria')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -409,7 +410,7 @@
                       </td>
                       <td>pelaksanaan penelitian dan pengembangan di bidang pertanahan</td>
                       <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PengadaanTanah')">Pilih</button>
+                          <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#PengadaanTanah')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -418,7 +419,7 @@
                       </td>
                       <td>pelaksanaan pengembangan sumber daya manusia di bidang pertanahan</td>
                       <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PengendalianPenguasaanTanah')">Pilih</button>
+                          <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#PengendalianPenguasaanTanah')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -427,7 +428,7 @@
                       </td>
                       <td>pengawasan atas pelaksanaan tugas di lingkungan BPN</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#HakTanahMasyarakat')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#HakTanahMasyarakat')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -436,7 +437,7 @@
                       </td>
                       <td>pelaksanaan pengembangan sumber daya manusia di bidang pertanahan</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#EkonomiPertanahan')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#EkonomiPertanahan')">Pilih</button>
                       </td>
                     </tr>
                   </tbody>
@@ -462,7 +463,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> Balas Feeds
+          <i class="lni lni-instagram-original icon-tweet"></i> Balas Feeds
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -506,9 +507,9 @@
       
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        {{-- <button type="button" class="btn btn-modal-twitter">Draft</button> --}}
-        <button type="button" onclick="iframePost('#iframePostId','#inputSendModalFeeds')" class="btn btn-modal-twitter">Kirim</button>
+        <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">Batal</button>
+        {{-- <button type="button" class="btn btn-modal-instagram">Draft</button> --}}
+        <button type="button" onclick="iframePost('#iframePostId','#inputSendModalFeeds')" class="btn btn-modal-instagram">Kirim</button>
       </div>
   </div>
 </div>
@@ -523,7 +524,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> All Comment
+          <i class="lni lni-instagram-original icon-tweet"></i> All Comment
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -535,7 +536,7 @@
       <input type="hidden" id="frmIdDelete">
       <input type="hidden" id="frmDivDelete">
       <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">
           Tutup
         </button>
       </div>
@@ -548,7 +549,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> Posting Jawaban
+          <i class="lni lni-instagram-original icon-tweet"></i> Posting Jawaban
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -566,7 +567,7 @@
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> Konfirmasi Hapus Disposisi
+          <i class="lni lni-instagram-original icon-tweet"></i> Konfirmasi Hapus Disposisi
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -578,10 +579,10 @@
       <input type="hidden" id="frmIdDelete">
       <input type="hidden" id="frmDivDelete">
       <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">
           Batal
         </button>
-        <button type="button" class="btn btn-modal-twitter" onclick="deleteDisposisi()">
+        <button type="button" class="btn btn-modal-instagram" onclick="deleteDisposisi()">
           Hapus
         </button>
       </div>

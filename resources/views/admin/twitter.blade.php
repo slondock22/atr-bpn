@@ -7,14 +7,14 @@
       <h2 class="tb-uikits-title">Twitter</h2>
     </div>
     
-    <div class="tb-content tb-style3">
+    <div class="tb-content">
       <div class="container-fluid">
         <div class="tb-height-b30 tb-height-lg-b30"></div>
-        <div class="tb-newsfeed-row">
-          <div class="tb-newsfeed-col-1">
+        <div class="row gutter-2">
+          <div class="col-4">
             <div class="tb-card tb-style1 tb-height-auto">
               <div class="tb-card-body">
-                <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/profile_banners/2884911432/1540262770/1500x500">
+                <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="">
                 </div>
                 <div class="tb-profile-info tb-small">
                   <div class="tb-profile-pic">
@@ -38,7 +38,7 @@
                       <div class="tb-list-number">518</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Followes</div>
+                      <div class="tb-list-title">Followers</div>
                       <div class="tb-list-number">91K</div>
                     </li>
                   </ul>
@@ -87,7 +87,7 @@
               </div>
             </div>
           </div><!-- .col -->
-          <div class="tb-newsfeed-col-4 conComment">
+          <div class="col-8 conComment">
           @if(isset($response['data']))
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
