@@ -14,7 +14,7 @@
           <div class="col-4">
             <div class="tb-card tb-style1 tb-height-auto">
               <div class="tb-card-body">
-                <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/profile_banners/2884911432/1540262770/1500x500">
+                <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="">
                 </div>
                 <div class="tb-profile-info tb-small">
                   <div class="tb-profile-pic">
@@ -38,7 +38,7 @@
                       <div class="tb-list-number">518</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Followes</div>
+                      <div class="tb-list-title">Followers</div>
                       <div class="tb-list-number">91K</div>
                     </li>
                   </ul>
