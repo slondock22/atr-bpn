@@ -31,7 +31,7 @@
           <li>
             <a href="{{route('analitik')}}">
               <span class="tb-sidebar-link-title">
-                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">wb_cloudy</i></span>
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">dvr</i></span>
                 <span class="tb-sidebar-link-text">Analitik</span>
               </span>
             </a>
