@@ -95,6 +95,8 @@ class TwitterController extends Controller
         $idFeeds = Input::get('id');
         $comment = Input::get('comment');
 
+        dd($comment);
+
         $client = new Client();
         $url = "http://devbpn.edii.co.id:3000/replay/".$idFeeds;
         $token_akses = request()->cookie('TOKEN_AUTH_APP');

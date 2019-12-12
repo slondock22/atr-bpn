@@ -534,7 +534,7 @@
                 </label>
               </div>
 
-              <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
+              <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds"  
                 rows="3" placeholder="Masukan balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
                 <div id="divSendModalFeeds" style="color: white;"></div>
                 <input type="hidden" id="id_feeds">
@@ -714,7 +714,7 @@
       // $("#txtPostUrl").val(post_url);
       $('#divSendModalFeeds').html('');
 
-      $('#inputSendModalFeeds').val('');
+      // $('#inputSendModalFeeds').val('');
       $('#postUrl').html('');
 
       var link = post_url;
@@ -727,9 +727,7 @@
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
 
-      post_feeds($('#id_feeds').val(), $('#inputSendModalFeeds').val());
-
-      
+      post_feeds($('#id_feeds').val(), $('#inputSendModalFeeds').val());  
     }
 
    function copyClipboard(element) {
@@ -759,6 +757,7 @@
     }
 
     function post_feeds(id, comment){
+
       var data = {"_token" :  $('#token').val(), "id": id, "comment": comment};
       // console.log(data); return false;
       $.ajax({

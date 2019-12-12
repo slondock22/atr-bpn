@@ -676,7 +676,7 @@
       // $("#txtPostUrl").val(post_url);
       $('#divSendModalFeeds').html('');
 
-      $('#inputSendModalFeeds').val('');
+      // $('#inputSendModalFeeds').val('');
       $('#postUrl').html('');
 
       var link = post_url;

@@ -11,7 +11,7 @@ class YoutubeController extends Controller
     public function index()
     {
     	$client = new Client();
-        $url = "http://devbpn.edii.co.id:3000/dispo/all/facebook";
+        $url = "http://devbpn.edii.co.id:3000/dispo/all/youtube";
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
         				 [ 
