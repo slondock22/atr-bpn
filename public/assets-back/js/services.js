@@ -236,3 +236,138 @@ function spamFeed(id_feed){
         }
     });
 }
+
+
+ function collapseBtn(div1,div2){
+        $("#"+div1).slideUp(300);
+        $("#"+div2).slideDown(300);
+    }
+
+    function modal_feeds(content='',user='',date='',post_url='', id_feeds =''){
+        $('#id_feeds').val(id_feeds);
+        $('#modal-balas-feed').modal('show');
+        $('#contentTwitUser').html(content);
+        $('#twitUser').html('@'+user);
+        $('#headerUser').html('@'+user);
+        $('#dateModal').html(date);
+        $('#iframePostId').val(post_url);
+        $("#imgUser").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">')
+    }
+
+    function modal_disposisi(id='',content='',user='',date=''){
+        $('#modal-add-disposisi').modal('show');
+        $('#ministryId').val('');
+        $('#commentDisposisi').val('');
+        $('#idFeeds').val(id);
+        $('#contentTwitUserDisposisi').html(content);
+        $('#twitUserDisposisi').html('@'+user);
+        $('#headerUserDisposisi').html('@'+user);
+        $('#dateModalDisposisi').html(date);
+        $("#imgUserDisposisi").html('<img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">');
+
+        //Form Disposisi untuk LoadData
+        $("#frmdate").val(date);
+        $("#frmid").val(id);
+    }
+
+    function setUser(){
+      userDisposisi = $("#ministryId option:selected" ).text();
+      $("#frmname").val(userDisposisi);  
+    }
+
+    function modal_hastag(id){
+        $("#valHastag").val(id);
+        $('#modal-po').modal('show');
+    }
+
+    function change_hastag(hastag){
+
+        $('#modal-po').modal('hide');
+        input = $("#valHastag").val();
+        $('#' + input).html(hastag);
+    }
+
+    function confirm_delete(id,div){
+        $("#frmIdDelete").val(id);
+        $("#frmDivDelete").val(div);
+        $("#modal-confirm-delete").modal('show');
+    }
+
+    function loadmore(rowid){
+        comment = $("."+rowid).html();
+        $("#divLoadMore").html(comment);
+        $("#divLoadMore .rowDetail").show();
+        $("#modal-loadmore").modal('show');
+    }
+
+    function iframePost(id_post_url,textarea) {
+      var post_url = $(id_post_url).val();
+
+      if($('#inputSendModalFeeds').val() == ''){
+        alert('Balasan tidak boleh kosong');
+        return false;
+      }
+
+      copyClipboard('divSendModalFeeds');
+      
+      $('#modal-balas-feed').modal('hide');
+      $('#modal-iframepost').modal('show');
+      // $("#txtPostUrl").val(post_url);
+      $('#divSendModalFeeds').html('');
+
+      $('#inputSendModalFeeds').val('');
+      $('#postUrl').html('');
+
+      var link = post_url;
+      // alert(link);
+      var iframe = document.createElement('iframe');
+      iframe.frameBorder=0;
+      iframe.width="820px";
+      iframe.height="350px";
+      iframe.id="iframePostReply";
+      iframe.setAttribute("src", link);
+      document.getElementById("postUrl").appendChild(iframe);
+
+      post_feeds($('#id_feeds').val(), $('#inputSendModalFeeds').val());
+
+      
+    }
+
+   function copyClipboard(element) {
+      var elm = document.getElementById(element);
+
+      if(document.body.createTextRange) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(elm);
+        range.select();
+        document.execCommand("Copy");
+        alert("Copied div content to clipboard");
+      }
+      else if(window.getSelection) {
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(elm);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("Copy");
+        alert("Copied div content to clipboard");
+      }
+    }
+
+    function send_to_div(id, hidden_div){
+      var textarea = $('#' + id).val();
+      $('#' + hidden_div).html(textarea);
+    }
+
+    function post_feeds(id, comment){
+      var data = {"_token" :  $('#token').val(), "id": id, "comment": comment};
+      // console.log(data); return false;
+      $.ajax({
+        url: '{{ url('postReply') }}',
+        data: data,
+        type: 'POST',
+        success: function(res){
+           console.log(res.error);
+        }
+      })
+    }

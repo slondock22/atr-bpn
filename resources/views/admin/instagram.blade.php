@@ -30,16 +30,20 @@
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                   <ul class="tb-horizontal-list tb-style1 tb-mp0">
                     <li>
-                      <div class="tb-list-title">Posting</div>
-                      <div class="tb-list-number">102</div>
+                      <div class="tb-list-title">Total</div>
+                      <div class="tb-list-number">5</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Following</div>
-                      <div class="tb-list-number">1.2K</div>
+                      <div class="tb-list-title">Belum</div>
+                      <div class="tb-list-number">2</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Followers</div>
-                      <div class="tb-list-number">8.7K</div>
+                      <div class="tb-list-title">Proses</div>
+                      <div class="tb-list-number">2</div>
+                    </li>
+                      <li>
+                      <div class="tb-list-title">Jawab</div>
+                      <div class="tb-list-number">1</div>
                     </li>
                   </ul>
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
@@ -111,7 +115,7 @@
                         {{$value['username']}} | @ {{$value['username']}}
                         @if($value['escalation_status'] == '99')
                         <span class="doneSpan">
-                           <i class="fas fa-check-circle doneIcon"></i>
+                           <i class="fas fa-check-circle doneIconInstagram"></i>
                            Aduan Terjawab
                         </span>
                         @endif
@@ -129,7 +133,7 @@
                   <div class="tb-post tb-style1">
                     <div class="tb-post-text">{{$value['comment']}}</div>
 
-                    <div class="divHastag">
+                    <div class="divHastagInstagram">
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
                         #SengketaTanah
@@ -281,7 +285,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-tweet"></i> #Disposisi
+          <i class="lni lni-instagram-original icon-instagram"></i> #Disposisi
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -289,7 +293,7 @@
       </div>
       <div class="modal-body modalBodyPadding">
         
-        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postTwitter')}}" method="POST">
+        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postInstagram')}}" method="POST">
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="tb-user tb-style3">
@@ -342,7 +346,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-tweet"></i> Jenis Aduan ATR/BPN
+          <i class="lni lni-instagram-original icon-instagram"></i> Jenis Aduan ATR/BPN
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -463,7 +467,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-tweet"></i> Balas Feeds
+          <i class="lni lni-instagram-original icon-instagram"></i> Balas Feeds
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -493,7 +497,7 @@
               </div>
 
               <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
-                rows="3" placeholder="Tweet balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
+                rows="3" placeholder="Masukan balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
                 <div id="divSendModalFeeds" style="color: white;"></div>
                 <input type="hidden" id="id_feeds">
             </div>
@@ -524,7 +528,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-tweet"></i> All Comment
+          <i class="lni lni-instagram-original icon-instagram"></i> All Comment
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -549,7 +553,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-tweet"></i> Posting Jawaban
+          <i class="lni lni-instagram-original icon-instagram"></i> Posting Jawaban
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -567,7 +571,7 @@
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-tweet"></i> Konfirmasi Hapus Disposisi
+          <i class="lni lni-instagram-original icon-instagram"></i> Konfirmasi Hapus Disposisi
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -661,7 +665,7 @@
       var post_url = $(id_post_url).val();
 
       if($('#inputSendModalFeeds').val() == ''){
-        alert('tweet balasan tidak boleh kosong');
+        alert('Balasan tidak boleh kosong');
         return false;
       }
 
@@ -698,7 +702,7 @@
         range.moveToElementText(elm);
         range.select();
         document.execCommand("Copy");
-        alert("Copied div content to clipboard");
+        alert("Text Copied");
       }
       else if(window.getSelection) {
         var selection = window.getSelection();
@@ -707,7 +711,7 @@
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
-        alert("Copied div content to clipboard");
+        alert("Text Copied");
       }
     }
 

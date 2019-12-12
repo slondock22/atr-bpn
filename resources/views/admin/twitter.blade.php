@@ -30,16 +30,20 @@
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                   <ul class="tb-horizontal-list tb-style1 tb-mp0">
                     <li>
-                      <div class="tb-list-title">Tweets</div>
-                      <div class="tb-list-number">14.6K</div>
+                      <div class="tb-list-title">Total</div>
+                      <div class="tb-list-number">10</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Following</div>
-                      <div class="tb-list-number">518</div>
+                      <div class="tb-list-title">Belum</div>
+                      <div class="tb-list-number">4</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Followers</div>
-                      <div class="tb-list-number">91K</div>
+                      <div class="tb-list-title">Proses</div>
+                      <div class="tb-list-number">6</div>
+                    </li>
+                      <li>
+                      <div class="tb-list-title">Jawab</div>
+                      <div class="tb-list-number">0</div>
                     </li>
                   </ul>
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
@@ -171,6 +175,45 @@
                             {{$val['from']['ministry_name']}} <span>membalas kepada</span> {{$val['to']['ministry_name']}}
                             <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                               <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
+                            </ul>
+                        </h3>
+
+                        <div class="divComment{{$val['id']}}" id="divComments{{$val['id']}}">{{$val['comment']}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  @endforeach
+                  @foreach($value['replay'] as $key => $val)
+                    @php $numberDetail++ @endphp
+                    <div class="tb-padd-lr-30 rowDetail rowDetail{{$number}}{{$numberDetail}} divDisposisi{{$val['id']}}">
+
+                    <div class="tb-height-b20 tb-height-lg-b20"></div>
+                    
+                    <span class="spanAction">
+                         @if(request()->cookie('USER_ID')  == 4)
+                          <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
+                            <span class="tb-toggle-btn tb-style1 tb-large-size">
+                              <i class="material-icons-outlined iconAction">more_horiz</i>
+                            </span>
+                              <div class="tb-dropdown">
+                              <ul class="tb-drop-dropdown-list tb-mp0">
+                                 <li><a onclick="copyClipboard('divComments{{$val['id']}}')">Copy</a></li>
+                                <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                         @endif
+                    </span>
+                            
+                    <div class="tb-user tb-style3 contentDisposisi">
+                      <div class="tb-user-img">
+                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                      </div>
+                      <div class="tb-user-info">
+                        <h3 class="tb-user-name">
+                             ATR/BPN Pusat <span>membalas kepada Penanya
+                            <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                              {{-- <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li> --}}
                             </ul>
                         </h3>
 
@@ -492,7 +535,7 @@
               </div>
 
               <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
-                rows="3" placeholder="Tweet balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
+                rows="3" placeholder="Masukan balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
                 <div id="divSendModalFeeds" style="color: white;"></div>
                 <input type="hidden" id="id_feeds">
             </div>
@@ -697,7 +740,7 @@
         range.moveToElementText(elm);
         range.select();
         document.execCommand("Copy");
-        alert("Copied div content to clipboard");
+        alert("Text Copied");
       }
       else if(window.getSelection) {
         var selection = window.getSelection();
@@ -706,7 +749,7 @@
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
-        alert("Copied div content to clipboard");
+        alert("Text Copied");
       }
     }
 
