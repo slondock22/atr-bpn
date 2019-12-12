@@ -30,16 +30,20 @@
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                   <ul class="tb-horizontal-list tb-style1 tb-mp0">
                     <li>
-                      <div class="tb-list-title">Posting</div>
-                      <div class="tb-list-number">102</div>
+                      <div class="tb-list-title">Total</div>
+                      <div class="tb-list-number">5</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Following</div>
-                      <div class="tb-list-number">1.2K</div>
+                      <div class="tb-list-title">Belum</div>
+                      <div class="tb-list-number">2</div>
                     </li>
                     <li>
-                      <div class="tb-list-title">Followers</div>
-                      <div class="tb-list-number">8.7K</div>
+                      <div class="tb-list-title">Proses</div>
+                      <div class="tb-list-number">2</div>
+                    </li>
+                      <li>
+                      <div class="tb-list-title">Jawab</div>
+                      <div class="tb-list-number">1</div>
                     </li>
                   </ul>
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
@@ -289,7 +293,7 @@
       </div>
       <div class="modal-body modalBodyPadding">
         
-        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postTwitter')}}" method="POST">
+        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postInstagram')}}" method="POST">
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="tb-user tb-style3">

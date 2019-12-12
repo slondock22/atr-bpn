@@ -31,6 +31,11 @@ class IndexController extends Controller
     	return view('admin.statistik')->with(compact('role'));
     }
 
+    public function analitik($role='')
+    {
+        return view('admin.analitik')->with(compact('role'));
+    }
+
      public function publish($media,$role='')
     {
     	if($media == 'twitter'){
