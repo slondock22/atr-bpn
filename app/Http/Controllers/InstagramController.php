@@ -11,17 +11,11 @@ class InstagramController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
-    	$client = new Client();
-
-        $url = "http://devbpn.edii.co.id:3000/dispo/all/instagram";
-
-    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
-=======
         $client = new Client();
+
         $url = "http://devbpn.edii.co.id:3000/dispo/all/instagram";
+
         $token_akses = request()->cookie('TOKEN_AUTH_APP');
->>>>>>> 4acbdbe5e1be87ac0fb19822c7bfcd7d1e330e70
         $request = $client->request('GET', $url, 
                          [ 
                             'headers' => [
@@ -44,7 +38,9 @@ class InstagramController extends Controller
         $value['to'] = Input::get('ministry_id');
 
         $client = new Client();
+
         $url = "http://devbpn.edii.co.id:3000/disposisi/".$idFeeds;
+
         $token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
                        [ 
@@ -88,7 +84,7 @@ class InstagramController extends Controller
 
 
         $data['status']  = $response;
-        $data['message'] = "Tweet has been succesfully replied";
+        $data['message'] = "Message has been succesfully replied";
         $data['form']    = Input::get('form');
 
 
