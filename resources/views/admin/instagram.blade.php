@@ -185,7 +185,7 @@
                       </div>
                       <div class="tb-user-info">
                         <h3 class="tb-user-name">
-                            {{$val['from']['ministry_name']}} <span>membalas kepada</span> {{$val['to']['ministry_name']}}
+                            {{$val['from']['tm_ministry']['ministry_name']}} <span>membalas kepada</span> {{$val['to']['ministry_name']}}
                             <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                               <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                             </ul>
@@ -351,9 +351,17 @@
               <label for="exampleFormControlSelect1">Kepada</label>
               <select class="form-control" id="ministryId" name="ministry_id" onchange="setUser()">
                 <option value="">Pilih Kanwil/Kantah</option>
-                <option value="1">ATR/BPN Pusat</option>
-                <option value="2">ATR/BPN Surabaya</option>
-                <option value="3">ATR/BPN Malang</option>
+                 @if(isset($kanwil['data']))
+                   @foreach($kanwil['data'] as $key => $value)
+                      <option value="{{$value['id']}}">
+                        @if($value['level'] == "0" || $value['level'] == "1")
+                         <b>{{$value['name']}}</b>
+                        @else
+                         &nbsp;&nbsp;{{$value['name']}}
+                        @endif
+                      </option>
+                   @endforeach
+                 @endif
               </select>
             </div>
             <div class="form-group">

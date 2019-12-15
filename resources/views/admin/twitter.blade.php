@@ -354,7 +354,7 @@
                    @foreach($kanwil['data'] as $key => $value)
                       <option value="{{$value['id']}}">
                         @if($value['level'] == "0" || $value['level'] == "1")
-                         {{$value['name']}}
+                         <b>{{$value['name']}}</b>
                         @else
                          &nbsp;&nbsp;{{$value['name']}}
                         @endif
