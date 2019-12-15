@@ -11,7 +11,7 @@
       <div class="container-fluid">
         <div class="tb-height-b30 tb-height-lg-b30"></div>
         <div class="row gutter-2">
-          <div class="col-4">
+          <div class="col-md-4">
             <div class="tb-card tb-style1 tb-height-auto">
               <div class="tb-card-body">
                 <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/profile_banners/2884911432/1540262770/1500x500">
@@ -87,7 +87,7 @@
               </div>
             </div>
           </div><!-- .col -->
-          <div class="col-8 conComment">
+          <div class="col-md-8 conComment">
           @if(isset($response['data']))
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
