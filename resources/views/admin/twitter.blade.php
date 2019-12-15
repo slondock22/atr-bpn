@@ -276,23 +276,6 @@
                     </ul>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                   </div>
-
-                @else
-                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}">
-                    <div class="tb-height-b10 tb-height-lg-b10"></div>
-                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                      <li>
-                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
-                          <i class="material-icons-outlined">mode_comment</i> Balas
-                        </a>
-                      </li>
-
-                      <li><a onclick="modal_disposisi('{{$value['id']}}','{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
-                      </li>
-                      
-                    </ul>
-                    <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  </div>
                 @endif
               
               </div>
