@@ -148,7 +148,7 @@
                     <div class="divHastagInstagram">
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
-                        #SengketaTanah
+                         #PilihJenisAduan
                       </a>
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>

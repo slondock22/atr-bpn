@@ -147,7 +147,7 @@
                     <div class="divHastag">
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
-                        #SengketaTanah
+                        #PilihJenisAduan
                       </a>
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
@@ -429,6 +429,13 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <tr>
+                      <td>#SengketaTanah</td>
+                      <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
+                      <td>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#SengketaTanah')">Pilih</button>
+                      </td>
+                    </tr>
                    <tr>
                       <td>#SengketaTanah</td>
                       <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
