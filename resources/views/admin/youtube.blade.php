@@ -747,7 +747,7 @@
         range.moveToElementText(elm);
         range.select();
         document.execCommand("Copy");
-        alert("Text Copied");
+        // alert("Text Copied");
       }
       else if(window.getSelection) {
         var selection = window.getSelection();
@@ -756,7 +756,7 @@
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
-        alert("Text Copied");
+        // alert("Text Copied");
       }
     }
 
