@@ -1,18 +1,12 @@
 @section('title','Statistik')
 @extends('layouts-back.layout')
 @section('content')
-<style>
-#chartdiv {
-  width: 100%;
-  height: 500px;
-}
-</style>
 
   <div class="tb-content tb-style1">
     <div class="tb-height-b30 tb-height-lg-b30"></div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="tb-iconbox tb-style4 tb-color2">
             <div class="tb-icon tb-flex">
               <i class="lni lni-facebook"></i>
@@ -23,7 +17,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="tb-iconbox tb-style4 tb-color3">
             <div class="tb-icon tb-flex">
               <i class="lni lni-twitter"></i>
@@ -34,13 +28,24 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="tb-iconbox tb-style4 tb-color1" style="background-color: #A92BAB !important">
             <div class="tb-icon tb-flex">
               <i class="lni lni-instagram-original"></i>
             </div>
             <div class="tb-iconbox-text">
               <h3 class="tb-iconbox-heading">78</h3>
+              <div class="tb-iconbox-sub-heading">Total Aduan</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="tb-iconbox tb-style4 tb-color1" style="background-color: #d2152b !important">
+            <div class="tb-icon tb-flex">
+              <i class="lni lni-youtube"></i>
+            </div>
+            <div class="tb-iconbox-text">
+              <h3 class="tb-iconbox-heading">8</h3>
               <div class="tb-iconbox-sub-heading">Total Aduan</div>
             </div>
           </div>
@@ -75,6 +80,10 @@
                    <li>
                     <span class="tb-circle-color" data-bulet-color="#a92bab"></span>
                     <span class="tb-circle-label">Instagram</span>
+                  </li>
+                   <li>
+                    <span class="tb-circle-color" data-bulet-color="#d2152b"></span>
+                    <span class="tb-circle-label">Youtube</span>
                   </li>
                 </ul>
               </div>
@@ -192,7 +201,7 @@
                 <div class="tb-chart-inside">
                   <div>
                     {{-- <canvas id="tb-chart3" height="350"></canvas> --}}
-                    <div id="chartdiv"></div>
+                   <div id="map" style="width: 100%; height: 400px;"></div>
                   </div>
                 </div>
               </div>
@@ -227,93 +236,270 @@
    
   </div>
   <!-- Resources -->
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/maps.js"></script>
-<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 <!-- Chart code -->
-<script>
-am4core.ready(function() {
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/ammap.js"></script>
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/maps/js/indonesiaLow.js"></script>
 
-// Themes begin
-am4core.useTheme(am4themes_animated);
-// Themes end
-
-/* Create map instance */
-var chart = am4core.create("chartdiv", am4maps.MapChart);
-
-/* Set map definition */
-chart.geodata = am4geodata_worldLow;
-
-/* Set projection */
-chart.projection = new am4maps.projections.Miller();
-
-/* Create map polygon series */
-var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-
-/* Make map load polygon (like country names) data from GeoJSON */
-polygonSeries.useGeodata = true;
-
-/* Configure series */
-var polygonTemplate = polygonSeries.mapPolygons.template;
-polygonTemplate.applyOnClones = true;
-polygonTemplate.togglable = true;
-polygonTemplate.tooltipText = "{name}";
-polygonTemplate.nonScalingStroke = true;
-polygonTemplate.strokeOpacity = 0.5;
-polygonTemplate.fill = chart.colors.getIndex(0);
-var lastSelected;
-polygonTemplate.events.on("hit", function(ev) {
-  if (lastSelected) {
-    // This line serves multiple purposes:
-    // 1. Clicking a country twice actually de-activates, the line below
-    //    de-activates it in advance, so the toggle then re-activates, making it
-    //    appear as if it was never de-activated to begin with.
-    // 2. Previously activated countries should be de-activated.
-    lastSelected.isActive = false;
-  }
-  ev.target.series.chart.zoomToMapObject(ev.target);
-  if (lastSelected !== ev.target) {
-    lastSelected = ev.target;
-  }
-})
-
-
-/* Create selected and hover states and set alternative fill color */
-var ss = polygonTemplate.states.create("active");
-ss.properties.fill = chart.colors.getIndex(2);
-
-var hs = polygonTemplate.states.create("hover");
-hs.properties.fill = chart.colors.getIndex(4);
-
-// Hide Antarctica
-polygonSeries.exclude = ["AQ"];
-
-// Small map
-chart.smallMap = new am4maps.SmallMap();
-// Re-position to top right (it defaults to bottom left)
-chart.smallMap.align = "right";
-chart.smallMap.valign = "top";
-chart.smallMap.series.push(polygonSeries);
-
-// Zoom control
-chart.zoomControl = new am4maps.ZoomControl();
-
-var homeButton = new am4core.Button();
-homeButton.events.on("hit", function(){
-  chart.goHome();
-});
-
-homeButton.icon = new am4core.Sprite();
-homeButton.padding(7, 5, 7, 5);
-homeButton.width = 30;
-homeButton.icon.path = "M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8";
-homeButton.marginBottom = 10;
-homeButton.parent = chart.zoomControl;
-homeButton.insertBefore(chart.zoomControl.plusButton);
-
-}); // end am4core.ready()
-</script>
-
+    <!-- amCharts javascript code -->
+    <script type="text/javascript">
+      AmCharts.makeChart("map",{
+          "type": "map",
+          "pathToImages": "http://www.amcharts.com/lib/3/images/",
+          "addClassNames": true,
+          "fontSize": 15,
+          "color": "#000000",
+          "projection": "mercator",
+          "backgroundAlpha": 1,
+          "backgroundColor": "rgba(65,197,219,0.21)",
+          "dataProvider": {
+            "map": "indonesiaLow",
+            "getAreasFromMap": true,
+            "images": [
+              {
+                "top": 40,
+                "left": 60,
+                "width": 80,
+                "height": 80,
+                "pixelMapperLogo": true,
+                "imageURL": "{{'http://localhost:8000/assets-back/img/logo-mini-atr.jpg'}}",
+                "url": "http://www.amcharts.com"
+              }
+            ],
+            "areas": [
+              {
+                "id": "ID-AC",
+                "title": "Kanwil Aceh (5 Aduan)",
+                "color": "rgba(127,216,75,0.8)"
+              },
+              {
+                "id": "ID-BA",
+                "title": "Kanwil Bali (5 Aduan)",
+                "color": "rgba(207,216,75,0.8)"
+              },
+              {
+                "id": "ID-BB",
+                "title": "Kanwil Bangka Belitung (0 Aduan)",
+                "color": "rgba(216,196,75,0.8)"
+              },
+              {
+                "id": "ID-BE",
+                "title": "Kanwil Bengkulu (3 Aduan)",
+                "color": "rgba(179,216,75,0.8)"
+              },
+              {
+                "id": "ID-BT",
+                "title": "Kanwil Banten (4 Aduan)",
+                "color": "rgba(216,144,75,0.8)"
+              },
+              {
+                "id": "ID-GO",
+                "title": "Kanwil Gorontalo (2 Aduan)",
+                "color": "rgba(184,196,1,0.56)"
+              },
+              {
+                "id": "ID-JA",
+                "title": "Kanwil Jambi (0 Aduan)",
+                "color": "rgba(216,75,138,0.8)"
+              },
+              {
+                "id": "ID-JB",
+                "title": "Kanwil Jawa Barat (23 Aduan)",
+                "color": "rgba(75,98,216,0.8)"
+              },
+              {
+                "id": "ID-JI",
+                "title": "Kanwil Jawa Timur (4 Aduan)",
+                "color": "rgba(190,75,216,0.8)"
+              },
+              {
+                "id": "ID-JK",
+                "title": "Kanwil Jakarta Raya (28 Aduan)",
+                "color": "rgba(216,207,75,0.8)"
+              },
+              {
+                "id": "ID-JT",
+                "title": "Kanwil Jawa Tengah (5 Aduan)",
+                "color": "rgba(216,87,75,0.8)"
+              },
+              {
+                "id": "ID-KB",
+                "title": "Kanwil Kalimantan Barat (6 Aduan)",
+                "color": "rgba(190,75,216,0.8)"
+              },
+              {
+                "id": "ID-KI",
+                "title": "Kanwil Kalimantan Timur (9 Aduan)",
+                "color": "rgba(216,75,150,0.8)"
+              },
+              {
+                "id": "ID-KR",
+                "title": "Kepulauan Riau",
+                "color": "rgba(216,75,75,0.8)"
+              },
+              {
+                "id": "ID-KS",
+                "title": "Kanwil Kalimantan Selatan (0 Aduan)",
+                "color": "rgba(216,87,75,0.8)"
+              },
+              {
+                "id": "ID-KT",
+                "title": "Kanwil Kalimantan Tengah (8 Aduan)",
+                "color": "rgba(75,216,207,0.8)"
+              },
+              {
+                "id": "ID-KU",
+                "title": "Kanwil Kalimantan Utara (6 Aduan)",
+                "color": "rgba(75,216,81,0.8)"
+              },
+              {
+                "id": "ID-LA",
+                "title": "Kanwil Lampung (8 Aduan)",
+                "color": "rgba(216,156,75,0.8)"
+              },
+              {
+                "id": "ID-MA",
+                "title": "Kanwil Maluku (3 Aduan)",
+                "color": "rgba(206,11,219,0.56)"
+              },
+              {
+                "id": "ID-MU",
+                "title": "Kanwil Maluku Utara (0 Aduan)",
+                "color": "rgba(196,1,1,0.56)"
+              },
+              {
+                "id": "ID-NB",
+                "title": "Kanwil NTB (3 Aduan)",
+                "color": "rgba(196,113,1,0.56)"
+              },
+              {
+                "id": "ID-NT",
+                "title": "Kanwil NTT (0 Aduan)",
+                "color": "rgba(41,196,1,0.56)"
+              },
+              {
+                "id": "ID-PA",
+                "title": "Kanwil Papua (3 Aduan)",
+                "color": "rgba(1,196,129,0.75)"
+              },
+              {
+                "id": "ID-PB",
+                "title": "Kanwil Papua Barat (0 Aduan)",
+                "color": "rgba(196,144,1,0.75)"
+              },
+              {
+                "id": "ID-RI",
+                "title": "Kanwil Riau (1 Aduan)",
+                "color": "rgba(75,216,181,0.8)"
+              },
+              {
+                "id": "ID-SA",
+                "title": "Kanwil Sulawesi Utara (3 Aduan)",
+                "color": "rgba(196,65,1,0.56)"
+              },
+              {
+                "id": "ID-SB",
+                "title": "Kanwil Sumatera Barat (7 Aduan)",
+                "color": "rgba(216,75,207,0.8)"
+              },
+              {
+                "id": "ID-SG",
+                "title": "Kanwil Sulawesi Tenggara (3 Aduan)",
+                "color": "rgba(196,25,1,0.56)"
+              },
+              {
+                "id": "ID-SN",
+                "title": "Kanwil Sulawesi Selatan (4 Aduan)",
+                "color": "rgba(1,33,196,0.56)"
+              },
+              {
+                "id": "ID-SR",
+                "title": "Kanwil Sulawesi Barat (0 Aduan)",
+                "color": "rgba(9,196,1,0.56)"
+              },
+              {
+                "id": "ID-SS",
+                "title": "Kanwil Sumatera Selatan (3 Aduan)",
+                "color": "rgba(133,75,216,0.8)"
+              },
+              {
+                "id": "ID-ST",
+                "title": "Kanwil Sulawesi Tengah (1 Aduan)",
+                "color": "rgba(97,1,196,0.56)"
+              },
+              {
+                "id": "ID-SU",
+                "title": "Kanwil Sumatera Utara (3 Aduan)",
+                "color": "rgba(216,173,75,0.8)"
+              },
+              {
+                "id": "ID-YO",
+                "title": "Kanwil Yogyakarta (2 Aduan)",
+                "color": "rgba(75,216,104,0.8)"
+              },
+              {
+                "id": "MY-12",
+                "title": "Sabah",
+                "color": "rgba(142,142,142,0.8)"
+              },
+              {
+                "id": "MY-13",
+                "title": "Sarawak",
+                "color": "rgba(142,142,142,0.8)"
+              },
+              {
+                "id": "BN",
+                "title": "Brunei Darussalam",
+                "color": "rgba(142,142,142,0.8)"
+              }
+            ]
+          },
+          "balloon": {
+            "horizontalPadding": 15,
+            "borderAlpha": 0,
+            "borderThickness": 1,
+            "verticalPadding": 15
+          },
+          "areasSettings": {
+            "color": "rgba(129,129,129,1)",
+            "outlineColor": "rgba(65,197,219,0.21)",
+            "rollOverOutlineColor": "rgba(65,197,219,0.21)",
+            "rollOverBrightness": 20,
+            "selectedBrightness": 20,
+            "selectable": true,
+            "unlistedAreasAlpha": 0,
+            "unlistedAreasOutlineAlpha": 0
+          },
+          "imagesSettings": {
+            "alpha": 1,
+            "color": "rgba(129,129,129,1)",
+            "outlineAlpha": 0,
+            "rollOverOutlineAlpha": 0,
+            "outlineColor": "rgba(65,197,219,0.21)",
+            "rollOverBrightness": 20,
+            "selectedBrightness": 20,
+            "selectable": true
+          },
+          "linesSettings": {
+            "color": "rgba(129,129,129,1)",
+            "selectable": true,
+            "rollOverBrightness": 20,
+            "selectedBrightness": 20
+          },
+          "zoomControl": {
+            "zoomControlEnabled": true,
+            "homeButtonEnabled": false,
+            "panControlEnabled": false,
+            "right": 38,
+            "bottom": 30,
+            "minZoomLevel": 0.25,
+            "gridHeight": 100,
+            "gridAlpha": 0.1,
+            "gridBackgroundAlpha": 0,
+            "gridColor": "#FFFFFF",
+            "draggerAlpha": 1,
+            "buttonCornerRadius": 2
+          }
+        });
+    </script>
   @endsection

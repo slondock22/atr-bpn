@@ -25,6 +25,7 @@ Route::post('postLogin','Auth\LoginController@postLogin')->name('postLogin');
 Route::group(['middleware' => ['login']], function () {
 	Route::get('home','IndexController@index')->name('home');
 	Route::get('statistik','IndexController@statistik')->name('statistik');
+	Route::get('analitik','IndexController@analitik')->name('analitik');
 	Route::get('publish/{mode}','IndexController@publish')->name('publish');
 	Route::get('profile','IndexController@profile')->name('profile');
 	Route::get('dokumentasi','IndexController@dokumentasi')->name('dokumentasi');
@@ -32,15 +33,21 @@ Route::group(['middleware' => ['login']], function () {
 
 	Route::middleware(['checkRole:op_pusat,op_kanwil,op_kantah'])->group(function(){
 		//Twitter
-	  	Route::get('twitter','TwitterController@index')->name('twitter');
-	  	Route::post('postTwitter','TwitterController@sendComment')->name('postTwitter');
-	  	Route::post('postReply','TwitterController@send_reply')->name('postReply');
+	  	Route::get('aduan/{type}','AduanController@index')->name('aduan');
+	  	Route::post('postComment','AduanController@sendComment')->name('postComment');
+	  	Route::post('postReply','AduanController@sendReply')->name('postReply');
+		Route::post('spamFeed','AduanController@spamFeed')->name('spamFeed');
+		Route::post('handleFeed','AduanController@handleFeed')->name('handleFeed');
 
-		Route::get('instagram','InstagramController@index')->name('instagram');
-		Route::get('facebook','FacebookController@index')->name('facebook');
-		Route::get('youtube','YoutubeController@index')->name('youtube');
 
-		Route::post('spamFeed','IndexController@spamFeed')->name('spamFeed');
+
+		// Route::get('instagram','InstagramController@index')->name('instagram');
+	 //  	Route::post('postInstagram','InstagramController@sendComment')->name('postInstagram');
+	 //  	Route::post('postReply','InstagramController@send_reply')->name('postReply');
+
+		// Route::get('facebook','FacebookController@index')->name('facebook');
+		// Route::get('youtube','YoutubeController@index')->name('youtube');
+
 
 	});
 

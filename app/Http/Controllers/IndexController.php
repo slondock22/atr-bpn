@@ -31,6 +31,11 @@ class IndexController extends Controller
     	return view('admin.statistik')->with(compact('role'));
     }
 
+    public function analitik($role='')
+    {
+        return view('admin.analitik')->with(compact('role'));
+    }
+
      public function publish($media,$role='')
     {
     	if($media == 'twitter'){
@@ -102,24 +107,6 @@ class IndexController extends Controller
         
         return view('admin.master.spam')->with(compact('role'));
         
-    }
-
-    public function spamFeed(Request $request)
-    {
-        $client = new Client();
-        $url = "http://devbpn.edii.co.id:3000/spam/".$request->id;
-        $token_akses = request()->cookie('TOKEN_AUTH_APP');
-        $request = $client->request('PUT', $url, 
-                       [ 
-                            'headers' => [
-                                 'Content-Type'  => 'application/json',
-                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
-                            ]
-                        ]);
-
-        $response = json_decode($request->getBody()->getContents(),true);
-
-        return \Response::json($response);
     }
 
      public function dokumentasi($role='')

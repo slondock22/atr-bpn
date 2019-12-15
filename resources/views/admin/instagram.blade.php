@@ -1,8 +1,6 @@
-@section('title','Pertanyaan Twitter')
+@section('title','Pertanyaan Instagram')
 @extends('layouts-back.layout')
 @section('content')
-
-
 
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
@@ -16,7 +14,7 @@
           <div class="col-md-4">
             <div class="tb-card tb-style1 tb-height-auto">
               <div class="tb-card-body">
-                <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="https://pbs.twimg.com/profile_banners/2884911432/1540262770/1500x500">
+                <div class="tb-profile-thumb tb-small tb-bg tb-dynamicbg" data-src="">
                 </div>
                 <div class="tb-profile-info tb-small">
                   <div class="tb-profile-pic">
@@ -31,18 +29,33 @@
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                   <ul class="tb-horizontal-list tb-style1 tb-mp0">
-                    <li>
-                      <div class="tb-list-title">Posting</div>
-                      <div class="tb-list-number">102</div>
-                    </li>
-                    <li>
-                      <div class="tb-list-title">Following</div>
-                      <div class="tb-list-number">1.2K</div>
-                    </li>
-                    <li>
-                      <div class="tb-list-title">Followers</div>
-                      <div class="tb-list-number">8.7K</div>
-                    </li>
+                     @if(isset($stats['data']))
+                      @for($i=0; $i < count($stats['data']); $i++)
+                      
+                        @if($stats['data'][$i]['type'] == 'instagram')
+                        <li>
+                          <div class="tb-list-title">Total</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['TOTAL']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Belum</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['BELUM']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Proses</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['PROSES']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Jawab</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['SELESAI']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Spam</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['SPAM']}}</div>
+                        </li>
+                        @endif
+                      @endfor
+                    @endif
                   </ul>
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                 </div>
@@ -94,26 +107,27 @@
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
             @php $number++ @endphp
-            
-            <div class="tb-card tb-style1 tb-height-auto rowcomment" >
+            @if($value['is_spam'] == 0 && $value['username'] != 'atr_bpn')
+            <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="tb-user tb-style3">
                     <div class="tb-user-img">
-                     {!! $img = str_replace('[]', '', $value['image']) !!}
-                      @if($img != '')
+                     {{-- {!! $img = str_replace('[]', '', $value['image']) !!}
+                      @if($img == '')
                         <img src="{{$value['image']}}" alt="">
                       @else
                         <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
-                      @endif  
+                      @endif  --}} 
+                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
                     </div>
                     <div class="tb-user-info">
                       <h3 class="tb-user-name">
                         {{$value['username']}} | @ {{$value['username']}}
                         @if($value['escalation_status'] == '99')
                         <span class="doneSpan">
-                           <i class="fas fa-check-circle doneIcon"></i>
+                           <i class="fas fa-check-circle doneIconInstagram"></i>
                            Aduan Terjawab
                         </span>
                         @endif
@@ -131,7 +145,7 @@
                   <div class="tb-post tb-style1">
                     <div class="tb-post-text">{{$value['comment']}}</div>
 
-                    <div class="divHastag">
+                    <div class="divHastagInstagram">
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
                         #SengketaTanah
@@ -182,6 +196,45 @@
                     </div>
                   </div>
                   @endforeach
+                  @foreach($value['replay'] as $key => $val)
+                    @php $numberDetail++ @endphp
+                    <div class="tb-padd-lr-30 rowDetail rowDetail{{$number}}{{$numberDetail}} divDisposisi{{$val['id']}}">
+
+                    <div class="tb-height-b20 tb-height-lg-b20"></div>
+                    
+                    <span class="spanAction">
+                         @if(request()->cookie('USER_ID')  == 4)
+                          <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
+                            <span class="tb-toggle-btn tb-style1 tb-large-size">
+                              <i class="material-icons-outlined iconAction">more_horiz</i>
+                            </span>
+                              <div class="tb-dropdown">
+                              <ul class="tb-drop-dropdown-list tb-mp0">
+                                 <li><a onclick="copyClipboard('divComments{{$val['id']}}')">Copy</a></li>
+                                <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                         @endif
+                    </span>
+                            
+                    <div class="tb-user tb-style3 contentDisposisi">
+                      <div class="tb-user-img">
+                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                      </div>
+                      <div class="tb-user-info">
+                        <h3 class="tb-user-name">
+                             ATR/BPN Pusat <span>membalas kepada Penanya
+                            <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                              {{-- <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li> --}}
+                            </ul>
+                        </h3>
+
+                        <div class="divComment{{$val['id']}}" id="divComments{{$val['id']}}">{{$val['comment']}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  @endforeach
                 </div>
 
                 <div class="tb-padd-lr-30 y" style="padding-top: 10px;padding-bottom: 10px">
@@ -198,7 +251,7 @@
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                       <li>
-                        <a onclick="collapseBtn('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}')">
+                        <a onclick="handleFeed('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}',{{$value['id']}})">
                           <i class="material-icons-outlined">mode_comment</i> Ambil
                         </a>
                       </li>
@@ -207,7 +260,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                   </div>
                   
-                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" style="display: none">
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
@@ -244,6 +297,7 @@
               </div>
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
+            @endif
             @endforeach
             @endif
 
@@ -291,7 +345,7 @@
       </div>
       <div class="modal-body modalBodyPadding">
         
-        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postTwitter')}}" method="POST">
+        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postComment')}}" method="POST">
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="tb-user tb-style3">
@@ -329,8 +383,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        <button type="button" id="btnSendDisposisi" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
+        <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">Batal</button>
+        <button type="button" id="btnSendDisposisi" class="btn btn-modal-instagram" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
     </div>
   </div>
@@ -378,14 +432,14 @@
                       <td>#SengketaTanah</td>
                       <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#SengketaTanah')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#SengketaTanah')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
                       <td>#PenataanTataRuang</td>
                       <td>perumusan dan pelaksanaan kebijakan di bidang survei, pengukuran, dan pemetaan;</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PenataanTataRuang')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#PenataanTataRuang')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -394,7 +448,7 @@
                       </td>
                       <td>perumusan dan pelaksanaan kebijakan di bidang pengadaan tanah</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#infrastrukturAgraria')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#infrastrukturAgraria')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -403,7 +457,7 @@
                       </td>
                       <td>pengawasan atas pelaksanaan tugas di lingkungan BPN</td>
                       <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#HubunganHukumAgraria')">Pilih</button>
+                          <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#HubunganHukumAgraria')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -412,7 +466,7 @@
                       </td>
                       <td>pelaksanaan penelitian dan pengembangan di bidang pertanahan</td>
                       <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PengadaanTanah')">Pilih</button>
+                          <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#PengadaanTanah')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -421,7 +475,7 @@
                       </td>
                       <td>pelaksanaan pengembangan sumber daya manusia di bidang pertanahan</td>
                       <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PengendalianPenguasaanTanah')">Pilih</button>
+                          <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#PengendalianPenguasaanTanah')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -430,7 +484,7 @@
                       </td>
                       <td>pengawasan atas pelaksanaan tugas di lingkungan BPN</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#HakTanahMasyarakat')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#HakTanahMasyarakat')">Pilih</button>
                       </td>
                     </tr>
                     <tr>
@@ -439,7 +493,7 @@
                       </td>
                       <td>pelaksanaan pengembangan sumber daya manusia di bidang pertanahan</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#EkonomiPertanahan')">Pilih</button>
+                        <button type="button" class="btn btn-modal-instagram" onclick="change_hastag('#EkonomiPertanahan')">Pilih</button>
                       </td>
                     </tr>
                   </tbody>
@@ -495,7 +549,7 @@
               </div>
 
               <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds" 
-                rows="3" placeholder="Tweet balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
+                rows="3" placeholder="Masukan balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
                 <div id="divSendModalFeeds" style="color: white;"></div>
                 <input type="hidden" id="id_feeds">
             </div>
@@ -509,9 +563,9 @@
       
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        {{-- <button type="button" class="btn btn-modal-twitter">Draft</button> --}}
-        <button type="button" onclick="iframePost('#iframePostId','#inputSendModalFeeds')" class="btn btn-modal-twitter">Kirim</button>
+        <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">Batal</button>
+        {{-- <button type="button" class="btn btn-modal-instagram">Draft</button> --}}
+        <button type="button" onclick="iframePost('#iframePostId','#inputSendModalFeeds')" class="btn btn-modal-instagram">Kirim</button>
       </div>
   </div>
 </div>
@@ -538,7 +592,7 @@
       <input type="hidden" id="frmIdDelete">
       <input type="hidden" id="frmDivDelete">
       <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">
           Tutup
         </button>
       </div>
@@ -581,10 +635,10 @@
       <input type="hidden" id="frmIdDelete">
       <input type="hidden" id="frmDivDelete">
       <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">
           Batal
         </button>
-        <button type="button" class="btn btn-modal-twitter" onclick="deleteDisposisi()">
+        <button type="button" class="btn btn-modal-instagram" onclick="deleteDisposisi()">
           Hapus
         </button>
       </div>
@@ -663,7 +717,7 @@
       var post_url = $(id_post_url).val();
 
       if($('#inputSendModalFeeds').val() == ''){
-        alert('tweet balasan tidak boleh kosong');
+        alert('Balasan tidak boleh kosong');
         return false;
       }
 
@@ -674,7 +728,7 @@
       // $("#txtPostUrl").val(post_url);
       $('#divSendModalFeeds').html('');
 
-      $('#inputSendModalFeeds').val('');
+      // $('#inputSendModalFeeds').val('');
       $('#postUrl').html('');
 
       var link = post_url;
@@ -700,7 +754,7 @@
         range.moveToElementText(elm);
         range.select();
         document.execCommand("Copy");
-        alert("Copied div content to clipboard");
+        alert("Text Copied");
       }
       else if(window.getSelection) {
         var selection = window.getSelection();
@@ -709,7 +763,7 @@
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
-        alert("Copied div content to clipboard");
+        alert("Text Copied");
       }
     }
 
