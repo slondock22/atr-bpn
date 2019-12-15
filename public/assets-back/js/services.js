@@ -216,18 +216,43 @@ function spamFeed(id_feed){
                 "_token" :  $('#token').val(),
                 "id" :id_feed},
         success: function(data){
-            console.log(data);
-            return false;
-            if(data['status']=='success'){
-                 $('html').html(data['result']);
-                 window.location.reload();
-                 setTimeout(function() { showFlashAlert('success', data['message']); }, 100);
+            console.log(data.error);
+            if(data.error==false){
+                $('#divFeeds'+id_feed).hide();
+                 setTimeout(function() { showFlashAlert('success', 'Aduan ditandai sebagai spam'); }, 100);
             }else{
-                setTimeout(function() { showFlashAlert('error', data['message']); }, 100);
+                setTimeout(function() { showFlashAlert('error', data.message); }, 100);
             }
 
             $("#btnProcess").removeAttr('disabled','disabled');
             $("#divLoading").hide();
+        },
+        error: function (request, status, error) {
+            setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
+            $("#btnProcess").removeAttr('disabled','disabled');
+            $("#divLoading").hide();
+        }
+    });
+}
+
+function handleFeed(div1,div2,id_feed){
+
+      $.ajax({
+        type: 'POST',
+        url: '/handleFeed',
+        data: {
+                "_token" :  $('#token').val(),
+                "id" :id_feed
+            },
+        success: function(data){
+            console.log(data.error);
+            if(data.error==false){
+                $("#"+div1).slideUp(300).hide();
+                $("#"+div2).slideDown(300).show();
+                 setTimeout(function() { showFlashAlert('success', 'Aduan telah diambil'); }, 100);
+            }else{
+                setTimeout(function() { showFlashAlert('error', data.message); }, 100);
+            }
         },
         error: function (request, status, error) {
             setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);

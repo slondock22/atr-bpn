@@ -46,7 +46,7 @@
         </div>
         <ul class="tb-sidebar-nav-list tb-mp0">
           <li>
-            <a href="{{route('twitter')}}">
+            <a href="{{route('aduan','twitter')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-twitter"></i></span>
                 <span class="tb-sidebar-link-text">Twitter &nbsp;<span class="tb-badge tb-box-transparent-colo6">4</span></span>
@@ -54,7 +54,7 @@
             </a>
           </li>
           <li>
-            <a href="{{route('facebook')}}">
+            <a href="{{route('aduan','facebook')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-facebook"></i></span>
                 <span class="tb-sidebar-link-text">Facebook</span>
@@ -62,7 +62,7 @@
             </a>
           </li>
           <li>
-            <a href="{{route('instagram')}}">
+            <a href="{{route('aduan','instagram')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-instagram-original"></i></span>
                 <span class="tb-sidebar-link-text">Instagram</span>
@@ -70,7 +70,7 @@
             </a>
           </li>
            <li>
-            <a href="{{route('youtube')}}">
+            <a href="{{route('aduan','youtube')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-youtube"></i></span>
                 <span class="tb-sidebar-link-text">Youtube</span>

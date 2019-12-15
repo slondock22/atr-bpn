@@ -29,22 +29,33 @@
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                   <ul class="tb-horizontal-list tb-style1 tb-mp0">
-                    <li>
-                      <div class="tb-list-title">Total</div>
-                      <div class="tb-list-number">4</div>
-                    </li>
-                    <li>
-                      <div class="tb-list-title">Belum</div>
-                      <div class="tb-list-number">4</div>
-                    </li>
-                    <li>
-                      <div class="tb-list-title">Proses</div>
-                      <div class="tb-list-number">0</div>
-                    </li>
-                      <li>
-                      <div class="tb-list-title">Jawab</div>
-                      <div class="tb-list-number">0</div>
-                    </li>
+                    @if(isset($stats['data']))
+                      @for($i=0; $i < count($stats['data']); $i++)
+                      
+                        @if($stats['data'][$i]['type'] == 'youtube')
+                        <li>
+                          <div class="tb-list-title">Total</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['TOTAL']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Belum</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['BELUM']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Proses</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['PROSES']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Jawab</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['SELESAI']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Spam</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['SPAM']}}</div>
+                        </li>
+                        @endif
+                      @endfor
+                    @endif
                   </ul>
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                 </div>
@@ -95,8 +106,9 @@
           @if(isset($response['data']))
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
+            @if($value['is_spam'] == 0 && $value['username'] != 'atr_bpn')
             @php $number++ @endphp
-            <div class="tb-card tb-style1 tb-height-auto rowcomment">
+            <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
@@ -184,6 +196,45 @@
                     </div>
                   </div>
                   @endforeach
+                   @foreach($value['replay'] as $key => $val)
+                    @php $numberDetail++ @endphp
+                    <div class="tb-padd-lr-30 rowDetail rowDetail{{$number}}{{$numberDetail}} divDisposisi{{$val['id']}}">
+
+                    <div class="tb-height-b20 tb-height-lg-b20"></div>
+                    
+                    <span class="spanAction">
+                         @if(request()->cookie('USER_ID')  == 4)
+                          <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
+                            <span class="tb-toggle-btn tb-style1 tb-large-size">
+                              <i class="material-icons-outlined iconAction">more_horiz</i>
+                            </span>
+                              <div class="tb-dropdown">
+                              <ul class="tb-drop-dropdown-list tb-mp0">
+                                 <li><a onclick="copyClipboard('divComments{{$val['id']}}')">Copy</a></li>
+                                <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                         @endif
+                    </span>
+                            
+                    <div class="tb-user tb-style3 contentDisposisi">
+                      <div class="tb-user-img">
+                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                      </div>
+                      <div class="tb-user-info">
+                        <h3 class="tb-user-name">
+                             ATR/BPN Pusat <span>membalas kepada Penanya
+                            <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                              {{-- <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li> --}}
+                            </ul>
+                        </h3>
+
+                        <div class="divComment{{$val['id']}}" id="divComments{{$val['id']}}">{{$val['comment']}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  @endforeach
                 </div>
 
                 <div class="tb-padd-lr-30 y" style="padding-top: 10px;padding-bottom: 10px">
@@ -200,7 +251,7 @@
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                       <li>
-                        <a onclick="collapseBtn('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}')">
+                        <a onclick="handleFeed('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}',{{$value['id']}})">
                           <i class="material-icons-outlined">mode_comment</i> Ambil
                         </a>
                       </li>
@@ -209,7 +260,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                   </div>
                   
-                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" style="display: none">
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
@@ -246,6 +297,7 @@
               </div>
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
+            @endif
             @endforeach
             @endif
 
@@ -293,7 +345,7 @@
       </div>
       <div class="modal-body modalBodyPadding">
         
-        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postInstagram')}}" method="POST">
+        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postComment')}}" method="POST">
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="tb-user tb-style3">

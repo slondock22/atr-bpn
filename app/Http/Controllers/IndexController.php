@@ -109,24 +109,6 @@ class IndexController extends Controller
         
     }
 
-    public function spamFeed(Request $request)
-    {
-        $client = new Client();
-        $url = "http://devbpn.edii.co.id:3000/spam/".$request->id;
-        $token_akses = request()->cookie('TOKEN_AUTH_APP');
-        $request = $client->request('PUT', $url, 
-                       [ 
-                            'headers' => [
-                                 'Content-Type'  => 'application/json',
-                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
-                            ]
-                        ]);
-
-        $response = json_decode($request->getBody()->getContents(),true);
-
-        return \Response::json($response);
-    }
-
      public function dokumentasi($role='')
     {
         

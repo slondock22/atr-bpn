@@ -7,13 +7,14 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Input;
 
-class TwitterController extends Controller
+class AduanController extends Controller
 {
-    public function index()
+    public function index($media='')
     {
     	$client = new Client();
 
-        $url = "http://devbpn.edii.co.id:3000/dispo/all/twitter";
+        //Aduan
+        $url = "http://devbpn.edii.co.id:3000/dispo/all/".$media;
 
     	$token_akses = request()->cookie('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
@@ -23,11 +24,24 @@ class TwitterController extends Controller
                                  'X-Api-Key'     => 'ATRBPn '.$token_akses
                             ]
                         ]);
-
+        
         $response = json_decode($request->getBody()->getContents(),true);
-        // dd($response);
 
-    	return view('admin.twitter')->with(compact('response'));
+
+        //Statistik
+        $url2 = "http://devbpn.edii.co.id:3000/post/stats";
+
+        $request2 = $client->request('GET', $url2, 
+                         [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ]
+                        ]);
+
+        $stats = json_decode($request2->getBody()->getContents(),true);
+
+    	return view('admin.'.$media)->with(compact('response','stats'));
     }
 
 
@@ -91,11 +105,9 @@ class TwitterController extends Controller
         return \Response::json($data);
     }
 
-    public function send_reply(){
+    public function sendReply(){
         $idFeeds = Input::get('id');
         $comment = Input::get('comment');
-
-        dd($comment);
 
         $client = new Client();
         $url = "http://devbpn.edii.co.id:3000/replay/".$idFeeds;
@@ -111,6 +123,45 @@ class TwitterController extends Controller
                         ]);
 
         $response = json_decode($request->getBody()->getContents(),true);
+
+        return \Response::json($response);
+    }
+
+     public function spamFeed(Request $request)
+    {
+        $client = new Client();
+        $url = "http://devbpn.edii.co.id:3000/spam/".$request->id;
+        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $request = $client->request('PUT', $url, 
+                       [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ]
+                        ]);
+
+        $response = json_decode($request->getBody()->getContents(),true);
+
+        return \Response::json($response);
+    }
+
+    public function handleFeed(Request $request)
+    {
+
+        $client = new Client();
+        $url = "http://devbpn.edii.co.id:3000/feeds/taken/".$request->id;
+        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $request = $client->request('POST', $url, 
+                       [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ]
+                        ]);
+
+        $response = json_decode($request->getBody()->getContents(),true);
+
+        // dd($response);
 
         return \Response::json($response);
     }

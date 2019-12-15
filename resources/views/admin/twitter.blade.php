@@ -29,22 +29,33 @@
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                   <ul class="tb-horizontal-list tb-style1 tb-mp0">
-                    <li>
-                      <div class="tb-list-title">Total</div>
-                      <div class="tb-list-number">10</div>
-                    </li>
-                    <li>
-                      <div class="tb-list-title">Belum</div>
-                      <div class="tb-list-number">4</div>
-                    </li>
-                    <li>
-                      <div class="tb-list-title">Proses</div>
-                      <div class="tb-list-number">6</div>
-                    </li>
-                      <li>
-                      <div class="tb-list-title">Jawab</div>
-                      <div class="tb-list-number">0</div>
-                    </li>
+                    @if(isset($stats['data']))
+                      @for($i=0; $i < count($stats['data']); $i++)
+                      
+                        @if($stats['data'][$i]['type'] == 'twitter')
+                        <li>
+                          <div class="tb-list-title">Total</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['TOTAL']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Belum</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['BELUM']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Proses</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['PROSES']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Jawab</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['SELESAI']}}</div>
+                        </li>
+                        <li>
+                          <div class="tb-list-title">Spam</div>
+                          <div class="tb-list-number">{{$stats['data'][$i]['SPAM']}}</div>
+                        </li>
+                        @endif
+                      @endfor
+                    @endif
                   </ul>
                   <div class="tb-height-b15 tb-height-lg-b15"></div>
                 </div>
@@ -96,7 +107,8 @@
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
             @php $number++ @endphp
-            <div class="tb-card tb-style1 tb-height-auto rowcomment">
+            @if($value['is_spam'] == 0 && $value['username'] != 'atr_bpn' )
+            <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
@@ -233,12 +245,13 @@
                 <hr>
                 
                 @if($value['id']!='')
+                 @if($value['is_taken'] == 0)
                   <div class="tb-padd-lr-30 y" id="button_feed{{$value['id']}}">
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                       <li>
-                        <a onclick="collapseBtn('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}')">
+                        <a onclick="handleFeed('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}',{{$value['id']}})">
                           <i class="material-icons-outlined">mode_comment</i> Ambil
                         </a>
                       </li>
@@ -246,8 +259,9 @@
                     </ul>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                   </div>
-                  
-                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" style="display: none">
+                  @endif
+
+                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
@@ -284,6 +298,7 @@
               </div>
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
+            @endif
             @endforeach
             @endif
 
@@ -331,7 +346,7 @@
       </div>
       <div class="modal-body modalBodyPadding">
         
-        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postTwitter')}}" method="POST">
+        <form id="frmDisposisi" name="frmDisposisi" action="{{route('postComment')}}" method="POST">
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="tb-user tb-style3">
