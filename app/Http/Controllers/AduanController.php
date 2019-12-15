@@ -41,7 +41,20 @@ class AduanController extends Controller
 
         $stats = json_decode($request2->getBody()->getContents(),true);
 
-    	return view('admin.'.$media)->with(compact('response','stats'));
+        //KantahKanwil
+        $url3 = "http://devbpn.edii.co.id:3000/master/ministry";
+
+        $request3 = $client->request('GET', $url3, 
+                         [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ]
+                        ]);
+
+        $kanwil = json_decode($request3->getBody()->getContents(),true);
+
+    	return view('admin.'.$media)->with(compact('response','stats','kanwil'));
     }
 
 
