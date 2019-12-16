@@ -226,7 +226,7 @@
                         <h3 class="tb-user-name">
                              ATR/BPN Pusat <span>membalas kepada Penanya
                             <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                              {{-- <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li> --}}
+                              <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                             </ul>
                         </h3>
 
@@ -322,7 +322,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> #Disposisi
+          <i class="lni lni-youtube icon-youtube"></i> #Disposisi
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -391,7 +391,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> Jenis Aduan ATR/BPN
+          <i class="lni lni-youtube icon-youtube"></i> Jenis Aduan ATR/BPN
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -512,7 +512,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> Balas Feeds
+          <i class="lni lni-youtube icon-youtube"></i> Balas Feeds
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -573,7 +573,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> All Comment
+          <i class="lni lni-youtube icon-youtube"></i> All Comment
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -598,7 +598,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> Posting Jawaban
+          <i class="lni lni-youtube icon-youtube"></i> Posting Jawaban
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -616,7 +616,7 @@
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-instagram-original icon-instagram"></i> Konfirmasi Hapus Disposisi
+          <i class="lni lni-youtube icon-youtube"></i> Konfirmasi Hapus Disposisi
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -721,7 +721,7 @@
       // $("#txtPostUrl").val(post_url);
       $('#divSendModalFeeds').html('');
 
-      $('#inputSendModalFeeds').val('');
+      // $('#inputSendModalFeeds').val('');
       $('#postUrl').html('');
 
       var link = post_url;

@@ -122,6 +122,8 @@ class AduanController extends Controller
         $idFeeds = Input::get('id');
         $comment = Input::get('comment');
 
+        // dd($idFeeds);
+
         $client = new Client();
         $url = "http://devbpn.edii.co.id:3000/replay/".$idFeeds;
         $token_akses = request()->cookie('TOKEN_AUTH_APP');
@@ -136,6 +138,8 @@ class AduanController extends Controller
                         ]);
 
         $response = json_decode($request->getBody()->getContents(),true);
+
+        // dd($response);
 
         return \Response::json($response);
     }

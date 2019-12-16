@@ -225,7 +225,7 @@
                         <h3 class="tb-user-name">
                              ATR/BPN Pusat <span>membalas kepada Penanya
                             <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                              {{-- <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li> --}}
+                              <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                             </ul>
                         </h3>
 
