@@ -129,7 +129,7 @@
             <div class="form-group">
               <label for="exampleFormControlSelect1">Description *</label>
               <input type="text" class="form-control" name="val[description]" 
-              placeholder="Masukan Deskripsi Jenis Aduan" id="description">
+              placeholder="Masukan Deskripsi Ministry" id="description">
 
               <input type="hidden" class="form-control" name="api" value="aduan">
               <input type="hidden" class="form-control" name="id">

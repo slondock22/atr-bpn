@@ -153,7 +153,13 @@
 <script>
     function show_modal(){
         $("#description").val('');
+        $("#id").val('');
         $('#modal_jenisaduan').modal('show');
+    }
+
+    function edit(id=''){
+        $('#modal_jenisaduan').modal('show');
+        getAduan(id);
     }
 
 

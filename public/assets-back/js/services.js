@@ -375,33 +375,43 @@ function handleFeed(div1,div2,id_feed){
 
 
  function getRole(id=''){
-    var url = base_url + '/master/role';
+    if(id!=''){
+        id = "/"+id;
+    }
+    var url = base_url + '/master/role'+id;
     $.get(url, function (data){
-      data = JSON.parse(data);
+        data = JSON.parse(data);
         console.log(data.data);
-        $.each(data.data, function(index, row){
-            
-            $('#tblContainerRole').append('\
-                                  <tr>\
-                                    <td>'+ row.id +'</td>\
-                                    <td>'+ row.description +'</td>\
-                                    <td>\
-                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
-                                            <i class="lni lni-trash"></i>\
-                                        </a>\
-                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
-                                            <i class="lni lni-pencil"></i>\
-                                        </a>\
-                                    </td>\
-                                  </tr>\
-                              ')
-        });  
+        if(id==''){
+            $.each(data.data, function(index, row){
+                $('#tblContainerRole').append('\
+                                    <tr>\
+                                        <td>'+ row.id +'</td>\
+                                        <td>'+ row.description +'</td>\
+                                        <td>\
+                                            <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                                <i class="lni lni-trash"></i>\
+                                            </a>\
+                                            <a onclick="edit('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                                <i class="lni lni-pencil"></i>\
+                                            </a>\
+                                        </td>\
+                                    </tr>\
+                                ')
+            });
+        }else{
+            $("#id").val(data.data.id);
+            $("#description").val(data.data.description);
+        }
     });
 }
 
 
 function getLevel(id=''){
-    var url = base_url + '/master/level';
+    if(id){
+        id = "/"+id;
+    }
+    var url = base_url + '/master/level'+id;
     $.get(url, function (data){
       data = JSON.parse(data);
         console.log(data.data);
@@ -427,13 +437,16 @@ function getLevel(id=''){
 
 
 function getAduan(id=''){
-    var url = base_url + '/master/aduan';
+    if(id !=''){
+        id = "/"+id;
+    }
+    var url = base_url + '/master/aduan'+id;
     $.get(url, function (data){
       data = JSON.parse(data);
         console.log(data.data);
-        $.each(data.data, function(index, row){
-            
-            $('#tblContainerAduan').append('\
+        if(id==''){
+            $.each(data.data, function(index, row){       
+                $('#tblContainerAduan').append('\
                                   <tr>\
                                     <td>'+ row.id +'</td>\
                                     <td>'+ row.description +'</td>\
@@ -441,20 +454,27 @@ function getAduan(id=''){
                                         <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
                                             <i class="lni lni-trash"></i>\
                                         </a>\
-                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                        <a onclick="edit('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
                                             <i class="lni lni-pencil"></i>\
                                         </a>\
                                     </td>\
                                   </tr>\
                               ')
-        });  
+             });
+        }else{
+            $("#id").val(data.data.id);
+            $("#description").val(data.data.description);
+        }  
     });
 }
 
 
 
 function getMinistry(id=''){
-    var url = base_url + '/master/ministry';
+    if(id !=''){
+        id = "/"+id;
+    }
+    var url = base_url + '/master/ministry'+id;
     $.get(url, function (data){
       data = JSON.parse(data);
         console.log(data.data);

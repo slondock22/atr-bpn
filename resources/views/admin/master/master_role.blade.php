@@ -80,7 +80,7 @@
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Data Role
+          <i class="lni featured_play_list icon-tweet"></i> Konfirmasi Hapus Data Role
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -124,7 +124,7 @@
             <div class="form-group">
               <label for="exampleFormControlSelect1">Description *</label>
               <input type="text" class="form-control" name="val[description]" 
-              placeholder="Masukan Deskripsi Jenis Aduan" id="description">
+              placeholder="Masukan Deskripsi Role" id="description">
 
               <input type="hidden" class="form-control" name="api" value="aduan">
               <input type="hidden" class="form-control" name="id">
@@ -146,7 +146,13 @@
 <script>
     function show_modal(){
         $("#description").val('');
+        $("#id").val('');
         $('#modal_ministry').modal('show');
+    }
+
+    function edit(id=''){
+        $('#modal_ministry').modal('show');
+        getRole(id);
     }
 
 

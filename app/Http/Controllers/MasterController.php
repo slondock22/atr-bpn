@@ -28,9 +28,13 @@ class MasterController extends Controller
 
 
 	     public function masterGetApi($api='',$id=''){
-	    	$client = new Client();
-	    	$id  = ($id) ? "" : "/".$id;         
-	        $url = "http://devbpn.edii.co.id:3000/master/".$api;
+	     	$client = new Client();
+	    	if($id!=''){
+	    		$id  = "/".$id;         
+	        }
+	        $url = "http://devbpn.edii.co.id:3000/master/".$api.$id;
+	        //dd($url);
+	    	
 	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
 	        $request = $client->request('GET', $url, 
 	        				 [ 
@@ -46,8 +50,7 @@ class MasterController extends Controller
 
 	     public function masterDelApi($api='',$id=''){
 	    	$client = new Client();
-	    	$id  = ($id) ? "" : "/".$id;         
-	        $url = "http://devbpn.edii.co.id:3000/master/".$api;
+	    	$url = "http://devbpn.edii.co.id:3000/master/".$api."/".$id;
 	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
 	        $request = $client->request('DELETE', $url,
 	        				 [ 
