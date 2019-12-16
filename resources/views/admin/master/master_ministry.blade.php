@@ -1,9 +1,9 @@
-@section('title','Master User')
+@section('title','Master Ministry')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Master User</h2>
+    <h2 class="tb-uikits-title">Master Ministry</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -21,7 +21,7 @@
               
             </div>
             <span style="float: right;">
-                <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add User</a>
+                <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add Ministry</a>
               </span>
           </div>
 
@@ -30,15 +30,16 @@
               <table class="table" id="datatable">
                 <thead>
                   <tr>
-                    <th>Username</th>
-                    <th>User Fullname</th>
-                    <th>Ministry</th>
-                    <th>City</th>
-                    <th>Status</th>
+                    <th style="width: 10%">ID</th>
+                    <th style="width: 20%">Name</th>
+                    <th style="width: 10px">City</th>
+                    <th style="width: 10px">Address</th>
+                    <th style="width: 10px">Phone</th>
+                    <th align="center" style="width: 10px">Level</th>
                     <th style="width: 15%">Action</th>
                   </tr>
                 </thead>
-                <tbody id="tblContainer">
+                <tbody id="tblContainerMinistry">
                 </tbody>
               </table>
             </div><!-- .tb-table -->
@@ -84,7 +85,7 @@
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Data User
+          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Data Ministry
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -108,14 +109,13 @@
 </div>
 
 
-
 <!-- Modal -->
-<div class="modal fade" id="modal_user" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_ministry" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-twitter">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Master User
+          <i class="lni lni-twitter-original icon-tweet"></i> Master Ministry
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -151,7 +151,7 @@
 <script>
     function show_modal(){
         $("#description").val('');
-        $('#modal_user').modal('show');
+        $('#modal_ministry').modal('show');
     }
 
 

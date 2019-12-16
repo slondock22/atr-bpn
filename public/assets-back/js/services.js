@@ -1,6 +1,11 @@
+
 $(document).ready(function(){
     hideComment();
     getUser();
+    getRole();
+    getAduan();
+    getLevel();
+    getMinistry();
 });
 
 $('#btnDisposisi').on('click', function() {
@@ -165,7 +170,7 @@ function getUser(){
                                     <td>'+ row.tm_ministry.city +'</td>\
                                     <td>'+ status +'</td>\
                                     <td>\
-                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
                                             <i class="lni lni-trash"></i>\
                                         </a>\
                                         <a class="tb-solial-btn social-derault-color tb-radious50">\
@@ -367,3 +372,112 @@ function handleFeed(div1,div2,id_feed){
  //        }
  //      })
  //    }
+
+
+ function getRole(id=''){
+    var url = base_url + '/master/role';
+    $.get(url, function (data){
+      data = JSON.parse(data);
+        console.log(data.data);
+        $.each(data.data, function(index, row){
+            
+            $('#tblContainerRole').append('\
+                                  <tr>\
+                                    <td>'+ row.id +'</td>\
+                                    <td>'+ row.description +'</td>\
+                                    <td>\
+                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-trash"></i>\
+                                        </a>\
+                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-pencil"></i>\
+                                        </a>\
+                                    </td>\
+                                  </tr>\
+                              ')
+        });  
+    });
+}
+
+
+function getLevel(id=''){
+    var url = base_url + '/master/level';
+    $.get(url, function (data){
+      data = JSON.parse(data);
+        console.log(data.data);
+        $.each(data.data, function(index, row){
+            
+            $('#tblContainerLevel').append('\
+                                  <tr>\
+                                    <td>'+ row.id +'</td>\
+                                    <td>'+ row.description +'</td>\
+                                    <td>\
+                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-trash"></i>\
+                                        </a>\
+                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-pencil"></i>\
+                                        </a>\
+                                    </td>\
+                                  </tr>\
+                              ')
+        });  
+    });
+}
+
+
+function getAduan(id=''){
+    var url = base_url + '/master/aduan';
+    $.get(url, function (data){
+      data = JSON.parse(data);
+        console.log(data.data);
+        $.each(data.data, function(index, row){
+            
+            $('#tblContainerAduan').append('\
+                                  <tr>\
+                                    <td>'+ row.id +'</td>\
+                                    <td>'+ row.description +'</td>\
+                                    <td>\
+                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-trash"></i>\
+                                        </a>\
+                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-pencil"></i>\
+                                        </a>\
+                                    </td>\
+                                  </tr>\
+                              ')
+        });  
+    });
+}
+
+
+
+function getMinistry(id=''){
+    var url = base_url + '/master/ministry';
+    $.get(url, function (data){
+      data = JSON.parse(data);
+        console.log(data.data);
+        $.each(data.data, function(index, row){
+            
+            $('#tblContainerMinistry').append('\
+                                  <tr>\
+                                    <td>'+ row.id +'</td>\
+                                    <td>'+ row.name +'</td>\
+                                    <td>'+ row.city +'</td>\
+                                    <td>'+ row.address +'</td>\
+                                    <td>'+ row.phone_1 +'</td>\
+                                    <td>'+ row.level +'</td>\
+                                    <td>\
+                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-trash"></i>\
+                                        </a>\
+                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
+                                            <i class="lni lni-pencil"></i>\
+                                        </a>\
+                                    </td>\
+                                  </tr>\
+                              ')
+        });  
+    });
+}

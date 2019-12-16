@@ -156,7 +156,7 @@
             </a>
           </li>
           @if(request()->cookie('USER_ROLE')  == '1')
-           <li>
+           <!-- <li>
             <a href="{{route('master_kanwil')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
@@ -171,12 +171,39 @@
                 <span class="tb-sidebar-link-text">Master Kantah</span>
               </span>
             </a>
+          </li> -->
+          <li>
+            <a href="{{route('master_ministry')}}">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
+                <span class="tb-sidebar-link-text">Master Ministry</span>
+              </span>
+            </a>
           </li>
+
           <li>
             <a href="{{route('master_jenis_aduan')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
                 <span class="tb-sidebar-link-text">Master Jenis Aduan</span>
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{route('master_role')}}">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
+                <span class="tb-sidebar-link-text">Master Role</span>
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{route('master_level')}}">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
+                <span class="tb-sidebar-link-text">Master Level</span>
               </span>
             </a>
           </li>

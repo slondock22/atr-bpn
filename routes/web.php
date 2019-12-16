@@ -57,9 +57,17 @@ Route::group(['middleware' => ['login']], function () {
 		Route::get('masterUserApi','MasterController@masterUserApi')->name('masterUserApi');
 		Route::get('master_kantah','IndexController@masterKantah')->name('master_kantah');
 		Route::get('master_kanwil','IndexController@masterKanwil')->name('master_kanwil');
-		Route::get('master_jenis_aduan','IndexController@masterJenisAduan')->name('master_jenis_aduan');
 		Route::get('master_konfig','IndexController@masterKonfig')->name('master_konfig');
 		Route::get('spam_list','IndexController@spamList')->name('spam_list');
+
+		Route::get('master_ministry','IndexController@masterMinistry')->name('master_ministry');
+		Route::get('master_jenis_aduan','IndexController@masterJenisAduan')->name('master_jenis_aduan');
+		Route::get('master_level','IndexController@masterLevel')->name('master_level');
+		Route::get('master_role','IndexController@masterRole')->name('master_role');
+
+		Route::get('master/{api}/{id?}','MasterController@masterGetApi')->name('master');
+		Route::get('delete_master/{api}/{id?}','MasterController@masterDelApi')->name('delete_master');
+		Route::post('add_master','MasterController@masterAddApi')->name('add_master');
 
 	});
 });
