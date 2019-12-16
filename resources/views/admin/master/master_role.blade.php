@@ -105,7 +105,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="modal_ministry" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_role" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-twitter">
     <div class="modal-content">
       <div class="modal-header">
@@ -147,11 +147,11 @@
     function show_modal(){
         $("#description").val('');
         $("#id").val('');
-        $('#modal_ministry').modal('show');
+        $('#modal_role').modal('show');
     }
 
     function edit(id=''){
-        $('#modal_ministry').modal('show');
+        $('#modal_role').modal('show');
         getRole(id);
     }
 
