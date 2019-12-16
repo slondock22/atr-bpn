@@ -30,6 +30,10 @@ a{
     background-color: #1085ce;
 }
 
+.bold-option{
+    font-weight: bolder;
+}
+
 .btn-modal-facebook{
     font-weight: 500;
     border-radius: 10px;

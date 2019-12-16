@@ -147,7 +147,7 @@
                     <div class="divHastag">
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
-                        #SengketaTanah
+                        #PilihJenisAduan
                       </a>
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
@@ -184,7 +184,7 @@
                       </div>
                       <div class="tb-user-info">
                         <h3 class="tb-user-name">
-                            {{$val['from']['ministry_name']}} <span>membalas kepada</span> {{$val['to']['ministry_name']}}
+                            {{$val['from']['tm_ministry']['ministry_name']}} <span>membalas kepada</span> {{$val['to']['ministry_name']}}
                             <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
                               <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
                             </ul>
@@ -276,23 +276,6 @@
                     </ul>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                   </div>
-
-                @else
-                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}">
-                    <div class="tb-height-b10 tb-height-lg-b10"></div>
-                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                      <li>
-                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
-                          <i class="material-icons-outlined">mode_comment</i> Balas
-                        </a>
-                      </li>
-
-                      <li><a onclick="modal_disposisi('{{$value['id']}}','{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
-                      </li>
-                      
-                    </ul>
-                    <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  </div>
                 @endif
               
               </div>
@@ -367,9 +350,17 @@
               <label for="exampleFormControlSelect1">Kepada</label>
               <select class="form-control" id="ministryId" name="ministry_id" onchange="setUser()">
                 <option value="">Pilih Kanwil/Kantah</option>
-                <option value="1">ATR/BPN Pusat</option>
-                <option value="2">ATR/BPN Surabaya</option>
-                <option value="3">ATR/BPN Malang</option>
+                 @if(isset($kanwil['data']))
+                   @foreach($kanwil['data'] as $key => $value)
+                      <option value="{{$value['id']}}">
+                        @if($value['level'] == "0" || $value['level'] == "1")
+                         <b>{{$value['name']}}</b>
+                        @else
+                         &nbsp;&nbsp;{{$value['name']}}
+                        @endif
+                      </option>
+                   @endforeach
+                 @endif
               </select>
             </div>
             <div class="form-group">
@@ -429,6 +420,13 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <tr>
+                      <td>#SengketaTanah</td>
+                      <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
+                      <td>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#SengketaTanah')">Pilih</button>
+                      </td>
+                    </tr>
                    <tr>
                       <td>#SengketaTanah</td>
                       <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
@@ -753,7 +751,7 @@
         range.moveToElementText(elm);
         range.select();
         document.execCommand("Copy");
-        alert("Text Copied");
+        // alert("Text Copied");
       }
       else if(window.getSelection) {
         var selection = window.getSelection();
@@ -762,7 +760,7 @@
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
-        alert("Text Copied");
+        // alert("Text Copied");
       }
     }
 
