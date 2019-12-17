@@ -21,7 +21,7 @@
               
             </div>
             <span style="float: right;">
-                <a class="tb-btn tb-style1 tb-small">Add Item</a>
+                <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add User</a>
               </span>
           </div>
 
@@ -35,7 +35,7 @@
                     <th>Ministry</th>
                     <th>City</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th style="width: 15%">Action</th>
                   </tr>
                 </thead>
                 <tbody id="tblContainer">
@@ -76,4 +76,147 @@
   </div>
   <div class="tb-height-b60 tb-height-lg-b60"></div>
 </div>
+
+
+<!--- Dialog -->
+<div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
+    <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
+      <div class="modal-header modal-header-sos">
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Data User
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body" style="font-size: 16px;min-height: 50px !important">
+          Apakah anda yakin akan menghapus Data ini ?
+      </div>
+      <input type="hidden" id="frmIdDelete">
+      <input type="hidden" id="frmDivDelete">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+          Batal
+        </button>
+        <button type="button" class="btn btn-modal-twitter" onclick="deleteMaster()">
+          Hapus
+        </button>
+      </div>
+      </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal_user" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-twitter">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myLargeModalLabel">
+          <i class="lni lni-twitter-original icon-tweet"></i> Master User
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body modalBodyPadding">
+        
+        <form id="frmMaster" name="frmMaster" action="{{route('add_master')}}" method="POST">
+          @csrf
+           <div class="tb-height-lg-b20"></div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Username *</label>
+              <input type="text" class="form-control" name="val[username]" 
+              placeholder="Masukan Deskripsi User" id="username">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Fullname *</label>
+              <input type="text" class="form-control" name="val[fullname]" 
+              placeholder="Masukan Deskripsi User" id="fullname">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Ministry *</label>
+              <select class="form-control" name="val[ministry_id]" id="ministry_id">
+                  <option value="">Pilih Ministry</option>
+              </select>
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">User Detail *</label>
+              <input type="text" class="form-control" name="val[user_detail]" 
+              placeholder="Masukan Deskripsi User" id="user_detail">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Password *</label>
+              <input type="text" class="form-control" name="val[password]" 
+              placeholder="Masukan Deskripsi User" id="password">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Re Password *</label>
+              <input type="text" class="form-control" 
+              placeholder="Masukan Deskripsi User" id="repassword">
+
+              <input type="hidden" class="form-control" name="api" value="aduan">
+              <input type="hidden" class="form-control" name="id">
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
+        <button type="button" id="btnSend" class="btn btn-modal-twitter" onclick="sendData('#frmMaster')">Proses</button>
+        <div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Large Mosal -->
+
 @endsection
+
+<script>
+    function show_modal(){
+        $("#description").val('');
+        $("#id").val('');
+        $('#modal_user').modal('show');
+    }
+
+    function edit(id=''){
+        $('#modal_user').modal('show');
+        getUser(id);      
+        selectMinistry(id);
+    }
+
+
+    function sendData(formId){
+      $("#formId #btnSend").attr('disabled','disabled');
+
+      var desc = $("#description").val();
+      if(!desc){
+          alert("Deskripsi harus diisi..");
+          return false;
+      }
+    
+      $.ajax({
+        type: 'POST',
+        url: $(formId).attr('action'),
+        data: $(formId).serialize(),
+        success: function(data){
+                if(data['response']['error'] == false ){
+                    $('.modal').modal('hide');
+                    setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
+                    getAduan();
+                }else{
+                    setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
+                }
+
+                $("#formId #btnSendDisposisi").removeAttr('disabled','disabled');
+                //$("#divLoading").hide();
+              },
+              error: function (request, status, error) {
+                setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
+                $("#formId #btnSendDisposisi").removeAttr('disabled','disabled');
+                //$("#divLoading").hide();
+              }
+          });
+    }
+
+    function delData(id=''){
+        $("#modal-confirm-delete").modal('show');
+    }
+</script>

@@ -1,9 +1,9 @@
-@section('title','Master Aduan')
+@section('title','Master Role')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Master Aduan</h2>
+    <h2 class="tb-uikits-title">Master Role</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -21,7 +21,7 @@
               
             </div>
             <span style="float: right;">
-                <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add Item</a>
+                <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add Role</a>
               </span>
           </div>
 
@@ -30,12 +30,12 @@
               <table class="table" id="datatable">
                 <thead>
                   <tr>
-                    <th style="width: 10%">ID Aduan</th>
-                    <th>Aduan</th>
+                    <th style="width: 10%">ID Role</th>
+                    <th>Role Name</th>
                     <th style="width: 20%">Action</th>
                   </tr>
                 </thead>
-                <tbody id="tblContainerAduan">
+                <tbody id="tblContainerRole">
                 </tbody>
               </table>
             </div><!-- .tb-table -->
@@ -74,15 +74,13 @@
   <div class="tb-height-b60 tb-height-lg-b60"></div>
 </div>
 
-
-
 <!--- Dialog -->
 <div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Data Aduan
+          <i class="lni featured_play_list icon-tweet"></i> Konfirmasi Hapus Data Role
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -106,14 +104,13 @@
 </div>
 
 
-
 <!-- Modal -->
-<div class="modal fade" id="modal_jenisaduan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_role" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-twitter">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Master Jenis Aduan
+          <i class="lni lni-twitter-original icon-tweet"></i> Master Role
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -127,7 +124,7 @@
             <div class="form-group">
               <label for="exampleFormControlSelect1">Description *</label>
               <input type="text" class="form-control" name="val[description]" 
-              placeholder="Masukan Deskripsi Jenis Aduan" id="description">
+              placeholder="Masukan Deskripsi Role" id="description">
 
               <input type="hidden" class="form-control" name="api" value="aduan">
               <input type="hidden" class="form-control" name="id">
@@ -144,22 +141,18 @@
 </div>
 <!-- End Large Mosal -->
 
-
-
-
-
 @endsection
 
 <script>
     function show_modal(){
         $("#description").val('');
         $("#id").val('');
-        $('#modal_jenisaduan').modal('show');
+        $('#modal_role').modal('show');
     }
 
     function edit(id=''){
-        $('#modal_jenisaduan').modal('show');
-        getAduan(id);
+        $('#modal_role').modal('show');
+        getRole(id);
     }
 
 
@@ -180,7 +173,7 @@
                 if(data['response']['error'] == false ){
                     $('.modal').modal('hide');
                     setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
-                    getAduan();
+                    getRole();
                 }else{
                     setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
                 }

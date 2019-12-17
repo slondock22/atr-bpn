@@ -81,12 +81,6 @@ class IndexController extends Controller
         
     }
 
-    public function masterJenisAduan($media,$role='')
-    {
-        
-        return view('admin.master.master_jenis_aduan')->with(compact('role'));
-        
-    }
 
     public function masterKonfig($media,$role='')
     {
@@ -115,4 +109,37 @@ class IndexController extends Controller
         return view('admin.dokumentasi')->with(compact('role'));
         
     }
+
+
+
+    public function masterMinistry($media,$role='')
+    {
+        
+        return view('admin.master.master_ministry')->with(compact('role'));
+        
+    }
+
+
+    public function masterJenisAduan($media,$role='')
+    {
+        
+        return view('admin.master.master_jenis_aduan')->with(compact('role'));
+        
+    }
+
+    public function masterRole($media,$role='')
+    {
+        
+        return view('admin.master.master_role')->with(compact('role'));
+        
+    }
+
+    public function masterLevel($media,$role='')
+    {
+        
+        return view('admin.master.master_level')->with(compact('role'));
+        
+    }
+
+
 }

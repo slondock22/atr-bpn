@@ -1,9 +1,9 @@
-@section('title','Master Aduan')
+@section('title','Master Ministry')
 @extends('layouts-back.layout')
 @section('content')
 <div class="tb-content tb-style1">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-    <h2 class="tb-uikits-title">Master Aduan</h2>
+    <h2 class="tb-uikits-title">Master Ministry</h2>
     </ul>
   </div>
   <div class="tb-height-b30 tb-height-lg-b30"></div>
@@ -21,7 +21,7 @@
               
             </div>
             <span style="float: right;">
-                <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add Item</a>
+                <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add Ministry</a>
               </span>
           </div>
 
@@ -30,12 +30,16 @@
               <table class="table" id="datatable">
                 <thead>
                   <tr>
-                    <th style="width: 10%">ID Aduan</th>
-                    <th>Aduan</th>
-                    <th style="width: 20%">Action</th>
+                    <th style="width: 10%">ID</th>
+                    <th style="width: 20%">Name</th>
+                    <th style="width: 10px">City</th>
+                    <th style="width: 10px">Address</th>
+                    <th style="width: 10px">Phone</th>
+                    <th align="center" style="width: 10px">Level</th>
+                    <th style="width: 15%">Action</th>
                   </tr>
                 </thead>
-                <tbody id="tblContainerAduan">
+                <tbody id="tblContainerMinistry">
                 </tbody>
               </table>
             </div><!-- .tb-table -->
@@ -75,14 +79,13 @@
 </div>
 
 
-
 <!--- Dialog -->
 <div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Data Aduan
+          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Data Ministry
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -106,14 +109,13 @@
 </div>
 
 
-
 <!-- Modal -->
-<div class="modal fade" id="modal_jenisaduan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_ministry" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-twitter">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Master Jenis Aduan
+          <i class="lni lni-twitter-original icon-tweet"></i> Master Ministry
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -125,12 +127,44 @@
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Description *</label>
-              <input type="text" class="form-control" name="val[description]" 
-              placeholder="Masukan Deskripsi Jenis Aduan" id="description">
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Ministry Name *</label>
+              <input type="text" class="form-control" name="val[ministry_name]" 
+              placeholder="Enter Your Ministry Name" id="ministry_name">
 
-              <input type="hidden" class="form-control" name="api" value="aduan">
-              <input type="hidden" class="form-control" name="id">
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Parent Id *</label>
+              <input type="text" class="form-control" name="val[parent_id]" 
+              placeholder="Enter Your Ministry Parent" id="parent_id">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Level *</label>
+              <input type="text" class="form-control" name="val[level]" 
+              placeholder="Enter Your Level" id="level">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">City *</label>
+              <input type="text" class="form-control" name="val[city]" 
+              placeholder="Masukan City" id="city">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Address *</label>
+              <input type="text" class="form-control" name="val[ministry_address]" 
+              placeholder="Enter Your Ministry Address" id="ministry_address">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Phone *</label>
+              <input type="text" class="form-control" name="val[ministry_phone_1]" 
+              placeholder="Enter Your Phone" id="ministry_phone_1">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Phone 2 *</label>
+              <input type="text" class="form-control" name="val[ministry_phone_2]" 
+              placeholder="Masukan Your Phone2" id="ministry_phone_2">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Email *</label>
+              <input type="text" class="form-control" name="val[ministry_email]" 
+              placeholder="Enter Your Mail" id="ministry_email">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">SLA *</label>
+              <input type="text" class="form-control" name="val[sla]" 
+              placeholder="Enter SLA" id="sla">
+
+              <input type="hidden" class="form-control" name="api" value="ministry">
+              <input type="hidden" class="form-control" name="id" id="id">
             </div>
         </form>
       </div>
@@ -144,22 +178,18 @@
 </div>
 <!-- End Large Mosal -->
 
-
-
-
-
 @endsection
 
 <script>
     function show_modal(){
         $("#description").val('');
         $("#id").val('');
-        $('#modal_jenisaduan').modal('show');
+        $('#modal_ministry').modal('show');
     }
 
     function edit(id=''){
-        $('#modal_jenisaduan').modal('show');
-        getAduan(id);
+        $('#modal_ministry').modal('show');
+        getMinistry(id);
     }
 
 
