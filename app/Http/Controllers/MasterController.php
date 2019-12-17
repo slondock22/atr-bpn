@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Input;
 class MasterController extends Controller
 {
 		
-		 public function masterUserApi(){
+		 public function masterUserApi($id=''){
 	    	$client = new Client();
-	        $url = "http://devbpn.edii.co.id:3000/user/1/20";
+	    	if($id!=''){
+	    		$id  = "/".$id;         
+	        }else{
+	        	$id  = "/1/20";
+	        }
+	        $url = "http://devbpn.edii.co.id:3000/user".$id;
 	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
 	        $request = $client->request('GET', $url, 
 	        				 [ 

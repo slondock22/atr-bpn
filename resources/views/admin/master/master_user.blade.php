@@ -127,9 +127,30 @@
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Description *</label>
-              <input type="text" class="form-control" name="val[description]" 
-              placeholder="Masukan Deskripsi User" id="description">
+              <label for="exampleFormControlSelect1">Username *</label>
+              <input type="text" class="form-control" name="val[username]" 
+              placeholder="Masukan Deskripsi User" id="username">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Fullname *</label>
+              <input type="text" class="form-control" name="val[fullname]" 
+              placeholder="Masukan Deskripsi User" id="fullname">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Ministry *</label>
+              <select class="form-control" name="val[ministry_id]" id="ministry_id">
+                  <option value="">Pilih Ministry</option>
+              </select>
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">User Detail *</label>
+              <input type="text" class="form-control" name="val[user_detail]" 
+              placeholder="Masukan Deskripsi User" id="user_detail">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Password *</label>
+              <input type="text" class="form-control" name="val[password]" 
+              placeholder="Masukan Deskripsi User" id="password">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Re Password *</label>
+              <input type="text" class="form-control" 
+              placeholder="Masukan Deskripsi User" id="repassword">
 
               <input type="hidden" class="form-control" name="api" value="aduan">
               <input type="hidden" class="form-control" name="id">
@@ -151,7 +172,14 @@
 <script>
     function show_modal(){
         $("#description").val('');
+        $("#id").val('');
         $('#modal_user').modal('show');
+    }
+
+    function edit(id=''){
+        $('#modal_user').modal('show');
+        getUser(id);      
+        selectMinistry(id);
     }
 
 

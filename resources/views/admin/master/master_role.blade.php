@@ -173,7 +173,7 @@
                 if(data['response']['error'] == false ){
                     $('.modal').modal('hide');
                     setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
-                    getAduan();
+                    getRole();
                 }else{
                     setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
                 }

@@ -127,12 +127,44 @@
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Description *</label>
-              <input type="text" class="form-control" name="val[description]" 
-              placeholder="Masukan Deskripsi Ministry" id="description">
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Ministry Name *</label>
+              <input type="text" class="form-control" name="val[ministry_name]" 
+              placeholder="Enter Your Ministry Name" id="ministry_name">
 
-              <input type="hidden" class="form-control" name="api" value="aduan">
-              <input type="hidden" class="form-control" name="id">
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Parent Id *</label>
+              <input type="text" class="form-control" name="val[parent_id]" 
+              placeholder="Enter Your Ministry Parent" id="parent_id">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Level *</label>
+              <input type="text" class="form-control" name="val[level]" 
+              placeholder="Enter Your Level" id="level">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">City *</label>
+              <input type="text" class="form-control" name="val[city]" 
+              placeholder="Masukan City" id="city">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Address *</label>
+              <input type="text" class="form-control" name="val[ministry_address]" 
+              placeholder="Enter Your Ministry Address" id="ministry_address">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Phone *</label>
+              <input type="text" class="form-control" name="val[ministry_phone_1]" 
+              placeholder="Enter Your Phone" id="ministry_phone_1">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Phone 2 *</label>
+              <input type="text" class="form-control" name="val[ministry_phone_2]" 
+              placeholder="Masukan Your Phone2" id="ministry_phone_2">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">Email *</label>
+              <input type="text" class="form-control" name="val[ministry_email]" 
+              placeholder="Enter Your Mail" id="ministry_email">
+
+              <label for="exampleFormControlSelect1" style="margin-top:15px">SLA *</label>
+              <input type="text" class="form-control" name="val[sla]" 
+              placeholder="Enter SLA" id="sla">
+
+              <input type="hidden" class="form-control" name="api" value="ministry">
+              <input type="hidden" class="form-control" name="id" id="id">
             </div>
         </form>
       </div>
@@ -151,7 +183,13 @@
 <script>
     function show_modal(){
         $("#description").val('');
+        $("#id").val('');
         $('#modal_ministry').modal('show');
+    }
+
+    function edit(id=''){
+        $('#modal_ministry').modal('show');
+        getMinistry(id);
     }
 
 

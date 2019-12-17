@@ -150,40 +150,6 @@ function showComment(){
 }
 
 
-function getUser(){
-    var url = base_url + '/masterUserApi/';
-    $.get(url, function (data){
-      data = JSON.parse(data);
-        console.log(data.data);
-        $.each(data.data, function(index, row){
-            if(row.user_status==1){
-              status = 'Active';
-            }else{
-              status = 'Not Active';
-            }
-
-            $('#tblContainer').append('\
-                                  <tr>\
-                                    <td>'+ row.username +'</td>\
-                                    <td>'+ row.user_full_name +'</td>\
-                                    <td>'+ row.tm_ministry.ministry_name +'</td>\
-                                    <td>'+ row.tm_ministry.city +'</td>\
-                                    <td>'+ status +'</td>\
-                                    <td>\
-                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
-                                            <i class="lni lni-trash"></i>\
-                                        </a>\
-                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
-                                            <i class="lni lni-pencil"></i>\
-                                        </a>\
-                                    </td>\
-                                  </tr>\
-                              ')
-        });  
-    });
-}
-
-
 function spamFeed(id_feed){
       $.ajax({
         type: 'POST',
@@ -374,6 +340,51 @@ function handleFeed(div1,div2,id_feed){
  //    }
 
 
+ function getUser(id=''){
+    if(id!=''){
+        id = "/"+id;
+    }
+    var url = base_url + '/masterUserApi'+id;
+    $.get(url, function (data){
+      data = JSON.parse(data);
+        console.log(data.data);
+        if(id==''){
+
+                $.each(data.data, function(index, row){
+                    if(row.user_status==1){
+                    status = 'Active';
+                    }else{
+                    status = 'Not Active';
+                    }
+                    $('#tblContainer').append('\
+                            <tr>\
+                                <td>'+ row.username +'</td>\
+                                <td>'+ row.user_full_name +'</td>\
+                                <td>'+ row.tm_ministry.ministry_name +'</td>\
+                                <td>'+ row.tm_ministry.city +'</td>\
+                                <td>'+ status +'</td>\
+                                <td>\
+                                    <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                        <i class="lni lni-trash"></i>\
+                                    </a>\
+                                    <a onclick="edit('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                        <i class="lni lni-pencil"></i>\
+                                    </a>\
+                                </td>\
+                            </tr>\
+                        ')
+                });
+        }else{
+            $("#username").val(data.data[0].id);
+            $("#username").val(data.data[0].username);
+            $("#fullname").val(data.data[0].user_full_name);
+            $("#user_detail").val(data.data[0].user_detail);
+            $("#ministry_id").val(data.data[0].tm_ministry.ministry_id);
+        }
+    });
+}
+
+
  function getRole(id=''){
     if(id!=''){
         id = "/"+id;
@@ -478,26 +489,54 @@ function getMinistry(id=''){
     $.get(url, function (data){
       data = JSON.parse(data);
         console.log(data.data);
-        $.each(data.data, function(index, row){
-            
-            $('#tblContainerMinistry').append('\
-                                  <tr>\
-                                    <td>'+ row.id +'</td>\
-                                    <td>'+ row.name +'</td>\
-                                    <td>'+ row.city +'</td>\
-                                    <td>'+ row.address +'</td>\
-                                    <td>'+ row.phone_1 +'</td>\
-                                    <td>'+ row.level +'</td>\
-                                    <td>\
-                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
-                                            <i class="lni lni-trash"></i>\
-                                        </a>\
-                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
-                                            <i class="lni lni-pencil"></i>\
-                                        </a>\
-                                    </td>\
-                                  </tr>\
-                              ')
-        });  
+        if(id==''){
+            $.each(data.data, function(index, row){          
+                $('#tblContainerMinistry').append('\
+                                    <tr>\
+                                        <td>'+ row.id +'</td>\
+                                        <td>'+ row.name +'</td>\
+                                        <td>'+ row.city +'</td>\
+                                        <td>'+ row.address +'</td>\
+                                        <td>'+ row.phone_1 +'</td>\
+                                        <td>'+ row.level +'</td>\
+                                        <td>\
+                                            <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                                <i class="lni lni-trash"></i>\
+                                            </a>\
+                                            <a onclick="edit('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                                <i class="lni lni-pencil"></i>\
+                                            </a>\
+                                        </td>\
+                                    </tr>\
+                                ')
+            });
+        }else{
+            $("#id").val(data.data.id);
+            $("#level").val(data.data.level);
+            $("#ministry_name").val(data.data.name);
+            $("#city").val(data.data.city);
+            $("#ministry_address").val(data.data.address);
+            $("#ministry_phone_1").val(data.data.phone_1);
+            $("#ministry_phone_2").val(data.data.phone_2);
+            $("#ministry_email").val(data.data.email);
+        }
+    });
+}
+
+function selectMinistry(id=''){
+    if(id !=''){
+        id = "/"+id;
+    }
+    var url = base_url + '/master/ministry';
+    $.get(url, function (data){
+      data = JSON.parse(data);
+        console.log(data.data);
+            $.each(data.data, function(index, row){          
+                $('#ministry_id').append('\
+                                    <option value="'+row.id+'">\
+                                        '+ row.name +'\
+                                    </option>\
+                                ')
+            });
     });
 }
