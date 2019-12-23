@@ -70,20 +70,20 @@ class MasterController extends Controller
 	     }
 
 		 
-		 public function masterAddApi(){   
+		 public function masterUserAddApi(){   
 		 	$api   = Input::get('api');
 		 	$id    = Input::get('id');
 	        $value = Input::get('val');
 	        $tipe  = "POST";
 
-	        if($id!=''){
-	        	$id = "/".$id;
-	        	$tipe = "PUT";
-	        }
+	        // if($id!=''){
+	        // 	$id = "/".$id;
+	        // 	$tipe = "PUT";
+	        // }
 
 	        $client = new Client();
 
-	        $url = "http://devbpn.edii.co.id:3000/master/".$api.$id;
+	        $url = "http://devbpn.edii.co.id:3000/user";
 
 	        $token_akses = request()->cookie('TOKEN_AUTH_APP');
 	        $request = $client->request($tipe, $url, 

@@ -69,6 +69,8 @@ Route::group(['middleware' => ['login']], function () {
 		Route::get('delete_master/{api}/{id?}','MasterController@masterDelApi')->name('delete_master');
 		Route::post('add_master','MasterController@masterAddApi')->name('add_master');
 
+		Route::post('add_master_user','MasterController@masterUserAddApi')->name('add_master_user');
+
 	});
 });
 

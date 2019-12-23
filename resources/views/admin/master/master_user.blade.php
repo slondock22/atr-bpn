@@ -123,34 +123,34 @@
       </div>
       <div class="modal-body modalBodyPadding">
         
-        <form id="frmMaster" name="frmMaster" action="{{route('add_master')}}" method="POST">
+        <form id="frmMaster" name="frmMaster" action="{{route('add_master_user')}}" method="POST">
           @csrf
            <div class="tb-height-lg-b20"></div>
             <div class="form-group">
               <label for="exampleFormControlSelect1">Username *</label>
               <input type="text" class="form-control" name="val[username]" 
-              placeholder="Masukan Deskripsi User" id="username">
+              placeholder="Masukan Username" id="username">
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">Fullname *</label>
               <input type="text" class="form-control" name="val[fullname]" 
-              placeholder="Masukan Deskripsi User" id="fullname">
+              placeholder="Masukan Fullname" id="fullname">
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">Ministry *</label>
               <select class="form-control" name="val[ministry_id]" id="ministry_id">
-                  <option value="">Pilih Ministry</option>
+                  
               </select>
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">User Detail *</label>
               <input type="text" class="form-control" name="val[user_detail]" 
-              placeholder="Masukan Deskripsi User" id="user_detail">
+              placeholder="Masukan User Detail" id="user_detail">
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">Password *</label>
-              <input type="text" class="form-control" name="val[password]" 
-              placeholder="Masukan Deskripsi User" id="password">
+              <input type="password" class="form-control" name="val[password]" 
+              placeholder="Masukan Password" id="password">
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">Re Password *</label>
-              <input type="text" class="form-control" 
-              placeholder="Masukan Deskripsi User" id="repassword">
+              <input type="password" class="form-control" 
+              placeholder="Masukan Re Password" id="re_password">
 
               <input type="hidden" class="form-control" name="api" value="aduan">
               <input type="hidden" class="form-control" name="id">
@@ -171,8 +171,7 @@
 
 <script>
     function show_modal(){
-        $("#description").val('');
-        $("#id").val('');
+        $(".form-control").val('');
         $('#modal_user').modal('show');
     }
 
@@ -186,11 +185,42 @@
     function sendData(formId){
       $("#formId #btnSend").attr('disabled','disabled');
 
-      var desc = $("#description").val();
-      if(!desc){
-          alert("Deskripsi harus diisi..");
+      var username = $("#username").val();
+      var fullname = $("#fullname").val();
+      var ministry_id = $("#ministry_id").val();
+      var password = $("#password").val();
+      var re_password = $("#re_password").val();
+
+      if(!username){
+          alert("Username harus diisi..");
           return false;
       }
+
+      if(!fullname){
+          alert("Fullname harus diisi..");
+          return false;
+      }
+
+      if(!ministry_id){
+          alert("Ministry harus diisi..");
+          return false;
+      }
+
+      if(!password){
+          alert("Password harus diisi..");
+          return false;
+      }
+
+      if(!re_password){
+          alert("Re Password harus diisi..");
+          return false;
+      }
+
+      if(password != re_password){
+          alert("Password tidak sama..");
+          return false;
+      }
+
     
       $.ajax({
         type: 'POST',
@@ -200,7 +230,8 @@
                 if(data['response']['error'] == false ){
                     $('.modal').modal('hide');
                     setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
-                    getAduan();
+                    $("#tblContainer").html();
+                    getUser();
                 }else{
                     setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
                 }

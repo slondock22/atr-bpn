@@ -6,6 +6,7 @@ $(document).ready(function(){
     getAduan();
     getLevel();
     getMinistry();
+    getMinistryOption();
 });
 
 $('#btnDisposisi').on('click', function() {
@@ -537,6 +538,27 @@ function selectMinistry(id=''){
                                         '+ row.name +'\
                                     </option>\
                                 ')
+            });
+    });
+}
+
+
+function getMinistry(id=''){
+    if(id !=''){
+        id = "/"+id;
+    }
+    var url = base_url + '/master/ministry'+id;
+    $.get(url, function (data){
+      data = JSON.parse(data);
+        console.log(data.data);
+            $('#ministry_id').append('<option value="">Pilih Ministry</option>\
+            ');
+            $.each(data.data, function(index, row){          
+                $('#ministry_id').append('\
+                   <option value="'+row.id+'">\
+                        '+ row.name +'\
+                    </option>\
+                ')
             });
     });
 }
