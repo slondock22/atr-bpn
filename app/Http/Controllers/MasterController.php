@@ -74,13 +74,19 @@ class MasterController extends Controller
 		 	$api   = Input::get('api');
 		 	$id    = Input::get('id');
 	        $value = Input::get('val');
-	        
+	        $tipe  = "POST";
+
+	        if($id!=''){
+	        	$id = "/".$id;
+	        	$tipe = "PUT";
+	        }
+
 	        $client = new Client();
 
-	        $url = "http://devbpn.edii.co.id:3000/master/".$api;
+	        $url = "http://devbpn.edii.co.id:3000/master/".$api.$id;
 
 	        $token_akses = request()->cookie('TOKEN_AUTH_APP');
-	        $request = $client->request('POST', $url, 
+	        $request = $client->request($tipe, $url, 
 	                       [ 
 	                            'headers' => [
 	                                 'Content-Type'  => 'application/json',

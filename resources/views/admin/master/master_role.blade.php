@@ -126,8 +126,8 @@
               <input type="text" class="form-control" name="val[description]" 
               placeholder="Masukan Deskripsi Role" id="description">
 
-              <input type="hidden" class="form-control" name="api" value="aduan">
-              <input type="hidden" class="form-control" name="id">
+              <input type="hidden" class="form-control" name="api" value="role">
+              <input type="hidden" class="form-control" name="id" id="id">
             </div>
         </form>
       </div>
@@ -173,6 +173,7 @@
                 if(data['response']['error'] == false ){
                     $('.modal').modal('hide');
                     setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
+                    $("#tblContainerRole").html('');
                     getRole();
                 }else{
                     setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);

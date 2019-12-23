@@ -130,7 +130,7 @@
               placeholder="Masukan Deskripsi Jenis Aduan" id="description">
 
               <input type="hidden" class="form-control" name="api" value="aduan">
-              <input type="hidden" class="form-control" name="id">
+              <input type="hidden" class="form-control" name="id" id="id">
             </div>
         </form>
       </div>
@@ -179,8 +179,12 @@
         success: function(data){
                 if(data['response']['error'] == false ){
                     $('.modal').modal('hide');
-                    setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
-                    getAduan();
+                    setTimeout(function() { 
+                      showFlashAlert('success', data['response']['message']);
+                      $("#tblContainerAduan").html('');
+                      getAduan();
+                    }, 100);
+                    
                 }else{
                     setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
                 }
