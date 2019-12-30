@@ -19,6 +19,7 @@
   <link rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/jqvmap.min.css" />
   <link rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/swiper.min.css" />
   <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/classic-style.css" />
+  <link href="{{asset('/assets-back')}}/css/select2.min.css" rel="stylesheet" />
   
   <!-- <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/style.css" /> -->
   <link href="{{asset('/')}}assets/css/customs.css" rel="stylesheet">
@@ -83,6 +84,8 @@
   <script src="{{asset('/assets-back')}}/js/main.js"></script>
   <script src="{{asset('/assets-back')}}/js/services.js"></script>
   <script src="{{asset('/assets-back')}}/js/alert.js"></script>
+  <script src="{{asset('/assets-back')}}/js/select2.min.js"></script>
+
 
 
    <!-- Datatables-->

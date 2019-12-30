@@ -356,7 +356,7 @@
                         @if($value['level'] == "0" || $value['level'] == "1")
                          <b>{{$value['name']}}</b>
                         @else
-                         &nbsp;&nbsp;{{$value['name']}}
+                         &nbsp;&nbsp;&nbsp;{{$value['name']}}
                         @endif
                       </option>
                    @endforeach
@@ -364,8 +364,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">Ke
-              terangan</label>
+              <label for="exampleFormControlTextarea1">Keterangan</label>
               <textarea class="form-control text-area-modal-twitter-nopad" id="commentDisposisi" rows="3" placeholder="Isikan keterangan disposisi" name="comment"></textarea>
             </div>
 
