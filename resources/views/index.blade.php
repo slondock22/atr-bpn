@@ -134,8 +134,14 @@
                         </div>
                     </div>
                     <div class="col-md-6 right-info">
-                        <div class="thumb animated">
-                            <img src="{{asset('/')}}assets/img/banner-atr.png" alt="Thumb">
+                        <div class="owl-carousel">
+                            <div class="thumb animated">
+                                <img src="{{asset('/')}}assets/img/banner-atr.png" alt="Thumb">
+                            </div>
+
+                            <div class="thumb animated" align="center">
+                                <img src="{{asset('/')}}assets/img/banner-atr2.png" alt="Thumb">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -612,8 +618,18 @@
     <script src="{{asset('/')}}assets/js/bootsnav.js"></script>
     <script src="{{asset('/')}}assets/js/main.js"></script>
 
+    <script>
+        $(document).ready(function(){
+          $(".owl-carousel").owlCarousel({
+                items:1,
+                autoplay:true,
+                autoplayTimeout:3000,
+                smartSpeed:500,
+                loop:true 
+          });
+        });    
+    </script>
 
-   
 </body>
 
 </html>
