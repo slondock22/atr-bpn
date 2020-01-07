@@ -265,7 +265,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{!!str_replace("'","\'",$value['comment'])!!}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
+                        <a onclick="modal_feeds('{!!str_replace(array("'",","),array("\'","\,"),$value['comment'])!!}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
