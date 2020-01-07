@@ -4,9 +4,13 @@ $(document).ready(function(){
     getUser();
     getRole();
     getAduan();
-    getLevel();
+    // getLevel();
     getMinistry();
-    getMinistryOption();
+    // getMinistryOption();
+     $('#ministryId').select2({
+        width: '100%',
+        dropdownParent: $("#modal-add-disposisi"),
+     });
 });
 
 $('#btnDisposisi').on('click', function() {
@@ -419,33 +423,33 @@ function handleFeed(div1,div2,id_feed){
 }
 
 
-function getLevel(id=''){
-    if(id){
-        id = "/"+id;
-    }
-    var url = base_url + '/master/level'+id;
-    $.get(url, function (data){
-      data = JSON.parse(data);
-        console.log(data.data);
-        $.each(data.data, function(index, row){
+// function getLevel(id=''){
+//     if(id){
+//         id = "/"+id;
+//     }
+//     var url = base_url + '/master/level'+id;
+//     $.get(url, function (data){
+//       data = JSON.parse(data);
+//         console.log(data.data);
+//         $.each(data.data, function(index, row){
             
-            $('#tblContainerLevel').append('\
-                                  <tr>\
-                                    <td>'+ row.id +'</td>\
-                                    <td>'+ row.description +'</td>\
-                                    <td>\
-                                        <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
-                                            <i class="lni lni-trash"></i>\
-                                        </a>\
-                                        <a class="tb-solial-btn social-derault-color tb-radious50">\
-                                            <i class="lni lni-pencil"></i>\
-                                        </a>\
-                                    </td>\
-                                  </tr>\
-                              ')
-        });  
-    });
-}
+//             $('#tblContainerLevel').append('\
+//                                   <tr>\
+//                                     <td>'+ row.id +'</td>\
+//                                     <td>'+ row.description +'</td>\
+//                                     <td>\
+//                                         <a onclick="delData('+row.id+')" class="tb-solial-btn social-derault-color tb-radious50">\
+//                                             <i class="lni lni-trash"></i>\
+//                                         </a>\
+//                                         <a class="tb-solial-btn social-derault-color tb-radious50">\
+//                                             <i class="lni lni-pencil"></i>\
+//                                         </a>\
+//                                     </td>\
+//                                   </tr>\
+//                               ')
+//         });  
+//     });
+// }
 
 
 function getAduan(id=''){
@@ -543,7 +547,7 @@ function selectMinistry(id=''){
 }
 
 
-function getMinistry(id=''){
+function getMinistryOption(id=''){
     if(id !=''){
         id = "/"+id;
     }

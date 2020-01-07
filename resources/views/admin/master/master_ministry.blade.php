@@ -196,11 +196,11 @@
     function sendData(formId){
       $("#formId #btnSend").attr('disabled','disabled');
 
-      var desc = $("#description").val();
-      if(!desc){
-          alert("Deskripsi harus diisi..");
-          return false;
-      }
+      // var desc = $("#description").val();
+      // if(!desc){
+      //     alert("Deskripsi harus diisi..");
+      //     return false;
+      // }
     
       $.ajax({
         type: 'POST',
