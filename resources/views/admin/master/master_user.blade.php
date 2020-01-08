@@ -168,8 +168,14 @@
 <!-- End Large Mosal -->
 
 @endsection
+<script src="{{asset('/assets-back')}}/js/vendor/jquery-1.12.4.min.js"></script>
 
 <script>
+
+  $(document).ready(function(){
+    getUser();
+  });
+
     function show_modal(){
         $(".form-control").val('');
         $('#modal_user').modal('show');

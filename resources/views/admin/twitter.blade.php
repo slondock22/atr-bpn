@@ -265,7 +265,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{!!str_replace(array("'",","),array("\'","\,"),$value['comment'])!!}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
+                        <a onclick="modal_feeds('{!!str_replace("'","\'",$value['comment'])!!}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
@@ -645,8 +645,9 @@
 </div>
 
 
-
+ <script type="module" src="https://unpkg.com/x-frame-bypass"></script>
 <script>
+
     
 
     function collapseBtn(div1,div2){
@@ -729,9 +730,10 @@
       // $('#inputSendModalFeeds').val('');
       $('#postUrl').html('');
 
-      var link = post_url;
+      var link = "https://twitter.com/airlanggadwiTP/status/1214496186868150272?ref_src=twsrc%5Etfw";
       // alert(link);
       var iframe = document.createElement('iframe');
+      iframe.is = "x-frame-bypass";
       iframe.frameBorder=0;
       iframe.width="820px";
       iframe.height="350px";

@@ -142,8 +142,14 @@
 <!-- End Large Mosal -->
 
 @endsection
+<script src="{{asset('/assets-back')}}/js/vendor/jquery-1.12.4.min.js"></script>
 
 <script>
+
+  $(document).ready(function(){
+    getRole();
+  });
+
     function show_modal(){
         $("#description").val('');
         $("#id").val('');

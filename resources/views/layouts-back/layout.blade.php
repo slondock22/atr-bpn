@@ -33,11 +33,11 @@
     <link href="{{ asset('/assets-back')}}/css/datatables/fixedHeader.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/assets-back')}}/css/datatables/responsive.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/assets-back')}}/css/datatables/scroller.bootstrap.min.css') }}" rel="stylesheet" type="text/css" /> -->
-
+{{-- 
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
     <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
-
+ --}}
 </head>
 
 <script type="text/javascript">
