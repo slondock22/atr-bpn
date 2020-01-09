@@ -63,7 +63,7 @@ class AduanController extends Controller
         $idFeeds = Input::get('idFeeds');
         $value['comment'] = Input::get('comment');
         $value['to'] = Input::get('ministry_id');
-        dd($value['to']);
+        // dd($value['to']);
 
         $client = new Client();
 

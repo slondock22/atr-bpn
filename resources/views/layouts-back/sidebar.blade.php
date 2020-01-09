@@ -77,6 +77,14 @@
               </span>
             </a>
           </li>
+           <li>
+            <a href="{{route('aduan','email')}}">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">email</i></span>
+                <span class="tb-sidebar-link-text">E-mail</span>
+              </span>
+            </a>
+          </li>
         </ul><!-- .tb-sidebar-nav-list -->
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Berita</span>

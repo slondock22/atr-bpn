@@ -1,11 +1,11 @@
 
 $(document).ready(function(){
     hideComment();
-    getUser();
-    getRole();
-    getAduan();
+    // getUser();
+    // getRole();
+    // getAduan();
     // getLevel();
-    getMinistry();
+    // getMinistry();
     // getMinistryOption();
      $('#ministryId').select2({
         width: '100%',

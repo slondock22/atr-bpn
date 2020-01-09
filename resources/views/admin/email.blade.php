@@ -2,12 +2,9 @@
 @extends('layouts-back.layout')
 @section('content')
 
-<script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
-<script src="{{asset('/assets-back')}}/js/x-frame-bypass.js"></script>
-
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-      <h2 class="tb-uikits-title">Twitter</h2>
+      <h2 class="tb-uikits-title">E-mail</h2>
     </div>
     
     <div class="tb-content">
@@ -612,10 +609,8 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body" id="modal-body">
-         <div id="postUrl">
-           {{-- <iframe is="x-frame-bypass" width="820px" height="350px" id="iframePostReply" frameborder="0" src="" ></iframe> --}}
-         </div>
+      <div class="modal-body" id="">
+         <div id="postUrl"></div>
       </div>
       </div>
     </div>
@@ -648,6 +643,8 @@
       </div>
     </div>
 </div>
+
+
 
 <script>
     
@@ -730,10 +727,10 @@
       $('#divSendModalFeeds').html('');
 
       // $('#inputSendModalFeeds').val('');
-      // $('#postUrl').html('');
+      $('#postUrl').html('');
 
       var link = post_url;
-      // // alert(link);
+      // alert(link);
       var iframe = document.createElement('iframe');
       iframe.frameBorder=0;
       iframe.width="820px";
@@ -741,7 +738,6 @@
       iframe.id="iframePostReply";
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
-      // $("#modal-iframepost").contents().find("#iframePostReply").attr("src",  link);
 
       post_feeds($('#id_feeds').val(), $('#inputSendModalFeeds').val());  
     }
