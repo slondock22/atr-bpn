@@ -2,6 +2,9 @@
 @extends('layouts-back.layout')
 @section('content')
 
+<script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
+<script src="{{asset('/assets-back')}}/js/x-frame-bypass.js"></script>
+
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Twitter</h2>
@@ -609,8 +612,10 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body" id="">
-         <div id="postUrl"></div>
+      <div class="modal-body" id="modal-body">
+         <div id="postUrl">
+           {{-- <iframe is="x-frame-bypass" width="820px" height="350px" id="iframePostReply" frameborder="0" src="" ></iframe> --}}
+         </div>
       </div>
       </div>
     </div>
@@ -644,10 +649,7 @@
     </div>
 </div>
 
-
- <script type="module" src="https://unpkg.com/x-frame-bypass"></script>
 <script>
-
     
 
     function collapseBtn(div1,div2){
@@ -728,18 +730,18 @@
       $('#divSendModalFeeds').html('');
 
       // $('#inputSendModalFeeds').val('');
-      $('#postUrl').html('');
+      // $('#postUrl').html('');
 
-      var link = "https://twitter.com/airlanggadwiTP/status/1214496186868150272?ref_src=twsrc%5Etfw";
-      // alert(link);
+      var link = post_url;
+      // // alert(link);
       var iframe = document.createElement('iframe');
-      iframe.is = "x-frame-bypass";
       iframe.frameBorder=0;
       iframe.width="820px";
       iframe.height="350px";
       iframe.id="iframePostReply";
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
+      // $("#modal-iframepost").contents().find("#iframePostReply").attr("src",  link);
 
       post_feeds($('#id_feeds').val(), $('#inputSendModalFeeds').val());  
     }
