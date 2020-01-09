@@ -21,7 +21,7 @@
   <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/classic-style.css" />
   <link href="{{asset('/assets-back')}}/css/select2.min.css" rel="stylesheet" />
   
-  <!-- <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/style.css" /> -->
+  <link id="mode-option" rel="stylesheet" type="text/css" href="{{asset('/assets-back')}}/css/style.css" />
   <link href="{{asset('/')}}assets/css/customs.css" rel="stylesheet">
   <link href="{{asset('/')}}assets-back/css/bootstrap-customs.css" rel="stylesheet">
   <link href="{{asset('/')}}assets-back/css/alert.css" rel="stylesheet" type="text/css" />
@@ -34,9 +34,11 @@
     <link href="{{ asset('/assets-back')}}/css/datatables/responsive.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/assets-back')}}/css/datatables/scroller.bootstrap.min.css') }}" rel="stylesheet" type="text/css" /> -->
 
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
-    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+  </head>
+  <body>
 
 </head>
 
@@ -87,11 +89,15 @@
   <script src="{{asset('/assets-back')}}/js/smooth-scrollbar.js"></script>
   <script src="{{asset('/assets-back')}}/js/main.js"></script>
   <script src="{{asset('/assets-back')}}/js/services.js"></script>
+  <script src="{{asset('/assets-back')}}/js/customs.js"></script>
   <script src="{{asset('/assets-back')}}/js/alert.js"></script>
   <script src="{{asset('/assets-back')}}/js/select2.min.js"></script>
 
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+ 
    <!-- Datatables-->
 <!--   <script src="{{ asset('/assets-back')}}/css/datatables/jquery.dataTables.min.js"></script>
  -->  <!-- <script src="{{ asset('/assets-back')}}/css/datatables/dataTables.bootstrap.js"></script>

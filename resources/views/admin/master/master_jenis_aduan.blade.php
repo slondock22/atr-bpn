@@ -127,7 +127,7 @@
             <div class="form-group">
               <label for="exampleFormControlSelect1">Description *</label>
               <input type="text" class="form-control" name="val[description]" 
-              placeholder="Masukan Deskripsi Jenis Aduan" id="description">
+              placeholder="Masukan Deskripsi Jenis Aduan" id="description" required>
 
               <input type="hidden" class="form-control" name="api" value="aduan">
               <input type="hidden" class="form-control" name="id" id="id">
@@ -166,11 +166,9 @@
     function sendData(formId){
       $("#formId #btnSend").attr('disabled','disabled');
 
-      var desc = $("#description").val();
-      if(!desc){
-          alert("Deskripsi harus diisi..");
-          return false;
-      }
+      // var check = input_validator('frmMaster');     
+      // alert(JSON.stringify(check));
+      // return true;
     
       $.ajax({
         type: 'POST',

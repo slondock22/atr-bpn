@@ -10,7 +10,7 @@ function input_validator(id){
             if(elm.attr('required'))
             {
                 // elm.closest('div').html(div + label);
-                elm.addClass('is-invalid');
+                elm.addClass('parsley-error');
                 err++;
             }
         }
@@ -23,8 +23,8 @@ function input_validator(id){
 
 function percent_validation(id, value){
     if (value > 100) {
-        swal('', 'max persentase tidak boleh lebih dari 100%', 'error');
-        $('#' + id).val('');
+        /*swal('', 'max persentase tidak boleh lebih dari 100%', 'error');
+        $('#' + id).val('');*/
     }
 }
 

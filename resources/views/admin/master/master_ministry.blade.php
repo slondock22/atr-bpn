@@ -27,7 +27,7 @@
 
           <div class="tb-card-body">
             <div class="tb-table tb-style1 tb-type1 table-responsive">
-              <table class="table" id="datatable">
+             <table class="table" id="datatable">
                 <thead>
                   <tr>
                     <th style="width: 10%">ID</th>
@@ -43,33 +43,7 @@
                 </tbody>
               </table>
             </div><!-- .tb-table -->
-            <div class="tb-table-footer">
-              <div class="tb-table-footer-left">
-                <div class="tb-table-footer-left-text">This report was generated on 29 Des,2019 at 9:34:19 PM - <a href="#">Refresh Report</a></div>
-              </div>
-              <div class="tb-table-footer-right">
-                <ul class="tb-mp0 tb-table-footer-list">
-                  <li>
-                    <span class="tb-efl-title">Show Rows:</span>
-                    <div class="tb-custom-select-wrap tb-style1">
-                      <select name="#" class="tb-custom-select">
-                        <option value="classic-fit1">10</option>
-                        <option value="classic-fit2">15</option>
-                        <option value="classic-fit3">20</option>
-                      </select>
-                    </div>
-                  </li>
-                  <li><span class="tb-efl-title">Go to</span><input type="text" value="1"></li>
-                  <li>1 - 10 of 10</li>
-                  <li>
-                    <div class="tb-navigation tb-style1">
-                      <a href="#" class="tb-prev"><i class="material-icons-outlined">keyboard_arrow_left</i></a>
-                      <a href="#" class="tb-next"><i class="material-icons-outlined">keyboard_arrow_right</i></a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div><!-- .col -->
@@ -136,12 +110,15 @@
               placeholder="Enter Your Ministry Parent" id="parent_id">
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">Level *</label>
-              <input type="text" class="form-control" name="val[level]" 
-              placeholder="Enter Your Level" id="level">
+              <select type="text" class="form-control" name="val[level]" id="level" required>
+                  <option value="">Pilih Level</option>
+                  <option value="1">Kantor Wilayah</option>
+                  <option value="2">Kantor Pertanahan</option>
+              </select>
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">City *</label>
               <input type="text" class="form-control" name="val[city]" 
-              placeholder="Masukan City" id="city">
+              placeholder="Masukan City" id="city" required>
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">Address *</label>
               <input type="text" class="form-control" name="val[ministry_address]" 
@@ -181,6 +158,8 @@
 @endsection
 
 <script>
+    
+
     function show_modal(){
         $("#description").val('');
         $("#id").val('');
