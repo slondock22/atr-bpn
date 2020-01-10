@@ -12,117 +12,7 @@ $(document).ready(function(){
         dropdownParent: $("#modal-add-disposisi"),
      });
 
-     $('#table12').bootstrapTable({
-        pagination: true, 
-        search: true,
-        columns: [{
-          field: 'id',
-          title: 'Item ID'
-        }, {
-          field: 'name',
-          title: 'Item Name'
-        }, {
-          field: 'price',
-          title: 'Item Price'
-        }],
-        data: [{
-          id: 1,
-          name: 'Item 1',
-          price: '$1'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
-          }]
-      })
+     
 });
 
 $('#btnDisposisi').on('click', function() {
@@ -134,20 +24,21 @@ $('#btnDisposisi').on('click', function() {
             $('#cus').append(data);
             $('.modal').modal('hide');
 			$("#btnProcess").removeAttr('disabled','disabled');
-			$("#divLoading").hide();
+			$(".spanLoading").hide();
         },
         error: function (request, status, error) {
 			setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
 			$("#btnProcess").removeAttr('disabled','disabled');
-			$("#divLoading").hide();
+			$(".spanLoading").hide();
         }
     }); 
 });
 
 function serviceSend(formId){
-	$("#formId #btnSendDisposisi").attr('disabled','disabled');
-	$("#divLoading").show();
+	$("#btnSendDisposisi").attr('disabled','disabled');
+	$(".spanLoading").show();
     
+
     $.ajax({
         type: 'POST',
         url: $(formId).attr('action'),
@@ -186,13 +77,13 @@ function serviceSend(formId){
                 setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
 			}
 
-			$("#formId #btnSendDisposisi").removeAttr('disabled','disabled');
-			$("#divLoading").hide();
+			$("#btnSendDisposisi").removeAttr('disabled','disabled');
+			$(".spanLoading").hide();
         },
         error: function (request, status, error) {
 			setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
-			$("#formId #btnSendDisposisi").removeAttr('disabled','disabled');
-			$("#divLoading").hide();
+			$("#btnSendDisposisi").removeAttr('disabled','disabled');
+			$(".spanLoading").hide();
         }
     });
 }
@@ -200,7 +91,7 @@ function serviceSend(formId){
 
 function serviceFeeds(formId){
 	$(".btnProcess").attr('disabled','disabled');
-	$("#divLoading").show();
+	$(".spanLoading").show();
 
     $.ajax({
         type: 'POST',
@@ -216,12 +107,12 @@ function serviceFeeds(formId){
 			}
 
 			$("#btnProcess").removeAttr('disabled','disabled');
-			$("#divLoading").hide();
+			$(".spanLoading").hide();
         },
         error: function (request, status, error) {
 			setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
 			$("#btnProcess").removeAttr('disabled','disabled');
-			$("#divLoading").hide();
+			$(".spanLoading").hide();
         }
     });
 }
@@ -284,12 +175,12 @@ function spamFeed(id_feed){
             }
 
             $("#btnProcess").removeAttr('disabled','disabled');
-            $("#divLoading").hide();
+            $(".spanLoading").hide();
         },
         error: function (request, status, error) {
             setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
             $("#btnProcess").removeAttr('disabled','disabled');
-            $("#divLoading").hide();
+            $(".spanLoading").hide();
         }
     });
 }
@@ -316,7 +207,7 @@ function handleFeed(div1,div2,id_feed){
         error: function (request, status, error) {
             setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
             $("#btnProcess").removeAttr('disabled','disabled');
-            $("#divLoading").hide();
+            $(".spanLoading").hide();
         }
     });
 }
