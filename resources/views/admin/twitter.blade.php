@@ -4,7 +4,11 @@
 
 <script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
 <script src="{{asset('/assets-back')}}/js/x-frame-bypass.js"></script>
-
+<style>
+	.spanLoading{
+		display: none;
+	}
+</style>
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Twitter</h2>
@@ -377,8 +381,12 @@
         </form>
       </div>
       <div class="modal-footer">
+      	<span class="spanLoading">
+      		<img style="height: 45px;margin-right: 10px;" 
+      		src="{{asset('assets-back/img/loading.gif')}}">
+      	</span>
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        <button type="button" id="btnSendDisposisi" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
+        <button type="button" id="btnSendDisposisi" id="btnSendDisposisi" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
     </div>
   </div>
