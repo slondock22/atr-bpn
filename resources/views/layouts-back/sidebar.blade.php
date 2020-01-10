@@ -49,7 +49,7 @@
             <a href="{{route('aduan','twitter')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="lni lni-twitter"></i></span>
-                <span class="tb-sidebar-link-text">Twitter &nbsp;<span class="tb-badge tb-box-transparent-colo6">4</span></span>
+                <span class="tb-sidebar-link-text">Twitter</span>
               </span>
             </a>
           </li>
