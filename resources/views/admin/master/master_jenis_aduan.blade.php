@@ -27,7 +27,7 @@
 
           <div class="tb-card-body">
             <div class="tb-table tb-style1 tb-type1 table-responsive">
-              <table class="table" id="datatable">
+              <table class="table" id="aduanTable">
                 <thead>
                   <tr>
                     <th style="width: 10%">ID Aduan</th>
@@ -156,6 +156,7 @@
 
   $(document).ready(function(){
     getAduan();
+    $('#aduanTable').DataTable();
   });
 
     function show_modal(){

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Input;
+use DataTables;
 
 class MasterController extends Controller
 {
@@ -33,10 +34,11 @@ class MasterController extends Controller
 
 
 	     public function masterGetApi($api='',$id=''){
-	     	$client = new Client();
 	    	if($id!=''){
 	    		$id  = "/".$id;         
 	        }
+
+	     	$client = new Client();
 	        $url = "http://devbpn.edii.co.id:3000/master/".$api.$id;
 	        //dd($url);
 	    	
@@ -48,9 +50,13 @@ class MasterController extends Controller
 	                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
 	                            ]
 	                        ]);
-
-	        $response = $request->getBody()->getContents();
-	        echo $response;
+	        if($id==''){
+	        	$response = json_decode($request->getBody()->getContents(),true);
+	        	$datatable = Datatables::of($response['data'])->make(true);
+	        	return $datatable;
+	        }
+	        	$response = $request->getBody()->getContents();
+	        	echo $response;
 	     }
 
 	     public function masterDelApi($api='',$id=''){

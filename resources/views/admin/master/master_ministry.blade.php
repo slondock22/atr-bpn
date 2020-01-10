@@ -12,38 +12,24 @@
       <div class="col-lg-12">
         <div class="tb-card tb-style1">
           <div class="tb-card-heading">
-            <div class="tb-card-heading-right">
-              <form action="#" class="tb-search tb-style2">
-                <input type="text" placeholder="Search..." class="tb-search-input">
-                <button type="submit"><i class="material-icons-outlined">search</i></button>
-              </form>
-              <a class="tb-btn tb-style1 tb-small">View All</a>
-              
-            </div>
-            <span style="float: right;">
+            <span>
                 <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add Ministry</a>
-              </span>
+            </span>
           </div>
 
           <div class="tb-card-body">
-            <div class="tb-table tb-style1 tb-type1 table-responsive">
-             <table class="table" id="datatable">
+             <table class="display" id="datatable" width="100%">
                 <thead>
                   <tr>
-                    <th style="width: 10%">ID</th>
-                    <th style="width: 20%">Name</th>
-                    <th style="width: 10px">City</th>
-                    <th style="width: 10px">Address</th>
-                    <th style="width: 10px">Phone</th>
-                    <th align="center" style="width: 10px">Level</th>
-                    <th style="width: 15%">Action</th>
+                    <th>ID</th>
+                    <th>Ministry Name</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
-                <tbody id="tblContainerMinistry">
-                </tbody>
               </table>
-            </div><!-- .tb-table -->
-            
           </div>
         </div>
       </div><!-- .col -->
@@ -161,8 +147,36 @@
 <script>
 
   $(document).ready(function(){
-    getMinistry();
+    // getMinistry();
     getMinistryOption();
+    var table = $('#datatable').DataTable({
+                 dom: "rtiplf",
+                 language: {
+                    searchPlaceholder: "Search..."
+                },
+                 processing: true,
+                 serverSide: true,
+                 ajax: 'master/ministry',
+                 columns: [
+                      { data: 'id', name: 'id' },
+                      { data: 'name', name: 'name' },
+                      { data: 'city', name: 'city' },
+                      { data: 'address', name: 'address' },
+                      { data: 'phone_1', name: 'phone_1' },
+                      {
+                        data: 'id',
+                        render: function(data){
+                          
+                          return '<a onclick="delData('+data+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                                <i class="lni lni-trash"></i>\
+                                            </a>\
+                                            <a onclick="edit('+data+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                                <i class="lni lni-pencil"></i>\
+                                            </a>';
+                        }
+                      }
+                  ],
+     });
     
   });
 
