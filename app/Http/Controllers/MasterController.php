@@ -11,12 +11,13 @@ use DataTables;
 class MasterController extends Controller
 {
 		
-		 public function masterUserApi($id=''){
+		 public function masterUserApi($ids=''){
 	    	$client = new Client();
-	    	if($id!=''){
-	    		$id  = "/".$id;         
+	    	$id='';
+	    	if($ids!=''){
+	    		$id  = "/".$ids;         
 	        }else{
-	        	$id  = "/1/20";
+	        	$id  = "/0/100";
 	        }
 	        $url = "http://devbpn.edii.co.id:3000/user".$id;
 	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
@@ -27,9 +28,15 @@ class MasterController extends Controller
 	                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
 	                            ]
 	                        ]);
-
-	        $response = $request->getBody()->getContents();
-	        echo $response;
+	        
+	        if($ids==''){
+	        	$response = json_decode($request->getBody()->getContents(),true);
+	        	$datatable = Datatables::of($response['data'])->make(true);
+	        	return $datatable;
+	        }else{
+	        	 $response = $request->getBody()->getContents();
+	        	echo $response;
+	        }	       
 	     }
 
 
@@ -82,14 +89,14 @@ class MasterController extends Controller
 	        $value = Input::get('val');
 	        $tipe  = "POST";
 
-	        // if($id!=''){
-	        // 	$id = "/".$id;
-	        // 	$tipe = "PUT";
-	        // }
+	        if($id!=''){
+	        	$id = "/".$id;
+	        	$tipe = "PUT";
+	        }
 
 	        $client = new Client();
 
-	        $url = "http://devbpn.edii.co.id:3000/user";
+	        $url = "http://devbpn.edii.co.id:3000/user".$id;
 
 	        $token_akses = request()->cookie('TOKEN_AUTH_APP');
 	        $request = $client->request($tipe, $url, 
@@ -114,11 +121,17 @@ class MasterController extends Controller
 		 	$api   = Input::get('api');
 		 	$id    = Input::get('id');
 	        $value = Input::get('val');
+	        $tipe  = 'POST';
 	        
+	        if($id!=''){
+	        	$id = "/".$id;
+	        	$tipe = 'PUT';
+	        }
+
 	        $client = new Client();
-	        $url = "http://devbpn.edii.co.id:3000/master/".$api;
+	        $url = "http://devbpn.edii.co.id:3000/master/".$api.$id;
 	        $token_akses = request()->cookie('TOKEN_AUTH_APP');
-	        $request = $client->request('POST', $url, 
+	        $request = $client->request($tipe, $url, 
 	                       [ 
 	                            'headers' => [
 	                                 'Content-Type'  => 'application/json',
@@ -132,5 +145,24 @@ class MasterController extends Controller
 	        return \Response::json($data);
 	     }
 
+
+	      public function masterUserDelApi($id=''){
+	    	$client = new Client();
+	    	$json = array("deactive"=>$id);
+	    	$json = json_encode($json,true);
+	    	$url = "http://devbpn.edii.co.id:3000/user/".$id;
+	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
+	        $request = $client->request('DELETE', $url,
+	        				 [ 
+	                            'headers' => [
+	                                 'Content-Type'  => 'application/json',
+	                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+	                            ],
+	                            'json' => $json
+	                        ]);
+
+	        $response = $request->getBody()->getContents();
+	        echo $response;
+	     }
 
 }

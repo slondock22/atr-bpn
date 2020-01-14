@@ -11,61 +11,24 @@
     <div class="row"> 
       <div class="col-lg-12">
         <div class="tb-card tb-style1">
-          <div class="tb-card-heading">
-            <div class="tb-card-heading-right">
-              <form action="#" class="tb-search tb-style2">
-                <input type="text" placeholder="Search..." class="tb-search-input">
-                <button type="submit"><i class="material-icons-outlined">search</i></button>
-              </form>
-              <a class="tb-btn tb-style1 tb-small">View All</a>
-              
-            </div>
-            <span style="float: right;">
+         	<div class="tb-card-heading">
+              <span>
                 <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add Role</a>
               </span>
-          </div>
+          </div> 
 
-          <div class="tb-card-body">
-            <div class="tb-table tb-style1 tb-type1 table-responsive">
-              <table class="table" id="datatable">
+         <div class="tb-card-body">
+             <table class="display" id="datatable" width="100%">
                 <thead>
                   <tr>
-                    <th style="width: 10%">ID Role</th>
-                    <th>Role Name</th>
-                    <th style="width: 20%">Action</th>
+                    <th>ID</th>
+                    <th>Role</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
-                <tbody id="tblContainerRole">
-                </tbody>
               </table>
-            </div><!-- .tb-table -->
-            <div class="tb-table-footer">
-              <div class="tb-table-footer-left">
-                <div class="tb-table-footer-left-text">This report was generated on 29 Des,2019 at 9:34:19 PM - <a href="#">Refresh Report</a></div>
-              </div>
-              <div class="tb-table-footer-right">
-                <ul class="tb-mp0 tb-table-footer-list">
-                  <li>
-                    <span class="tb-efl-title">Show Rows:</span>
-                    <div class="tb-custom-select-wrap tb-style1">
-                      <select name="#" class="tb-custom-select">
-                        <option value="classic-fit1">10</option>
-                        <option value="classic-fit2">15</option>
-                        <option value="classic-fit3">20</option>
-                      </select>
-                    </div>
-                  </li>
-                  <li><span class="tb-efl-title">Go to</span><input type="text" value="1"></li>
-                  <li>1 - 10 of 10</li>
-                  <li>
-                    <div class="tb-navigation tb-style1">
-                      <a href="#" class="tb-prev"><i class="material-icons-outlined">keyboard_arrow_left</i></a>
-                      <a href="#" class="tb-next"><i class="material-icons-outlined">keyboard_arrow_right</i></a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          </div>
+            
           </div>
         </div>
       </div><!-- .col -->
@@ -80,7 +43,7 @@
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni featured_play_list icon-tweet"></i> Konfirmasi Hapus Data Role
+          <img src="{{asset('/')}}assets/img/logobpn.ico" style="width:30px !important" /> Konfirmasi Hapus Data Role
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -95,7 +58,7 @@
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
           Batal
         </button>
-        <button type="button" class="btn btn-modal-twitter" onclick="deleteMaster()">
+        <button type="button" class="btn btn-modal-twitter" onclick="deleteData()">
           Hapus
         </button>
       </div>
@@ -110,7 +73,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Master Role
+          <img src="{{asset('/')}}assets/img/logobpn.ico" style="width:30px !important" /> Master Role
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -147,8 +110,38 @@
 <script>
 
   $(document).ready(function(){
-    getRole();
+    getDataRole();
   });
+
+
+  	function getDataRole(){
+          var table = $('#datatable').DataTable({
+                 dom: "rtiplf",
+                 language: {
+                    searchPlaceholder: "Search..."
+                },
+                 processing: true,
+                 serverSide: true,
+                 destroy:true,
+                 ajax: 'master/role',
+                 columns: [
+                      { data: 'id', name: 'id' },
+                      { data: 'description', name: 'description' },
+                      {
+                        data: 'id',
+                        render: function(data){
+                          
+                          return '<a onclick="delData('+data+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                                <i class="lni lni-trash"></i>\
+                                            </a>\
+                                            <a onclick="edit('+data+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                                <i class="lni lni-pencil"></i>\
+                                            </a>';
+                        }
+                      }
+                  ],
+        });
+    }
 
     function show_modal(){
         $("#description").val('');
@@ -180,7 +173,7 @@
                     $('.modal').modal('hide');
                     setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
                     $("#tblContainerRole").html('');
-                    getRole();
+                    getDataRole();
                 }else{
                     setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
                 }
@@ -196,7 +189,23 @@
           });
     }
 
+    function deleteData(){
+        id = $("#id").val();
+        url = base_url + "/delete_master/role/"+id;
+        $.get(url,function(res){
+            res = JSON.parse(res);
+            if(res['error']==false){
+              getDataRole();
+              $("#modal-confirm-delete").modal('hide');
+            }else{
+              alert("Error service")
+            }
+        })
+    }
+
+
     function delData(id=''){
+        $("#id").val(id);
         $("#modal-confirm-delete").modal('show');
     }
 </script>

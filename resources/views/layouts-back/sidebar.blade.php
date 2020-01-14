@@ -207,14 +207,14 @@
             </a>
           </li>
 
-          <li>
+          <!-- <li>
             <a href="{{route('master_level')}}">
               <span class="tb-sidebar-link-title">
                 <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">folder_open</i></span>
                 <span class="tb-sidebar-link-text">Master Level</span>
               </span>
             </a>
-          </li>
+          </li> -->
           @endif
         </ul>
         @endif

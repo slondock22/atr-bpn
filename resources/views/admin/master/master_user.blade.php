@@ -13,24 +13,21 @@
         <div class="tb-card tb-style1">
           <div class="tb-card-heading">
             <span style="float: right;">
-                <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add User</a>
-              </span>
+              <a class="tb-btn tb-style1 tb-small" onclick="show_modal()">Add User</a>
+            </span>
           </div>
 
           <div class="tb-card-body">
               <table class="table" id="datatable">
                 <thead>
                   <tr>
-                    <th>Username</th>
-                    <th>User Fullname</th>
-                    <th>Ministry</th>
-                    <th>City</th>
-                    <th>Status</th>
+                    <th width="150">Username</th>
+                    <th width="200">User Fullname</th>
+                    <th width="250">Ministry</th>
+                    <th width="200">City</th>
                     <th style="width: 15%">Action</th>
                   </tr>
                 </thead>
-                <tbody id="tblContainer">
-                </tbody>
               </table>
           </div>
         </div>
@@ -62,7 +59,7 @@
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
           Batal
         </button>
-        <button type="button" class="btn btn-modal-twitter" onclick="deleteMaster()">
+        <button type="button" class="btn btn-modal-twitter" onclick="deleteData()">
           Hapus
         </button>
       </div>
@@ -116,7 +113,7 @@
               placeholder="Masukan Re Password" id="re_password">
 
               <input type="hidden" class="form-control" name="api" value="aduan">
-              <input type="hidden" class="form-control" name="id">
+              <input type="hidden" class="form-control" name="id" id="id">
             </div>
         </form>
       </div>
@@ -136,42 +133,46 @@
 <script>
 
   $(document).ready(function(){
-    getUser();
-    getMinistryOption();
-    // var table = $('#datatable').DataTable({
-    //              dom: "rtiplf",
-    //              language: {
-    //                 searchPlaceholder: "Search..."
-    //             },
-    //              processing: true,
-    //              serverSide: true,
-    //              ajax: 'masterUserApi',
-    //              columns: [
-    //                   { data: 'id', name: 'id' },
-    //                   { data: 'username', name: 'username' },
-    //                   { data: 'user_full_name', name: 'user_full_name' },
-    //                   { data: 'address', name: 'address' },
-    //                   { data: 'phone_1', name: 'phone_1' },
-    //                   {
-    //                     data: 'id',
-    //                     render: function(data){
-                          
-    //                       return '<a onclick="delData('+data+')" class="tb-solial-btn social-derault-color tb-radious50">\
-    //                                             <i class="lni lni-trash"></i>\
-    //                                         </a>\
-    //                                         <a onclick="edit('+data+')" class="tb-solial-btn social-derault-color tb-radious50">\
-    //                                             <i class="lni lni-pencil"></i>\
-    //                                         </a>';
-    //                     }
-    //                   }
-    //               ],
-    //  });
-
+    getDataUser();
   });
+
+
+  function getDataUser(){
+      var table = $('#datatable').DataTable({
+                 dom: "rtiplf",
+                 language: {
+                    searchPlaceholder: "Search..."
+                },
+                 processing: true,
+                 serverSide: true,
+                 destroy: true,
+                 ajax: 'masterUserApi',
+                 columns: [
+                      { data: 'username', name: 'username' },
+                      { data: 'user_full_name', name: 'user_full_name' },
+                      { data: 'tm_ministry.ministry_name', name: 'ministry_name' },
+                      { data: 'tm_ministry.city', name: 'city' },
+                      {
+                        data: 'id',
+                        render: function(data){
+                          
+                          return '<a onclick="delData('+data+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                <i class="lni lni-trash"></i>\
+                            </a>\
+                            <a onclick="edit('+data+')" class="tb-solial-btn social-derault-color tb-radious50">\
+                                <i class="lni lni-pencil"></i>\
+                            </a>';
+                        }
+                      }
+                  ],
+        });
+    }
+
 
     function show_modal(){
         $(".form-control").val('');
         $('#modal_user').modal('show');
+        getMinistryOption();
     }
 
     function edit(id=''){
@@ -205,20 +206,23 @@
           return false;
       }
 
-      if(!password){
-          alert("Password harus diisi..");
-          return false;
-      }
+      if($("#id").val()==''){
+          if(!password){
+              alert("Password harus diisi..");
+              return false;
+          }
 
-      if(!re_password){
-          alert("Re Password harus diisi..");
-          return false;
-      }
+          if(!re_password){
+              alert("Re Password harus diisi..");
+              return false;
+          }
 
-      if(password != re_password){
-          alert("Password tidak sama..");
-          return false;
+          if(password != re_password){
+              alert("Password tidak sama..");
+              return false;
+          }
       }
+      
 
     
       $.ajax({
@@ -230,16 +234,16 @@
                     $('.modal').modal('hide');
                     setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
                     $("#tblContainer").html();
-                    getUser();
+                    getDataUser();
                 }else{
-                    setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
+                    setTimeout(function() { showFlashAlert('error', 'Error Service'); }, 100);
                 }
 
                 $("#formId #btnSendDisposisi").removeAttr('disabled','disabled');
                 //$("#divLoading").hide();
               },
               error: function (request, status, error) {
-                setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
+                alert("Error Service")
                 $("#formId #btnSendDisposisi").removeAttr('disabled','disabled');
                 //$("#divLoading").hide();
               }
@@ -247,6 +251,47 @@
     }
 
     function delData(id=''){
+        $("#modal-confirm-delete").modal('show');
+    }
+
+
+    function getMinistryOption(id=''){
+      if(id !=''){
+          id = "/"+id;
+      }
+      var url = base_url + '/master/ministry'+id;
+      $.get(url, function (data){
+        
+              $('#ministry_id').append('<option value="">Pilih Ministry</option>\
+              ');
+              $.each(data.data, function(index, row){          
+                  $('#ministry_id').append('\
+                     <option value="'+row.id+'">\
+                          '+ row.name +'\
+                      </option>\
+                  ')
+              });
+      });
+  }
+
+
+  function deleteData(){
+        id = $("#id").val();
+        url = base_url + "/delete_user/"+id;
+        $.get(url,function(res){
+            res = JSON.parse(res);
+            if(res['error']==false){
+              getDataUser();
+              $("#modal-confirm-delete").modal('hide');
+            }else{
+              alert("Error service")
+            }
+        })
+    }
+
+
+    function delData(id=''){
+        $("#id").val(id);
         $("#modal-confirm-delete").modal('show');
     }
 </script>
