@@ -355,6 +355,7 @@
 
             <hr class="hrModal">
             <input type="hidden" id="idFeeds" value="" name="idFeeds">
+            <input type="hidden" id="type_aduan" value="twitter" name="type_aduan">
             <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
               <select class="form-control" id="ministryId" name="ministry_id" onchange="setUser()">

@@ -10,18 +10,23 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class AduanNotif
+class AduanNotif implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $type;
+
+    public $message;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($type)
     {
-        //
+        $this->type = $type;
+        $this->message  = "Anda memiliki aduan baru untuk {$type}";
     }
 
     /**
@@ -31,6 +36,6 @@ class AduanNotif
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return ['aduan-notif'];
     }
 }
