@@ -25,7 +25,7 @@
   <link href="{{asset('/')}}assets/css/customs.css" rel="stylesheet">
   <link href="{{asset('/')}}assets-back/css/bootstrap-customs.css" rel="stylesheet">
   <link href="{{asset('/')}}assets-back/css/alert.css" rel="stylesheet" type="text/css" />
-  <link href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 
   </head>
   <body>
@@ -82,7 +82,7 @@
   <script src="{{asset('/assets-back')}}/js/customs.js"></script>
   <script src="{{asset('/assets-back')}}/js/alert.js"></script>
   <script src="{{asset('/assets-back')}}/js/select2.min.js"></script>
-  <script src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
  
  
