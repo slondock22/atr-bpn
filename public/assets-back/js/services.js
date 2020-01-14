@@ -383,7 +383,7 @@ function handleFeed(div1,div2,id_feed){
                         ')
                 });
         }else{
-            $("#username").val(data.data[0].id);
+            $("#id").val(data.data[0].id);
             $("#username").val(data.data[0].username);
             $("#fullname").val(data.data[0].user_full_name);
             $("#user_detail").val(data.data[0].user_detail);
@@ -537,8 +537,8 @@ function selectMinistry(id=''){
     }
     var url = base_url + '/master/ministry';
     $.get(url, function (data){
-      data = JSON.parse(data);
-        console.log(data.data);
+      // data = JSON.parse(data);
+      //   console.log(data.data);
             $.each(data.data, function(index, row){          
                 $('#ministry_id').append('\
                                     <option value="'+row.id+'">\
@@ -550,22 +550,22 @@ function selectMinistry(id=''){
 }
 
 
-function getMinistryOption(id=''){
-    if(id !=''){
-        id = "/"+id;
-    }
-    var url = base_url + '/master/ministry'+id;
-    $.get(url, function (data){
-      data = JSON.parse(data);
-        console.log(data.data);
-            $('#ministry_id').append('<option value="">Pilih Ministry</option>\
-            ');
-            $.each(data.data, function(index, row){          
-                $('#ministry_id').append('\
-                   <option value="'+row.id+'">\
-                        '+ row.name +'\
-                    </option>\
-                ')
-            });
-    });
-}
+// function getMinistryOption(id=''){
+//     if(id !=''){
+//         id = "/"+id;
+//     }
+//     var url = base_url + '/master/ministry'+id;
+//     $.get(url, function (data){
+//       data = JSON.parse(data);
+//         console.log(data.data);
+//             $('#ministry_id').append('<option value="">Pilih Ministry</option>\
+//             ');
+//             $.each(data.data, function(index, row){          
+//                 $('#ministry_id').append('\
+//                    <option value="'+row.id+'">\
+//                         '+ row.name +'\
+//                     </option>\
+//                 ')
+//             });
+//     });
+// }

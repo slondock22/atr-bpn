@@ -22,11 +22,11 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Ministry Name</th>
-                    <th>City</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Aksi</th>
+                    <th width="300">Ministry Name</th>
+                    <th width="200">City</th>
+                    <th width="200">Address</th>
+                    <th width="200">Phone</th>
+                    <th width="100">Aksi</th>
                   </tr>
                 </thead>
               </table>
@@ -45,7 +45,7 @@
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Data Ministry
+          <img src="{{asset('/')}}assets/img/logobpn.ico" style="width:30px !important" /> Konfirmasi Hapus Data Ministry
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -60,7 +60,7 @@
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
           Batal
         </button>
-        <button type="button" class="btn btn-modal-twitter" onclick="deleteMaster()">
+        <button type="button" class="btn btn-modal-twitter" onclick="deleteData()">
           Hapus
         </button>
       </div>
@@ -75,7 +75,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Master Ministry
+          <img src="{{asset('/')}}assets/img/logobpn.ico" style="width:30px !important" /> Master Ministry
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -92,8 +92,9 @@
               placeholder="Enter Your Ministry Name" id="ministry_name">
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">Parent Id *</label>
-              <input type="text" class="form-control" name="val[parent_id]" 
-              placeholder="Enter Your Ministry Parent" id="parent_id">
+              <select type="text" class="form-control select2" name="val[parent_id]" 
+              id="parent_id">
+              </select>
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">Level *</label>
               <select type="text" class="form-control" name="val[level]" id="level" required>
@@ -147,15 +148,18 @@
 <script>
 
   $(document).ready(function(){
-    // getMinistry();
-    getMinistryOption();
-    var table = $('#datatable').DataTable({
+    getDataMinistry();
+  });
+
+    function getDataMinistry(){
+          var table = $('#datatable').DataTable({
                  dom: "rtiplf",
                  language: {
                     searchPlaceholder: "Search..."
                 },
                  processing: true,
                  serverSide: true,
+                 destroy:true,
                  ajax: 'master/ministry',
                  columns: [
                       { data: 'id', name: 'id' },
@@ -176,19 +180,26 @@
                         }
                       }
                   ],
-     });
-    
-  });
-
-    function show_modal(){
-        $("#description").val('');
-        $("#id").val('');
-        $('#modal_ministry').modal('show');
+          });
     }
 
+    function show_modal(){
+        $("#id").val('');
+        $("#level").val('');
+        $("#ministry_name").val('');
+        $("#city").val('');
+        $("#ministry_address").val('');
+        $("#ministry_phone_1").val('');
+        $("#ministry_phone_2").val('');
+        $("#ministry_email").val('');
+        $('#modal_ministry').modal('show');
+        getParent();
+    }
+ 
     function edit(id=''){
         $('#modal_ministry').modal('show');
         getMinistry(id);
+        selectParent(id);
     }
 
 
@@ -209,7 +220,7 @@
                 if(data['response']['error'] == false ){
                     $('.modal').modal('hide');
                     setTimeout(function() { showFlashAlert('success', data['response']['message']); }, 100);
-                    getAduan();
+                    getDataAduan();
                 }else{
                     setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
                 }
@@ -218,14 +229,64 @@
                 //$("#divLoading").hide();
               },
               error: function (request, status, error) {
-                setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
+                alert("Error service");
                 $("#formId #btnSendDisposisi").removeAttr('disabled','disabled');
                 //$("#divLoading").hide();
               }
           });
     }
 
+    function deleteData(){
+        id = $("#id").val();
+        url = base_url + "/delete_master/ministry/"+id;
+        $.get(url,function(res){
+            res = JSON.parse(res);
+            if(res['error']==false){
+              getDataMinistry();
+              $("#modal-confirm-delete").modal('hide');
+            }else{
+              alert("Error service")
+            }
+        })
+    }
+
+
     function delData(id=''){
+        $("#id").val(id);
         $("#modal-confirm-delete").modal('show');
+    }
+
+    function getParent(id=''){
+        if(id !=''){
+            id = "/"+id;
+        }
+        var url = base_url + '/master/ministry'+id;
+        $.get(url, function (data){
+            $.each(data.data, function(index, row){
+                if(row.level==2){
+                    $('#parent_id').append('\
+                       <option value="'+row.id+'">\
+                            '+ row.name +'\
+                        </option>\
+                    ');
+                }
+            });
+        });
+    }
+
+    function selectParent(id=''){
+        if(id !=''){
+            id = "/"+id;
+        }
+        var url = base_url + '/master/ministry';
+        $.get(url, function (data){
+            $.each(data.data, function(index, row){          
+                $('#parent_id').append('\
+                                    <option value="'+row.id+'">\
+                                        '+ row.name +'\
+                                    </option>\
+                                ')
+            });
+        });
     }
 </script>
