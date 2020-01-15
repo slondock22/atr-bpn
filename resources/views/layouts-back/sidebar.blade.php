@@ -86,7 +86,7 @@
             </a>
           </li>
         </ul><!-- .tb-sidebar-nav-list -->
-        <div class="tb-sidebar-nav-title">
+       {{--  <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Berita</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
         </div>
@@ -122,7 +122,7 @@
               </li>
             </ul>
           </li>
-        </ul><!-- .tb-sidebar-nav-list -->
+        </ul><!-- .tb-sidebar-nav-list --> --}}
         @endif
       
 
