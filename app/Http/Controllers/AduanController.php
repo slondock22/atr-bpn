@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Input;
+use App\Events\AduanNotif;
 
 class AduanController extends Controller
 {
@@ -76,6 +77,8 @@ class AduanController extends Controller
         $idFeeds = Input::get('idFeeds');
         $value['comment'] = Input::get('comment');
         $value['to'] = Input::get('ministry_id');
+        $value['type_aduan'] = Input::get('type_aduan');
+
         // dd($value['to']);
 
         $client = new Client();
@@ -101,6 +104,8 @@ class AduanController extends Controller
         $data['message']  = "Tweet has been succesfully replied";
         $data['form']     = Input::get('form');
         $data['response'] = $response;
+
+        event(new AduanNotif($value['type_aduan']));
 
 
         return \Response::json($data);
