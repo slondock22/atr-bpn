@@ -48,77 +48,56 @@
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
                     <div class="tb-form-field-wrap tb-style1">
                       <label class="tb-form-field-label">Username</label>
-                      <div class="tb-form-field tb-color1 tb-with-left-text">
-                        <span class="tb-form-field-left-text">@</span>
-                        <input type="text" placeholder="Enter Username" value="ThemeBubble">
-                      </div>
-                    </div>
-                    <div class="tb-height-b25 tb-height-lg-b25"></div>
-                    <div class="tb-form-field-wrap tb-style1">
-                      <label class="tb-form-field-label">First Name</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter First Name" value="John">
+                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="username">
                       </div>
                     </div>
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
                     <div class="tb-form-field-wrap tb-style1">
-                      <label class="tb-form-field-label">Last Name</label>
+                      <label class="tb-form-field-label">Fullname</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter Last Name">
+                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="fullname">
                       </div>
                     </div>
-                    <div class="tb-height-b25 tb-height-lg-b25"></div>
-                    <div class="tb-form-field-wrap tb-style1">
+                    <div class="tb-height-b25 tb-height-lg-b25" style="display: none"></div>
+                    <div class="tb-form-field-wrap tb-style1" style="display: none">
                       <label class="tb-form-field-label">Email</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="email" placeholder="Email" value="johndoe@gmail.com">
-                        <div class="tb-form-field-note">Email will not be publicly displayed. </div>
+                        <input type="email" placeholder="Email" value="johndoe@gmail.com" readonly disabled id="email">
                       </div>
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                     <div class="tb-form-field-wrap tb-style1">
-                      <label class="tb-form-field-label">Country</label>
+                      <label class="tb-form-field-label">User Detail</label>
                       <div class="tb-form-field tb-color1">
-                        <div class="tb-custom-select-wrap tb-style2">
-                          <select name="#" class="tb-custom-select">
-                            <option value="classic-fit1">United Kingdom</option>
-                            <option value="classic-fit2">India</option>
-                            <option value="classic-fit3">Austrilia</option>
-                          </select>
-                        </div>
+                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="detail">
                       </div>
                     </div>
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
                     <div class="tb-form-field-wrap tb-style1">
-                      <label class="tb-form-field-label">Time Zone</label>
+                      <label class="tb-form-field-label">City</label>
                       <div class="tb-form-field tb-color1">
-                        <div class="tb-custom-select-wrap tb-style2">
-                          <select name="#" class="tb-custom-select">
-                            <option value="classic-fit1">GMT-7 (USA & Canada)</option>
-                            <option value="classic-fit2">GMT-6 (USA & Canada)</option>
-                            <option value="classic-fit3">GMT-5 (USA & Canada)</option>
-                          </select>
-                        </div>
+                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="city">
                       </div>
                     </div>
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
                     <div class="tb-form-field-wrap tb-style1">
-                      <label class="tb-form-field-label">Website</label>
-                      <div class="tb-form-field tb-color1 tb-with-right-text">
-                        <span class="tb-form-field-right-text">.com</span>
-                        <input type="email" placeholder="Enter website URL">
+                      <label class="tb-form-field-label">Ministry</label>
+                      <div class="tb-form-field tb-color1">
+                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="ministry_name">
                       </div>
-                    </div>
                     <div class="tb-height-b60 tb-height-lg-b60"></div>
                   </div><!-- .tb-profile-setting-container -->
                   <hr>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
-                  <div class="tb-profile-btn-group tb-style1">
+                  <div class="tb-profile-btn-group tb-style1" style="display: none">
                     <a href="#" class="tb-profile-btn tb-style1 tb-color1">Save</a>
                     <a href="#" class="tb-profile-btn tb-style1 tb-color2">Reset</a>
                   </div>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                 </div>
+
+
                {{--  <div id="proliletab2" class="tb-tab">
                   <div class="tb-profile-setting-container">
                     <div class="tb-height-b45 tb-height-lg-b45"></div>
@@ -209,3 +188,12 @@
     <div class="tb-height-b60 tb-height-lg-b60"></div>
   </div>
 @endsection
+<script src="{{asset('/assets-back')}}/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script>
+
+  $(document).ready(function(){
+    getUser(1);  
+  });
+
+</script>

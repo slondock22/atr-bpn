@@ -74,14 +74,14 @@ function serviceSend(formId){
                  $('.modal').modal('hide');
 				 //showFlashAlert('success', data['message']);
             }else{
-                setTimeout(function() { showFlashAlert('error', data['response']['message']); }, 100);
+                setTimeout(function() { showFlashAlert('error', 'Service Error'); }, 100);
 			}
 
 			$("#btnSendDisposisi").removeAttr('disabled','disabled');
 			$(".spanLoading").hide();
         },
         error: function (request, status, error) {
-			setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
+			setTimeout(function() { showFlashAlert('error','Service Error'); }, 100);
 			$("#btnSendDisposisi").removeAttr('disabled','disabled');
 			$(".spanLoading").hide();
         }
@@ -354,7 +354,7 @@ function handleFeed(div1,div2,id_feed){
     }
     var url = base_url + '/masterUserApi'+id;
     $.get(url, function (data){
-      data = JSON.parse(data);
+        data = JSON.parse(data);
         console.log(data.data);
         if(id==''){
 
@@ -386,8 +386,11 @@ function handleFeed(div1,div2,id_feed){
             $("#id").val(data.data[0].id);
             $("#username").val(data.data[0].username);
             $("#fullname").val(data.data[0].user_full_name);
+            $("#user_photo").val(data.data[0].user_photo);
             $("#user_detail").val(data.data[0].user_detail);
             $("#ministry_id").val(data.data[0].tm_ministry.ministry_id);
+            $("#ministry_name").val(data.data[0].tm_ministry.ministry_name);
+            $("#city").val(data.data[0].tm_ministry.city);
         }
     });
 }
