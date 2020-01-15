@@ -29,6 +29,7 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('publish/{mode}','IndexController@publish')->name('publish');
 	Route::get('profile','IndexController@profile')->name('profile');
 	Route::get('dokumentasi','IndexController@dokumentasi')->name('dokumentasi');
+	Route::get('statAll','MasterController@statAll')->name('statAll');
 
 
 	Route::middleware(['checkRole:op_pusat,op_kanwil,op_kantah'])->group(function(){

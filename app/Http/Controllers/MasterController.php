@@ -165,4 +165,21 @@ class MasterController extends Controller
 	        echo $response;
 	     }
 
+
+	     public function statAll(){
+	    	$client = new Client();
+	        $url = "http://devbpn.edii.co.id:3000/stat/all";
+	        //dd($url);
+	    	
+	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
+	        $request = $client->request('GET', $url, 
+	        				 [ 
+	                            'headers' => [
+	                                 'Content-Type'  => 'application/json',
+	                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+	                            ]
+	                        ]);
+	        $response = $request->getBody()->getContents();
+	        echo $response;
+	     }
 }

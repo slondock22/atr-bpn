@@ -10,9 +10,7 @@ $(document).ready(function(){
      $('#ministryId').select2({
         width: '100%',
         dropdownParent: $("#modal-add-disposisi"),
-     });
-
-     
+     }); 
 });
 
 $('#btnDisposisi').on('click', function() {

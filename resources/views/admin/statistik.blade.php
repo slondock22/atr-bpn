@@ -9,10 +9,10 @@
         <div class="col-lg-3">
           <div class="tb-iconbox tb-style4 tb-color2">
             <div class="tb-icon tb-flex">
-              <i class="lni lni-facebook"></i>
+              <i class="lni lni-envelope"></i>
             </div>
             <div class="tb-iconbox-text">
-              <h3 class="tb-iconbox-heading">105</h3>
+              <h3 class="tb-iconbox-heading" id="jml_email">0</h3>
               <div class="tb-iconbox-sub-heading">Total Aduan</div>
             </div>
           </div>
@@ -23,7 +23,7 @@
               <i class="lni lni-twitter"></i>
             </div>
             <div class="tb-iconbox-text">
-              <h3 class="tb-iconbox-heading">213</h3>
+              <h3 class="tb-iconbox-heading" id="jml_twitter">0</h3>
               <div class="tb-iconbox-sub-heading">Total Aduan</div>
             </div>
           </div>
@@ -34,7 +34,7 @@
               <i class="lni lni-instagram-original"></i>
             </div>
             <div class="tb-iconbox-text">
-              <h3 class="tb-iconbox-heading">78</h3>
+              <h3 class="tb-iconbox-heading" id="jml_instagram">0</h3>
               <div class="tb-iconbox-sub-heading">Total Aduan</div>
             </div>
           </div>
@@ -45,7 +45,7 @@
               <i class="lni lni-youtube"></i>
             </div>
             <div class="tb-iconbox-text">
-              <h3 class="tb-iconbox-heading">8</h3>
+              <h3 class="tb-iconbox-heading" id="jml_youtube">0</h3>
               <div class="tb-iconbox-sub-heading">Total Aduan</div>
             </div>
           </div>
@@ -502,4 +502,28 @@
           }
         });
     </script>
+
+    <script type="text/javascript">
+          $(document).ready(function(){
+             getStat()
+          });
+          function getStat(){
+              var url = base_url + '/statAll';
+              $.get(url, function (data){
+                  data  = JSON.parse(data);
+                  email = data.data.find(el => el.type == "email").jml;
+                  twitter = data.data.find(el => el.type == "twitter").jml;
+                  instagram = data.data.find(el => el.type == "instagram").jml;
+                  youtube = data.data.find(el => el.type == "youtube").jml;
+
+                  $("#jml_email").html(email);
+                  $("#jml_twitter").html(twitter);
+                  $("#jml_instagram").html(instagram);
+                  $("#jml_youtube").html(youtube);
+              });
+          }
+
+
+    </script>
+
   @endsection
