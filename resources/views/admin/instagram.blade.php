@@ -1,7 +1,11 @@
 @section('title','Pertanyaan Instagram')
 @extends('layouts-back.layout')
 @section('content')
-
+<style>
+  .spanLoading{
+    display: none;
+  }
+</style>
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Instagram</h2>
@@ -376,6 +380,10 @@
         </form>
       </div>
       <div class="modal-footer">
+        <span class="spanLoading">
+          <img style="height: 45px;margin-right: 10px;" 
+          src="{{asset('assets-back/img/loading.gif')}}">
+        </span>
         <button type="button" class="btn btn-modal-instagram-danger" data-dismiss="modal">Batal</button>
         <button type="button" id="btnSendDisposisi" class="btn btn-modal-instagram" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
