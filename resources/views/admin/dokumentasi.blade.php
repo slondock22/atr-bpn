@@ -38,10 +38,10 @@
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>User Manual Admin Pusat</td>
+                    <td>User Manual Admin & User Pusat</td>
                     <td>1.0</td>
                      <td>
-                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                        <a class="tb-solial-btn social-derault-color tb-radious50" href="{{asset('usermanual/UMG-EDII-Aplikasi ATRBPN-User Admin Pertanahan versi 1.0 Desember 2019.docx')}}" download>
                             <i class="lni lni-download"></i>
                         </a>
                         <a class="tb-solial-btn social-derault-color tb-radious50">
@@ -57,10 +57,10 @@
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>User Manual Admin Kanwil</td>
+                    <td>User Manual Admin & User Kanwil</td>
                     <td>1.0</td>
                      <td>
-                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                        <a class="tb-solial-btn social-derault-color tb-radious50" href="{{asset('usermanual/UMG-EDII-Aplikasi ATRBPN-User User Kantor Wilayah versi 1.0 Desember 2019.docx')}}" download>
                             <i class="lni lni-download"></i>
                         </a>
                         <a class="tb-solial-btn social-derault-color tb-radious50">
@@ -76,29 +76,10 @@
                   </tr>
                    <tr>
                     <td>3</td>
-                    <td>User Manual Admin Kantah</td>
+                    <td>User Manual Admin & User Kantah</td>
                     <td>1.0</td>
                      <td>
-                        <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-download"></i>
-                        </a>
-                        <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-pencil"></i>
-                        </a>
-                         <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-trash"></i>
-                        </a>
-                    </td>
-                    {{-- <td>
-                      <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
-                    </td> --}}
-                  </tr>
-                   <tr>
-                    <td>4</td>
-                    <td>User Manual User Pusat</td>
-                    <td>1.0</td>
-                     <td>
-                        <a class="tb-solial-btn social-derault-color tb-radious50">
+                        <a class="tb-solial-btn social-derault-color tb-radious50" href="{{asset('usermanual/UMG-EDII-Aplikasi ATRBPN-User User Kantor Pertanahan versi 1.0 Desember 2019.docx')}}" download>
                             <i class="lni lni-download"></i>
                         </a>
                         <a class="tb-solial-btn social-derault-color tb-radious50">
