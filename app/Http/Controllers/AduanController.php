@@ -97,7 +97,7 @@ class AduanController extends Controller
                         ]);
 
         $response = json_decode($request->getBody()->getContents(),true);
-        // dd($response);
+        //dd($response);
 
         $data['status']   = "success";
         $data['result']   = Input::get('comment');
@@ -105,7 +105,7 @@ class AduanController extends Controller
         $data['form']     = Input::get('form');
         $data['response'] = $response;
 
-        event(new AduanNotif($value['type_aduan']));
+        
 
 
         return \Response::json($data);

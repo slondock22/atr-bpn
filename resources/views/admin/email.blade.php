@@ -32,7 +32,7 @@
                     @if(isset($stats['data']))
                       @for($i=0; $i < count($stats['data']); $i++)
                       
-                        @if($stats['data'][$i]['type'] == 'twitter')
+                        @if($stats['data'][$i]['type'] == 'email')
                         <li>
                           <div class="tb-list-title">Total</div>
                           <div class="tb-list-number">{{$stats['data'][$i]['TOTAL']}}</div>

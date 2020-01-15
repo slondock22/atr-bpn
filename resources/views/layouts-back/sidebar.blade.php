@@ -20,6 +20,7 @@
               </span>
             </a>
           </li>
+		  @if(request()->cookie('USER_ROLE')  == '6' || request()->cookie('USER_ROLE')  == '1')
           <li>
             <a href="{{route('statistik')}}">
               <span class="tb-sidebar-link-title">
@@ -36,6 +37,7 @@
               </span>
             </a>
           </li>
+		  @endif
         </ul><!-- .tb-sidebar-nav-list -->
 
 
