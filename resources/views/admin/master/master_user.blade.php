@@ -99,6 +99,26 @@
               <select class="form-control" name="val[ministry_id]" id="ministry_id">
                   
               </select>
+			  
+			  <label for="exampleFormControlSelect1" style="margin-top:15px">Role *</label>
+			   <select class="form-control" name="val[role]" id="role">
+				<option value="">Pilih Role</option>
+				@if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2')
+				   <option value="2">Admin Kantor Wilayah</option>
+			   @endif
+			   @if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
+				    <option value="3">Admin Kantor Pertanahan</option>
+				@endif
+				@if(request()->cookie('USER_ROLE')  == '1')
+					 <option value="6">User Kantor Pusat</option>
+				@endif
+				@if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2')
+					  <option value="4">User Kantor Wilayah</option>
+				@endif
+				@if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
+					   <option value="5">User Kantor Pertanahan</option>
+				@endif
+              </select>
 
               <label for="exampleFormControlSelect1" style="margin-top:15px">User Detail *</label>
               <input type="text" class="form-control" name="val[user_detail]" 
@@ -188,6 +208,7 @@
       var username = $("#username").val();
       var fullname = $("#fullname").val();
       var ministry_id = $("#ministry_id").val();
+	  var role = $("#role").val();
       var password = $("#password").val();
       var re_password = $("#re_password").val();
 
@@ -203,6 +224,11 @@
 
       if(!ministry_id){
           alert("Ministry harus diisi..");
+          return false;
+      }
+	  
+	  if(!role){
+          alert("Role harus diisi..");
           return false;
       }
 

@@ -144,7 +144,7 @@
     </ul>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="//js.pusher.com/3.1/pusher.min.js"></script>
+<script src="https://js.pusher.com/5.0/pusher.min.js"></script>
   <script type="text/javascript">
       var notificationsWrapper   = $('.dropdown-notifications');
       var notificationsToggle    = $('#notif-toogle')
