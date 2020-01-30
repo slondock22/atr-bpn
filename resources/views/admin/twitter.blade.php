@@ -2,8 +2,6 @@
 @extends('layouts-back.layout')
 @section('content')
 
-<script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
-<script src="{{asset('/assets-back')}}/js/x-frame-bypass.js"></script>
 <style>
 	.spanLoading{
 		display: none;

@@ -1,6 +1,11 @@
 @section('title','Pertanyaan Twitter')
 @extends('layouts-back.layout')
 @section('content')
+<style>
+  .spanLoading{
+    display: none;
+  }
+</style>
 
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
