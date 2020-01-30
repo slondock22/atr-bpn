@@ -419,7 +419,7 @@
 
     <!-- Start Po Area
     ============================================= -->
-    <div class="testimonials-area bg-gray default-padding">
+  {{--   <div class="testimonials-area bg-gray default-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
@@ -478,7 +478,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End Po Area -->
 
 
