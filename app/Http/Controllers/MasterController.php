@@ -20,7 +20,7 @@ class MasterController extends Controller
 	        	$id  = "/0/100";
 	        }
 	        $url = "http://devbpn.edii.co.id:3000/user".$id;
-	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
+	    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
 	        $request = $client->request('GET', $url, 
 	        				 [ 
 	                            'headers' => [
@@ -49,7 +49,7 @@ class MasterController extends Controller
 	        $url = "http://devbpn.edii.co.id:3000/master/".$api.$id;
 	        //dd($url);
 	    	
-	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
+	    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
 	        $request = $client->request('GET', $url, 
 	        				 [ 
 	                            'headers' => [
@@ -69,7 +69,7 @@ class MasterController extends Controller
 	     public function masterDelApi($api='',$id=''){
 	    	$client = new Client();
 	    	$url = "http://devbpn.edii.co.id:3000/master/".$api."/".$id;
-	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
+	    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
 	        $request = $client->request('DELETE', $url,
 	        				 [ 
 	                            'headers' => [
@@ -98,7 +98,7 @@ class MasterController extends Controller
 
 	        $url = "http://devbpn.edii.co.id:3000/user".$id;
 
-	        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+	        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
 	        $request = $client->request($tipe, $url, 
 	                       [ 
 	                            'headers' => [
@@ -130,7 +130,7 @@ class MasterController extends Controller
 
 	        $client = new Client();
 	        $url = "http://devbpn.edii.co.id:3000/master/".$api.$id;
-	        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+	        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
 	        $request = $client->request($tipe, $url, 
 	                       [ 
 	                            'headers' => [
@@ -151,7 +151,7 @@ class MasterController extends Controller
 	    	$json = array("deactive"=>$id);
 	    	$json = json_encode($json,true);
 	    	$url = "http://devbpn.edii.co.id:3000/user/".$id;
-	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
+	    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
 	        $request = $client->request('DELETE', $url,
 	        				 [ 
 	                            'headers' => [
@@ -171,7 +171,7 @@ class MasterController extends Controller
 	        $url = "http://devbpn.edii.co.id:3000/stat/all";
 	        //dd($url);
 	    	
-	    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
+	    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
 	        $request = $client->request('GET', $url, 
 	        				 [ 
 	                            'headers' => [

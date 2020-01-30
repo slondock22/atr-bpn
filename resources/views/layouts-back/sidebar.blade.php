@@ -20,7 +20,7 @@
               </span>
             </a>
           </li>
-		  @if(request()->cookie('USER_ROLE')  == '6' || request()->cookie('USER_ROLE')  == '1')
+		  @if(request()->session()->get('USER_ROLE')  == '6' || request()->session()->get('USER_ROLE')  == '1')
           <li>
             <a href="{{route('statistik')}}">
               <span class="tb-sidebar-link-title">
@@ -41,7 +41,7 @@
         </ul><!-- .tb-sidebar-nav-list -->
 
 
-        @if(request()->cookie('USER_ROLE')  == '6' || request()->cookie('USER_ROLE')  == '4' || request()->cookie('USER_ROLE')  == '5')
+        @if(request()->session()->get('USER_ROLE')  == '6' || request()->session()->get('USER_ROLE')  == '4' || request()->session()->get('USER_ROLE')  == '5')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Pertanyaan & Aduan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
@@ -128,7 +128,7 @@
         @endif
       
 
-        @if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
+        @if(request()->session()->get('USER_ROLE')  == '1' || request()->session()->get('USER_ROLE')  == '2' || request()->session()->get('USER_ROLE')  == '3')
          <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Laporan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>
@@ -165,7 +165,7 @@
               </span>
             </a>
           </li>
-          @if(request()->cookie('USER_ROLE')  == '1')
+          @if(request()->session()->get('USER_ROLE')  == '1')
            <!-- <li>
             <a href="{{route('master_kanwil')}}">
               <span class="tb-sidebar-link-title">
@@ -221,7 +221,7 @@
         </ul>
         @endif
 
-        @if(request()->cookie('USER_ROLE')  == '1')
+        @if(request()->session()->get('USER_ROLE')  == '1')
         <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Pengaturan</span>
           <span class="tb-sidebar-nav-title-dotline"><i class="material-icons-outlined">more_horiz</i></span>

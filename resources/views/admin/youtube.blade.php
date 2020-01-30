@@ -168,7 +168,7 @@
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                     
                     <span class="spanAction">
-                         @if(request()->cookie('USER_ID')  == 4)
+                         @if(request()->session()->get('USER_ID')  == 4)
                           <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
                             <span class="tb-toggle-btn tb-style1 tb-large-size">
                               <i class="material-icons-outlined iconAction">more_horiz</i>
@@ -207,7 +207,7 @@
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                     
                     <span class="spanAction">
-                         @if(request()->cookie('USER_ID')  == 4)
+                         @if(request()->session()->get('USER_ID')  == 4)
                           <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
                             <span class="tb-toggle-btn tb-style1 tb-large-size">
                               <i class="material-icons-outlined iconAction">more_horiz</i>

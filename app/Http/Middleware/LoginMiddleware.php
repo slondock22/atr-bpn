@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Cookie;
+use Session;
 
 class LoginMiddleware
 {
@@ -17,7 +18,7 @@ class LoginMiddleware
     public function handle($request, Closure $next)
     {
        
-        if ($this->hasCookie('TOKEN_AUTH_APP')) {
+        if ($this->hasSession('TOKEN_AUTH_APP')) {
             return $next($request);
         }
         else {
@@ -26,9 +27,9 @@ class LoginMiddleware
             
     }
 
-    protected function hasCookie($cookie_name)
+    protected function hasSession($cookie_name)
     {
-         $cookie_exist = Cookie::get($cookie_name);
+         $cookie_exist = Session::get($cookie_name);
          return ($cookie_exist) ? true : false;
     }
 }

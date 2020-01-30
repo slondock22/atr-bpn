@@ -123,7 +123,7 @@
           <div class="tb-toggle-btn tb-profile-nav-btn">
             <div class="tb-profile-nav-text">
               <span>Welcome,</span>
-              <h4>{{request()->cookie('USER_FULL_NAME')}}</h4>
+              <h4>{{request()->session()->get('USER_FULL_NAME')}}</h4>
             </div>
             <div class="tb-profile-nav-img">
               <img src="{{asset('/assets-back')}}/img/logo-mini-atr.jpg" alt="profile" />

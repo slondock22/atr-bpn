@@ -17,7 +17,7 @@ class AduanController extends Controller
         //Aduan
         $url = "http://devbpn.edii.co.id:3000/dispo/all/".$media;
 
-    	$token_akses = request()->cookie('TOKEN_AUTH_APP');
+    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
         				 [ 
                             'headers' => [
@@ -85,7 +85,7 @@ class AduanController extends Controller
 
         $url = "http://devbpn.edii.co.id:3000/disposisi/".$idFeeds;
 
-        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
                        [ 
                             'headers' => [
@@ -116,7 +116,7 @@ class AduanController extends Controller
     {   
         $client = new Client();
         $url = "http://devbpn.edii.co.id:3000/action/".$id;
-        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
         $request = $client->request('DELETE', $url, 
                        [ 
                             'headers' => [
@@ -145,7 +145,7 @@ class AduanController extends Controller
 
         $client = new Client();
         $url = "http://devbpn.edii.co.id:3000/replay/".$idFeeds;
-        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
                        [ 
                             'headers' => [
@@ -167,7 +167,7 @@ class AduanController extends Controller
     {
         $client = new Client();
         $url = "http://devbpn.edii.co.id:3000/spam/".$request->id;
-        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
         $request = $client->request('PUT', $url, 
                        [ 
                             'headers' => [
@@ -186,7 +186,7 @@ class AduanController extends Controller
 
         $client = new Client();
         $url = "http://devbpn.edii.co.id:3000/feeds/taken/".$request->id;
-        $token_akses = request()->cookie('TOKEN_AUTH_APP');
+        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
         $request = $client->request('POST', $url, 
                        [ 
                             'headers' => [

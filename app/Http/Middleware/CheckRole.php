@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Cookie;
+use Session;
 
 class CheckRole
 {
@@ -27,7 +28,7 @@ class CheckRole
         }
         $allowedRoleIds = array_unique($allowedRoleIds); 
 
-         if(in_array(Cookie::get('USER_ROLE'), $allowedRoleIds)) {
+         if(in_array(Session::get('USER_ROLE'), $allowedRoleIds)) {
             return $next($request);
           }
 

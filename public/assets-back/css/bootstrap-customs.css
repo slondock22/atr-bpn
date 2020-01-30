@@ -255,3 +255,18 @@ a{
     padding-right: 10px;
     padding-left: 10px;
 }
+
+
+@media (min-width: 992px){
+.modal-xxl{
+    max-width: 1280px;
+}
+
+.modal-xxl-body{
+    min-height: 650px !important;
+}
+
+.modal-xxl-top{
+    margin-top:-10px !important;
+}
+}

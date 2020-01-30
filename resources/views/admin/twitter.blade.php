@@ -170,7 +170,7 @@
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                     
                     <span class="spanAction">
-                         @if(request()->cookie('USER_ID')  == 4)
+                         @if(request()->session()->get('USER_ID')  == 4)
                           <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
                             <span class="tb-toggle-btn tb-style1 tb-large-size">
                               <i class="material-icons-outlined iconAction">more_horiz</i>
@@ -209,7 +209,7 @@
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                     
                     <span class="spanAction">
-                         @if(request()->cookie('USER_ID')  == 4)
+                         @if(request()->session()->get('USER_ID')  == 4)
                           <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
                             <span class="tb-toggle-btn tb-style1 tb-large-size">
                               <i class="material-icons-outlined iconAction">more_horiz</i>
@@ -271,7 +271,7 @@
                   <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                      @if(request()->cookie('MINISTRY_ID')  == '1')
+                      @if(request()->session()->get('MINISTRY_ID')  == '1')
                       <li>
                         <a onclick="modal_feeds('{!!str_replace("'","\'",$value['comment'])!!}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
@@ -608,7 +608,7 @@
 
     function modal_feeds(content='',user='',date='',post_url='', id_feeds =''){
         $('#id_feeds').val(id_feeds);
-        $('#modal-balas-feed').modal('show');
+        $('#modal-balas-feed').modal({backdrop: 'static', keyboard: false});
         $('#contentTwitUser').html(content);
         $('#twitUser').html('@'+user);
         $('#headerUser').html('@'+user);
@@ -618,7 +618,7 @@
     }
 
     function modal_disposisi(id='',content='',user='',date=''){
-        $('#modal-add-disposisi').modal('show');
+        $('#modal-add-disposisi').modal({backdrop: 'static', keyboard: false});
         $('#ministryId').val('');
         $('#commentDisposisi').val('');
         $('#idFeeds').val(id);
@@ -674,7 +674,7 @@
       copyClipboard('divSendModalFeeds');
       
       $('#modal-balas-feed').modal('hide');
-      $('#modal-iframepost').modal('show');
+      $('#modal-iframepost').modal({backdrop: 'static', keyboard: false});
       // $("#txtPostUrl").val(post_url);
       $('#divSendModalFeeds').html('');
 

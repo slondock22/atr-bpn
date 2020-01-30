@@ -103,19 +103,19 @@
 			  <label for="exampleFormControlSelect1" style="margin-top:15px">Role *</label>
 			   <select class="form-control" name="val[role]" id="role">
 				<option value="">Pilih Role</option>
-				@if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2')
+				@if(request()->session()->get('USER_ROLE')  == '1' || request()->session()->get('USER_ROLE')  == '2')
 				   <option value="2">Admin Kantor Wilayah</option>
 			   @endif
-			   @if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
+			   @if(request()->session()->get('USER_ROLE')  == '1' || request()->session()->get('USER_ROLE')  == '2' || request()->session()->get('USER_ROLE')  == '3')
 				    <option value="3">Admin Kantor Pertanahan</option>
 				@endif
-				@if(request()->cookie('USER_ROLE')  == '1')
+				@if(request()->session()->get('USER_ROLE')  == '1')
 					 <option value="6">User Kantor Pusat</option>
 				@endif
-				@if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2')
+				@if(request()->session()->get('USER_ROLE')  == '1' || request()->session()->get('USER_ROLE')  == '2')
 					  <option value="4">User Kantor Wilayah</option>
 				@endif
-				@if(request()->cookie('USER_ROLE')  == '1' || request()->cookie('USER_ROLE')  == '2' || request()->cookie('USER_ROLE')  == '3')
+				@if(request()->session()->get('USER_ROLE')  == '1' || request()->session()->get('USER_ROLE')  == '2' || request()->session()->get('USER_ROLE')  == '3')
 					   <option value="5">User Kantor Pertanahan</option>
 				@endif
               </select>
