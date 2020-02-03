@@ -32,6 +32,8 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('profile','IndexController@profile')->name('profile');
 	Route::get('dokumentasi','IndexController@dokumentasi')->name('dokumentasi');
 	Route::get('statAll','MasterController@statAll')->name('statAll');
+	Route::get('masterUserApi/{id?}','MasterController@masterUserApi')->name('masterUserApi');
+
 
 
 	Route::middleware(['checkRole:op_pusat,op_kanwil,op_kantah'])->group(function(){
@@ -67,7 +69,6 @@ Route::group(['middleware' => ['login']], function () {
 		Route::get('master_level','IndexController@masterLevel')->name('master_level');
 		Route::get('master_role','IndexController@masterRole')->name('master_role');
 
-		Route::get('masterUserApi/{id?}','MasterController@masterUserApi')->name('masterUserApi');
 		Route::get('master/{api}/{id?}','MasterController@masterGetApi')->name('master');
 		Route::get('delete_master/{api}/{id?}','MasterController@masterDelApi')->name('delete_master');
 		Route::get('delete_user/{id?}','MasterController@masterUserDelApi')->name('delete_user');

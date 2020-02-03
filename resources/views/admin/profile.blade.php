@@ -50,42 +50,42 @@
                     <div class="tb-form-field-wrap tb-style1">
                       <label class="tb-form-field-label">Username</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="username">
+                        <input type="text" placeholder="Enter First Name" value="" readonly disabled id="username">
                       </div>
                     </div>
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
                     <div class="tb-form-field-wrap tb-style1">
                       <label class="tb-form-field-label">Fullname</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="fullname">
+                        <input type="text" placeholder="Enter First Name" value="" readonly disabled id="fullname">
                       </div>
                     </div>
                     <div class="tb-height-b25 tb-height-lg-b25" style="display: none"></div>
                     <div class="tb-form-field-wrap tb-style1" style="display: none">
                       <label class="tb-form-field-label">Email</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="email" placeholder="Email" value="johndoe@gmail.com" readonly disabled id="email">
+                        <input type="email" placeholder="Email" value="" readonly disabled id="email">
                       </div>
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                     <div class="tb-form-field-wrap tb-style1">
                       <label class="tb-form-field-label">User Detail</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="detail">
+                        <input type="text" placeholder="Enter First Name" value="" readonly disabled id="detail">
                       </div>
                     </div>
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
                     <div class="tb-form-field-wrap tb-style1">
                       <label class="tb-form-field-label">City</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="city">
+                        <input type="text" placeholder="Enter First Name" value="" readonly disabled id="city">
                       </div>
                     </div>
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
                     <div class="tb-form-field-wrap tb-style1">
                       <label class="tb-form-field-label">Ministry</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter First Name" value="John" readonly disabled id="ministry_name">
+                        <input type="text" placeholder="Enter First Name" value="" readonly disabled id="ministry_name">
                       </div>
                     <div class="tb-height-b60 tb-height-lg-b60"></div>
                   </div><!-- .tb-profile-setting-container -->
