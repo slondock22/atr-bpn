@@ -615,7 +615,7 @@ if ($.exists("#tb-chart2-type17")) {
   var myChart = new Chart(ctx, {
    type: 'bar',
     data: {
-      labels: ["#SengketaLahan", "#PengadaanLahan", "#SertifikatLahan", "#InfoATRBPN", "#PerijinanLahan"],
+      labels: ["#SengketaTanah", "#PengadaanTanah", "#SertifikatTanah", "#InfoATRBPN", "#PerijinanTanah"],
       datasets: [{
         label: 'Aduan',
         data: [5, 7, 3, 8, 10],
