@@ -45,6 +45,7 @@
                         </div>
                       </div>
                     </div>
+                    <input type="hidden" id="user_id" value="{{request()->session()->get('USER_ID') }}">
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
                     <div class="tb-form-field-wrap tb-style1">
                       <label class="tb-form-field-label">Username</label>
@@ -193,7 +194,8 @@
 <script>
 
   $(document).ready(function(){
-    getUser(1);  
+    var user_id = $('#user_id').val();
+    getUser(user_id);  
   });
 
 </script>
