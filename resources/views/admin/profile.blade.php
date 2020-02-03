@@ -71,7 +71,7 @@
                     <div class="tb-form-field-wrap tb-style1">
                       <label class="tb-form-field-label">User Detail</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter First Name" value="" readonly disabled id="detail">
+                        <input type="text" placeholder="" value="" readonly disabled id="detail">
                       </div>
                     </div>
                     <div class="tb-height-b25 tb-height-lg-b25"></div>
