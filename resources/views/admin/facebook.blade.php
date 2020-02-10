@@ -124,7 +124,9 @@
                   
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <div class="tb-post tb-style1">
-                    <div class="tb-post-text">{{$value['comment']}}</div>
+                    <div class="tb-post-text" id="content{{$value['id']}}">
+                      {{$value['comment']}}
+                    </div>
 
                     <div class="divHastagFacebook">
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
@@ -197,12 +199,12 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                        <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
                       
-                      <li><a onclick="modal_disposisi('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      <li><a onclick="modal_disposisi('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
                       
                     </ul>
@@ -214,12 +216,12 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
+                        <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
 
-                      <li><a onclick="modal_disposisi('{{$value['comment']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      <li><a onclick="modal_disposisi('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
                       
                     </ul>
@@ -502,6 +504,8 @@
     }
 
     function modal_feeds(content='',user='',date=''){
+        var content = $("#"+content).html();
+
         $('#modal-balas-feed').modal('show');
         $('#contentTwitUser').html(content);
         $('#twitUser').html('@'+user);
@@ -511,6 +515,8 @@
     }
 
     function modal_disposisi(content='',user='',date=''){
+        var content = $("#"+content).html();
+
         $('#modal-add-disposisi').modal('show');
         $('#contentTwitUserDisposisi').html(content);
         $('#twitUserDisposisi').html('@'+user);
