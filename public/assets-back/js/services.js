@@ -11,6 +11,11 @@ $(document).ready(function(){
         width: '100%',
         dropdownParent: $("#modal-add-disposisi"),
      }); 
+	 
+	 $('.tb-post-text').linkify({
+		target: "_blank",
+		className: 'attach-url'
+	 });
 });
 
 $('#btnDisposisi').on('click', function() {

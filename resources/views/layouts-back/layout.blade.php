@@ -83,6 +83,9 @@
   <script src="{{asset('/assets-back')}}/js/alert.js"></script>
   <script src="{{asset('/assets-back')}}/js/select2.min.js"></script>
   <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="{{asset('/assets-back')}}/js/linkify.min.js"></script>
+  <script src="{{asset('/assets-back')}}/js/linkify-jquery.min.js"></script>
+  
 
  
  
@@ -92,7 +95,6 @@
             // Animate loader off screen
             $(".se-pre-con").fadeOut("slow");
         });
-
   </script>
 
 

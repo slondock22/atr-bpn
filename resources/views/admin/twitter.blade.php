@@ -119,12 +119,12 @@
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="tb-user tb-style3">
                     <div class="tb-user-img">
-                     {!! $img = str_replace('[]', '', $value['image']) !!}
+                     {{-- {!! $img = str_replace('[]', '', $value['image']) !!}
                       @if($img != '')
                         <img src="{{$value['image']}}" alt="">
-                      @else
+                      @else --}}
                         <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
-                      @endif  
+                     {{-- @endif  --}}
                     </div>
                     <div class="tb-user-info">
                       <h3 class="tb-user-name">
@@ -600,7 +600,6 @@
 </div>
 
 <script>
-    
 
     function collapseBtn(div1,div2){
         $("#"+div1).slideUp(300);
