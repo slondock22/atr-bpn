@@ -147,7 +147,9 @@
                   
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <div class="tb-post tb-style1">
-                    <div class="tb-post-text">{{$value['comment']}}</div>
+                    <div class="tb-post-text" id="content{{$value['id']}}">
+                      {{$value['comment']}}
+                    </div>
 
                     <div class="divHastag">
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
@@ -270,12 +272,12 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       <li>
-                        <a onclick="modal_feeds('{!!str_replace("'","\'",$value['comment'])!!}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
+                        <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
                       
-                      <li><a onclick="modal_disposisi('{{$value['id']}}','{!!str_replace("'","\'",$value['comment'])!!}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
                       
                     </ul>
@@ -379,6 +381,11 @@
         </form>
       </div>
       <div class="modal-footer">
+         <span class="spanLoading">
+          <img style="height: 45px;margin-right: 10px;" 
+          src="{{asset('assets-back/img/loading.gif')}}">
+        </span>
+        
         <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
         <button type="button" id="btnSendDisposisi" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
@@ -660,6 +667,8 @@
     }
 
     function modal_feeds(content='',user='',date='',post_url='', id_feeds =''){
+        var content = $("#"+content).html();
+
         $('#id_feeds').val(id_feeds);
         $('#modal-balas-feed').modal('show');
         $('#contentTwitUser').html(content);
@@ -671,6 +680,8 @@
     }
 
     function modal_disposisi(id='',content='',user='',date=''){
+        var content = $("#"+content).html();
+
         $('#modal-add-disposisi').modal('show');
         $('#ministryId').val('');
         $('#commentDisposisi').val('');
