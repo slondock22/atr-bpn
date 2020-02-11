@@ -182,4 +182,29 @@ class MasterController extends Controller
 	        $response = $request->getBody()->getContents();
 	        echo $response;
 	     }
+
+	     public function masterSpam()
+	     {
+	     	$url = "http://devbpn.edii.co.id:3000/dispo/all/instagram";
+	    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
+	        $request = $client->request('GET', $url, 
+	        				 [ 
+	                            'headers' => [
+	                                 'Content-Type'  => 'application/json',
+	                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+	                            ]
+	                        ]);
+	        
+	        $response = json_decode($request->getBody()->getContents(),true);
+
+           	foreach($response['data'] as $key => $value){
+           		if($value['is_spam'] == 1){
+	        		$datatable = Datatables::of($response['data'])->make(true);
+           		}
+           	}
+
+           	return $datatable;
+
+
+	     }
 }
