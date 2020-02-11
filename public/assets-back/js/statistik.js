@@ -277,7 +277,7 @@ $.get(base_url+"/statistik/kanwil",function(result){
 })
 // Type 11
 
-$.get(base_url+"/statistik/kanwil",function(result){
+$.get(base_url+"/statistik/kantah",function(result){
   console.log(result);
     if ($.exists("#sla_kantah_chart")) {
       var ctx = document.querySelector("#sla_kantah_chart");
