@@ -271,11 +271,13 @@
                   <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      @if(request()->session()->get('MINISTRY_ID')  == '1')
                       <li>
                         <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
+                      @endif
                       
                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
