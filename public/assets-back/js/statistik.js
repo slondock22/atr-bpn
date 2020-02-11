@@ -55,68 +55,70 @@ var scalesXaxes = [{
 
 
 // Type8
-if ($.exists("#grafik_pengaduan_chart")) {
-  var ctx1 = document.querySelector("#grafik_pengaduan_chart");
-  var myChart1 = new Chart(ctx1, {
-    type: "line",
-    data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sept", "Okt","Nov","Des"],
-      datasets: [{
-          data: [200, 150, 130, 105, 100, 50, 80, 60, 90, 30, 20, 10, 7],
-          backgroundColor: "rgba(0, 122, 255, 0.1)",
-          borderColor: "#007aff",
-          borderWidth: 3,
-          lineTension: 0,
-          pointBackgroundColor: "#fff",
-          pointDotRadius: 10
+$.get(base_url+"/statistikjs/pengaduan",function(result){
+  console.log(result);
+    if ($.exists("#grafik_pengaduan_chart")) {
+      var ctx1 = document.querySelector("#grafik_pengaduan_chart");
+      var myChart1 = new Chart(ctx1, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sept", "Okt","Nov","Des"],
+          datasets: [{
+              data: result.facebook,
+              backgroundColor: "rgba(0, 122, 255, 0.1)",
+              borderColor: "#007aff",
+              borderWidth: 3,
+              lineTension: 0,
+              pointBackgroundColor: "#fff",
+              pointDotRadius: 10
+            },
+            {
+              data: result.twitter,
+              backgroundColor: "rgba(52, 199, 89, 0.1)",
+              borderColor: "#34c759",
+              borderWidth: 3,
+              lineTension: 0,
+              pointBackgroundColor: "#fff",
+              pointDotRadius: 10
+            },
+            {
+              data: result.instagram,
+              backgroundColor: "rgba(169, 43, 171, 0.1)",
+              borderColor: "#a92bab",
+              borderWidth: 3,
+              lineTension: 0,
+              pointBackgroundColor: "#fff",
+              pointDotRadius: 10
+            },
+            {
+              data: result.youtube,
+              backgroundColor: "rgba(210, 21, 43, 0.1)",
+              borderColor: "#d2152b",
+              borderWidth: 3,
+              lineTension: 0,
+              pointBackgroundColor: "#fff",
+              pointDotRadius: 10
+            }
+          ]
         },
-        {
-          data: [50, 70, 100, 120, 80, 70, 60, 110, 90, 140, 150, 155],
-          backgroundColor: "rgba(52, 199, 89, 0.1)",
-          borderColor: "#34c759",
-          borderWidth: 3,
-          lineTension: 0,
-          pointBackgroundColor: "#fff",
-          pointDotRadius: 10
-        },
-        {
-          data: [50, 50, 60, 70, 80, 90, 100, 40, 150, 200, 190, 180],
-          backgroundColor: "rgba(169, 43, 171, 0.1)",
-          borderColor: "#a92bab",
-          borderWidth: 3,
-          lineTension: 0,
-          pointBackgroundColor: "#fff",
-          pointDotRadius: 10
-        },
-        {
-          data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 120, 150],
-          backgroundColor: "rgba(210, 21, 43, 0.1)",
-          borderColor: "#d2152b",
-          borderWidth: 3,
-          lineTension: 0,
-          pointBackgroundColor: "#fff",
-          pointDotRadius: 10
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          legend: false,
+          tooltips: lineChartToolTips,
+          scales: {
+            yAxes: scalesYaxes,
+            xAxes: scalesXaxes
+          },
+          elements: {
+            point: {
+              radius: 0
+            }
+          }
         }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: false,
-      tooltips: lineChartToolTips,
-      scales: {
-        yAxes: scalesYaxes,
-        xAxes: scalesXaxes
-      },
-      elements: {
-        point: {
-          radius: 0
-        }
-      }
+      });
     }
-  });
-}
-
+});
 
 if ($.exists("#aduan_populer_chart")) {
   var ctx = document.querySelector("#aduan_populer_chart").getContext("2d");

@@ -216,6 +216,14 @@ class MasterController extends Controller
 	     	elseif($chart == 'kantah'){
 	     		$data = [3, 2, 1, 6, 5, 4, 6, 2, 1, 6];
 	     	}
+	     	elseif($chart == 'pengaduan'){
+	     		$data = [
+	     				'facebook' => [200, 150, 130, 105, 100, 50, 80, 60, 90, 30, 20, 10, 7],
+	     				'twitter' => [50, 70, 100, 120, 80, 70, 60, 110, 90, 140, 150, 155],
+	     				'instagram' => [50, 50, 60, 70, 80, 90, 100, 40, 150, 200, 190, 180],
+	     				'youtube' => [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 120, 150],
+	     				];
+	     	}
 
 	     	return \Response::json($data);
 	     }
