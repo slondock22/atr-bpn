@@ -120,6 +120,8 @@ $.get(base_url+"/statistikjs/pengaduan",function(result){
     }
 });
 
+$.get(base_url+"/statistikjs/aduanpopuler",function(result){
+  console.log(result);
 if ($.exists("#aduan_populer_chart")) {
   var ctx = document.querySelector("#aduan_populer_chart").getContext("2d");
   var myChart = new Chart(ctx, {
@@ -128,7 +130,7 @@ if ($.exists("#aduan_populer_chart")) {
       labels: ["#SengketaTanah", "#PengadaanTanah", "#SertifikatTanah", "#InfoATRBPN", "#PerijinanTanah"],
       datasets: [{
         label: 'Aduan',
-        data: [5, 7, 3, 8, 10],
+        data: result,
         backgroundColor: ['#5856d6', '#5856d6', '#5856d6', '#5856d6', '#5856d6'],
       }]
     },
@@ -183,18 +185,19 @@ if ($.exists("#aduan_populer_chart")) {
             zeroLineWidth: 0,
             zeroLineColor: "transparent",
             drawBorder: false
+              }
+            }],
+            xAxes: scalesXaxes
+          },
+          elements: {
+            point: {
+              radius: 0
+            }
           }
-        }],
-        xAxes: scalesXaxes
-      },
-      elements: {
-        point: {
-          radius: 0
         }
-      }
+      });
     }
-  });
-}
+});
 
 $.get(base_url+"/statistikjs/kanwil",function(result){
   console.log(result);
@@ -361,28 +364,29 @@ $.get(base_url+"/statistikjs/kantah",function(result){
   });
 
 
-// Type3
-if ($.exists("#aduan_terjawab_chart")) {
-  var ctx3 = document.querySelector("#aduan_terjawab_chart").getContext("2d");
-  var myChart3 = new Chart(ctx3, {
-    type: "pie",
-    data: {
-      labels: ["Terjawab", "Sent"],
-      datasets: [{
-        backgroundColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
-        hoverBackgroundColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
-        data: [70, 30],
-        borderWidth: 0,
-        hoverBorderColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
-      }]
-    },
-    options: {
-      cutoutPercentage: 90,
-      legend: false,
-      tooltips: lineChartToolTips
+$.get(base_url+"/statistikjs/aduanterjawab",function(result){
+  console.log(result);
+    if ($.exists("#aduan_terjawab_chart")) {
+      var ctx3 = document.querySelector("#aduan_terjawab_chart").getContext("2d");
+      var myChart3 = new Chart(ctx3, {
+        type: "pie",
+        data: {
+          labels: ["Terjawab", "Sent"],
+          datasets: [{
+            backgroundColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
+            hoverBackgroundColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
+            data: result,
+            borderWidth: 0,
+            hoverBorderColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
+          }]
+        },
+        options: {
+          cutoutPercentage: 90,
+          legend: false,
+          tooltips: lineChartToolTips
+        }
+      });
     }
-  });
-}
-/* End Line Chart3 Initialize */
-
+    /* End Line Chart3 Initialize */
+});
 
