@@ -561,7 +561,7 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body" id="">
+      <div class="modal-body modal-xxl-body" id="">
          <div id="postUrl"></div>
       </div>
       </div>
@@ -689,8 +689,8 @@
       // alert(link);
       var iframe = document.createElement('iframe');
       iframe.frameBorder=0;
-      iframe.width="820px";
-      iframe.height="350px";
+      iframe.width="1240px";
+      iframe.height="650px";
       iframe.id="iframePostReply";
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
