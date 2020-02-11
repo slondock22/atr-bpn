@@ -194,84 +194,88 @@ if ($.exists("#aduan_populer_chart")) {
   });
 }
 
-// Type 11
-if ($.exists("#sla_kanwil_chart")) {
-  var ctx = document.querySelector("#sla_kanwil_chart");
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ["Kanwil Jawa Timur", "Kanwil Maluku", "Kanwil Maluku", "Kanwil Kaltim", "Kanwil Jawa Barat", "Kanwil Jawa Tengah", "Kanwil Gorontalo", "Kanwil Lampung", "Kanwil Sumut", "Kanwil Sumbar"],
-      datasets: [{
-        label: 'Hari',
-        data: [5, 7, 3, 8, 10, 2, 2, 3, 4, 6],
-        backgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
-        hoverBackgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: false,
-      tooltips: {
-        displayColors: false,
-        mode: "nearest",
-        intersect: false,
-        position: "nearest",
-        xPadding: 8,
-        yPadding: 8,
-        caretPadding: 8,
-        backgroundColor: "#fff",
-        cornerRadius: 4,
-        titleFontSize: 13,
-        titleFontStyle: "normal",
-        bodyFontSize: 13,
-        titleFontColor: "#222",
-        bodyFontColor: "rgba(0, 0, 0, 0.7)",
-        borderWidth: 1,
-        borderColor: "rgba(0, 0, 0, 0.1)",
-        callbacks: {
-          // use label callback to return the desired label
-          label: function(tooltipItem, data) {
-            return tooltipItem.xLabel + " " + tooltipItem.yLabel + " Hari";
+$.get(base_url+"statAll",function(result){
+  alert(result);
+    if ($.exists("#sla_kanwil_chart")) {
+      var ctx = document.querySelector("#sla_kanwil_chart");
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ["Kanwil Jawa Timur", "Kanwil Maluku", "Kanwil Maluku", "Kanwil Kaltim", "Kanwil Jawa Barat", "Kanwil Jawa Tengah", "Kanwil Gorontalo", "Kanwil Lampung", "Kanwil Sumut", "Kanwil Sumbar"],
+          datasets: [{
+            label: 'Hari',
+            data: result,
+            backgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
+            hoverBackgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          legend: false,
+          tooltips: {
+            displayColors: false,
+            mode: "nearest",
+            intersect: false,
+            position: "nearest",
+            xPadding: 8,
+            yPadding: 8,
+            caretPadding: 8,
+            backgroundColor: "#fff",
+            cornerRadius: 4,
+            titleFontSize: 13,
+            titleFontStyle: "normal",
+            bodyFontSize: 13,
+            titleFontColor: "#222",
+            bodyFontColor: "rgba(0, 0, 0, 0.7)",
+            borderWidth: 1,
+            borderColor: "rgba(0, 0, 0, 0.1)",
+            callbacks: {
+              // use label callback to return the desired label
+              label: function(tooltipItem, data) {
+                return tooltipItem.xLabel + " " + tooltipItem.yLabel + " Hari";
+              },
+              // remove title
+              title: function(tooltipItem, data) {
+                return;
+              }
+            }
           },
-          // remove title
-          title: function(tooltipItem, data) {
-            return;
+          scales: {
+            yAxes: [{
+              position: "left",
+              ticks: {
+                fontSize: 14,
+                fontColor: "rgba(0, 0, 0, 0.4)",
+                padding: 15,
+                autoSkip: false,
+                maxTicksLimit: 6,
+                beginAtZero: true,
+                steps: 5,
+                stepValue: 5,
+                max: 20
+              },
+              gridLines: {
+                color: "rgba(0, 0, 0, 0.1)",
+                zeroLineWidth: 0,
+                zeroLineColor: "transparent",
+                drawBorder: false
+              }
+            }],
+            xAxes: scalesXaxes
+          },
+          elements: {
+            point: {
+              radius: 0
+            }
           }
         }
-      },
-      scales: {
-        yAxes: [{
-          position: "left",
-          ticks: {
-            fontSize: 14,
-            fontColor: "rgba(0, 0, 0, 0.4)",
-            padding: 15,
-            autoSkip: false,
-            maxTicksLimit: 6,
-            beginAtZero: true,
-            steps: 5,
-            stepValue: 5,
-            max: 20
-          },
-          gridLines: {
-            color: "rgba(0, 0, 0, 0.1)",
-            zeroLineWidth: 0,
-            zeroLineColor: "transparent",
-            drawBorder: false
-          }
-        }],
-        xAxes: scalesXaxes
-      },
-      elements: {
-        point: {
-          radius: 0
-        }
-      }
+      });
     }
-  });
-}
-/* End Line Chart2 Initialize */
+    /* End Line Chart2 Initialize */
+
+})
+// Type 11
 
 if ($.exists("#sla_kantah_chart")) {
   var ctx = document.querySelector("#sla_kantah_chart");
@@ -375,4 +379,5 @@ if ($.exists("#aduan_terjawab_chart")) {
   });
 }
 /* End Line Chart3 Initialize */
+
 
