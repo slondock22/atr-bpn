@@ -32,6 +32,7 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('profile','IndexController@profile')->name('profile');
 	Route::get('dokumentasi','IndexController@dokumentasi')->name('dokumentasi');
 	Route::get('statAll','MasterController@statAll')->name('statAll');
+	Route::get('statistik/{chart}','MasterController@statistik')->name('statistik');
 	Route::get('masterUserApi/{id?}','MasterController@masterUserApi')->name('masterUserApi');
 
 
