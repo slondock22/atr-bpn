@@ -189,7 +189,7 @@
 
       <div class="tb-height-b30 tb-height-lg-b30"></div>
       <div class="row">
-        <div class="col-lg-6">
+        {{-- <div class="col-lg-6">
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
@@ -201,14 +201,14 @@
                 <div class="tb-chart-inside">
                   <div>
                     {{-- <canvas id="tb-chart3" height="350"></canvas> --}}
-                   <div id="map" style="width: 100%; height: 400px;"></div>
+                 {{--   <div id="map" style="width: 100%; height: 400px;"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div><!-- .col -->
-         <div class="col-lg-6">
+        </div><!-- .col --> --}} -
+         <div class="col-lg-12">
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
