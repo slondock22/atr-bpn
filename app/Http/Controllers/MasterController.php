@@ -208,7 +208,7 @@ class MasterController extends Controller
 
 	     }
 
-	     public function statisitk($chart)
+	     public function statistikjs($chart)
 	     {
 	     	if($chart == 'kanwil'){
 	     		$data = [5, 7, 3, 8, 10, 2, 2, 3, 4, 6];
