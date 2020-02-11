@@ -551,7 +551,7 @@
 </div>
 
 <div class="modal fade" id="modal-iframepost" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-xxl modal-dialog-centered modal-xxl-top">
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
