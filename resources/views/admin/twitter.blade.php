@@ -552,7 +552,7 @@
 </div>
 
 <div class="modal fade" id="modal-iframepost" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-xxl modal-dialog-centered modal-xxl-top">
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
@@ -562,7 +562,7 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body" id="modal-body">
+      <div class="modal-body modal-xxl-body" id="modal-body">
          <div id="postUrl">
            {{-- <iframe is="x-frame-bypass" width="820px" height="350px" id="iframePostReply" frameborder="0" src="" ></iframe> --}}
          </div>
@@ -689,8 +689,8 @@
       // // alert(link);
       var iframe = document.createElement('iframe');
       iframe.frameBorder=0;
-      iframe.width="820px";
-      iframe.height="350px";
+      iframe.width="1240px";
+      iframe.height="650px";
       iframe.id="iframePostReply";
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
