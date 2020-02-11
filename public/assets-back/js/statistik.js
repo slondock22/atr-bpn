@@ -194,7 +194,7 @@ if ($.exists("#aduan_populer_chart")) {
   });
 }
 
-$.get(base_url+"statAll",function(result){
+$.get(base_url+"/statAll",function(result){
   alert(result);
     if ($.exists("#sla_kanwil_chart")) {
       var ctx = document.querySelector("#sla_kanwil_chart");
