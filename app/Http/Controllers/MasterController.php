@@ -207,4 +207,16 @@ class MasterController extends Controller
 
 
 	     }
+
+	     public function statisitk($chart)
+	     {
+	     	if($chart == 'kanwil'){
+	     		$data = [5, 7, 3, 8, 10, 2, 2, 3, 4, 6];
+	     	}
+	     	elseif($chart == 'kantah'){
+	     		$data = [3, 2, 1, 6, 5, 4, 6, 2, 1, 6];
+	     	}
+
+	     	return \Response::json($data);
+	     }
 }
