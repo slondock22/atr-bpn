@@ -74,7 +74,7 @@
   <script src="{{asset('/assets-back')}}/js/bootstrap.bundle.min.js"></script>
   <script src="{{asset('/assets-back')}}/js/bootstrap.min.js"></script>
   <script src="{{asset('/assets-back')}}/js/Chart.min.js"></script>
-  <script src="{{asset('/assets-back')}}/js/chartjs.light.js"></script>
+  <script src="{{asset('/assets-back')}}/js/statistik.js"></script>
   <script src="{{asset('/assets-back')}}/js/swiper.min.js"></script>
   <script src="{{asset('/assets-back')}}/js/smooth-scrollbar.js"></script>
   <script src="{{asset('/assets-back')}}/js/main.js"></script>

@@ -65,7 +65,7 @@
               <div class="tb-padd-lr-30">
                 <div class="tb-chart-wrap tb-style14">
                   <div class="tb-chart-in">
-                    <canvas id="tb-chart1-type8"></canvas>
+                    <canvas id="grafik_pengaduan_chart"></canvas>
                   </div>
                 </div>
                 <ul class="tb-circle-stroke tb-style1">
@@ -111,7 +111,7 @@
               <div class="tb-chart-wrap tb-style3 tb-type2">
                 <div class="tb-chart-inside">
                   <div class="tb-chart-in">
-                    <canvas id="tb-chart3-type3" height="120" width="120"></canvas>
+                    <canvas id="aduan_terjawab_chart" height="120" width="120"></canvas>
                   </div>
                   <div class="tb-active-device">
                     <div class="tb-active-device-per">
@@ -152,7 +152,7 @@
               <div class="tb-padd-lr-30">
                 <div class="tb-chart-wrap tb-style14">
                   <div class="tb-chart-in">
-                   <canvas id="tb-chart2-type11"></canvas>
+                   <canvas id="sla_kanwil_chart"></canvas>
                   </div>
                 </div>
               </div>
@@ -177,7 +177,7 @@
               <div class="tb-padd-lr-30">
                 <div class="tb-chart-wrap tb-style14">
                   <div class="tb-chart-in">
-                   <canvas id="tb-chart2-type12"></canvas>
+                   <canvas id="sla_kantah_chart"></canvas>
                   </div>
                 </div>
               </div>
@@ -220,7 +220,7 @@
               <div class="tb-padd-lr-30">
                 <div class="tb-chart-wrap tb-style14">
                   <div class="tb-chart-in">
-                    <canvas id="tb-chart2-type17"></canvas>
+                    <canvas id="aduan_populer_chart"></canvas>
                   </div>
                 </div>
               </div>
