@@ -127,7 +127,7 @@ if ($.exists("#aduan_populer_chart")) {
   var myChart = new Chart(ctx, {
    type: 'bar',
     data: {
-      labels: ["#SengketaTanah", "#PengadaanTanah", "#SertifikatTanah", "#InfoATRBPN", "#PerijinanTanah"],
+      labels: ["", "", "", "", ""],
       datasets: [{
         label: 'Aduan',
         data: result,
@@ -206,7 +206,7 @@ $.get(base_url+"/statistikjs/kanwil",function(result){
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["Kanwil Jawa Timur", "Kanwil Maluku", "Kanwil Maluku", "Kanwil Kaltim", "Kanwil Jawa Barat", "Kanwil Jawa Tengah", "Kanwil Gorontalo", "Kanwil Lampung", "Kanwil Sumut", "Kanwil Sumbar"],
+          labels: [],
           datasets: [{
             label: 'Hari',
             data: result,
@@ -289,7 +289,7 @@ $.get(base_url+"/statistikjs/kantah",function(result){
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["Kantah Surabaya", "Kantah Pringsewu", "Kantah Banten", "Kantah Luwuk", "Kantah Purwakarta", "Kantah Ambon", "Kantah Medan", "Kantah B.Lampung", "Kantah Tanggamus", "Kantah Solo"],
+          labels: [],
           datasets: [{
             label: 'Hari',
             data: [3, 2, 1, 6, 5, 4, 6, 2, 1, 6],
