@@ -292,7 +292,7 @@ $.get(base_url+"/statistikjs/kantah",function(result){
           labels: [],
           datasets: [{
             label: 'Hari',
-            data: [3, 2, 1, 6, 5, 4, 6, 2, 1, 6],
+            data: result,
             backgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
             hoverBackgroundColor: ['#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30', '#007aff', '#5ac8fa', '#ffcc00', '#ff9500', '#ff3b30'],
           }]
