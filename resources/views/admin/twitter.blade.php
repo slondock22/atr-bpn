@@ -295,6 +295,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       @if(request()->session()->get('MINISTRY_ID')  == '1')
+					<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
                       <li>
                         <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
