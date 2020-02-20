@@ -85,6 +85,10 @@
                     <span class="tb-circle-color" data-bulet-color="#d2152b"></span>
                     <span class="tb-circle-label">Youtube</span>
                   </li>
+                  <li>
+                    <span class="tb-circle-color" data-bulet-color="#faff00"></span>
+                    <span class="tb-circle-label">Email</span>
+                  </li>
                 </ul>
               </div>
               <div class="tb-height-b30 tb-height-lg-b30"></div>
