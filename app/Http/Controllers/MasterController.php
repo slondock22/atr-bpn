@@ -264,19 +264,19 @@ class MasterController extends Controller
 		        
 		        $email = json_decode($request4->getBody()->getContents(),true);
 
-		        $url5 = "http://devbpn.edii.co.id:3000/statistic/sosmed/facebook";
-		        $request5 = $client->request('GET', $url5, 
-		        				 [ 
-		                            'headers' => [
-		                                 'Content-Type'  => 'application/json',
-		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
-		                            ]
-		                        ]);
+		        // $url5 = "http://devbpn.edii.co.id:3000/statistic/sosmed/facebook";
+		        // $request5 = $client->request('GET', $url5, 
+		        // 				 [ 
+		        //                     'headers' => [
+		        //                          'Content-Type'  => 'application/json',
+		        //                          'X-Api-Key'     => 'ATRBPn '.$token_akses
+		        //                     ]
+		        //                 ]);
 		        
-		        $facebook = json_decode($request5->getBody()->getContents(),true);
+		        // $facebook = json_decode($request5->getBody()->getContents(),true);
 
 	     		return \Response::json($data = [
-	     				'facebook' => $facebook['data']['datasets']['data'],
+	     				'facebook' => [],
 	     				'twitter' =>  $twitter['data']['datasets']['data'],
 	     				'instagram'=> $instagram['data']['datasets']['data'],
 	     				'youtube' =>  $youtube['data']['datasets']['data'],
