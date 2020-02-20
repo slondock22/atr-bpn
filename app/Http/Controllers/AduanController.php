@@ -120,7 +120,7 @@ class AduanController extends Controller
         $request = $client->request('DELETE', $url, 
                        [ 
                             'headers' => [
-                                 'Content-Type'  => 'application/json',
+                            e     'Content-Type'  => 'application/json',
                                  'X-Api-Key'     => 'ATRBPn '.$token_akses
                             ]
                         ]);
@@ -200,5 +200,30 @@ class AduanController extends Controller
         // dd($response);
 
         return \Response::json($response);
+    }
+
+    public function updateJenisAduan($id_feed, $id_category)
+    {
+        $value['id_category'] = $id_category;
+
+        $client = new Client();
+
+        $url = "http://devbpn.edii.co.id:3000/feed/".$id_feed;
+
+        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
+        $request = $client->request('PUT', $url, 
+                       [ 
+                            'headers' => [
+                                 'Content-Type'  => 'application/json',
+                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+                            ],
+
+                            'json' => $value
+                        ]);
+
+        $response = json_decode($request->getBody()->getContents(),true);
+        //dd($response);
+
+       return \Response::json($response);
     }
 }
