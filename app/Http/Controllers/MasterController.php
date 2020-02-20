@@ -210,6 +210,8 @@ class MasterController extends Controller
 
 	     public function statistikjs($chart)
 	     {
+	     	$client = new Client();
+	     	
 	     	if($chart == 'kanwil'){
 	     		return \Response::json($data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 	     	}
