@@ -156,7 +156,7 @@
                       @if(isset($value['aduan']))
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
-                        #{{$value['aduan']['aduan']}}
+                        #{!!str_replace(" ","",$value['aduan']['aduan'])!!}
                       </a>
                       @else
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
