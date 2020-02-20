@@ -152,10 +152,17 @@
                     </div>
 
                     <div class="divHastagInstagram">
-                      <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
-                      id="spanHastag{{$value['id']}}">
-                         #PilihJenisAduan
+                       @if(isset($value['aduan']))
+                        <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
+                        id="spanHastag{{$value['id']}}">
+                          #{!!str_replace(" ","",$value['aduan']['aduan'])!!}
+                        </a>
+                        @else
+                        <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
+                        id="spanHastag{{$value['id']}}">
+                          #PilihJenisAduan
                       </a>
+                      @endif
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                   </div>
@@ -443,7 +450,7 @@
                       </td>
                       <td>{{$value['description']}}</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#EkonomiPertanahan')">Pilih</button>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#{{$value['description']}}','{{$value['id']}}')">Pilih</button>
                       </td>
                      </tr>
                      @endforeach
@@ -644,18 +651,25 @@
       $("#frmname").val(userDisposisi);  
     }
 
-    function modal_hastag(id){
+   function modal_hastag(id,id_feeds){
         $("#valHastag").val(id);
+        $("#idValHastag").val(id_feeds);
         $('#modal-po').modal('show');
     }
 
-    function change_hastag(hastag){
+   function change_hastag(hastag,id_hastag){
 
         $('#modal-po').modal('hide');
         input = $("#valHastag").val();
+        id    = $("#idValHastag").val();
         $('#' + input).html(hastag);
+        
+        var url = base_url + '/updateJenisAduan/'+id+'/'+id_hastag;
+      $.get(url, function (data){
+            console.log(data);
+      });
     }
-
+    
     function confirm_delete(id,div){
         $("#frmIdDelete").val(id);
         $("#frmDivDelete").val(div);
