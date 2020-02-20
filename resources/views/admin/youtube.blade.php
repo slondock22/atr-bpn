@@ -430,7 +430,8 @@
             </div>
            <div>
               <div class="tb-table tb-style1">
-                <input type="hidden" id="valHastag">
+               <input type="hidden" id="valHastag">
+                <input type="hidden" id="idValHastag">
                 <table class="table" style="min-width: 100% !important">
                   <thead>
                     <tr>
