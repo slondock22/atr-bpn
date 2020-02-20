@@ -114,10 +114,10 @@
                     <canvas id="aduan_terjawab_chart" height="120" width="120"></canvas>
                   </div>
                   <div class="tb-active-device">
-                   {{--  <div class="tb-active-device-per">
-                      70 <span>%</span>
-                    </div>
-                    <div class="tb-active-device-title">Semua Platform</div> --}}
+                    {{-- <div class="tb-active-device-per">
+                      0 <span>%</span>
+                    </div> --}}
+                    <div class="tb-active-device-title">Semua Platform</div>
                   </div>
                 </div>
                 <div class="tb-height-b20 tb-height-lg-b20"></div>
