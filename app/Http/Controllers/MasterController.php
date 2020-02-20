@@ -284,6 +284,21 @@ class MasterController extends Controller
 	     				]);
 	     	}
 	     	if($chart == 'aduanpopuler'){
+	     		$url = "http://devbpn.edii.co.id:3000/statistic/typeaduan/all";
+		    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
+		        $request = $client->request('GET', $url, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $response = json_decode($request->getBody()->getContents(),true);
+
+				$data = $response['data']['hashtag'];
+				dd($data);
+	     		
 	     		return \Response::json($data = [0, 0, 0, 0, 0]);
 	     	}
 	     	if($chart == 'aduanterjawab'){
