@@ -120,7 +120,7 @@ class AduanController extends Controller
         $request = $client->request('DELETE', $url, 
                        [ 
                             'headers' => [
-                            e     'Content-Type'  => 'application/json',
+                                 'Content-Type'  => 'application/json',
                                  'X-Api-Key'     => 'ATRBPn '.$token_akses
                             ]
                         ]);
