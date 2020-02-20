@@ -302,7 +302,7 @@ class MasterController extends Controller
 					$data['labels'] = $val['Hastag'];
 					$data['total'] = $val['Total'];
 				}
-	     		
+
 	     		return \Response::json($data);
 	     	}
 	     	if($chart == 'aduanterjawab'){
