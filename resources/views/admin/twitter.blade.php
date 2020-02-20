@@ -80,7 +80,7 @@
                     <div class="form-group col-md-4">
                       <label for="inputState">By</label>
                       <select id="inputState" class="form-control">
-                        <option selected>ID</option>
+                        <option selected>ID Aduan</option>
                         <option>Username</option>
                         <option>Kota/Kab</option>
                       </select>
@@ -99,6 +99,21 @@
                     <div class="custom-control custom-radio">
                       <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
                       <label class="custom-control-label" for="customRadio6">Postingan Terlama</label>
+                    </div>
+					<div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio6">Aduan Terjawab</label>
+                    </div>
+					<div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio6">Aduan Proses</label>
+                    </div>
+					<div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio6">Aduan Belum Proses</label>
                     </div>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                 </div>

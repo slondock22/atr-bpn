@@ -298,10 +298,12 @@ class MasterController extends Controller
 
 				$datas = $response['data'];
 				
-				foreach ($datas as $val){
-					$data['labels'] = $val['Hastag'];
-					$data['total'] = $val['Total'];
+				for($i=1; $i<count($datas); $i++){
+					$labels[] = $datas[$i]['Hastag'];
+					$total[] = $datas[$i]['Total'];
 				}
+				$data['labels'] = $labels;
+				$data['total'] = $total;
 
 	     		return \Response::json($data);
 	     	}
