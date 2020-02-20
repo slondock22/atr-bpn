@@ -98,6 +98,15 @@ $.get(base_url+"/statistikjs/pengaduan",function(result){
               lineTension: 0,
               pointBackgroundColor: "#fff",
               pointDotRadius: 10
+            },
+            {
+              data: result.email,
+              backgroundColor: "rgba(255, 219, 20, 0.1)",
+              borderColor: "#d2152b",
+              borderWidth: 3,
+              lineTension: 0,
+              pointBackgroundColor: "#fff",
+              pointDotRadius: 10
             }
           ]
         },
