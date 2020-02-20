@@ -371,7 +371,7 @@ $.get(base_url+"/statistikjs/aduanterjawab",function(result){
       var myChart3 = new Chart(ctx3, {
         type: "pie",
         data: {
-          labels: ["Terjawab", "Sent"],
+          labels: ["Terjawab", "Belum Terjawab"],
           datasets: [{
             backgroundColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
             hoverBackgroundColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],

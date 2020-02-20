@@ -241,9 +241,12 @@ class MasterController extends Controller
 		        $response = json_decode($request->getBody()->getContents(),true);
 
 	           	foreach($response['data'] as $key => $value){
+	           		foreach ($value['datasets'] as $k => $v) {
+	           			$data = $v['data'];
+	           		}
 	           		
 	           	}
-	     		return \Response::json($data = [0, 0]);
+	     		return \Response::json($data);
 	     	}
 	     }
 }
