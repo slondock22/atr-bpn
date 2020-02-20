@@ -296,10 +296,14 @@ class MasterController extends Controller
 		        
 		        $response = json_decode($request->getBody()->getContents(),true);
 
-				$data = $response['data']['hashtag'];
-				dd($data);
+				$datas = $response['data'];
+				
+				foreach ($datas as $val){
+					$data['labels'] = $val['Hastag'];
+					$data['total'] = $val['Total'];
+				}
 	     		
-	     		return \Response::json($data = [0, 0, 0, 0, 0]);
+	     		return \Response::json($data);
 	     	}
 	     	if($chart == 'aduanterjawab'){
 	     		$url = "http://devbpn.edii.co.id:3000/statistic/terjawab/all";

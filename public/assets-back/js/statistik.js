@@ -130,16 +130,16 @@ $.get(base_url+"/statistikjs/pengaduan",function(result){
 });
 
 $.get(base_url+"/statistikjs/aduanpopuler",function(result){
-  console.log(result);
+  console.log(result.total);
 if ($.exists("#aduan_populer_chart")) {
   var ctx = document.querySelector("#aduan_populer_chart").getContext("2d");
   var myChart = new Chart(ctx, {
    type: 'bar',
     data: {
-      labels: ["", "", "", "", ""],
+	labels: [result.labels],
       datasets: [{
         label: 'Aduan',
-        data: result,
+        data: [result.total],
         backgroundColor: ['#5856d6', '#5856d6', '#5856d6', '#5856d6', '#5856d6'],
       }]
     },
