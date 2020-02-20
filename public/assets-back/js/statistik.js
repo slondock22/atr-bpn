@@ -380,13 +380,13 @@ $.get(base_url+"/statistikjs/aduanterjawab",function(result){
       var myChart3 = new Chart(ctx3, {
         type: "pie",
         data: {
-          labels: ["Terjawab", "Belum Terjawab"],
+          labels: ["Belum Terjawab","Terjawab"],
           datasets: [{
-            backgroundColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
-            hoverBackgroundColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
+            backgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            hoverBackgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
             data: result,
             borderWidth: 0,
-            hoverBorderColor: ["#007aff", "rgba(0, 0, 0, 0.1)"],
+            hoverBorderColor: ["rgba(0, 0, 0, 0.1)","#007aff"],
           }]
         },
         options: {
