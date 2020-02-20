@@ -101,7 +101,7 @@
               <div class="tb-card-heading-left">
                 <h2 class="tb-card-title">Aduan Terjawab</h2>
               </div>
-              <div class="tb-card-heading-right">
+              {{-- <div class="tb-card-heading-right">
                 <div class="tb-custom-select-wrap tb-style1">
                   <select name="#" class="tb-custom-select">
                     <option value="classic-fit1">Last 7 days</option>
@@ -109,7 +109,7 @@
                     <option value="classic-fit3">Last 3 Month</option>
                   </select>
                 </div>
-              </div>
+              </div> --}}
             </div>
             <div class="tb-card-body">
               <div class="tb-chart-wrap tb-style3 tb-type2">
