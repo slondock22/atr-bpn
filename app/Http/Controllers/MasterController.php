@@ -297,7 +297,7 @@ class MasterController extends Controller
 		        $response = json_decode($request->getBody()->getContents(),true);
 
 				$data = $response['data']['hashtag'];
-				dd($data);
+				dd($response);
 	     		
 	     		return \Response::json($data = [0, 0, 0, 0, 0]);
 	     	}
