@@ -219,11 +219,68 @@ class MasterController extends Controller
 	     		return \Response::json($data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 	     	}
 	     	if($chart == 'pengaduan'){
+		    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
+
+	     		$url1 = "http://devbpn.edii.co.id:3000/statistic/sosmed/twitter";
+		        $request1 = $client->request('GET', $url1, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        $twitter = json_decode($request1->getBody()->getContents(),true);
+
+		        $url2 = "http://devbpn.edii.co.id:3000/statistic/sosmed/instagram";
+		        $request2 = $client->request('GET', $url2, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $instagram = json_decode($request2->getBody()->getContents(),true);
+
+		        $url3 = "http://devbpn.edii.co.id:3000/statistic/sosmed/youtube";
+		        $request3 = $client->request('GET', $url3, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $youtube = json_decode($request3->getBody()->getContents(),true);
+
+		        $url4 = "http://devbpn.edii.co.id:3000/statistic/sosmed/email";
+		        $request4 = $client->request('GET', $url4, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $email = json_decode($request4->getBody()->getContents(),true);
+
+		        $url5 = "http://devbpn.edii.co.id:3000/statistic/sosmed/facebook";
+		        $request5 = $client->request('GET', $url5, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $facebook = json_decode($request5->getBody()->getContents(),true);
+
 	     		return \Response::json($data = [
-	     				'facebook' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	     				'twitter' =>  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	     				'instagram' =>[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	     				'youtube' =>  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	     				'facebook' => $facebook['data']['datasets']['data'],
+	     				'twitter' =>  $twitter['data']['datasets']['data'],
+	     				'instagram'=> $instagram['data']['datasets']['data'],
+	     				'youtube' =>  $youtube['data']['datasets']['data'],
+	     				'email' =>  $email['data']['datasets']['data'],
 	     				]);
 	     	}
 	     	if($chart == 'aduanpopuler'){
