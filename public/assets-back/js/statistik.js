@@ -102,7 +102,7 @@ $.get(base_url+"/statistikjs/pengaduan",function(result){
             {
               data: result.email,
               backgroundColor: "rgba(255, 219, 20, 0.1)",
-              borderColor: "#d2152b",
+              borderColor: "#faff00",
               borderWidth: 3,
               lineTension: 0,
               pointBackgroundColor: "#fff",
