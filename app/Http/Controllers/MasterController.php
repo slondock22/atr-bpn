@@ -241,8 +241,9 @@ class MasterController extends Controller
 		        $response = json_decode($request->getBody()->getContents(),true);
 
 	           	foreach($response['data'] as $key => $value){
-	           		foreach ($value['datasets'] as $k => $v) {
+	           		foreach ($value['datasets'] as $v) {
 	           			$data = $v['data'];
+	           			dd($data);
 	           		}
 	           		
 	           	}
