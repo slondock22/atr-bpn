@@ -153,10 +153,17 @@
                 	</div>
 
                     <div class="divHastag">
+                      @if(isset($value['aduan']))
+                      <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
+                      id="spanHastag{{$value['id']}}">
+                        #{{$value['aduan']['aduan']}}
+                      </a>
+                      @else
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
                         #PilihJenisAduan
                       </a>
+                      @endif
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                   </div>
