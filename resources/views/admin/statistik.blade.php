@@ -259,8 +259,11 @@
               
              var type_aduan = this.value;
              console.log(type_aduan);
+
+             $('.title_terjawab').html('');
              
              if(type_aduan == 'all'){
+                $('.title_terjawab').html('Semua Platform');
                 $('#aduan_terjawab_chart_all').show();
                 $('#aduan_terjawab_chart_twitter').hide();
                 $('#aduan_terjawab_chart_instagram').hide();
@@ -268,6 +271,7 @@
                 $('#aduan_terjawab_chart_email').hide();
              }
              else if(type_aduan == 'twitter'){
+                $('.title_terjawab').html('Twitter');
                 $('#aduan_terjawab_chart_all').hide();
                 $('#aduan_terjawab_chart_twitter').show();
                 $('#aduan_terjawab_chart_instagram').hide();
@@ -275,6 +279,7 @@
                 $('#aduan_terjawab_chart_email').hide();
              }
              else if(type_aduan == 'instagram'){
+                $('.title_terjawab').html('Instagram');
                 $('#aduan_terjawab_chart_all').hide();
                 $('#aduan_terjawab_chart_twitter').hide();
                 $('#aduan_terjawab_chart_instagram').show();
@@ -282,6 +287,7 @@
                 $('#aduan_terjawab_chart_email').hide();
              }
              else if(type_aduan == 'youtube'){
+                $('.title_terjawab').html('Youtube');
                 $('#aduan_terjawab_chart_all').hide();
                 $('#aduan_terjawab_chart_twitter').hide();
                 $('#aduan_terjawab_chart_instagram').hide();
@@ -289,6 +295,7 @@
                 $('#aduan_terjawab_chart_email').hide();
              }
              else if(type_aduan == 'email'){
+                $('.title_terjawab').html('Email');
                 $('#aduan_terjawab_chart_all').hide();
                 $('#aduan_terjawab_chart_twitter').hide();
                 $('#aduan_terjawab_chart_instagram').hide();
