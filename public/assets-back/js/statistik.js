@@ -140,7 +140,7 @@ if ($.exists("#aduan_populer_chart")) {
       datasets: [{
         label: 'Aduan',
         data: result.total,
-        backgroundColor: ['#5856d6', '#5856d6', '#5856d6', '#5856d6', '#5856d6', '#5856d6'],
+        backgroundColor: ['#5856d6', '#A92BAB', '#d2152b', '#ffcc00', '#34c759', '#60cafa'],
       }]
     },
     options: {
