@@ -323,5 +323,70 @@ class MasterController extends Controller
 				$data = $response['data']['datasets']['data'];
 	     		return \Response::json($data);
 	     	}
+
+	     	if($chart == 'aduanterjawab-twitter'){
+	     		$url = "http://devbpn.edii.co.id:3000/statistic/terjawab/twitter";
+		    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
+		        $request = $client->request('GET', $url, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $response = json_decode($request->getBody()->getContents(),true);
+
+				$data = $response['data']['datasets']['data'];
+	     		return \Response::json($data);
+	     	}
+	     	if($chart == 'aduanterjawab-instagram'){
+	     		$url = "http://devbpn.edii.co.id:3000/statistic/terjawab/instagram";
+		    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
+		        $request = $client->request('GET', $url, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $response = json_decode($request->getBody()->getContents(),true);
+
+				$data = $response['data']['datasets']['data'];
+	     		return \Response::json($data);
+	     	}
+	     	if($chart == 'aduanterjawab-youtube'){
+	     		$url = "http://devbpn.edii.co.id:3000/statistic/terjawab/youtube";
+		    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
+		        $request = $client->request('GET', $url, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $response = json_decode($request->getBody()->getContents(),true);
+
+				$data = $response['data']['datasets']['data'];
+	     		return \Response::json($data);
+	     	}
+	     	if($chart == 'aduanterjawab-email'){
+	     		$url = "http://devbpn.edii.co.id:3000/statistic/terjawab/email";
+		    	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
+		        $request = $client->request('GET', $url, 
+		        				 [ 
+		                            'headers' => [
+		                                 'Content-Type'  => 'application/json',
+		                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+		                            ]
+		                        ]);
+		        
+		        $response = json_decode($request->getBody()->getContents(),true);
+
+				$data = $response['data']['datasets']['data'];
+	     		return \Response::json($data);
+	     	}
 	     }
 }

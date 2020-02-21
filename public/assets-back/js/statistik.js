@@ -375,8 +375,8 @@ $.get(base_url+"/statistikjs/kantah",function(result){
 
 $.get(base_url+"/statistikjs/aduanterjawab",function(result){
   console.log(result);
-    if ($.exists("#aduan_terjawab_chart")) {
-      var ctx3 = document.querySelector("#aduan_terjawab_chart").getContext("2d");
+    if ($.exists("#aduan_terjawab_chart_all")) {
+      var ctx3 = document.querySelector("#aduan_terjawab_chart_all").getContext("2d");
       var myChart3 = new Chart(ctx3, {
         type: "pie",
         data: {
@@ -399,3 +399,107 @@ $.get(base_url+"/statistikjs/aduanterjawab",function(result){
     /* End Line Chart3 Initialize */
 });
 
+$.get(base_url+"/statistikjs/aduanterjawab-twitter",function(result){
+  console.log(result);
+    if ($.exists("#aduan_terjawab_chart_twitter")) {
+      var ctx3 = document.querySelector("#aduan_terjawab_chart_twitter").getContext("2d");
+      var myChart3 = new Chart(ctx3, {
+        type: "pie",
+        data: {
+          labels: ["Belum Terjawab","Terjawab"],
+          datasets: [{
+            backgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            hoverBackgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            data: result,
+            borderWidth: 0,
+            hoverBorderColor: ["rgba(0, 0, 0, 0.1)","#007aff"],
+          }]
+        },
+        options: {
+          cutoutPercentage: 90,
+          legend: false,
+          tooltips: lineChartToolTips
+        }
+      });
+    }
+    /* End Line Chart3 Initialize */
+});
+
+$.get(base_url+"/statistikjs/aduanterjawab-instagram",function(result){
+  console.log(result);
+    if ($.exists("#aduan_terjawab_chart_instagram")) {
+      var ctx3 = document.querySelector("#aduan_terjawab_chart_instagram").getContext("2d");
+      var myChart3 = new Chart(ctx3, {
+        type: "pie",
+        data: {
+          labels: ["Belum Terjawab","Terjawab"],
+          datasets: [{
+            backgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            hoverBackgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            data: result,
+            borderWidth: 0,
+            hoverBorderColor: ["rgba(0, 0, 0, 0.1)","#007aff"],
+          }]
+        },
+        options: {
+          cutoutPercentage: 90,
+          legend: false,
+          tooltips: lineChartToolTips
+        }
+      });
+    }
+    /* End Line Chart3 Initialize */
+});
+
+
+$.get(base_url+"/statistikjs/aduanterjawab-youtube",function(result){
+  console.log(result);
+    if ($.exists("#aduan_terjawab_chart_youtube")) {
+      var ctx3 = document.querySelector("#aduan_terjawab_chart_youtube").getContext("2d");
+      var myChart3 = new Chart(ctx3, {
+        type: "pie",
+        data: {
+          labels: ["Belum Terjawab","Terjawab"],
+          datasets: [{
+            backgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            hoverBackgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            data: result,
+            borderWidth: 0,
+            hoverBorderColor: ["rgba(0, 0, 0, 0.1)","#007aff"],
+          }]
+        },
+        options: {
+          cutoutPercentage: 90,
+          legend: false,
+          tooltips: lineChartToolTips
+        }
+      });
+    }
+    /* End Line Chart3 Initialize */
+});
+
+$.get(base_url+"/statistikjs/aduanterjawab-email",function(result){
+  console.log(result);
+    if ($.exists("#aduan_terjawab_chart_email")) {
+      var ctx3 = document.querySelector("#aduan_terjawab_chart_email").getContext("2d");
+      var myChart3 = new Chart(ctx3, {
+        type: "pie",
+        data: {
+          labels: ["Belum Terjawab","Terjawab"],
+          datasets: [{
+            backgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            hoverBackgroundColor: ["rgba(0, 0, 0, 0.1)", "#007aff",],
+            data: result,
+            borderWidth: 0,
+            hoverBorderColor: ["rgba(0, 0, 0, 0.1)","#007aff"],
+          }]
+        },
+        options: {
+          cutoutPercentage: 90,
+          legend: false,
+          tooltips: lineChartToolTips
+        }
+      });
+    }
+    /* End Line Chart3 Initialize */
+});
