@@ -151,11 +151,18 @@
                       {{$value['comment']}}
                     </div>
 
-                    <div class="divHastag">
-                      <a onclick="modal_hastag('spanHastag{{$value['id']}}')" 
+                     <div class="divHastag">
+                      @if(isset($value['aduan']))
+                      <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
+                      id="spanHastag{{$value['id']}}">
+                        #{!!str_replace(" ","",$value['aduan']['aduan'])!!}
+                      </a>
+                      @else
+                      <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
                         #PilihJenisAduan
                       </a>
+                      @endif
                     </div>
                     <div class="tb-height-b20 tb-height-lg-b20"></div>
                   </div>
@@ -422,7 +429,8 @@
            <div>
               <div class="tb-table tb-style1">
                 <input type="hidden" id="valHastag">
-                <table class="table" style="min-width: 100% !important">
+                <input type="hidden" id="idValHastag">
+                  <table class="table" style="min-width: 100% !important">
                   <thead>
                     <tr>
                       <th>Hastag</th>
@@ -431,81 +439,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>#SengketaTanah</td>
-                      <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
-                      <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#SengketaTanah')">Pilih</button>
-                      </td>
-                    </tr>
-                   <tr>
-                      <td>#SengketaTanah</td>
-                      <td>penyusunan dan penetapan kebijakan di bidang pertanahan</td>
-                      <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#SengketaTanah')">Pilih</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#PenataanTataRuang</td>
-                      <td>perumusan dan pelaksanaan kebijakan di bidang survei, pengukuran, dan pemetaan;</td>
-                      <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PenataanTataRuang')">Pilih</button>
-                      </td>
-                    </tr>
+                  @if(isset($aduan['data']))
+                    @foreach($aduan['data'] as $key => $value)
                     <tr>
                       <td>
-                          #infrastrukturAgraria
+                          #{!!str_replace(" ","",$value['description'])!!}
                       </td>
-                      <td>perumusan dan pelaksanaan kebijakan di bidang pengadaan tanah</td>
+                      <td>{{$value['description']}}</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#infrastrukturAgraria')">Pilih</button>
+                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#{{$value['description']}}','{{$value['id']}}')">Pilih</button>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                          #HubunganHukumAgraria
-                      </td>
-                      <td>pengawasan atas pelaksanaan tugas di lingkungan BPN</td>
-                      <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#HubunganHukumAgraria')">Pilih</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                          #PengadaanTanah
-                      </td>
-                      <td>pelaksanaan penelitian dan pengembangan di bidang pertanahan</td>
-                      <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PengadaanTanah')">Pilih</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        #PengendalianPenguasaanTanah
-                      </td>
-                      <td>pelaksanaan pengembangan sumber daya manusia di bidang pertanahan</td>
-                      <td>
-                          <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#PengendalianPenguasaanTanah')">Pilih</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        #HakTanahMasyarakat
-                      </td>
-                      <td>pengawasan atas pelaksanaan tugas di lingkungan BPN</td>
-                      <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#HakTanahMasyarakat')">Pilih</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                          #EkonomiPertanahan
-                      </td>
-                      <td>pelaksanaan pengembangan sumber daya manusia di bidang pertanahan</td>
-                      <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#EkonomiPertanahan')">Pilih</button>
-                      </td>
-                    </tr>
+                     </tr>
+                     @endforeach
+                    @endif
                   </tbody>
                 </table>
               </div>
@@ -701,17 +647,25 @@
       userDisposisi = $("#ministryId option:selected" ).text();
       $("#frmname").val(userDisposisi);  
     }
-
-    function modal_hastag(id){
+   
+   function modal_hastag(id,id_feeds){
         $("#valHastag").val(id);
+        $("#idValHastag").val(id_feeds);
         $('#modal-po').modal('show');
     }
 
-    function change_hastag(hastag){
+
+    function change_hastag(hastag,id_hastag){
 
         $('#modal-po').modal('hide');
         input = $("#valHastag").val();
+        id    = $("#idValHastag").val();
         $('#' + input).html(hastag);
+        
+        var url = base_url + '/updateJenisAduan/'+id+'/'+id_hastag;
+      $.get(url, function (data){
+            console.log(data);
+      });
     }
 
     function confirm_delete(id,div){
