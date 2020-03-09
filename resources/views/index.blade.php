@@ -529,6 +529,9 @@
                                     <a href="#">FAQ</a>
                                 </li>
                                 <li>
+                                    <a href="{{route('privacy')}}">Kebijakan Privasi</a>
+                                </li>
+                                <li>
                                     <a href="#">Kontak</a>
                                 </li>
                             </ul>
