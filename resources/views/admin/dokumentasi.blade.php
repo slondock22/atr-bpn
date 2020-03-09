@@ -19,9 +19,6 @@
               </form>
               <a href="#" class="tb-btn tb-style1 tb-small">View All</a>
             </div>
-             <span style="float: right;">
-                <a class="tb-btn tb-style1 tb-small">Add Item</a>
-              </span>
           </div>
           <div class="tb-card-body">
             <div class="tb-table tb-style1 tb-type1 table-responsive">
@@ -44,12 +41,6 @@
                         <a class="tb-solial-btn social-derault-color tb-radious50" href="{{asset('usermanual/UMG-EDII-Aplikasi ATRBPN-User Admin Pertanahan versi 1.0 Desember 2019.docx')}}" download>
                             <i class="lni lni-download"></i>
                         </a>
-                        <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-pencil"></i>
-                        </a>
-                         <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-trash"></i>
-                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
@@ -63,12 +54,6 @@
                         <a class="tb-solial-btn social-derault-color tb-radious50" href="{{asset('usermanual/UMG-EDII-Aplikasi ATRBPN-User User Kantor Wilayah versi 1.0 Desember 2019.docx')}}" download>
                             <i class="lni lni-download"></i>
                         </a>
-                        <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-pencil"></i>
-                        </a>
-                         <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-trash"></i>
-                        </a>
                     </td>
                     {{-- <td>
                       <div class="tb-table-more-option text-center"><i class="material-icons-outlined">more_horiz</i></div>
@@ -81,12 +66,6 @@
                      <td>
                         <a class="tb-solial-btn social-derault-color tb-radious50" href="{{asset('usermanual/UMG-EDII-Aplikasi ATRBPN-User User Kantor Pertanahan versi 1.0 Desember 2019.docx')}}" download>
                             <i class="lni lni-download"></i>
-                        </a>
-                        <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-pencil"></i>
-                        </a>
-                         <a class="tb-solial-btn social-derault-color tb-radious50">
-                            <i class="lni lni-trash"></i>
                         </a>
                     </td>
                     {{-- <td>

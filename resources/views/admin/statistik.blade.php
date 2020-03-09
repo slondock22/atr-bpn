@@ -101,7 +101,7 @@
               <div class="tb-card-heading-left">
                 <h2 class="tb-card-title">Aduan Terjawab</h2>
               </div>
-              <div class="tb-card-heading-right">
+             <!--  <div class="tb-card-heading-right">
                 <div class="tb-custom-select-wrap tb-style1">
                   <select name="aduan-terjawab" class="tb-custom-select" id="aduan_terjawab">
                     <option value="all">All Platform</option>
@@ -111,7 +111,7 @@
                     <option value="email">Email</option>
                   </select>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="tb-card-body">
               <div class="tb-chart-wrap tb-style3 tb-type2">
@@ -255,10 +255,10 @@
              getStat()
           });
 
-          $('#aduan_terjawab').on('change', function() {
+           $(document).on('change','#aduan_terjawab',function(){
               
-             var type_aduan = this.value;
-             console.log(type_aduan);
+            // var type_aduan = $('.tb-custom-select').val();
+             alert('a');
 
              $('.title_terjawab').html('');
              
