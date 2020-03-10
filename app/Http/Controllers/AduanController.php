@@ -232,7 +232,7 @@ class AduanController extends Controller
 
     public function sendEmail(Request $request)
     {
-        $content['email']         = 'airlanggadwitestap@gmail.com'
+        $content['email']         = 'airlanggadwitestap@gmail.com';
 
         dispatch(new SendEmailJob($content));
     }
