@@ -7,6 +7,9 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Input;
 use App\Events\AduanNotif;
+use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendEmailJob;
+
 
 class AduanController extends Controller
 {
@@ -225,5 +228,12 @@ class AduanController extends Controller
         //dd($response);
 
        return \Response::json($response);
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $content['email']         = 'airlanggadwitestap@gmail.com'
+
+        dispatch(new SendEmailJob($content));
     }
 }

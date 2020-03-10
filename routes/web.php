@@ -46,6 +46,7 @@ Route::group(['middleware' => ['login']], function () {
 	  	Route::get('aduan/{type}','AduanController@index')->name('aduan');
 	  	Route::post('postComment','AduanController@sendComment')->name('postComment');
 	  	Route::post('postReply','AduanController@sendReply')->name('postReply');
+	  	Route::get('postEmailReply','AduanController@sendEmail')->name('postEmailReply');
 		Route::post('spamFeed','AduanController@spamFeed')->name('spamFeed');
 		Route::post('handleFeed','AduanController@handleFeed')->name('handleFeed');
 		Route::get('updateJenisAduan/{id_feed}/{id_category}','AduanController@updateJenisAduan')->name('updateJenisAduan');
