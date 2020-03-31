@@ -34,6 +34,8 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('analitik','IndexController@analitik')->name('analitik');
 	Route::get('publish/{mode}','IndexController@publish')->name('publish');
 	Route::get('profile','IndexController@profile')->name('profile');
+	Route::post('change_password','MasterController@change_password')->name('change_password');
+	
 	Route::get('dokumentasi','IndexController@dokumentasi')->name('dokumentasi');
 	Route::get('statAll','MasterController@statAll')->name('statAll');
 	Route::get('statistikjs/{chart}','MasterController@statistikjs');

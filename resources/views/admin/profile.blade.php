@@ -104,37 +104,38 @@
                     <div class="tb-height-b45 tb-height-lg-b45"></div>
                     <div class="tb-profile-setting-heading">
                       <h2 class="tb-profile-setting-title">Change Password</h2>
-                     
+                    <form id="frmChangePass" name="frmChangePass" action="{{route('change_password')}}" method="POST">
+          			@csrf  
                     </div>
                     <div class="tb-height-b15 tb-height-lg-b15"></div>
                     <div class="tb-form-field-wrap tb-style2">
                       <label class="tb-form-field-label">Old Password</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter Phone Number" value=>
+                        <input type="password" placeholder="Enter Old Password" id="old_password" name="old_password">
                       </div>
                     </div>
 					<div class="tb-height-b15 tb-height-lg-b15"></div>
                     <div class="tb-form-field-wrap tb-style2">
                       <label class="tb-form-field-label">New Password</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter Phone Number" value=>
+                        <input type="password" placeholder="Enter New Password" id="new_password" name="new_password">
                       </div>
                     </div>
 					<div class="tb-height-b15 tb-height-lg-b15"></div>
                     <div class="tb-form-field-wrap tb-style2">
-                      <label class="tb-form-field-label">Re-enter New Password</label>
+                      <label class="tb-form-field-label">Re-type New Password</label>
                       <div class="tb-form-field tb-color1">
-                        <input type="text" placeholder="Enter Phone Number" value=>
+                        <input type="password" placeholder="Re-type New Password" id="re_new_password" name="re_new_password">
                       </div>
                     </div>
-                
+                	</form>
                     <div class="tb-height-b55 tb-height-lg-b55"></div>
                   </div><!-- .tb-profile-setting-container -->
                   <hr>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="tb-profile-btn-group tb-style1">
                     <a href="#" class="tb-profile-btn tb-style1 tb-color2">Back</a>
-                    <a href="#" class="tb-profile-btn tb-style1 tb-color1">Proceed</a>
+                    <a href="#" id="btnSend" class="tb-profile-btn tb-style1 tb-color1" onclick="sendData('#frmChangePass')">Proceed</a>
                   </div>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                 </div>
@@ -157,4 +158,57 @@
     getUser(user_id);  
   });
 
+
+    function sendData(formId){
+      $("#frmChangePass #btnSend").attr('disabled','disabled');
+
+	  var old_password = $("#old_password").val();
+      var new_password = $("#new_password").val();
+      var re_new_password = $("#re_new_password").val();
+
+      if(!old_password){
+          setTimeout(function() { showFlashAlert('error', 'Password lama harus diisi'); }, 100);
+          return false;
+      }
+
+      if(!new_password){
+          setTimeout(function() { showFlashAlert('error', 'Password baru harus diisi'); }, 100);
+          return false;
+      }
+
+      if(new_password != re_new_password){
+         setTimeout(function() { showFlashAlert('error', 'Password Baru Tidak Sama, Re-type Password'); }, 100);
+          return false;
+      }
+
+    
+      $.ajax({
+        type: 'POST',
+        url: $(formId).attr('action'),
+        data: $(formId).serialize(),
+        success: function(data){
+        		
+                if(data['response']['message'] == 'Success' ){
+                	
+                    showFlashAlert('success','Password berhasil diubah', 100);
+                   window.location.replace("/logout");
+                }else if(data['response']['message'] == 'UserNotFound' ){
+                	
+                    showFlashAlert('error','Password lama anda salah', 100);
+                    return false;
+                }else{
+                	// console.log('cuk');
+                    setTimeout(function() { showFlashAlert('error', 'Error Service'); }, 100);
+                    return false;
+                }
+
+                $("#frmChangePass #btnSend").removeAttr('disabled','disabled');
+              },
+              error: function (request, status, error) {
+                alert("Error Service")
+                $("#frmChangePass #btnSend").removeAttr('disabled','disabled');
+                //$("#divLoading").hide();
+              }
+          });
+    }
 </script>

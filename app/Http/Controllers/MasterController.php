@@ -415,4 +415,35 @@ class MasterController extends Controller
 			
 			return \Response::json($data);
 		 }
+
+		public function change_password(Request $request){
+			$value['old_pass'] = $request->old_password;
+			$value['new_pass'] = $request->new_password;
+
+			// dd($value);
+
+        	$client = new Client();
+
+	        $url = "http://devbpn.edii.co.id:3000/changePass";
+
+	        $token_akses = request()->session()->get('TOKEN_AUTH_APP');
+	        $request = $client->request('PUT', $url, 
+	                       [ 
+	                            'headers' => [
+	                                 'Content-Type'  => 'application/json',
+	                                 'X-Api-Key'     => 'ATRBPn '.$token_akses
+	                            ],
+
+	                            'json' => $value
+	                        ]);
+
+	        $response = json_decode($request->getBody()->getContents(),true);
+	        
+	        $data['response'] = $response;
+
+	        // dd($data['response']['error']);
+
+
+	        return \Response::json($data);
+    	}
 }
