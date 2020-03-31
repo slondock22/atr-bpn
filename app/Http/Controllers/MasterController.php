@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Input;
 use DataTables;
+use DB;
 
 class MasterController extends Controller
 {
@@ -389,4 +390,29 @@ class MasterController extends Controller
 	     		return \Response::json($data);
 	     	}
 	     }
+		 
+		 public function getSisense($datefrom='',$dateend=''){
+			 if ($datefrom == ''){
+				 $datefrom = '0000-00-00';
+			 }else{
+				 $datefrom = $datefrom;
+			 }
+			 
+			 if ($dateend ==''){
+				 $dateend = date("Y-m-d");
+			 }else{
+				 $dateend = $dateend;
+			 }
+			 
+			 $query = DB::table('tx_feed')
+					->whereDate('date_create','>',$datefrom)
+					->whereDate('date_create','<',$dateend)
+					->get();
+			$data = [];
+			$data['total'] = count($query);
+			$data['data'] = $query;
+			
+			
+			return \Response::json($data);
+		 }
 }

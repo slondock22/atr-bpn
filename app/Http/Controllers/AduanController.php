@@ -235,5 +235,7 @@ class AduanController extends Controller
         $content['email']         = 'airlanggadwitestap@gmail.com';
 
         dispatch(new SendEmailJob($content));
+
+        return 'AAA';
     }
 }
