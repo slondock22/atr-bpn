@@ -149,6 +149,11 @@
                            <i class="fas fa-check-circle doneIcon"></i>
                            Aduan Terjawab
                         </span>
+                        @else
+                        <span class="doneSpan">
+                           <i class="fas fa-exclamation-circle warnIcon"></i>
+                           Menunggu Balasan
+                        </span>
                         @endif
                       </h3>
                       <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
