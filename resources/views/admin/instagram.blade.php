@@ -278,17 +278,20 @@
                   <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                      @if(request()->session()->get('MINISTRY_ID')  == '1')
-						   <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
+                     @if(request()->session()->get('MINISTRY_ID')  == '1')
+          <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
                       <li>
                         <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
-                      @endif
-                      
-                      <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
+                      @else
+
+                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i>Balas Disposisi</a>
+                      </li>
+                      @endif
                       
                     </ul>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
@@ -368,6 +371,7 @@
             <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
               <select class="form-control" id="ministryId" name="ministry_id" onchange="setUser()">
+                 @if(request()->session()->get('MINISTRY_ID')  == '1')
                 <option value="">Pilih Kanwil/Kantah</option>
                  @if(isset($kanwil['data']))
                    @foreach($kanwil['data'] as $key => $value)
@@ -375,11 +379,14 @@
                         @if($value['level'] == "0" || $value['level'] == "1")
                          <b>{{$value['name']}}</b>
                         @else
-                         &nbsp;&nbsp;{{$value['name']}}
+                         &nbsp;&nbsp;&nbsp;{{$value['name']}}
                         @endif
                       </option>
                    @endforeach
                  @endif
+                 @else
+                  <option value="1" selected="">Kantor Pusat Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional</option>
+                @endif
               </select>
             </div>
             <div class="form-group">

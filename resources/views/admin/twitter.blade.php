@@ -301,10 +301,15 @@
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
+                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                      </li>
+                      @else
+
+                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i>Balas Disposisi</a>
+                      </li>
                       @endif
                       
-                      <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
-                      </li>
+                     
                       
                     </ul>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
@@ -383,6 +388,7 @@
             <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
               <select class="form-control" id="ministryId" name="ministry_id" onchange="setUser()">
+                @if(request()->session()->get('MINISTRY_ID')  == '1')
                 <option value="">Pilih Kanwil/Kantah</option>
                  @if(isset($kanwil['data']))
                    @foreach($kanwil['data'] as $key => $value)
@@ -395,6 +401,9 @@
                       </option>
                    @endforeach
                  @endif
+                 @else
+                  <option value="1" selected="">Kantor Pusat Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional</option>
+                @endif
               </select>
             </div>
             <div class="form-group">
