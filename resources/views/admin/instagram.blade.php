@@ -390,6 +390,7 @@
                    @endforeach
                  @endif
                  @else
+                  <option value="" disable hidden>Pilih Kantor Tujuan Disposisi</option>
                   <option value="1" selected="">Kantor Pusat Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional</option>
                 @endif
               </select>

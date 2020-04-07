@@ -40,6 +40,21 @@ $('#btnDisposisi').on('click', function() {
 function serviceSend(formId){
 	$("#btnSendDisposisi").attr('disabled','disabled');
 	$(".spanLoading").show();
+    // console.log('tes');
+    var textDisposisi = $('#commentDisposisi').val();
+    var ministry_id = $('#ministryId').val();
+
+     if(ministry_id == ''){
+        setTimeout(function() { showFlashAlert('error', 'Tujuan disposisi wajib dipilih'); }, 100);
+        $(".spanLoading").hide();
+        return false;
+    }
+
+    if(textDisposisi == ''){
+        setTimeout(function() { showFlashAlert('error', 'Keterangan wajib diisi'); }, 100);
+        $(".spanLoading").hide();
+        return false;
+    }
     
 
     $.ajax({

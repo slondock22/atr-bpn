@@ -172,7 +172,7 @@
 	  <div class="tb-height-b30 tb-height-lg-b30"></div>
 	  
        <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="display: none">
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
@@ -197,7 +197,7 @@
       <div class="tb-height-b30 tb-height-lg-b30"></div>
 
        <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="display: none">
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">

@@ -407,13 +407,14 @@
                    @endforeach
                  @endif
                  @else
-                  <option value="1" selected="">Kantor Pusat Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional</option>
+                 <option value="" disable hidden>Pilih Kantor Tujuan Disposisi</option>
+                  <option value="1">Kantor Pusat Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional</option>
                 @endif
               </select>
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Keterangan</label>
-              <textarea class="form-control text-area-modal-twitter-nopad" id="commentDisposisi" rows="3" placeholder="Isikan keterangan disposisi" name="comment"></textarea>
+              <textarea class="form-control text-area-modal-twitter-nopad" id="commentDisposisi" rows="3" placeholder="Isikan keterangan disposisi" name="comment" required=""></textarea>
             </div>
 
             <input type="hidden" name="form[id]" id="frmid">

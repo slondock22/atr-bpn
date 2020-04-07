@@ -186,8 +186,7 @@ if ($.exists("#aduan_populer_chart")) {
             maxTicksLimit: 6,
             beginAtZero: true,
             steps: 10,
-            stepValue: 10,
-            max: 100
+            stepValue: 10
           },
           gridLines: {
             color: "rgba(0, 0, 0, 0.1)",
