@@ -127,7 +127,7 @@
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
             @php $number++ @endphp
-            @if($value['is_spam'] == 0 && $value['username'] != 'atr_bpn' )
+            @if($value['is_spam'] == 0 && $value['username'] != 'kementerian.atrbpn' )
             <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
