@@ -146,7 +146,7 @@
                         {{$value['username']}} | @ {{$value['username']}}
                         @if($value['escalation_status'] == '99')
                         <span class="doneSpan">
-                           <i class="fas fa-check-circle doneIcon"></i>
+                           <i class="fas fa-check-circle doneIconFacebook"></i>
                            Aduan Terjawab
                         </span>
                         @else
