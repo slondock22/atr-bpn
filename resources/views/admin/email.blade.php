@@ -1,15 +1,15 @@
-@section('title','Pertanyaan Twitter')
+@section('title','Pertanyaan Email')
 @extends('layouts-back.layout')
 @section('content')
-<style>
-  .spanLoading{
-    display: none;
-  }
-</style>
 
+<style>
+	.spanLoading{
+		display: none;
+	}
+</style>
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
-      <h2 class="tb-uikits-title">E-mail</h2>
+      <h2 class="tb-uikits-title">Email</h2>
     </div>
     
     <div class="tb-content">
@@ -80,7 +80,7 @@
                     <div class="form-group col-md-4">
                       <label for="inputState">By</label>
                       <select id="inputState" class="form-control">
-                        <option selected>ID</option>
+                        <option selected>ID Aduan</option>
                         <option>Username</option>
                         <option>Kota/Kab</option>
                       </select>
@@ -99,6 +99,21 @@
                     <div class="custom-control custom-radio">
                       <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
                       <label class="custom-control-label" for="customRadio6">Postingan Terlama</label>
+                    </div>
+					<div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio6">Aduan Terjawab</label>
+                    </div>
+					<div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio6">Aduan Proses</label>
+                    </div>
+					<div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio6">Aduan Belum Proses</label>
                     </div>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                 </div>
@@ -119,12 +134,12 @@
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="tb-user tb-style3">
                     <div class="tb-user-img">
-                     {!! $img = str_replace('[]', '', $value['image']) !!}
+                     {{-- {!! $img = str_replace('[]', '', $value['image']) !!}
                       @if($img != '')
                         <img src="{{$value['image']}}" alt="">
-                      @else
+                      @else --}}
                         <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
-                      @endif  
+                     {{-- @endif  --}}
                     </div>
                     <div class="tb-user-info">
                       <h3 class="tb-user-name">
@@ -133,6 +148,11 @@
                         <span class="doneSpan">
                            <i class="fas fa-check-circle doneIcon"></i>
                            Aduan Terjawab
+                        </span>
+                        @else
+                        <span class="doneSpan">
+                           <i class="fas fa-exclamation-circle warnIcon"></i>
+                           Menunggu Balasan
                         </span>
                         @endif
                       </h3>
@@ -147,11 +167,12 @@
                   
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
                   <div class="tb-post tb-style1">
-                    <div class="tb-post-text" id="content{{$value['id']}}">
-                      {{$value['comment']}}
-                    </div>
+                    <div class="tb-post-text" 
+                    id="content{{$value['id']}}">
+                		{{$value['comment']}}
+                	</div>
 
-                     <div class="divHastag">
+                    <div class="divHastag">
                       @if(isset($value['aduan']))
                       <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
                       id="spanHastag{{$value['id']}}">
@@ -278,14 +299,22 @@
                   <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                      @if(request()->session()->get('MINISTRY_ID')  == '1')
+					<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
                       <li>
                         <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
-                      
-                      <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
+                      @else
+
+                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i>Balas Disposisi</a>
+                      </li>
+                      @endif
+                      
+                     
                       
                     </ul>
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
@@ -331,11 +360,11 @@
 
  <!-- Modal -->
 <div class="modal fade" id="modal-add-disposisi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-twitter">
+  <div class="modal-dialog modal-dialog-centered modal-email">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> #Disposisi
+          <i class="lni lni-email-original icon-tweet"></i> #Disposisi
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -356,13 +385,15 @@
               </div>
             </div>
             
-            <div id="contentTwitUserDisposisi" class="divContentTwitter"></div>
+            <div id="contentTwitUserDisposisi" class="divContentEmail"></div>
 
             <hr class="hrModal">
             <input type="hidden" id="idFeeds" value="" name="idFeeds">
+            <input type="hidden" id="type_aduan" value="email" name="type_aduan">
             <div class="form-group">
               <label for="exampleFormControlSelect1">Kepada</label>
               <select class="form-control" id="ministryId" name="ministry_id" onchange="setUser()">
+                @if(request()->session()->get('MINISTRY_ID')  == '1')
                 <option value="">Pilih Kanwil/Kantah</option>
                  @if(isset($kanwil['data']))
                    @foreach($kanwil['data'] as $key => $value)
@@ -375,11 +406,15 @@
                       </option>
                    @endforeach
                  @endif
+                 @else
+                 <option value="" disable hidden>Pilih Kantor Tujuan Disposisi</option>
+                  <option value="1">Kantor Pusat Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional</option>
+                @endif
               </select>
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Keterangan</label>
-              <textarea class="form-control text-area-modal-twitter-nopad" id="commentDisposisi" rows="3" placeholder="Isikan keterangan disposisi" name="comment"></textarea>
+              <textarea class="form-control text-area-modal-email-nopad" id="commentDisposisi" rows="3" placeholder="Isikan keterangan disposisi" name="comment" required=""></textarea>
             </div>
 
             <input type="hidden" name="form[id]" id="frmid">
@@ -388,13 +423,12 @@
         </form>
       </div>
       <div class="modal-footer">
-         <span class="spanLoading">
-          <img style="height: 45px;margin-right: 10px;" 
-          src="{{asset('assets-back/img/loading.gif')}}">
-        </span>
-        
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        <button type="button" id="btnSendDisposisi" class="btn btn-modal-twitter" onclick="serviceSend('#frmDisposisi')">Kirim</button>
+      	<span class="spanLoading">
+      		<img style="height: 45px;margin-right: 10px;" 
+      		src="{{asset('assets-back/img/loading.gif')}}">
+      	</span>
+        <button type="button" class="btn btn-modal-email-danger" data-dismiss="modal">Batal</button>
+        <button type="button" id="btnSendDisposisi" id="btnSendDisposisi" class="btn btn-modal-email" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
     </div>
   </div>
@@ -408,7 +442,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Jenis Aduan ATR/BPN
+          <i class="lni lni-email-original icon-tweet"></i> Jenis Aduan ATR/BPN
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -430,7 +464,7 @@
               <div class="tb-table tb-style1">
                 <input type="hidden" id="valHastag">
                 <input type="hidden" id="idValHastag">
-                  <table class="table" style="min-width: 100% !important">
+                <table class="table" style="min-width: 100% !important">
                   <thead>
                     <tr>
                       <th>Hastag</th>
@@ -447,7 +481,7 @@
                       </td>
                       <td>{{$value['description']}}</td>
                       <td>
-                        <button type="button" class="btn btn-modal-twitter" onclick="change_hastag('#{{$value['description']}}','{{$value['id']}}')">Pilih</button>
+                        <button type="button" class="btn btn-modal-email" onclick="change_hastag('#{{$value['description']}}','{{$value['id']}}')">Pilih</button>
                       </td>
                      </tr>
                      @endforeach
@@ -471,11 +505,11 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal-balas-feed" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-email">
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Balas Feeds
+          <i class="lni lni-email-original icon-tweet"></i> Balas Feeds
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -496,7 +530,7 @@
                 </div>
               </div>
               
-              <div id="contentTwitUser" class="divContentTwitter"></div>
+              <div id="contentTwitUser" class="divContentEmail"></div>
               
               <div class="divUserSend">
                 <label for="exampleFormControlTextarea1">
@@ -504,7 +538,7 @@
                 </label>
               </div>
 
-              <textarea class="form-control text-area-modal-twitter" id="inputSendModalFeeds"  
+              <textarea class="form-control text-area-modal-email" id="inputSendModalFeeds"  
                 rows="3" placeholder="Masukan balasan Anda" autofocus onkeyup="send_to_div(this.id, 'divSendModalFeeds')"></textarea>
                 <div id="divSendModalFeeds" style="color: white;"></div>
                 <input type="hidden" id="id_feeds">
@@ -519,9 +553,9 @@
       
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">Batal</button>
-        {{-- <button type="button" class="btn btn-modal-twitter">Draft</button> --}}
-        <button type="button" onclick="iframePost('#iframePostId','#inputSendModalFeeds')" class="btn btn-modal-twitter">Kirim</button>
+        <button type="button" class="btn btn-modal-email-danger" data-dismiss="modal">Batal</button>
+        {{-- <button type="button" class="btn btn-modal-email">Draft</button> --}}
+        <button type="button" onclick="iframePost('#iframePostId','#inputSendModalFeeds')" class="btn btn-modal-email">Kirim</button>
       </div>
   </div>
 </div>
@@ -532,11 +566,11 @@
 
 
 <div class="modal fade" id="modal-loadmore" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-email">
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> All Comment
+          <i class="lni lni-email-original icon-tweet"></i> All Comment
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -548,7 +582,7 @@
       <input type="hidden" id="frmIdDelete">
       <input type="hidden" id="frmDivDelete">
       <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-modal-email-danger" data-dismiss="modal">
           Tutup
         </button>
       </div>
@@ -557,29 +591,31 @@
 </div>
 
 <div class="modal fade" id="modal-iframepost" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-xxl modal-dialog-centered modal-xxl-top">
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Posting Jawaban
+          <i class="lni lni-email-original icon-tweet"></i> Posting Jawaban
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body" id="">
-         <div id="postUrl"></div>
+      <div class="modal-body modal-xxl-body" id="modal-body">
+         <div id="postUrl">
+           {{-- <iframe is="x-frame-bypass" width="820px" height="350px" id="iframePostReply" frameborder="0" src="" ></iframe> --}}
+         </div>
       </div>
       </div>
     </div>
 </div>
 
  <div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="z-index: 1052">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-twitter">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-email">
     <div class="modal-content" style="box-shadow: grey 0px 0px 550px 0px">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
-          <i class="lni lni-twitter-original icon-tweet"></i> Konfirmasi Hapus Disposisi
+          <i class="lni lni-email-original icon-tweet"></i> Konfirmasi Hapus Disposisi
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -591,10 +627,10 @@
       <input type="hidden" id="frmIdDelete">
       <input type="hidden" id="frmDivDelete">
       <div class="modal-footer">
-        <button type="button" class="btn btn-modal-twitter-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-modal-email-danger" data-dismiss="modal">
           Batal
         </button>
-        <button type="button" class="btn btn-modal-twitter" onclick="deleteDisposisi()">
+        <button type="button" class="btn btn-modal-email" onclick="deleteDisposisi()">
           Hapus
         </button>
       </div>
@@ -602,10 +638,7 @@
     </div>
 </div>
 
-
-
 <script>
-    
 
     function collapseBtn(div1,div2){
         $("#"+div1).slideUp(300);
@@ -614,9 +647,9 @@
 
     function modal_feeds(content='',user='',date='',post_url='', id_feeds =''){
         var content = $("#"+content).html();
-
+        
         $('#id_feeds').val(id_feeds);
-        $('#modal-balas-feed').modal('show');
+        $('#modal-balas-feed').modal({backdrop: 'static', keyboard: false});
         $('#contentTwitUser').html(content);
         $('#twitUser').html('@'+user);
         $('#headerUser').html('@'+user);
@@ -628,7 +661,7 @@
     function modal_disposisi(id='',content='',user='',date=''){
         var content = $("#"+content).html();
 
-        $('#modal-add-disposisi').modal('show');
+        $('#modal-add-disposisi').modal({backdrop: 'static', keyboard: false});
         $('#ministryId').val('');
         $('#commentDisposisi').val('');
         $('#idFeeds').val(id);
@@ -647,13 +680,12 @@
       userDisposisi = $("#ministryId option:selected" ).text();
       $("#frmname").val(userDisposisi);  
     }
-   
-   function modal_hastag(id,id_feeds){
+
+    function modal_hastag(id,id_feeds){
         $("#valHastag").val(id);
         $("#idValHastag").val(id_feeds);
         $('#modal-po').modal('show');
     }
-
 
     function change_hastag(hastag,id_hastag){
 
@@ -663,9 +695,9 @@
         $('#' + input).html(hastag);
         
         var url = base_url + '/updateJenisAduan/'+id+'/'+id_hastag;
-      $.get(url, function (data){
-            console.log(data);
-      });
+	    $.get(url, function (data){
+	          console.log(data);
+	    });
     }
 
     function confirm_delete(id,div){
@@ -692,22 +724,23 @@
       copyClipboard('divSendModalFeeds');
       
       $('#modal-balas-feed').modal('hide');
-      $('#modal-iframepost').modal('show');
+      $('#modal-iframepost').modal({backdrop: 'static', keyboard: false});
       // $("#txtPostUrl").val(post_url);
       $('#divSendModalFeeds').html('');
 
       // $('#inputSendModalFeeds').val('');
-      $('#postUrl').html('');
+      // $('#postUrl').html('');
 
       var link = post_url;
-      // alert(link);
+      // // alert(link);
       var iframe = document.createElement('iframe');
       iframe.frameBorder=0;
-      iframe.width="820px";
-      iframe.height="350px";
+      iframe.width="1240px";
+      iframe.height="650px";
       iframe.id="iframePostReply";
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
+      // $("#modal-iframepost").contents().find("#iframePostReply").attr("src",  link);
 
       post_feeds($('#id_feeds').val(), $('#inputSendModalFeeds').val());  
     }

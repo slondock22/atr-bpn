@@ -11,6 +11,27 @@ a{
     border-radius: 10px !important;
 }
 
+.modal-instagram{
+    max-width: 560px;
+    border-radius: 10px !important;
+}
+
+.modal-youtube{
+    max-width: 560px;
+    border-radius: 10px !important;
+}
+
+.modal-facebook{
+    max-width: 560px;
+    border-radius: 10px !important;
+}
+
+.modal-email{
+    max-width: 560px;
+    border-radius: 10px !important;
+}
+
+
 .modal-content{
     border-radius: 15px !important;
 }
@@ -34,8 +55,18 @@ a{
     background-color: #1085ce;
 }
 
-.bold-option{
-    font-weight: bolder;
+
+.btn-modal-youtube{
+    font-weight: 600;
+    border-radius: 18px;
+    background-color: #1da1f2;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-youtube:hover{
+    color: #fff !important;
+    background-color: #1085ce;
 }
 
 .btn-modal-facebook{
@@ -46,20 +77,11 @@ a{
     font-size: 14px;
 }
 
-.spanLoadmore{
-    display: block;
-    margin: 20px 0px 5px 0px;
-    cursor: pointer;
-    color: #23a1f0;
-    font-size: 14px;
-    display: none;
-}
 
 .btn-modal-facebook:hover{
     color: #fff !important;
     background-color: #2d4d8d;
 }
-
 
 .btn-modal-instagram{
     font-weight: 500;
@@ -69,6 +91,41 @@ a{
     border:1px solid rgb(139, 139, 139);
     font-size: 14px;
 }
+
+.btn-modal-instagram:hover{
+    color: #fff !important;
+    background-color: #a10b8d;
+}
+
+.btn-modal-email{
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #4267b2;
+    color:#fff;
+    font-size: 14px;
+}
+
+
+.btn-modal-email:hover{
+    color: #fff !important;
+    background-color: #2d4d8d;
+}
+
+
+.spanLoadmore{
+    display: block;
+    margin: 20px 0px 5px 0px;
+    cursor: pointer;
+    color: #23a1f0;
+    font-size: 14px;
+    display: none;
+}
+
+.bold-option{
+    font-weight: bolder;
+}
+
+
 
 /* .btn-modal-facebook:hover{
     color: #fff !important;
@@ -102,6 +159,45 @@ a{
     background-color: #e2362d;
 }
 
+.btn-modal-youtube-danger{
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #fc5f57;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-youtube-danger:hover{
+    color: #fff !important;
+    background-color: #e2362d;
+}
+
+.btn-modal-instagram-danger{
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #fc5f57;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-instagram-danger:hover{
+    color: #fff !important;
+    background-color: #e2362d;
+}
+
+.btn-modal-email-danger{
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #fc5f57;
+    color:#fff;
+    font-size: 14px;
+}
+
+.btn-modal-email-danger:hover{
+    color: #fff !important;
+    background-color: #e2362d;
+}
+
 .text-area-modal-twitter{
     font-size: 17px !important;
     border: none !important;
@@ -115,7 +211,87 @@ a{
     width: 95% !important;
 }
 
+.text-area-modal-instagram{
+    font-size: 17px !important;
+    border: none !important;
+    margin-left: 32px !important;
+    width: 95% !important;
+}
+
+.text-area-modal-instagram-nopad{
+    font-size: 17px !important;
+    border: none !important;
+    width: 95% !important;
+}
+
+.text-area-modal-facebook{
+    font-size: 17px !important;
+    border: none !important;
+    margin-left: 32px !important;
+    width: 95% !important;
+}
+
+.text-area-modal-facebook-nopad{
+    font-size: 17px !important;
+    border: none !important;
+    width: 95% !important;
+}
+
+.text-area-modal-youtube{
+    font-size: 17px !important;
+    border: none !important;
+    margin-left: 32px !important;
+    width: 95% !important;
+}
+
+.text-area-modal-youtube-nopad{
+    font-size: 17px !important;
+    border: none !important;
+    width: 95% !important;
+}
+
+.text-area-modal-email{
+    font-size: 17px !important;
+    border: none !important;
+    margin-left: 32px !important;
+    width: 95% !important;
+}
+
+.text-area-modal-email-nopad{
+    font-size: 17px !important;
+    border: none !important;
+    width: 95% !important;
+}
+
 .divContentTwitter{
+    padding: 10px 45px;
+    line-height: 1.7;
+    white-space: 1.5;
+    font-size: 14px !important;
+}
+
+.divContentInstagram{
+    padding: 10px 45px;
+    line-height: 1.7;
+    white-space: 1.5;
+    font-size: 14px !important;
+}
+
+.divContentYoutube{
+    padding: 10px 45px;
+    line-height: 1.7;
+    white-space: 1.5;
+    font-size: 14px !important;
+}
+
+.divContentFacebook{
+    padding: 10px 45px;
+    line-height: 1.7;
+    white-space: 1.5;
+    font-size: 14px !important;
+}
+
+.divContentEmail{
     padding: 10px 45px;
     line-height: 1.7;
     white-space: 1.5;
@@ -135,6 +311,7 @@ a{
 .twitUser{
     color: #1da1f2;
 }
+
 
 .contentDisposisi{
     padding: 15px 10px 15px 15px;
@@ -194,6 +371,11 @@ a{
     color:#ff0000;
 }
 
+.icon-email{
+    font-size: 24px;
+    color:#4267b2;
+}
+
 .modal-header-sos{
     padding-left:25px;
 }
@@ -228,6 +410,18 @@ a{
 }
 
 .doneIconInstagram{
+    font-size: 18px;
+    color:#ee0c20;
+    margin-left:4px ;
+}
+
+.doneIconEmail{
+    font-size: 18px;
+    color:#4267b2;
+    margin-left:4px ;
+}
+
+.doneIconYoutube{
     font-size: 18px;
     color:#ee0c20;
     margin-left:4px ;
