@@ -26,8 +26,8 @@
                     <img src="{{asset('/assets-back')}}/img/logo-mini-atr.jpg" alt="">
                   </div>
                   <div class="tb-profile-text">
-                    <h2 class="tb-profile-name">Agraria & Tata Ruang</h2>
-                    <div class="tb-profile-email">@atr_bpn</div>
+                    <h2 class="tb-profile-name">Kementerian ATR BPN</h2>
+                    <div class="tb-profile-email">Kementerian ATR BPN</div>
                   </div>
                 </div>
                 <hr>
