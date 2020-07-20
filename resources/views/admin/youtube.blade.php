@@ -40,23 +40,42 @@
                         @if($stats['data'][$i]['type'] == 'youtube')
                         <li>
                           <div class="tb-list-title">Total</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['TOTAL']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/youtube?filter=all')}}">{{$stats['data'][$i]['TOTAL']}}
+                            </a>
+                          </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Belum</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['BELUM']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/youtube?filter=belum-proses')}}">
+                            {{$stats['data'][$i]['BELUM']}}
+                            </a>
+                          </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Proses</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['PROSES']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/youtube?filter=proses')}}">
+                            {{$stats['data'][$i]['PROSES']}}
+                            </a>
+                          </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Jawab</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['SELESAI']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/youtube?filter=jawab')}}">
+                            {{$stats['data'][$i]['SELESAI']}}
+                            </a>
+                          </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Spam</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['SPAM']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/youtube?filter=spam')}}">
+                            {{$stats['data'][$i]['SPAM']}}
+                            </a>
+                          </div>
                         </li>
                         @endif
                       @endfor
@@ -126,8 +145,31 @@
           @if(isset($response['data']))
            @php $number=0 @endphp
            @foreach($response['data'] as $key => $value)
-            @php $number++ @endphp
-            @if($value['is_spam'] == 0 && $value['username'] != 'atr_bpn' )
+            @php 
+            $number++;
+
+            if($filter == 'proses'){
+                $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} != 0 && {$value['escalation_status']} == '00'";
+              }
+              elseif($filter == 'belum-proses'){
+                 $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} == 0 && {$value['escalation_status']} == '00'";
+              }
+              elseif($filter == 'jawab'){
+                 $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} != 0 && {$value['escalation_status']} == '99'";
+              }
+              elseif($filter == 'spam'){
+                 $condition = "{$value['is_spam']} == 1";
+              }
+              else{
+                 $condition = "{$value['is_spam']} == 0";
+              }
+
+              $condition_applied = eval("return $condition;");
+
+            @endphp
+
+            @if($condition_applied)
+              @if($value['username'] != 'atr_bpn' )
             <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
@@ -300,7 +342,7 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       @if(request()->session()->get('MINISTRY_ID')  == '1')
-					<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
+					     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
                       <li>
                         <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
@@ -324,9 +366,10 @@
               </div>
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
+              @endif
             @endif
-            @endforeach
-            @endif
+           @endforeach
+          @endif
 
            {{-- 
             <nav>

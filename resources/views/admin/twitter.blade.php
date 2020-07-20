@@ -40,23 +40,42 @@
                         @if($stats['data'][$i]['type'] == 'twitter')
                         <li>
                           <div class="tb-list-title">Total</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['TOTAL']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/twitter?filter=all')}}">{{$stats['data'][$i]['TOTAL']}}
+                            </a>
+                          </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Belum</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['BELUM']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/twitter?filter=belum-proses')}}">
+                            {{$stats['data'][$i]['BELUM']}}
+                            </a>
+                          </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Proses</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['PROSES']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/twitter?filter=proses')}}">
+                            {{$stats['data'][$i]['PROSES']}}
+                            </a>
+                          </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Jawab</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['SELESAI']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/twitter?filter=jawab')}}">
+                            {{$stats['data'][$i]['SELESAI']}}
+                            </a>
+                          </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Spam</div>
-                          <div class="tb-list-number">{{$stats['data'][$i]['SPAM']}}</div>
+                          <div class="tb-list-number">
+                            <a href="{{url('aduan/twitter?filter=spam')}}">
+                            {{$stats['data'][$i]['SPAM']}}
+                            </a>
+                          </div>
                         </li>
                         @endif
                       @endfor
@@ -77,29 +96,19 @@
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                   <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="inputState">By</label>
+                    <div class="form-group col-md-6">
+                      <label for="inputState">Filter By</label>
                       <select id="inputState" class="form-control">
                         <option selected>ID Aduan</option>
                         <option>Username</option>
-                        <option>Kota/Kab</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-6">
                       <label for="inputCity">Kata Kunci</label>
                       <input type="text" class="form-control" id="inputCity">
                     </div>
                   </div>
-                  <div class="tb-height-b5 tb-height-lg-b5"></div>
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio5">Postingan Terbaru</label>
-                    </div>
-                    <div class="tb-height-b5 tb-height-lg-b5"></div>
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Postingan Terlama</label>
-                    </div>
+                  
 					<div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
                       <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
@@ -115,6 +124,17 @@
                       <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
                       <label class="custom-control-label" for="customRadio6">Aduan Belum Proses</label>
                     </div>
+                    <div class="tb-height-b15 tb-height-lg-b15"></div>
+                    <label for="inputCity">Sort By</label>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio5">Postingan Terbaru</label>
+                    </div>
+                    <div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio6">Postingan Terlama</label>
+                    </div>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                 </div>
                 <hr>
@@ -125,208 +145,232 @@
           <div class="col-md-8 conComment">
           @if(isset($response['data']))
            @php $number=0 @endphp
-           @foreach($response['data'] as $key => $value)
-            @php $number++ @endphp
-            @if($value['is_spam'] == 0 && $value['username'] != 'atr_bpn' )
-            <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
-              <div class="tb-card-body">
-                <div class="tb-padd-lr-30">
-                  <div class="tb-height-b20 tb-height-lg-b20"></div>
-                  <div class="tb-user tb-style3">
-                    <div class="tb-user-img">
-                     {{-- {!! $img = str_replace('[]', '', $value['image']) !!}
-                      @if($img != '')
-                        <img src="{{$value['image']}}" alt="">
-                      @else --}}
-                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
-                     {{-- @endif  --}}
+            @foreach($response['data'] as $key => $value)
+              @php 
+              $number++;
+
+              if($filter == 'proses'){
+                $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} != 0 && {$value['escalation_status']} == '00'";
+              }
+              elseif($filter == 'belum-proses'){
+                 $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} == 0 && {$value['escalation_status']} == '00'";
+              }
+              elseif($filter == 'jawab'){
+                 $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} != 0 && {$value['escalation_status']} == '99'";
+              }
+              elseif($filter == 'spam'){
+                 $condition = "{$value['is_spam']} == 1";
+              }
+              else{
+                 $condition = "{$value['is_spam']} == 0";
+              }
+
+              $condition_applied = eval("return $condition;");
+
+              @endphp
+
+              @if($condition_applied)
+                @if($value['username'] != 'atr_bpn')
+              <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
+                <div class="tb-card-body">
+                  <div class="tb-padd-lr-30">
+                    <div class="tb-height-b20 tb-height-lg-b20"></div>
+                    <div class="tb-user tb-style3">
+                      <div class="tb-user-img">
+                       {{-- {!! $img = str_replace('[]', '', $value['image']) !!}
+                        @if($img != '')
+                          <img src="{{$value['image']}}" alt="">
+                        @else --}}
+                          <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt="">
+                       {{-- @endif  --}}
+                      </div>
+                      <div class="tb-user-info">
+                        <h3 class="tb-user-name">
+                          {{$value['username']}} | @ {{$value['username']}}
+                          @if($value['escalation_status'] == '99')
+                          <span class="doneSpan">
+                             <i class="fas fa-check-circle doneIconTwitter"></i>
+                             Aduan Terjawab
+                          </span>
+                          @else
+                          <span class="doneSpan">
+                             <i class="fas fa-exclamation-circle warnIcon"></i>
+                             Menunggu Balasan
+                          </span>
+                          @endif
+                        </h3>
+                        <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                          <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
+                          <li><a href="#">{{$value['id']}}</a></li>
+                        </ul>
+
+                      </div>
+
                     </div>
-                    <div class="tb-user-info">
-                      <h3 class="tb-user-name">
-                        {{$value['username']}} | @ {{$value['username']}}
-                        @if($value['escalation_status'] == '99')
-                        <span class="doneSpan">
-                           <i class="fas fa-check-circle doneIconTwitter"></i>
-                           Aduan Terjawab
-                        </span>
+                    
+                    <div class="tb-height-b10 tb-height-lg-b10"></div>
+                    <div class="tb-post tb-style1">
+                      <div class="tb-post-text" 
+                      id="content{{$value['id']}}">
+                  		{{$value['comment']}}
+                  	</div>
+
+                      <div class="divHastag">
+                        @if(isset($value['aduan']))
+                        <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
+                        id="spanHastag{{$value['id']}}">
+                          #{!!str_replace(" ","",$value['aduan']['aduan'])!!}
+                        </a>
                         @else
-                        <span class="doneSpan">
-                           <i class="fas fa-exclamation-circle warnIcon"></i>
-                           Menunggu Balasan
-                        </span>
+                        <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
+                        id="spanHastag{{$value['id']}}">
+                          #PilihJenisAduan
+                        </a>
                         @endif
-                      </h3>
-                      <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                        <li><a href="#">{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}</a></li>
-                        <li><a href="#">{{$value['id']}}</a></li>
-                      </ul>
-
+                      </div>
+                      <div class="tb-height-b20 tb-height-lg-b20"></div>
                     </div>
-
                   </div>
                   
+                  <div class="row{{$number}}" id="divCommentCon{{$value['id']}}">
+                    @php $numberDetail=0 @endphp
+                    @foreach($value['disposisi'] as $key => $val)
+                      @php $numberDetail++ @endphp
+                      <div class="tb-padd-lr-30 rowDetail rowDetail{{$number}}{{$numberDetail}} divDisposisi{{$val['id']}}">
+
+                      <div class="tb-height-b20 tb-height-lg-b20"></div>
+                      
+                      <span class="spanAction">
+                           @if(request()->session()->get('USER_ID')  == 4)
+                            <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
+                              <span class="tb-toggle-btn tb-style1 tb-large-size">
+                                <i class="material-icons-outlined iconAction">more_horiz</i>
+                              </span>
+                                <div class="tb-dropdown">
+                                <ul class="tb-drop-dropdown-list tb-mp0">
+                                   <li><a onclick="copyClipboard('divComments{{$val['id']}}')">Copy</a></li>
+                                  <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                           @endif
+                      </span>
+                              
+                      <div class="tb-user tb-style3 contentDisposisi">
+                        <div class="tb-user-img">
+                          <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                        </div>
+                        <div class="tb-user-info">
+                          <h3 class="tb-user-name">
+                              {{$val['from']['tm_ministry']['ministry_name']}} <span>membalas kepada</span> {{$val['to']['ministry_name']}}
+                              <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                                <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
+                              </ul>
+                          </h3>
+
+                          <div class="divComment{{$val['id']}}" id="divComments{{$val['id']}}">{{$val['comment']}}</div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
+                    @foreach($value['replay'] as $key => $val)
+                      @php $numberDetail++ @endphp
+                      <div class="tb-padd-lr-30 rowDetail rowDetail{{$number}}{{$numberDetail}} divDisposisi{{$val['id']}}">
+
+                      <div class="tb-height-b20 tb-height-lg-b20"></div>
+                      
+                      <span class="spanAction">
+                           @if(request()->session()->get('USER_ID')  == 4)
+                            <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
+                              <span class="tb-toggle-btn tb-style1 tb-large-size">
+                                <i class="material-icons-outlined iconAction">more_horiz</i>
+                              </span>
+                                <div class="tb-dropdown">
+                                <ul class="tb-drop-dropdown-list tb-mp0">
+                                   <li><a onclick="copyClipboard('divComments{{$val['id']}}')">Copy</a></li>
+                                  <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                           @endif
+                      </span>
+                              
+                      <div class="tb-user tb-style3 contentDisposisi">
+                        <div class="tb-user-img">
+                          <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
+                        </div>
+                        <div class="tb-user-info">
+                          <h3 class="tb-user-name">
+                               ATR/BPN Pusat <span>membalas kepada Penanya
+                              <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
+                                <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
+                              </ul>
+                          </h3>
+
+                          <div class="divComment{{$val['id']}}" id="divComments{{$val['id']}}">{{$val['comment']}}</div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
+
+                  <div class="tb-padd-lr-30 y" style="padding-top: 10px;padding-bottom: 10px">
+                      <span class="spanLoadmore" id="spanloadmore{{$number}}" onclick="loadmore('row{{$number}}')">
+                          Tampilkan Lebih Banyak
+                      </span>
+                  </div>
                   <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  <div class="tb-post tb-style1">
-                    <div class="tb-post-text" 
-                    id="content{{$value['id']}}">
-                		{{$value['comment']}}
-                	</div>
-
-                    <div class="divHastag">
-                      @if(isset($value['aduan']))
-                      <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
-                      id="spanHastag{{$value['id']}}">
-                        #{!!str_replace(" ","",$value['aduan']['aduan'])!!}
-                      </a>
-                      @else
-                      <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
-                      id="spanHastag{{$value['id']}}">
-                        #PilihJenisAduan
-                      </a>
-                      @endif
+                  <hr>
+                  
+                  @if($value['id']!='')
+                   @if($value['is_taken'] == 0)
+                    <div class="tb-padd-lr-30 y" id="button_feed{{$value['id']}}">
+                      <div class="tb-height-b10 tb-height-lg-b10"></div>
+                      <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                        <li>
+                          <a onclick="handleFeed('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}',{{$value['id']}})">
+                            <i class="material-icons-outlined">mode_comment</i> Ambil
+                          </a>
+                        </li>
+                        <li><a onclick="spamFeed({{$value['id']}})"><i class="material-icons-outlined">block</i> Spam</a></li>
+                      </ul>
+                      <div class="tb-height-b10 tb-height-lg-b10"></div>
                     </div>
-                    <div class="tb-height-b20 tb-height-lg-b20"></div>
-                  </div>
-                </div>
-                
-                <div class="row{{$number}}" id="divCommentCon{{$value['id']}}">
-                  @php $numberDetail=0 @endphp
-                  @foreach($value['disposisi'] as $key => $val)
-                    @php $numberDetail++ @endphp
-                    <div class="tb-padd-lr-30 rowDetail rowDetail{{$number}}{{$numberDetail}} divDisposisi{{$val['id']}}">
+                    @endif
 
-                    <div class="tb-height-b20 tb-height-lg-b20"></div>
-                    
-                    <span class="spanAction">
-                         @if(request()->session()->get('USER_ID')  == 4)
-                          <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
-                            <span class="tb-toggle-btn tb-style1 tb-large-size">
-                              <i class="material-icons-outlined iconAction">more_horiz</i>
-                            </span>
-                              <div class="tb-dropdown">
-                              <ul class="tb-drop-dropdown-list tb-mp0">
-                                 <li><a onclick="copyClipboard('divComments{{$val['id']}}')">Copy</a></li>
-                                <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                         @endif
-                    </span>
-                            
-                    <div class="tb-user tb-style3 contentDisposisi">
-                      <div class="tb-user-img">
-                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
-                      </div>
-                      <div class="tb-user-info">
-                        <h3 class="tb-user-name">
-                            {{$val['from']['tm_ministry']['ministry_name']}} <span>membalas kepada</span> {{$val['to']['ministry_name']}}
-                            <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                              <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
-                            </ul>
-                        </h3>
+                    <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
+                      <div class="tb-height-b10 tb-height-lg-b10"></div>
+                      <ul class="tb-horizontal-list tb-style2 tb-mp0">
+                        @if(request()->session()->get('MINISTRY_ID')  == '1')
+  					   <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
+                        <li>
+                          <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
+                            <i class="material-icons-outlined">mode_comment</i> Balas
+                          </a>
+                        </li>
+                         <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                        </li>
+                        @else
 
-                        <div class="divComment{{$val['id']}}" id="divComments{{$val['id']}}">{{$val['comment']}}</div>
-                      </div>
+                         <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i>Balas Disposisi</a>
+                        </li>
+                        @endif
+                        
+                       
+                        
+                      </ul>
+                      <div class="tb-height-b10 tb-height-lg-b10"></div>
                     </div>
-                  </div>
-                  @endforeach
-                  @foreach($value['replay'] as $key => $val)
-                    @php $numberDetail++ @endphp
-                    <div class="tb-padd-lr-30 rowDetail rowDetail{{$number}}{{$numberDetail}} divDisposisi{{$val['id']}}">
-
-                    <div class="tb-height-b20 tb-height-lg-b20"></div>
-                    
-                    <span class="spanAction">
-                         @if(request()->session()->get('USER_ID')  == 4)
-                          <div class="tb-toggle-body tb-drop-style1 tb-right-dropdown">
-                            <span class="tb-toggle-btn tb-style1 tb-large-size">
-                              <i class="material-icons-outlined iconAction">more_horiz</i>
-                            </span>
-                              <div class="tb-dropdown">
-                              <ul class="tb-drop-dropdown-list tb-mp0">
-                                 <li><a onclick="copyClipboard('divComments{{$val['id']}}')">Copy</a></li>
-                                <li><a onclick="confirm_delete('{{$val['id']}}')">Hapus</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                         @endif
-                    </span>
-                            
-                    <div class="tb-user tb-style3 contentDisposisi">
-                      <div class="tb-user-img">
-                        <img src="{{asset('assets-back/img/logo-mini-atr.jpg')}}" alt=""> 
-                      </div>
-                      <div class="tb-user-info">
-                        <h3 class="tb-user-name">
-                             ATR/BPN Pusat <span>membalas kepada Penanya
-                            <ul class="tb-post-label tb-style1 tb-mp0"><!-- • -->
-                              <li><a href="#">{{date('l, d F Y H:i:s', strtotime($val['date']))}}</a></li>
-                            </ul>
-                        </h3>
-
-                        <div class="divComment{{$val['id']}}" id="divComments{{$val['id']}}">{{$val['comment']}}</div>
-                      </div>
-                    </div>
-                  </div>
-                  @endforeach
-                </div>
-
-                <div class="tb-padd-lr-30 y" style="padding-top: 10px;padding-bottom: 10px">
-                    <span class="spanLoadmore" id="spanloadmore{{$number}}" onclick="loadmore('row{{$number}}')">
-                        Tampilkan Lebih Banyak
-                    </span>
-                </div>
-                <div class="tb-height-b10 tb-height-lg-b10"></div>
-                <hr>
-                
-                @if($value['id']!='')
-                 @if($value['is_taken'] == 0)
-                  <div class="tb-padd-lr-30 y" id="button_feed{{$value['id']}}">
-                    <div class="tb-height-b10 tb-height-lg-b10"></div>
-                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                      <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                      <li>
-                        <a onclick="handleFeed('button_feed{{$value['id']}}','button_feed_send{{$value['id']}}',{{$value['id']}})">
-                          <i class="material-icons-outlined">mode_comment</i> Ambil
-                        </a>
-                      </li>
-                      <li><a onclick="spamFeed({{$value['id']}})"><i class="material-icons-outlined">block</i> Spam</a></li>
-                    </ul>
-                    <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  </div>
                   @endif
-
-                  <div class="tb-padd-lr-30 x" id="button_feed_send{{$value['id']}}" @if($value['is_taken'] == 0) style="display: none" @endif>
-                    <div class="tb-height-b10 tb-height-lg-b10"></div>
-                    <ul class="tb-horizontal-list tb-style2 tb-mp0">
-                      @if(request()->session()->get('MINISTRY_ID')  == '1')
-					<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
-                      <li>
-                        <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
-                          <i class="material-icons-outlined">mode_comment</i> Balas
-                        </a>
-                      </li>
-                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
-                      </li>
-                      @else
-
-                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i>Balas Disposisi</a>
-                      </li>
-                      @endif
-                      
-                     
-                      
-                    </ul>
-                    <div class="tb-height-b10 tb-height-lg-b10"></div>
-                  </div>
-                @endif
-              
+                
+                </div>
               </div>
-            </div>
-            <div class="tb-height-b30 tb-height-lg-b30"></div>
-            @endif
+              <div class="tb-height-b30 tb-height-lg-b30"></div>
+                @endif
+              @endif
             @endforeach
-            @endif
+          @endif
 
            {{-- 
             <nav>

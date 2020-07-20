@@ -71,7 +71,10 @@ class AduanController extends Controller
 
         $aduan = json_decode($request4->getBody()->getContents(),true);
 
-    	return view('admin.'.$media)->with(compact('response','stats','kanwil','aduan'));
+        //NGAKALIN FILTER
+        $filter = Input::get('filter');
+
+    	return view('admin.'.$media)->with(compact('response','stats','kanwil','aduan','filter'));
     }
 
 
