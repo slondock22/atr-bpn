@@ -41,14 +41,14 @@
                         <li>
                           <div class="tb-list-title">Total</div>
                           <div class="tb-list-number">
-                            <a href="{{url('aduan/youtube?filter=all')}}">{{$stats['data'][$i]['TOTAL']}}
+                            <a href="{{url('aduan/youtube')}}">{{$stats['data'][$i]['TOTAL']}}
                             </a>
                           </div>
                         </li>
                         <li>
                           <div class="tb-list-title">Belum</div>
                           <div class="tb-list-number">
-                            <a href="{{url('aduan/youtube?filter=belum-proses')}}">
+                            <a href="{{url('aduan/youtube?type=yet')}}">
                             {{$stats['data'][$i]['BELUM']}}
                             </a>
                           </div>
@@ -56,7 +56,7 @@
                         <li>
                           <div class="tb-list-title">Proses</div>
                           <div class="tb-list-number">
-                            <a href="{{url('aduan/youtube?filter=proses')}}">
+                            <a href="{{url('aduan/youtube?type=process')}}">
                             {{$stats['data'][$i]['PROSES']}}
                             </a>
                           </div>
@@ -64,7 +64,7 @@
                         <li>
                           <div class="tb-list-title">Jawab</div>
                           <div class="tb-list-number">
-                            <a href="{{url('aduan/youtube?filter=jawab')}}">
+                            <a href="{{url('aduan/youtube?type=terjawab')}}">
                             {{$stats['data'][$i]['SELESAI']}}
                             </a>
                           </div>
@@ -72,9 +72,9 @@
                         <li>
                           <div class="tb-list-title">Spam</div>
                           <div class="tb-list-number">
-                            <a href="{{url('aduan/youtube?filter=spam')}}">
+                            <!-- <a href="{{url('aduan/youtube?type=spam')}}"> -->
                             {{$stats['data'][$i]['SPAM']}}
-                            </a>
+                            <!-- </a> -->
                           </div>
                         </li>
                         @endif
@@ -147,28 +147,8 @@
            @foreach($response['data'] as $key => $value)
             @php 
             $number++;
-
-            if($filter == 'proses'){
-                $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} != 0 && {$value['escalation_status']} == '00'";
-              }
-              elseif($filter == 'belum-proses'){
-                 $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} == 0 && {$value['escalation_status']} == '00'";
-              }
-              elseif($filter == 'jawab'){
-                 $condition = "{$value['is_spam']} == 0 && {$value['is_taken']} != 0 && {$value['escalation_status']} == '99'";
-              }
-              elseif($filter == 'spam'){
-                 $condition = "{$value['is_spam']} == 1";
-              }
-              else{
-                 $condition = "{$value['is_spam']} == 0";
-              }
-
-              $condition_applied = eval("return $condition;");
-
             @endphp
 
-            @if($condition_applied)
               @if($value['username'] != 'atr_bpn' )
             <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
               <div class="tb-card-body">
@@ -367,7 +347,7 @@
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
               @endif
-            @endif
+
            @endforeach
           @endif
 

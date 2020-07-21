@@ -46,7 +46,7 @@ class AduanController extends Controller
         
         $response = json_decode($request->getBody()->getContents(),true);
 
-        dd($response);
+        // dd($token_akses);
 
         //Statistik
         $url2 = "http://devbpn.edii.co.id:3000/post/stats";
