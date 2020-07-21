@@ -20,13 +20,17 @@ class AduanController extends Controller
         //Aduan
         $url = "http://devbpn.edii.co.id:3000/dispo/all/".$media;
 
+        $getUsername = Input::get('username');
+        $getType = Input::get('type');
+        $getSort = Input::get('sort');
+
         $value['id_category'] = 1;
         $value['filter']['remark'] = 'username';
-        $value['filter']['value'] = Input::get('username');
+        $value['filter']['value'] = ($getUsername == NULL) ? '' : $getUsername;
         $value['filter']['remark2'] = 'type';
-        $value['filter']['value2'] = Input::get('type');
+        $value['filter']['value2'] = ($getType == NULL) ? '' : $getType;
         $value['filter']['remark3'] = 'sort';
-        $value['filter']['value3'] = Input::get('sort');
+        $value['filter']['value3'] = ($getSort == NULL) ? '' : $getSort;
 
         // dd($value);
 
