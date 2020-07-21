@@ -109,17 +109,17 @@
                     </div>
                   </div>
                   
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
+					         <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
                       <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
                       <label class="custom-control-label" for="customRadio6">Aduan Terjawab</label>
                     </div>
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
+					         <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
                       <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
                       <label class="custom-control-label" for="customRadio6">Aduan Proses</label>
                     </div>
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
+					         <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
                       <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
                       <label class="custom-control-label" for="customRadio6">Aduan Belum Proses</label>

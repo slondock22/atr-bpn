@@ -13,7 +13,7 @@
             </div>
             <div class="tb-iconbox-text">
               <h3 class="tb-iconbox-heading" id="jml_email">0</h3>
-              <div class="tb-iconbox-sub-heading">Total Aduan</div>
+              <div class="tb-iconbox-sub-heading">Total Tautan</div>
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="tb-iconbox-text">
               <h3 class="tb-iconbox-heading" id="jml_twitter">0</h3>
-              <div class="tb-iconbox-sub-heading">Total Aduan</div>
+              <div class="tb-iconbox-sub-heading">Total Tautan</div>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
             </div>
             <div class="tb-iconbox-text">
               <h3 class="tb-iconbox-heading" id="jml_instagram">0</h3>
-              <div class="tb-iconbox-sub-heading">Total Aduan</div>
+              <div class="tb-iconbox-sub-heading">Total Tautan</div>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
             </div>
             <div class="tb-iconbox-text">
               <h3 class="tb-iconbox-heading" id="jml_youtube">0</h3>
-              <div class="tb-iconbox-sub-heading">Total Aduan</div>
+              <div class="tb-iconbox-sub-heading">Total Tautan</div>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
-                <h2 class="tb-card-title">Grafik Pengaduan</h2>
+                <h2 class="tb-card-title">Grafik Tautan</h2>
               </div>
             </div>
             <div class="tb-card-body">
@@ -99,7 +99,7 @@
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
-                <h2 class="tb-card-title">Aduan Terjawab</h2>
+                <h2 class="tb-card-title">Tautan Terjawab</h2>
               </div>
              <!--  <div class="tb-card-heading-right">
                 <div class="tb-custom-select-wrap tb-style1">
@@ -153,7 +153,7 @@
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
-                <h2 class="tb-card-title">Kategori Aduan Terpopuler</h2>
+                <h2 class="tb-card-title">Kategori Tautan Terpopuler</h2>
               </div>
             </div>
             <div class="tb-card-body">
@@ -225,7 +225,7 @@
           <div class="tb-card tb-style1">
             <div class="tb-card-heading">
               <div class="tb-card-heading-left">
-                <h2 class="tb-card-title">Distribusi Aduan Terbanyak</h2>
+                <h2 class="tb-card-title">Distribusi Tautan Terbanyak</h2>
               </div>
             </div>
             <div class="tb-card-body">
