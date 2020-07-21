@@ -95,50 +95,52 @@
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
+                  <form method="GET" action="{{route('aduan')}}">
+                    @csrf
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputState">Filter By</label>
                       <select id="inputState" class="form-control">
-                        <option selected>ID Aduan</option>
                         <option>Username</option>
                       </select>
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputCity">Kata Kunci</label>
-                      <input type="text" class="form-control" id="inputCity">
+                      <input type="text" class="form-control" id="inputCity" name="username">
                     </div>
                   </div>
                   
 					         <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <input type="radio" id="customRadio1" name="type" class="custom-control-input" value="terjawab">
                       <label class="custom-control-label" for="customRadio6">Aduan Terjawab</label>
                     </div>
 					         <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <input type="radio" id="customRadio2" name="type" class="custom-control-input" value="process">
                       <label class="custom-control-label" for="customRadio6">Aduan Proses</label>
                     </div>
 					         <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <input type="radio" id="customRadio3" name="type" class="custom-control-input" value="yet">
                       <label class="custom-control-label" for="customRadio6">Aduan Belum Proses</label>
                     </div>
                     <div class="tb-height-b15 tb-height-lg-b15"></div>
                     <label for="inputCity">Sort By</label>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
+                      <input type="radio" id="customRadio4" name="sort" class="custom-control-input" value="desc">
                       <label class="custom-control-label" for="customRadio5">Postingan Terbaru</label>
                     </div>
                     <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                      <input type="radio" id="customRadio5" name="sort" class="custom-control-input" value="desc">
                       <label class="custom-control-label" for="customRadio6">Postingan Terlama</label>
                     </div>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                 </div>
                 <hr>
-                <a href="#" class="tb-btn tb-style2">Terapkan<i class="material-icons-outlined">navigate_next</i></a>
+                <button type="submit" class="tb-btn tb-style2">Terapkan<i class="material-icons-outlined">navigate_next</i></button>
+                </form>
               </div>
             </div>
           </div><!-- .col -->
