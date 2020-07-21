@@ -20,17 +20,29 @@ class AduanController extends Controller
         //Aduan
         $url = "http://devbpn.edii.co.id:3000/dispo/all/".$media;
 
+        $value['id_category'] = 1;
+        $value['filter']['remark'] = 'username';
+        $value['filter']['value'] = Input::get('username');
+        $value['filter']['remark2'] = 'type';
+        $value['filter']['value2'] = Input::get('type');
+        $value['filter']['remark3'] = 'sort';
+        $value['filter']['value3'] = Input::get('sort');
+
+        // dd($value);
+
     	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
         				 [ 
                             'headers' => [
                                  'Content-Type'  => 'application/json',
                                  'X-Api-Key'     => 'ATRBPn '.$token_akses
-                            ]
+                            ],
+                            'json' => $value
                         ]);
         
         $response = json_decode($request->getBody()->getContents(),true);
 
+        dd($response);
 
         //Statistik
         $url2 = "http://devbpn.edii.co.id:3000/post/stats";
