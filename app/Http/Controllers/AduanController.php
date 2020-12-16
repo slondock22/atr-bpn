@@ -18,7 +18,6 @@ class AduanController extends Controller
     	$client = new Client();
 
         //Aduan
-        $url = "http://devbpn.edii.co.id:3000/dispo/all/".$media;
 
         $getUsername = Input::get('username');
         $getType = Input::get('type');
@@ -34,6 +33,7 @@ class AduanController extends Controller
 
         // dd($value);
 
+        $url = "http://devbpn.edii.co.id:3000/dispo/all/".$media;
     	$token_akses = request()->session()->get('TOKEN_AUTH_APP');
         $request = $client->request('GET', $url, 
         				 [ 
@@ -46,7 +46,7 @@ class AduanController extends Controller
         
         $response = json_decode($request->getBody()->getContents(),true);
 
-        // dd($token_akses);
+        // dd($response);
 
         //Statistik
         $url2 = "http://devbpn.edii.co.id:3000/post/stats";

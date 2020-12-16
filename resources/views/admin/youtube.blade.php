@@ -3,9 +3,9 @@
 @section('content')
 
 <style>
-	.spanLoading{
-		display: none;
-	}
+  .spanLoading{
+    display: none;
+  }
 </style>
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
@@ -26,7 +26,7 @@
                     <img src="{{asset('/assets-back')}}/img/logo-mini-atr.jpg" alt="">
                   </div>
                   <div class="tb-profile-text">
-                    <h2 class="tb-profile-name">Kementerian ATR BPN</h2>
+                    <h2 class="tb-profile-name">Kementerian ATR/BPN</h2>
                     <div class="tb-profile-email">Kementerian ATR BPN</div>
                   </div>
                 </div>
@@ -41,7 +41,8 @@
                         <li>
                           <div class="tb-list-title">Total</div>
                           <div class="tb-list-number">
-                            <a href="{{url('aduan/youtube')}}">{{$stats['data'][$i]['TOTAL']}}
+                            <a href="{{url('aduan/youtube')}}">
+                            {{$stats['data'][$i]['TOTAL']}}
                             </a>
                           </div>
                         </li>
@@ -95,49 +96,52 @@
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
+                  <form method="GET" action="{{route('aduan','youtube')}}" id="formFilter" name="formFilter">
+                  <!--   @csrf -->
                   <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="inputState">By</label>
+                    <div class="form-group col-md-6">
+                      <label for="inputState">Filter By</label>
                       <select id="inputState" class="form-control">
-                        <option selected>ID Aduan</option>
                         <option>Username</option>
-                        <option>Kota/Kab</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-6">
                       <label for="inputCity">Kata Kunci</label>
-                      <input type="text" class="form-control" id="inputCity">
+                      <input type="text" class="form-control" id="inputCity" name="username">
                     </div>
                   </div>
-                  <div class="tb-height-b5 tb-height-lg-b5"></div>
+                  
+                   <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio5">Postingan Terbaru</label>
+                      <input type="radio" id="customRadio1" name="type" class="custom-control-input" value="terjawab">
+                      <label class="custom-control-label" for="customRadio1">Aduan Terjawab</label>
+                    </div>
+                   <div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio2" name="type" class="custom-control-input" value="process">
+                      <label class="custom-control-label" for="customRadio2">Aduan Proses</label>
+                    </div>
+                   <div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio3" name="type" class="custom-control-input" value="yet">
+                      <label class="custom-control-label" for="customRadio3">Aduan Belum Proses</label>
+                    </div>
+                    <div class="tb-height-b15 tb-height-lg-b15"></div>
+                    <label for="inputCity">Sort By</label>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio4" name="sort" class="custom-control-input" value="desc">
+                      <label class="custom-control-label" for="customRadio4">Postingan Terbaru</label>
                     </div>
                     <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Postingan Terlama</label>
-                    </div>
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Aduan Terjawab</label>
-                    </div>
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Aduan Proses</label>
-                    </div>
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Aduan Belum Proses</label>
+                      <input type="radio" id="customRadio5" name="sort" class="custom-control-input" value="asc">
+                      <label class="custom-control-label" for="customRadio5">Postingan Terlama</label>
                     </div>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                 </div>
                 <hr>
-                <a href="#" class="tb-btn tb-style2">Terapkan<i class="material-icons-outlined">navigate_next</i></a>
+                <a href="#" class="tb-btn tb-style2" onclick="document.getElementById('formFilter').submit();">Terapkan<i class="material-icons-outlined">navigate_next</i></a>
+                </form>
               </div>
             </div>
           </div><!-- .col -->
@@ -149,7 +153,7 @@
             $number++;
             @endphp
 
-              @if($value['username'] != 'atr_bpn' )
+              @if($value['username'] != 'kementerian.atrbpn')
             <div class="tb-card tb-style1 tb-height-auto rowcomment" id="divFeeds{{$value['id']}}">
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
@@ -191,8 +195,8 @@
                   <div class="tb-post tb-style1">
                     <div class="tb-post-text" 
                     id="content{{$value['id']}}">
-                		{{$value['comment']}}
-                	</div>
+                    {{$value['comment']}}
+                  </div>
 
                     <div class="divHastag">
                       @if(isset($value['aduan']))
@@ -322,13 +326,13 @@
                     <div class="tb-height-b10 tb-height-lg-b10"></div>
                     <ul class="tb-horizontal-list tb-style2 tb-mp0">
                       @if(request()->session()->get('MINISTRY_ID')  == '1')
-					     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
+               <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> 
                       <li>
-                        <a onclick="modal_feeds('content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
+                        <a onclick="modal_feeds('content{{$value['id']}}','{{str_replace("'","",$value['username'])}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}','{{$value['post_url']}}', '{{$value['id']}}')">
                           <i class="material-icons-outlined">mode_comment</i> Balas
                         </a>
                       </li>
-                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{$value['username']}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
+                       <li><a onclick="modal_disposisi('{{$value['id']}}','content{{$value['id']}}','{{str_replace("'","",$value['username'])}}','{{date('l, d F Y H:i:s', strtotime($value['date_create']))}}')"><i class="material-icons-outlined">forward</i> Disposisi</a>
                       </li>
                       @else
 
@@ -347,7 +351,7 @@
             </div>
             <div class="tb-height-b30 tb-height-lg-b30"></div>
               @endif
-
+          
            @endforeach
           @endif
 
@@ -446,10 +450,10 @@
         </form>
       </div>
       <div class="modal-footer">
-      	<span class="spanLoading">
-      		<img style="height: 45px;margin-right: 10px;" 
-      		src="{{asset('assets-back/img/loading.gif')}}">
-      	</span>
+        <span class="spanLoading">
+          <img style="height: 45px;margin-right: 10px;" 
+          src="{{asset('assets-back/img/loading.gif')}}">
+        </span>
         <button type="button" class="btn btn-modal-youtube-danger" data-dismiss="modal">Batal</button>
         <button type="button" id="btnSendDisposisi" id="btnSendDisposisi" class="btn btn-modal-youtube" onclick="serviceSend('#frmDisposisi')">Kirim</button>
       </div>
@@ -614,7 +618,7 @@
 </div>
 
 <div class="modal fade" id="modal-iframepost" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xxl modal-dialog-centered modal-xxl-top">
+  <div class="modal-dialog modal-dialog-centered modal-xxl modal-xxl-top">
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
@@ -625,7 +629,7 @@
         </button>
       </div>
       <div class="modal-body modal-xxl-body" id="modal-body">
-         <div id="postUrl">
+         <div id="postUrl" class="text-center">
            {{-- <iframe is="x-frame-bypass" width="820px" height="350px" id="iframePostReply" frameborder="0" src="" ></iframe> --}}
          </div>
       </div>
@@ -718,9 +722,9 @@
         $('#' + input).html(hastag);
         
         var url = base_url + '/updateJenisAduan/'+id+'/'+id_hastag;
-	    $.get(url, function (data){
-	          console.log(data);
-	    });
+      $.get(url, function (data){
+            console.log(data);
+      });
     }
 
     function confirm_delete(id,div){
@@ -758,9 +762,11 @@
       // // alert(link);
       var iframe = document.createElement('iframe');
       iframe.frameBorder=0;
+      iframe.scrolling="yes";
       iframe.width="1240px";
-      iframe.height="650px";
+      iframe.height="650px";;
       iframe.id="iframePostReply";
+      iframe.allowTransparency = "true";
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
       // $("#modal-iframepost").contents().find("#iframePostReply").attr("src",  link);

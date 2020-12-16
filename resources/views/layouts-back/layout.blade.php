@@ -26,6 +26,7 @@
   <link href="{{asset('/')}}assets-back/css/bootstrap-customs.css" rel="stylesheet">
   <link href="{{asset('/')}}assets-back/css/alert.css" rel="stylesheet" type="text/css" />
   <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <script async='async' custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
 
   </head>
   <body>

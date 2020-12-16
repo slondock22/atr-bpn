@@ -96,49 +96,52 @@
               <div class="tb-card-body">
                 <div class="tb-padd-lr-30">
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
+                  <form method="GET" action="{{route('aduan','instagram')}}" id="formFilter" name="formFilter">
+                  <!--   @csrf -->
                   <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="inputState">By</label>
+                    <div class="form-group col-md-6">
+                      <label for="inputState">Filter By</label>
                       <select id="inputState" class="form-control">
-                        <option selected>ID Aduan</option>
                         <option>Username</option>
-                        <option>Kota/Kab</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-6">
                       <label for="inputCity">Kata Kunci</label>
-                      <input type="text" class="form-control" id="inputCity">
+                      <input type="text" class="form-control" id="inputCity" name="username">
                     </div>
                   </div>
-                  <div class="tb-height-b5 tb-height-lg-b5"></div>
+                  
+                   <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio5">Postingan Terbaru</label>
+                      <input type="radio" id="customRadio1" name="type" class="custom-control-input" value="terjawab">
+                      <label class="custom-control-label" for="customRadio1">Aduan Terjawab</label>
+                    </div>
+                   <div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio2" name="type" class="custom-control-input" value="process">
+                      <label class="custom-control-label" for="customRadio2">Aduan Proses</label>
+                    </div>
+                   <div class="tb-height-b5 tb-height-lg-b5"></div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio3" name="type" class="custom-control-input" value="yet">
+                      <label class="custom-control-label" for="customRadio3">Aduan Belum Proses</label>
+                    </div>
+                    <div class="tb-height-b15 tb-height-lg-b15"></div>
+                    <label for="inputCity">Sort By</label>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio4" name="sort" class="custom-control-input" value="desc">
+                      <label class="custom-control-label" for="customRadio4">Postingan Terbaru</label>
                     </div>
                     <div class="tb-height-b5 tb-height-lg-b5"></div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Postingan Terlama</label>
-                    </div>
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Aduan Terjawab</label>
-                    </div>
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Aduan Proses</label>
-                    </div>
-					<div class="tb-height-b5 tb-height-lg-b5"></div>
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadio6">Aduan Belum Proses</label>
+                      <input type="radio" id="customRadio5" name="sort" class="custom-control-input" value="asc">
+                      <label class="custom-control-label" for="customRadio5">Postingan Terlama</label>
                     </div>
                   <div class="tb-height-b20 tb-height-lg-b20"></div>
                 </div>
                 <hr>
-                <a href="#" class="tb-btn tb-style2">Terapkan<i class="material-icons-outlined">navigate_next</i></a>
+                <a href="#" class="tb-btn tb-style2" onclick="document.getElementById('formFilter').submit();">Terapkan<i class="material-icons-outlined">navigate_next</i></a>
+                </form>
               </div>
             </div>
           </div><!-- .col -->
@@ -615,7 +618,7 @@
 </div>
 
 <div class="modal fade" id="modal-iframepost" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xxl modal-dialog-centered modal-xxl-top">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header modal-header-sos">
         <h5 class="modal-title" id="myLargeModalLabel">
@@ -626,7 +629,7 @@
         </button>
       </div>
       <div class="modal-body modal-xxl-body" id="modal-body">
-         <div id="postUrl">
+         <div id="postUrl" class="text-center">
            {{-- <iframe is="x-frame-bypass" width="820px" height="350px" id="iframePostReply" frameborder="0" src="" ></iframe> --}}
          </div>
       </div>
@@ -671,10 +674,11 @@
 
     function modal_feeds(content='',user='',date='',post_url='', id_feeds =''){
         var content = $("#"+content).html();
-        
+        $('#inputSendModalFeeds').html('');
         $('#id_feeds').val(id_feeds);
         $('#modal-balas-feed').modal({backdrop: 'static', keyboard: false});
         $('#contentTwitUser').html(content);
+        $('#inputSendModalFeeds').html('@'+user);
         $('#twitUser').html('@'+user);
         $('#headerUser').html('@'+user);
         $('#dateModal').html(date);
@@ -755,13 +759,15 @@
       // $('#inputSendModalFeeds').val('');
       // $('#postUrl').html('');
 
-      var link = post_url;
+      var link = post_url+'/embed';
       // // alert(link);
       var iframe = document.createElement('iframe');
       iframe.frameBorder=0;
-      iframe.width="1240px";
-      iframe.height="650px";
+      iframe.scrolling="no";
+      iframe.width="400px";
+      iframe.height="600px";
       iframe.id="iframePostReply";
+      iframe.allowTransparency = "true";
       iframe.setAttribute("src", link);
       document.getElementById("postUrl").appendChild(iframe);
       // $("#modal-iframepost").contents().find("#iframePostReply").attr("src",  link);
