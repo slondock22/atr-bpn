@@ -51,6 +51,53 @@
           </div>
         </div>
       </div><!-- .row -->
+      <br>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="tb-iconbox tb-style4 tb-color2">
+            <div class="tb-icon tb-flex">
+              <i class="lni lni-envelope"></i>
+            </div>
+            <div class="tb-iconbox-text">
+              <h3 class="tb-iconbox-heading" id="jml_lapor">0</h3>
+              <div class="tb-iconbox-sub-heading">Total Tautan Lapor</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="tb-iconbox tb-style4 tb-color3">
+            <div class="tb-icon tb-flex">
+              <i class="lni lni-envelope"></i>
+            </div>
+            <div class="tb-iconbox-text">
+              <h3 class="tb-iconbox-heading" id="jml_portal">0</h3>
+              <div class="tb-iconbox-sub-heading">Total Tautan Portal</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="tb-iconbox tb-style4 tb-color1" style="background-color: #A92BAB !important">
+            <div class="tb-icon tb-flex">
+              <i class="lni lni-envelope"></i>
+            </div>
+            <div class="tb-iconbox-text">
+              <h3 class="tb-iconbox-heading" id="jml_langsung">0</h3>
+              <div class="tb-iconbox-sub-heading">Total Tautan Langsung</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="tb-iconbox tb-style4 tb-color1" style="background-color: #d2152b !important">
+            <div class="tb-icon tb-flex">
+              <i class="lni lni-youtube"></i>
+            </div>
+            <div class="tb-iconbox-text">
+              <h3 class="tb-iconbox-heading" id="jml_youtube">0</h3>
+              <div class="tb-iconbox-sub-heading">Total Tautan</div>
+            </div>
+          </div>
+        </div>
+      </div><!-- .row -->
       <div class="tb-height-b30 tb-height-lg-b30"></div>
       <div class="row">
         <div class="col-lg-8">
@@ -309,15 +356,24 @@
               var url = base_url + '/statAll';
               $.get(url, function (data){
                   data  = JSON.parse(data);
+                  console.log(data);
                   email = data.data.find(el => el.type == "email").jml;
                   twitter = data.data.find(el => el.type == "twitter").jml;
                   instagram = data.data.find(el => el.type == "instagram").jml;
                   youtube = data.data.find(el => el.type == "youtube").jml;
+                  // lapor = data.data.find(el => el.type == "lapor").jml;
+                  // portal = data.data.find(el => el.type == "portal").jml;
+                  // langsung = data.data.find(el => el.type == "langsung").jml;
+
 
                   $("#jml_email").html(email);
                   $("#jml_twitter").html(twitter);
                   $("#jml_instagram").html(instagram);
                   $("#jml_youtube").html(youtube);
+                  // $("#jml_lapor").html(lapor);
+                  $("#jml_portal").html(portal);
+                  // $("#jml_langsung").html(langsung);
+
               });
           }
 

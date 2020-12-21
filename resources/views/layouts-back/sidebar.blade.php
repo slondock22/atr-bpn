@@ -87,6 +87,37 @@
               </span>
             </a>
           </li>
+          <li class="tb-sidebar-has-children">
+            <a href="#">
+              <span class="tb-sidebar-link-title">
+                <span class="tb-sidebar-link-icon"><i class="material-icons-outlined">insert_drive_file</i></span>
+                <span class="tb-sidebar-link-text">Manual</span>
+              </span>
+            </a>
+            <ul class="tb-sidebar-nav-dropdown">
+              <li>
+                <a href="{{route('aduan','lapor')}}">
+                  <span class="tb-sidebar-link-title">
+                    <span class="tb-sidebar-link-text">Aplikasi Lapor</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="{{route('aduan','portal')}}">
+                  <span class="tb-sidebar-link-title">
+                    <span class="tb-sidebar-link-text">Portal TanyaATRBPN</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="{{route('aduan','langsung')}}">
+                  <span class="tb-sidebar-link-title">
+                    <span class="tb-sidebar-link-text">Aduan Langsung</span>
+                  </span>
+                </a>
+              </li>
+            </ul><!-- .tb-sidebar-nav-dropdown -->
+          </li>
         </ul><!-- .tb-sidebar-nav-list -->
        {{--  <div class="tb-sidebar-nav-title">
           <span class="tb-sidebar-nav-title-text">Berita</span>

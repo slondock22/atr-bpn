@@ -15,6 +15,10 @@ Route::get('/',function () {
     return view('index');
 });
 
+Route::get('/lacak-aduan',function () {
+    return view('tracking');
+})->name('lacak-aduan');
+
 Route::get('/login',function () {
     return view('login');
 })->name('login');
@@ -26,6 +30,8 @@ Route::get('privacy',function () {
 Route::get('logout','Auth\LoginController@logout')->name('logout');
 
 Route::post('postLogin','Auth\LoginController@postLogin')->name('postLogin');
+
+Route::post('tambahAduanLapor','AduanController@tambahAduanManual')->name('tambahAduanLapor');
 
 
 Route::group(['middleware' => ['login']], function () {
@@ -40,6 +46,9 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('statAll','MasterController@statAll')->name('statAll');
 	Route::get('statistikjs/{chart}','MasterController@statistikjs');
 	Route::get('masterUserApi/{id?}','MasterController@masterUserApi')->name('masterUserApi');
+	Route::get('getProvinsi','MasterController@getProvinsi')->name('getProvinsi');
+	Route::get('getCity/{id_provinsi}','MasterController@getCity')->name('getCity');
+
 
 
 
@@ -52,6 +61,8 @@ Route::group(['middleware' => ['login']], function () {
 		Route::post('spamFeed','AduanController@spamFeed')->name('spamFeed');
 		Route::post('handleFeed','AduanController@handleFeed')->name('handleFeed');
 		Route::get('updateJenisAduan/{id_feed}/{id_category}','AduanController@updateJenisAduan')->name('updateJenisAduan');
+		Route::post('tambahAduanManual','AduanController@tambahAduanManual')->name('tambahAduanManual');
+
 
 
 

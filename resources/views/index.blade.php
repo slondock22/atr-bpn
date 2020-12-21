@@ -39,6 +39,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
 
+    <script type="text/javascript">
+    var base_url = '{{ url("/") }}';
+    </script>
 
     
 </head>
@@ -92,6 +95,9 @@
                                 </li>
                                 <li>
                                     <a class="smooth-menu" href="#process">Alur Kerja</a>
+                                </li>
+                                <li>
+                                    <a class="smooth-menu" href="#aduan-langsung">Buat Aduan</a>
                                 </li>
                                 <li>
                                     <a class="smooth-menu" href="#faq">FAQ</a>
@@ -342,6 +348,101 @@
         </div>
     </div>
     <!-- End Work Process Area -->
+
+     <!-- Start Contact
+    ============================================= -->
+    <div id="aduan-langsung" class="contact-area bg-gray default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+                    <div class="site-heading text-center">
+                        <h2>Buat Aduan</h2>
+                        <p>
+                            Buat pertanyaan seputar aduan, keluhan, atau informasi secara langsung melalui portal #TanyaATRBPN.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="contact-items">
+
+                    <!-- End Thumb -->
+                    <div class="col-md-4 thumb">
+                        <img src="assets/img/illustrations/5.png" alt="Thumb">
+                    </div>
+                    <!-- End Thumb -->
+                    
+                    <!-- Contact Form -->
+                    <div class="col-md-7 col-md-offset-1 contact-form">
+                        <form action="{{route('tambahAduanLapor')}}" method="POST" class="frmAduanLangsung" id="frmAduanLangsung">
+                            @csrf
+                            
+                            <input type="hidden" name="aduan_type" id="aduan_type" value="portal">
+
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <input class="form-control" id="username" name="username" placeholder="Nama Lengkap*" type="text">
+                                        <span class="alert-error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" id="email" name="email" placeholder="Email*" type="email">
+                                        <span class="alert-error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" id="phone" name="phone" placeholder="Nomor Handphone*" type="text">
+                                        <span class="alert-error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                           <!--  <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select class="form-control" id="provinsi"></select>
+                                        <span class="alert-error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select class="form-control" id="kota"></select>
+                                        <span class="alert-error"></span>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="form-group comments">
+                                        <textarea class="form-control" id="feed_comment_manual" name="feed_comment_manual" placeholder="Deskripsi Pertanyaan/Aduan*"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <button type="button" name="submit" id="submit" onclick="sendAduanManual('#frmAduanLangsung')">
+                                        Buat Aduan <i class="fa fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Alert Message -->
+                            <div class="col-md-12 alert-notification">
+                                <div id="message" class="alert-msg"></div>
+                            </div>
+                        </form>
+                        <h3>Cari tahu jawaban atas aduanmu <a href="{{route('lacak-aduan')}}"><span>disini</span></a></h3>
+                    </div>
+                    <!-- End Contact Form -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Contact -->
 
     <!-- Start Faq  
     ============================================= -->
@@ -621,6 +722,7 @@
     <script src="{{asset('/')}}assets/js/jquery.backgroundMove.js"></script>
     <script src="{{asset('/')}}assets/js/bootsnav.js"></script>
     <script src="{{asset('/')}}assets/js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -631,7 +733,107 @@
                 smartSpeed:500,
                 loop:true 
           });
+
+          $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+            // $.ajax({
+            //     type: 'POST',
+            //     url: base_url + '/getProvinsi',
+            //     dataType: "json",
+            //     success: function(data){
+            //         $.each(data, function(key, val) {
+            //         // console.log(val);
+            //         $("#provinsi").append('<option value="' + val.id_kota + '">' + val.nama + '</option>');
+            //   });                           
+            //     },
+            //     error: function (request, status, error) {
+            //         alert(error);
+            //     }
+            // });
+
         });    
+
+ // $("#provinsi").change(function(){
+ //    $('#kota').html('');
+ //       var id_provinces = $(this).val(); 
+ //       $.ajax({
+ //          type: "GET",
+ //          url: base_url + '/getCity/'+ id_provinces,
+ //          success: function(data){
+                   
+ //              $.each(data, function(key, val) {
+ //                // console.log(val);
+ //                $("#kota").append('<option value="' + val.id_kota + '">' + val.nama + '</option>');
+ //              });                           
+ //          }
+ //       });                    
+ //     });  
+
+function sendAduanManual(formId){
+    $("#submit").attr('disabled','disabled');
+
+    if($('#username').val() == ''){
+       swal("Perhatian", "Nama lengkap tidak boleh kosong", "error");
+      $("#submit").removeAttr('disabled','disabled');
+       return false;
+    }
+
+     if($('#email').val() == ''){
+       swal("Perhatian", "Email tidak boleh kosong", "error");
+            $("#submit").removeAttr('disabled','disabled');
+       return false;
+    }
+
+     if($('#phone').val() == ''){
+       swal("Perhatian", "Nomor handphone tidak boleh kosong", "error");
+        $("#submit").removeAttr('disabled','disabled');
+       return false;
+    }
+
+     if($('#feed_comment_manual').val() == ''){
+       swal("Perhatian", "Pertanyaan/aduan tidak boleh kosong", "error");
+            $("#submit").removeAttr('disabled','disabled');
+       return false;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: $(formId).attr('action'),
+        data: $(formId).serialize(),
+        success: function(data){
+            $('#username').val('');
+            $('#email').val('');
+            $('#phone').val('');
+            $('#feed_comment_manual').val('');
+
+            const el = document.createElement('div')
+            el.innerHTML = "Pertanyaan/aduan anda berhasil dikirimkan dengan ID Ticket </br> <b>"+data.nomor_tiket+"</b>. </br> Harap simpan nomor tiket anda untuk melakukan tracking atas pertanyaan/aduan anda <a href='{{route("lacak-aduan")}}'>disini</a>";
+
+
+            if(data['status']=='success'){
+                 swal({
+                  title: "Sukses!",
+                  content: el,
+                  icon: "success",
+                  closeOnClickOutside: false,
+                });
+            }else{
+                swal("Perhatian", "Terjadi Kesalahan", "error");
+            }
+
+            $("#submit").removeAttr('disabled','disabled');
+        },
+        error: function (request, status, error) {
+            swal("Perhatian", "Terjadi Kesalahan", "error");
+            $("#submit").removeAttr('disabled','disabled');
+        }
+    });
+}
     </script>
 
 </body>

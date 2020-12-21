@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use App\Events\AduanNotif;
 use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendEmailJob;
+use DB;
 
 
 class AduanController extends Controller
@@ -119,7 +120,7 @@ class AduanController extends Controller
                         ]);
 
         $response = json_decode($request->getBody()->getContents(),true);
-        //dd($response);
+        // dd($response);
 
         $data['status']   = "success";
         $data['result']   = Input::get('comment');
@@ -127,6 +128,7 @@ class AduanController extends Controller
         $data['form']     = Input::get('form');
         $data['response'] = $response;
 
+        
         
 
 
@@ -256,5 +258,35 @@ class AduanController extends Controller
         dispatch(new SendEmailJob($content));
 
         return 'AAA';
+    }
+
+    public function tambahAduanManual(Request $request)
+    {
+        $is_taken = 0;
+        if($request->aduan_type != 'portal'){
+             $is_taken = 4;
+        }
+
+        $insert = DB::table('tx_feed')->insertGetId([
+                'type' => $request->aduan_type,
+                'username' => $request->username,
+                'feed_comment' => $request->feed_comment_manual,
+                'id_province' => $request->provinsi,
+                'id_city' => $request->provinsi,
+                'user_email' => $request->email,
+                'user_phone' => $request->phone,
+                'is_taken' => $is_taken
+
+        ]);
+
+
+        if($insert){
+            $data = array('status' => 'success' , 'message' => 'Pertanyaan/Aduan berhasil ditambahkan', 'nomor_tiket' => $insert);
+            return response()->json($data);
+        }
+        else{
+            $data = array('status' => 'error' , 'message' => 'Terjadi Kesalahahn');
+            return response()->json($data);
+        }
     }
 }

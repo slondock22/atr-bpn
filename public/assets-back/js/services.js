@@ -11,12 +11,80 @@ $(document).ready(function(){
         width: '100%',
         dropdownParent: $("#modal-add-disposisi"),
      }); 
-	 
+
+     $('#provinsi').select2({
+        placeholder: "Pilih Provinsi",
+        allowClear: true,
+        language: "id",
+        width: '100%'
+     });
+
+     $('#kota').select2({
+        placeholder: "Pilih Kota",
+        allowClear: true,
+        language: "id",
+        width: '100%'
+     });
+    	 
 	 $('.tb-post-text').linkify({
 		target: "_blank",
 		className: 'attach-url'
 	 });
+
+    $.get( base_url + '/getProvinsi', function( data ) {
+
+          $.each(data, function(key, val) {
+            // console.log(val);
+            $("#provinsi").append('<option value="' + val.id_prov + '">' + val.nama + '</option>');
+          });
+    });
 });
+
+
+ $("#provinsi").change(function(){
+    $('#kota').html('');
+       var id_provinces = $(this).val(); 
+       $.ajax({
+          type: "GET",
+          url: base_url + '/getCity/'+ id_provinces,
+          success: function(data){
+                   
+              $.each(data, function(key, val) {
+                // console.log(val);
+                $("#kota").append('<option value="' + val.id_kota + '">' + val.nama + '</option>');
+              });                           
+          }
+       });                    
+     });  
+
+
+function servicePost(formId){
+    $(".btnProcess").attr('disabled','disabled');
+    $(".spanLoading").show();
+
+    $.ajax({
+        type: 'POST',
+        url: $(formId).attr('action'),
+        data: $(formId).serialize(),
+        success: function(data){
+            if(data['status']=='success'){
+                 $('html').html(data['result']);
+                 window.location.reload();
+                 setTimeout(function() { showFlashAlert('success', data['message']); }, 100);
+            }else{
+                setTimeout(function() { showFlashAlert('error', data['message']); }, 100);
+            }
+
+            $("#btnProcess").removeAttr('disabled','disabled');
+            $(".spanLoading").hide();
+        },
+        error: function (request, status, error) {
+            setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
+            $("#btnProcess").removeAttr('disabled','disabled');
+            $(".spanLoading").hide();
+        }
+    });
+}
 
 $('#btnDisposisi').on('click', function() {
     $.ajax({
@@ -79,7 +147,7 @@ function serviceSend(formId){
                                                                     </div>\
                                                                     <div class="tb-user-info">\
                                                                         <h3 class="tb-user-name">\
-                                                                            '+data['form']['name']+'\
+                                                                            Mendisposisikan kepada '+data['form']['name']+'\
                                                                             <ul class="tb-post-label tb-style1 tb-mp0">\
                                                                                 <li><a href="#">'+data['form']['date']+'</a></li>\
                                                                             </ul>\
@@ -106,6 +174,46 @@ function serviceSend(formId){
     });
 }
 
+function sendAduanManual(formId){
+    $("#btnProcess").attr('disabled','disabled');
+    $(".spanLoading").show();
+
+    if($('#username').val() == ''){
+        setTimeout(function() { showFlashAlert('error', 'Nama lengkap harus diisi'); }, 100);
+    }
+
+     if($('#provinsi').val() == ''){
+        setTimeout(function() { showFlashAlert('error', 'Provinsi harus diisi'); }, 100);
+    }
+
+     if($('#feed_comment_manual').val() == ''){
+        setTimeout(function() { showFlashAlert('error', 'Pertanyaan/Aduan harus diisi'); }, 100);
+    }
+
+
+    $.ajax({
+        type: 'POST',
+        url: $(formId).attr('action'),
+        data: $(formId).serialize(),
+        success: function(data){
+            if(data['status']=='success'){
+                 $('html').html(data['result']);
+                 window.location.reload();
+                 setTimeout(function() { showFlashAlert('success', data['message']); }, 100);
+            }else{
+                setTimeout(function() { showFlashAlert('error', data['message']); }, 100);
+            }
+
+            $("#btnProcess").removeAttr('disabled','disabled');
+            $(".spanLoading").hide();
+        },
+        error: function (request, status, error) {
+            setTimeout(function() { showFlashAlert('error', request.responseText); }, 100);
+            $("#btnProcess").removeAttr('disabled','disabled');
+            $(".spanLoading").hide();
+        }
+    });
+}
 
 function serviceFeeds(formId){
 	$(".btnProcess").attr('disabled','disabled');

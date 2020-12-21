@@ -446,4 +446,18 @@ class MasterController extends Controller
 
 	        return \Response::json($data);
     	}
+
+    	public function getProvinsi()
+    	{
+    		$data = DB::table('tm_provinsi')->get();
+
+    		return response()->json($data);
+    	}
+
+    	public function getCity($id_provinsi)
+    	{
+    		$data = DB::table('tm_kota')->where('id_prov',$id_provinsi)->get();
+
+    		return response()->json($data);
+    	}
 }
