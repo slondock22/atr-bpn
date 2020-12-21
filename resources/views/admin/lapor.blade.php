@@ -705,6 +705,16 @@
                     </div>
 
                     <div class="form-group">
+                      <label for="exampleFormControlSelect1">Email</label>
+                      <input type="text" class="form-control" name="email" id="email">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Nomor Handphone</label>
+                      <input type="text" class="form-control" name="phone" id="phone">
+                    </div>
+
+                    <div class="form-group">
                       <label for="exampleFormControlTextarea1">Pertanyaan/Aduan</label>
                       <textarea class="form-control text-area-modal-twitter-nopad" id="feed_comment_manual" rows="3" placeholder="Isikan pertanyaan/aduan" name="feed_comment_manual" required=""></textarea>
                     </div>
