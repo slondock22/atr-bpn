@@ -289,4 +289,21 @@ class AduanController extends Controller
             return response()->json($data);
         }
     }
+
+    public function lacak_aduan(Request $request)
+    {
+        $pertanyaan = DB::table('tx_feed')->select('feed_comment','date_create')->where('feed_id', $request->no_tiket)->first();
+        $jawaban = DB::table('tx_feed as a')->leftjoin('tx_replay as b', 'a.feed_id', 'b.feed_id')->select('b.comment','b.date_create')->where('b.feed_id', $request->no_tiket)->get();
+
+        if($pertanyaan){
+
+            $data = array('status' => 'success' , 'pertanyaan' => $pertanyaan, 'jawaban' => $jawaban);
+        }
+        else{
+            $data = array('status' => 'error' , 'message' => 'Data tidak ditemukan');
+        }
+
+        return response()->json($data);
+
+    }
 }

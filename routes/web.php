@@ -19,6 +19,8 @@ Route::get('/lacak-aduan',function () {
     return view('tracking');
 })->name('lacak-aduan');
 
+Route::post('/lacak-aduan','AduanController@lacak_aduan')->name('lacak-aduan');
+
 Route::get('/login',function () {
     return view('login');
 })->name('login');

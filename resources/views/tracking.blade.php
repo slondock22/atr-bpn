@@ -61,17 +61,18 @@
                                     <p>
                                         Cari tahu jawaban atas aduanmu dengan mengisi nomor tiket aduan pada kolom dibawah ini.
                                     </p>
-                                    <form action="#">
+                                    <form action="{{route('lacak-aduan')}}" method="POST" id="frmLacakAduan" class="frmLacakAduan">
+                                        @csrf
                                         <div class="col-lg-6 col-md-6">
                                             <div class="row">
                                                 <div class="form-group">
-                                                    <input class="form-control" placeholder="No Tiket Aduan*" type="text">
+                                                    <input class="form-control" placeholder="No Tiket Aduan*" id="no_tiket" name="no_tiket" type="text">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <div class="row">
-                                                <button type="submit">
+                                                <button type="submit" name="submit" id="submit" onclick="sendAduanManual('#frmLacakAduan')">
                                                     Submit
                                                 </button>
                                             </div>
@@ -79,46 +80,28 @@
                                     </form>
                 
                                 </div>
+                                <div class="col-md-12 content" style="border-left: 0px !important; margin-top: 20px;">
+                                    <div class="acd-items acd-arrow" id="hasil" style="display: none;">
+                                        <div class="panel-group symb" id="accordion">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#jawaban" aria-expanded="true" class="" id="pertanyaan">
+                                                           
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="jawaban" class="panel-collapse collapse in" aria-expanded="true" style="">
+                                                    
+                                                </div>
+                                            </div>
+        
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                  <!--   <div class="col-md-6 info">
-                        <ul>
-                            <li>
-                                <div class="list">
-                                    <h3><i class="fas fa-chart-line"></i></h3>
-                                </div>
-                                <div class="content">
-                                    <h4>Research Projec</h4>
-                                    <p>
-                                        Listening newspaper in advantage frankness to concluded unwilling. projection particular companions
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="list">
-                                    <h3><i class="fas fa-crosshairs"></i></h3>
-                                </div>
-                                <div class="content">
-                                    <h4>Targeting</h4>
-                                    <p>
-                                        Sentiments projection particular companions interested do at my delightful listening newspaper 
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="list">
-                                    <h3><i class="fas fa-check"></i></h3>
-                                </div>
-                                <div class="content">
-                                    <h4>Result</h4>
-                                    <p>
-                                        Talking chamber as shewing projection particular companions interested do at my delightful. Particular companions
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -139,7 +122,50 @@
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/bootsnav.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+    <script type="text/javascript">
+    function sendAduanManual(formId){
+        $("#submit").attr('disabled','disabled');
+
+        if($('#no_tiket').val() == ''){
+           swal("Perhatian", "Nomor tiket tidak boleh kosong", "error");
+          $("#submit").removeAttr('disabled','disabled');
+           return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: $(formId).attr('action'),
+            data: $(formId).serialize(),
+            success: function(data){
+                $('#no_tiket').val('');
+
+                if(data['status']=='success'){
+                    $('#hasil').show();
+                    $('#pertanyaan').html('');
+                    $('#pertanyaan').html(data.pertanyaan.feed_comment);
+                     $("#jawaban").html('');
+
+                    $.each(data['jawaban'], function(key, val) {
+                        
+                        $("#jawaban").append('<div class="panel-body"><p>'+val.comment+'</p></div>');
+                    });     
+
+                }else{
+                    swal("Perhatian", "Data tidak ditemukan", "error");
+                }
+
+                $("#submit").removeAttr('disabled','disabled');
+            },
+            error: function (request, status, error) {
+                swal("Perhatian", "Terjadi Kesalahan", "error");
+                $("#submit").removeAttr('disabled','disabled');
+            }
+        });
+    }
+    </script>
 </body>
 
 <!-- Mirrored from validthemes.com/themeforest/boxsass/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Oct 2019 17:11:10 GMT -->
