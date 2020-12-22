@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <div class="row">
-                                                <button type="submit" name="submit" id="submit" onclick="lacakAduan('#frmLacakAduan')">
+                                                <button type="button" name="submit" id="submit" onclick="lacakAduan('#frmLacakAduan')">
                                                     Submit
                                                 </button>
                                             </div>
