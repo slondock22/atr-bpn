@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <div class="row">
-                                                <button type="submit" name="submit" id="submit" onclick="sendAduanManual('#frmLacakAduan')">
+                                                <button type="submit" name="submit" id="submit" onclick="lacakAduan('#frmLacakAduan')">
                                                     Submit
                                                 </button>
                                             </div>
@@ -85,8 +85,8 @@
                                         <div class="panel-group symb" id="accordion">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#jawaban" aria-expanded="true" class="" id="pertanyaan">
+                                                    <h4 class="panel-title" style="text-transform: none !important;">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#jawaban" aria-expanded="true" class="" id="pertanyaan" style="font-weight: 400 !important;">
                                                            
                                                         </a>
                                                     </h4>
@@ -126,7 +126,7 @@
 
 
     <script type="text/javascript">
-    function sendAduanManual(formId){
+    function lacakAduan(formId){
         $("#submit").attr('disabled','disabled');
 
         if($('#no_tiket').val() == ''){
@@ -145,15 +145,19 @@
                 if(data['status']=='success'){
                     $('#hasil').show();
                     $('#pertanyaan').html('');
-                    $('#pertanyaan').html(data.pertanyaan.feed_comment);
+                    $('#pertanyaan').html('Peratanyaan dari @'+data.pertanyaan.username+'<br><br>'+data.pertanyaan.feed_comment);
                      $("#jawaban").html('');
 
                     $.each(data['jawaban'], function(key, val) {
                         
-                        $("#jawaban").append('<div class="panel-body"><p>'+val.comment+'</p></div>');
+                        $("#jawaban").append('<div class="panel-body"><p style="font-size:16px !important;"> Jawaban:<br><br>'+val.comment+'</p></div>');
                     });     
 
                 }else{
+                    $('#pertanyaan').html('');
+                    $("#jawaban").html('');
+
+
                     swal("Perhatian", "Data tidak ditemukan", "error");
                 }
 

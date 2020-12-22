@@ -199,6 +199,36 @@
                   		{{$value['comment']}}
                   	</div>
 
+                     @if(isset($value['photo_identity']))
+                    <div class="tb-height-b20 tb-height-lg-b20"></div>
+                      <ul class="tb-attachment-list tb-style1 tb-mp0">
+                        <li>
+                          <div class="tb-attachment">
+                            <div class="tb-attachment-file"><i class="material-icons-outlined">image</i></div>
+                            <div class="tb-attachment-info">
+                              <a href="{{route('download',str_replace('/', '!', $value['photo_identity']))}}">
+                              <h3 class="tb-attachment-title">Foto Identitas</h3>
+                              <div class="tb-attachment-size">Download</div>
+                              </a>
+                            </div>
+                          </div>
+                        </li>
+                        @if(isset($value['attachment_path']))
+                        <li>
+                          <div class="tb-attachment">
+                            <div class="tb-attachment-file"><i class="material-icons-outlined">attach_file</i></div>
+                            <div class="tb-attachment-info">
+                              <a href="{{route('download',str_replace('/', '!', $value['attachment_path']))}}">
+                              <h3 class="tb-attachment-title">Lampiran.zip</h3>
+                              <div class="tb-attachment-size">Download</div>
+                              </a>
+                            </div>
+                          </div>
+                        </li>
+                        @endif
+                      </ul>
+                      @endif
+
                       <div class="divHastag">
                         @if(isset($value['aduan']))
                         <a onclick="modal_hastag('spanHastag{{$value['id']}}','{{$value['id']}}')" 
@@ -706,6 +736,12 @@
                     </div>
 
                     <div class="form-group">
+                      <label for="exampleFormControlSelect1">Foto Identitas (KTP/SIM/Passpor)</label>
+                      <input type="file" class="form-control" name="ktp" id="ktp" accept='image/*'>
+                      <span class="alert-error text-danger" id="ktp-error"></span>
+                    </div>
+
+                    <div class="form-group">
                       <label for="exampleFormControlSelect1">Email</label>
                       <input type="text" class="form-control" name="email" id="email">
                     </div>
@@ -718,6 +754,11 @@
                     <div class="form-group">
                       <label for="exampleFormControlTextarea1">Pertanyaan/Aduan</label>
                       <textarea class="form-control text-area-modal-twitter-nopad" id="feed_comment_manual" rows="3" placeholder="Isikan pertanyaan/aduan" name="feed_comment_manual" required=""></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Lampiran</label>
+                      <input type="file" class="form-control" name="lampiran[]" id="lampiran" multiple>
+                      <span class="alert-error text-danger" id="lampiran-error"></span>
                     </div>
           </form>
       </div>

@@ -51,6 +51,8 @@ Route::group(['middleware' => ['login']], function () {
 	Route::get('getProvinsi','MasterController@getProvinsi')->name('getProvinsi');
 	Route::get('getCity/{id_provinsi}','MasterController@getCity')->name('getCity');
 
+	Route::get('download/{path}','AduanController@download')->name('download');
+
 
 
 

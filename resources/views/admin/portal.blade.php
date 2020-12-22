@@ -10,7 +10,6 @@
 <div class="tb-content tb-style1 tab-profil-content">
   <div class="tb-padd-lr-30 tb-uikits-heading">
       <h2 class="tb-uikits-title">Portal #TanyaATRBPN</h2>
-      <a href="#" class="tb-btn tb-style3 tb-color1" onclick="modal_tambah_aduan()">Tambah Aduan</a>
       
     </div>
     
@@ -196,8 +195,38 @@
                     <div class="tb-post tb-style1">
                       <div class="tb-post-text" 
                       id="content{{$value['id']}}">
-                  		{{$value['comment']}}
+                  		{{$value['comment']}} 
                   	</div>
+
+                    @if(isset($value['photo_identity']))
+                    <div class="tb-height-b20 tb-height-lg-b20"></div>
+                      <ul class="tb-attachment-list tb-style1 tb-mp0">
+                        <li>
+                          <div class="tb-attachment">
+                            <div class="tb-attachment-file"><i class="material-icons-outlined">image</i></div>
+                            <div class="tb-attachment-info">
+                              <a href="{{route('download',str_replace('/', '!', $value['photo_identity']))}}">
+                              <h3 class="tb-attachment-title">Foto Identitas</h3>
+                              <div class="tb-attachment-size">Download</div>
+                              </a>
+                            </div>
+                          </div>
+                        </li>
+                        @if(isset($value['attachment_path']))
+                        <li>
+                          <div class="tb-attachment">
+                            <div class="tb-attachment-file"><i class="material-icons-outlined">attach_file</i></div>
+                            <div class="tb-attachment-info">
+                              <a href="{{route('download',str_replace('/', '!', $value['attachment_path']))}}">
+                              <h3 class="tb-attachment-title">Lampiran.zip</h3>
+                              <div class="tb-attachment-size">Download</div>
+                              </a>
+                            </div>
+                          </div>
+                        </li>
+                        @endif
+                      </ul>
+                      @endif
 
                       <div class="divHastag">
                         @if(isset($value['aduan']))

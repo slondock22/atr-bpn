@@ -14,15 +14,15 @@ $(document).ready(function(){
 
      $('#provinsi').select2({
         placeholder: "Pilih Provinsi",
-        allowClear: true,
         language: "id",
+        dropdownParent: $("#modal-tambah-aduan"),
         width: '100%'
      });
 
      $('#kota').select2({
         placeholder: "Pilih Kota",
-        allowClear: true,
         language: "id",
+        dropdownParent: $("#modal-tambah-aduan"),
         width: '100%'
      });
     	 
@@ -175,26 +175,76 @@ function serviceSend(formId){
 }
 
 function sendAduanManual(formId){
+
     $("#btnProcess").attr('disabled','disabled');
     $(".spanLoading").show();
 
     if($('#username').val() == ''){
         setTimeout(function() { showFlashAlert('error', 'Nama lengkap harus diisi'); }, 100);
+        $("#btnProcess").removeAttr('disabled','disabled');
+        return false;
     }
 
      if($('#provinsi').val() == ''){
         setTimeout(function() { showFlashAlert('error', 'Provinsi harus diisi'); }, 100);
+        $("#btnProcess").removeAttr('disabled','disabled');
+        return false;
     }
+
+    if($('#kota').val() == ''){
+        setTimeout(function() { showFlashAlert('error', 'Kota harus diisi'); }, 100);
+        $("#btnProcess").removeAttr('disabled','disabled');
+        return false;
+    }
+
+
 
      if($('#feed_comment_manual').val() == ''){
         setTimeout(function() { showFlashAlert('error', 'Pertanyaan/Aduan harus diisi'); }, 100);
+        $("#btnProcess").removeAttr('disabled','disabled');
+        return false;
+    }
+
+    if($('#ktp').val() == ''){
+        setTimeout(function() { showFlashAlert('error', 'Foto identitas harus diisi'); }, 100);
+        $("#btnProcess").removeAttr('disabled','disabled');
+        return false;
+    }
+
+    var ktp_size = $('#ktp')[0].files[0].size;
+
+    if(ktp_size>1024000) {
+        setTimeout(function() { showFlashAlert('error', 'Ukuran file KTP/SIM/Passpor yang diupload tidak boleh melebihi 1MB'); }, 100);
+        $("#btnProcess").removeAttr('disabled','disabled');
+       return false;
+    }
+
+    if($('#lampiran').val() != ''){
+        var lampiran_size = $('#lampiran')[0].files.length;
+
+        for (var i = 0; i < lampiran_size; ++i) {
+            if($('#lampiran')[0].files[i].size > 2024000){
+                setTimeout(function() { showFlashAlert('error', 'Ukuran file '+$('#lampiran')[0].files[i].name+' yang diupload tidak boleh melebihi 1MB'); }, 100);
+                 $("#btnProcess").removeAttr('disabled','disabled');
+                 return false;
+            }
+
+            var ext = $('#lampiran')[0].files[i].name.split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'doc','docx','pdf','ppt','xls','xlsx','zip','rar']) == -1) {
+                setTimeout(function() { showFlashAlert('error', 'Tipe file '+$('#lampiran')[0].files[i].name+' tidak didukung'); }, 100);
+                $("#btnProcess").removeAttr('disabled','disabled');
+                return false;
+            }
+        }
     }
 
 
     $.ajax({
         type: 'POST',
         url: $(formId).attr('action'),
-        data: $(formId).serialize(),
+        data: new FormData($(formId)[0]),
+        processData: false,
+        contentType: false,
         success: function(data){
             if(data['status']=='success'){
                  $('html').html(data['result']);

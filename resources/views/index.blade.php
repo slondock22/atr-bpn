@@ -422,6 +422,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Foto Identitas Diri (KTP/SIM/Passpor)*</label>
+                                        <input class="form-control" id="ktp" name="ktp" type="file" accept='image/*'>
+                                        <span class="alert-error text-danger" id="ktp-error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Lampiran Pertanyaan/Aduan*</label>
+                                        <input class="form-control" id="lampiran" name="lampiran[]" type="file" multiple>
+                                        <span class="alert-error" id="lampiran-error"></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="row">
                                     <button type="button" name="submit" id="submit" onclick="sendAduanManual('#frmAduanLangsung')">
@@ -741,38 +757,7 @@
             });
 
 
-            // $.ajax({
-            //     type: 'POST',
-            //     url: base_url + '/getProvinsi',
-            //     dataType: "json",
-            //     success: function(data){
-            //         $.each(data, function(key, val) {
-            //         // console.log(val);
-            //         $("#provinsi").append('<option value="' + val.id_kota + '">' + val.nama + '</option>');
-            //   });                           
-            //     },
-            //     error: function (request, status, error) {
-            //         alert(error);
-            //     }
-            // });
-
         });    
-
- // $("#provinsi").change(function(){
- //    $('#kota').html('');
- //       var id_provinces = $(this).val(); 
- //       $.ajax({
- //          type: "GET",
- //          url: base_url + '/getCity/'+ id_provinces,
- //          success: function(data){
-                   
- //              $.each(data, function(key, val) {
- //                // console.log(val);
- //                $("#kota").append('<option value="' + val.id_kota + '">' + val.nama + '</option>');
- //              });                           
- //          }
- //       });                    
- //     });  
 
 function sendAduanManual(formId){
     $("#submit").attr('disabled','disabled');
@@ -801,15 +786,64 @@ function sendAduanManual(formId){
        return false;
     }
 
+    if($('#ktp').val() == ''){
+       swal("Perhatian", "Foto Identitas diri tidak boleh kosong", "error");
+            $("#submit").removeAttr('disabled','disabled');
+       return false;
+
+    }else{
+        var ktp_size = $('#ktp')[0].files[0].size;
+
+        if(ktp_size>1024000) {
+            $("#ktp-error").html('');
+            $("#ktp-error").html("<p style='color:#FF0000'>Ukuran file yang diupload tidak boleh lebih dari 1MB</p>");
+            $("#submit").removeAttr('disabled','disabled');
+           return false;
+        }
+
+    }
+
+    if($('#lampiran').val() != ''){
+       
+        var lampiran_size = $('#lampiran')[0].files.length;
+
+        $("#lampiran-error").html('');
+
+        for (var i = 0; i < lampiran_size; ++i) {
+            if($('#lampiran')[0].files[i].size > 2024000){
+                 $("#lampiran-error").append("<p style='color:#FF0000'>Ukuran file "+$('#lampiran')[0].files[i].name+" tidak boleh lebih dari 1MB</p>");
+                 $("#submit").removeAttr('disabled','disabled');
+                 return false;
+            }
+
+            var ext = $('#lampiran')[0].files[i].name.split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'doc','docx','pdf','ppt','xls','xlsx','zip','rar']) == -1) {
+                $("#lampiran-error").append("<p style='color:#FF0000'>Type file "+$('#lampiran')[0].files[i].name+" tidak didukung</p>");
+                $("#submit").removeAttr('disabled','disabled');
+                return false;
+            }
+        }
+    }
+
+
+
     $.ajax({
         type: 'POST',
         url: $(formId).attr('action'),
-        data: $(formId).serialize(),
+        data: new FormData($(formId)[0]),
+        processData: false,
+        contentType: false,
         success: function(data){
             $('#username').val('');
             $('#email').val('');
             $('#phone').val('');
             $('#feed_comment_manual').val('');
+            $('#ktp').val('');
+            $('#lampiran').val('');
+            $("#ktp-error").html('');
+            $("#lampiran-error").html('');
+
+
 
             const el = document.createElement('div')
             el.innerHTML = "Pertanyaan/aduan anda berhasil dikirimkan dengan ID Ticket </br> <b>"+data.nomor_tiket+"</b>. </br> Harap simpan nomor tiket anda untuk melakukan tracking atas pertanyaan/aduan anda <a href='{{route("lacak-aduan")}}'>disini</a>";

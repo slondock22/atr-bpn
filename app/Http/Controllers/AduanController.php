@@ -10,6 +10,9 @@ use App\Events\AduanNotif;
 use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendEmailJob;
 use DB;
+use File;
+use Storage;
+use Zipper;
 
 
 class AduanController extends Controller
@@ -262,12 +265,13 @@ class AduanController extends Controller
 
     public function tambahAduanManual(Request $request)
     {
+
         $is_taken = 0;
         if($request->aduan_type != 'portal'){
              $is_taken = 4;
         }
 
-        $insert = DB::table('tx_feed')->insertGetId([
+        $insert_id = DB::table('tx_feed')->insertGetId([
                 'type' => $request->aduan_type,
                 'username' => $request->username,
                 'feed_comment' => $request->feed_comment_manual,
@@ -279,9 +283,46 @@ class AduanController extends Controller
 
         ]);
 
+        //save ktp
+        $path_ktp = "public/upload/".$insert_id."/KTP/";
+        $ktp = $request->file('ktp');
+        $ktp_name = $insert_id . '_Identitas.' . $ktp->getClientOriginalExtension();
 
-        if($insert){
-            $data = array('status' => 'success' , 'message' => 'Pertanyaan/Aduan berhasil ditambahkan', 'nomor_tiket' => $insert);
+        $save_ktp = Storage::disk('local')->put($path_ktp.$ktp_name,file_get_contents($ktp));
+
+        //save lampiran | check lampiran is exist
+        $path_lampiran = "public/upload/".$insert_id."/Lampiran/";
+        $lampiran_zip = NULL;
+
+        if($request->file('lampiran')){
+            //extract array lampiran
+            for ($i=0; $i < count($request->file('lampiran')) ; $i++) { 
+                $lampiran_name = $insert_id . '_' . $request->file('lampiran')[$i]->getClientOriginalName();
+                $save_lampiran = Storage::disk('local')->put($path_lampiran.$lampiran_name,file_get_contents($request->file('lampiran')[$i]));
+
+            }
+
+            //create zip for lampiran and delete all files in lampiran folder
+            if($save_lampiran){
+               $files = glob(public_path('storage/upload/'.$insert_id.'/Lampiran/*'));
+               Zipper::make(public_path('/storage/upload/'.$insert_id.'/'.$insert_id.'_Lampiran.zip'))->add($files);
+               $lampiran_zip = 'upload/'.$insert_id.'/'.$insert_id.'_Lampiran.zip';
+            }
+        }
+
+        //UPDATE FILEPATH KTP/LAMPIRAN IN DB
+
+        if($save_ktp){
+
+            $update = DB::table('tx_feed')->where('feed_id',$insert_id)->update([
+                            'photo_identity' => 'upload/'.$insert_id.'/KTP/'.$ktp_name,
+                            'attachment_path' => $lampiran_zip
+                    ]);
+        }
+
+
+        if($insert_id){
+            $data = array('status' => 'success' , 'message' => 'Pertanyaan/Aduan berhasil ditambahkan', 'nomor_tiket' => $insert_id);
             return response()->json($data);
         }
         else{
@@ -292,8 +333,19 @@ class AduanController extends Controller
 
     public function lacak_aduan(Request $request)
     {
-        $pertanyaan = DB::table('tx_feed')->select('feed_comment','date_create')->where('feed_id', $request->no_tiket)->first();
+
+        $pertanyaan = DB::table('tx_feed')
+                                ->select('username','feed_comment','date_create')
+                                ->where('feed_id', $request->no_tiket)
+                                ->where(function ($query) {
+                                    $query->where('identifier', '!=', '99')
+                                        ->orWhereNull('identifier');
+                                    })
+                                ->first();
+
         $jawaban = DB::table('tx_feed as a')->leftjoin('tx_replay as b', 'a.feed_id', 'b.feed_id')->select('b.comment','b.date_create')->where('b.feed_id', $request->no_tiket)->get();
+
+        // dd($pertanyaan);
 
         if($pertanyaan){
 
@@ -305,5 +357,16 @@ class AduanController extends Controller
 
         return response()->json($data);
 
+    }
+
+    public function download($path)
+    {
+        $path_download = str_replace('!', '/', $path);
+
+        try {
+            return Storage::disk('local')->download('public/'.$path_download);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
