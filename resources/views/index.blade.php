@@ -43,6 +43,14 @@
     var base_url = '{{ url("/") }}';
     </script>
 
+    <style type="text/css">
+        #submit:disabled,
+        button[disabled]{
+          border: 1px solid #999999;
+          background-color: #cccccc;
+          color: #666666 !important;
+        }
+    </style>
     
 </head>
 
@@ -391,7 +399,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input class="form-control" id="email" name="email" placeholder="Email*" type="email">
-                                        <span class="alert-error"></span>
+                                        <span class="alert-error" id="email-error"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -432,7 +440,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Lampiran Pertanyaan/Aduan*</label>
+                                        <label>Lampiran Pertanyaan/Aduan <span style="color:#afb0b2">(optional)</span></label>
                                         <input class="form-control" id="lampiran" name="lampiran[]" type="file" multiple>
                                         <span class="alert-error" id="lampiran-error"></span>
                                     </div>
@@ -757,7 +765,12 @@
             });
 
 
-        });    
+        }); 
+
+$( "#email" ).change(function() {
+ $('#email-error').html('');
+ $('#email-error').addClass('text-success').html('*Pastikan email yang anda masukan benar.')
+});   
 
 function sendAduanManual(formId){
     $("#submit").attr('disabled','disabled');
@@ -833,6 +846,18 @@ function sendAduanManual(formId){
         data: new FormData($(formId)[0]),
         processData: false,
         contentType: false,
+         beforeSend: function() {
+            const loading = document.createElement('div')
+            loading.innerHTML = "<img src='{{asset('/')}}assets/img/loading-submit.gif' style='width:100px !important;'>";
+
+                swal({
+                    title: 'Membuat Nomor Tiket...',
+                    allowEscapeKey: false,
+                    closeOnClickOutside: false,
+                    content: loading,
+                    button: false
+                  });    
+            },
         success: function(data){
             $('#username').val('');
             $('#email').val('');

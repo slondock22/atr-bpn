@@ -8,11 +8,11 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Input;
 use App\Events\AduanNotif;
 use Illuminate\Support\Facades\Mail;
-use App\Jobs\SendEmailJob;
 use DB;
 use File;
 use Storage;
 use Zipper;
+use App\Jobs\SendTiketEmailJob;
 
 
 class AduanController extends Controller
@@ -318,6 +318,17 @@ class AduanController extends Controller
                             'photo_identity' => 'upload/'.$insert_id.'/KTP/'.$ktp_name,
                             'attachment_path' => $lampiran_zip
                     ]);
+        }
+
+        //Kirim Email Khusus Portal
+
+        if($request->aduan_type == 'portal'){
+             $details = [
+                            'no_tiket' => $insert_id,
+                            'email_to' => $request->email
+                        ];
+
+             dispatch(new SendTiketEmailJob($details));
         }
 
 
