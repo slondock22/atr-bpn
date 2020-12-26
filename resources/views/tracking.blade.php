@@ -126,6 +126,15 @@
 
 
     <script type="text/javascript">
+
+    $("#frmLacakAduan").submit(function(e) {
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        lacakAduan('#frmLacakAduan');
+    
+    });
+
     function lacakAduan(formId){
         $("#submit").attr('disabled','disabled');
 
