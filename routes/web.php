@@ -35,6 +35,18 @@ Route::post('postLogin','Auth\LoginController@postLogin')->name('postLogin');
 
 Route::post('tambahAduanLapor','AduanController@tambahAduanManual')->name('tambahAduanLapor');
 
+// Route::get('send-mail', function () {
+   
+//     $details = [
+//         'no_tiket' => '8890',
+//         'email_to' => 'v.bobotoh@gmail.com'
+//     ];
+
+//      dispatch(new App\Jobs\SendTiketEmailJob($details));
+   
+//     dd("Email is Sent.");
+// });
+
 
 Route::group(['middleware' => ['login']], function () {
 	Route::get('home','IndexController@index')->name('home');

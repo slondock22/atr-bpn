@@ -146,12 +146,18 @@
                     $('#hasil').show();
                     $('#pertanyaan').html('');
                     $('#pertanyaan').html('Peratanyaan dari @'+data.pertanyaan.username+'<br><br>'+data.pertanyaan.feed_comment);
-                     $("#jawaban").html('');
+                    $("#jawaban").html('');
 
-                    $.each(data['jawaban'], function(key, val) {
+                    if (data['jawaban'] === undefined || data['jawaban'].length == 0) {
                         
-                        $("#jawaban").append('<div class="panel-body"><p style="font-size:16px !important;"> Jawaban:<br><br>'+val.comment+'</p></div>');
-                    });     
+                        $("#jawaban").append('<div class="panel-body"><p style="font-size:16px !important;" class="text-danger"> Jawaban:<br><br>Belum ada jawaban terkait atas pertanyaan anda.</p></div>');
+                    }else{
+                            $.each(data['jawaban'], function(key, val) {
+                                
+                                $("#jawaban").append('<div class="panel-body"><p style="font-size:16px !important;"> Jawaban:<br><br>'+val.comment+'</p></div>');
+                            });     
+
+                    }
 
                 }else{
                     $('#pertanyaan').html('');
