@@ -772,6 +772,14 @@ $( "#email" ).change(function() {
  $('#email-error').addClass('text-success').html('*Pastikan email yang anda masukan benar.')
 });   
 
+$("#frmAduanLangsung").submit(function(e) {
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        sendAduanManual('#frmAduanLangsung');
+    
+    });
+
 function sendAduanManual(formId){
     $("#submit").attr('disabled','disabled');
 
