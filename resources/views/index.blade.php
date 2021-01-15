@@ -104,9 +104,9 @@
                                 <li>
                                     <a class="smooth-menu" href="#process">Alur Kerja</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a class="smooth-menu" href="#aduan-langsung">Buat Aduan</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a class="smooth-menu" href="#faq">FAQ</a>
                                 </li>
@@ -357,9 +357,9 @@
     </div>
     <!-- End Work Process Area -->
 
-     <!-- Start Contact
+     <!-- Aduan Langsung
     ============================================= -->
-    <div id="aduan-langsung" class="contact-area bg-gray default-padding">
+    <!-- <div id="aduan-langsung" class="contact-area bg-gray default-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
@@ -374,13 +374,10 @@
             <div class="row">
                 <div class="contact-items">
 
-                    <!-- End Thumb -->
                     <div class="col-md-4 thumb">
                         <img src="assets/img/illustrations/5.png" alt="Thumb">
                     </div>
-                    <!-- End Thumb -->
                     
-                    <!-- Contact Form -->
                     <div class="col-md-7 col-md-offset-1 contact-form">
                         <form action="{{route('tambahAduanLapor')}}" method="POST" class="frmAduanLangsung" id="frmAduanLangsung">
                             @csrf
@@ -409,7 +406,7 @@
                                     </div>
                                 </div>
                             </div>
-                           <!--  <div class="row">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <select class="form-control" id="provinsi"></select>
@@ -422,7 +419,7 @@
                                         <span class="alert-error"></span>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="form-group comments">
@@ -453,23 +450,22 @@
                                     </button>
                                 </div>
                             </div>
-                            <!-- Alert Message -->
+                           
                             <div class="col-md-12 alert-notification">
                                 <div id="message" class="alert-msg"></div>
                             </div>
                         </form>
                         <h3>Cari tahu jawaban atas aduanmu <a href="{{route('lacak-aduan')}}"><span>disini</span></a></h3>
                     </div>
-                    <!-- End Contact Form -->
+                  
                 </div>
 
             </div>
         </div>
-    </div>
-    <!-- End Contact -->
+    </div> -->
+    <!-- Aduan Langsung -->
 
-    <!-- Start Faq  
-    ============================================= -->
+    <!-- Start Faq -->
     <div id="faq" class="faq-area default-padding">
         <div class="container">
             <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">

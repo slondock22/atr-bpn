@@ -15,11 +15,15 @@ Route::get('/',function () {
     return view('index');
 });
 
-Route::get('/lacak-aduan',function () {
-    return view('tracking');
-})->name('lacak-aduan');
+// Route::get('/lacak-aduan',function () {
+//     return view('tracking');
+// })->name('lacak-aduan');
 
 Route::post('/lacak-aduan','AduanController@lacak_aduan')->name('lacak-aduan');
+
+Route::post('tambahAduanLapor','AduanController@tambahAduanManual')->name('tambahAduanLapor');
+
+Route::redirect('/lacak-aduan', '/', 301);
 
 Route::get('/login',function () {
     return view('login');
@@ -33,7 +37,6 @@ Route::get('logout','Auth\LoginController@logout')->name('logout');
 
 Route::post('postLogin','Auth\LoginController@postLogin')->name('postLogin');
 
-Route::post('tambahAduanLapor','AduanController@tambahAduanManual')->name('tambahAduanLapor');
 
 // Route::get('send-mail', function () {
    
